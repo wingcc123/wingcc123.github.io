@@ -571,6 +571,116 @@
 
 
   
+    <article id="post-kubernetes中的volume" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/12/kubernetes中的volume/">kubernetes中的volume</a>
+    </h1>
+  
+
+        
+        <a href="/2016/06/12/kubernetes中的volume/" class="archive-article-date">
+  	<time datetime="2016-06-12T11:53:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-06-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>volume 是pod中能够被多个容器访问的共享目录。k8s中volume定义在pod上，然后被一个pod里面的多个容器挂载到具体的文件目录下；其次k8s中volume与pod的生命周期相同，与容器的生命周期不相关，当容器种植或者重启的时候，volume中的数据也不会丢失。k8s支持多种类型volume，例如GlusterFS、Cept等分布式文件系统</p>
+<p>volume的类型</p>
+<ol>
+<li>emptyDir</li>
+</ol>
+<p>一个emptyDir Volume是在pod分配到node的时候创建的。它的内容为空，并且不需要指定宿主机上对应目录文件，因为k8s会自动分配一个对应的目录。当pod从node上移除的时候，emptyDir中的数据也会被永久删除。</p>
+<p>emptyDir用途：</p>
+<p>(1)临时空间，例如用于某些应用程序运行时所需的临时目录，且无须永久保留。</p>
+<p>(2)长时间任务的中间过程checkpoint的临时保存目录。</p>
+<p>(3)一个容器需要从另一个容器中获取数据的目录。</p>
+<ol>
+<li>hostPath</li>
+</ol>
+<p>hostPath为pod上挂载宿主机上的文件或者目录。</p>
+<p>hostPath用途：</p>
+<p>(1) 容器应用程序生成的日志文件需要永久保存，可以使用宿主机的告诉文件系统管理进行存储。</p>
+<p>(2) 需要访问宿主机上docker引擎内部数据结构的容器应用时，可以通过定义hostPath为宿主机/var/lib/docker目录，使容器内部应用可以直接访问Docker的文件系统。</p>
+<p>注意：</p>
+<p>(1) 在不同的node上具有相同配置的pod可能会因为宿主机上的目录和文件不同从而导致对volume上目录和文件的访问结果不一致。</p>
+<p>(2)如果使用了资源配额管理，那么k8s无法将hostPath在宿主机使用的资源纳入管理。</p>
+<p>例子： 使用宿主机的/data/目录定义了一个hostPath类型的Volume</p>
+<p>volume:</p>
+<ul>
+<li>name: “persistent-storage”<br>hostPath:<br>  path: “/date”<br>3.gcePersistentDisk</li>
+</ul>
+<p>使用这种类型的Volume表示使用谷歌公有云提供的永久磁盘（Persistent Disk,PD)存放Volume的数据，它与EmptyDir不同，PD上的内容是会永久保存，当Pod被删除时，PD只是被卸载，但不会被删除。</p>
+<p>前提：你需要先创建一个永久磁盘（PD），才能使用gcePersistentDisk。</p>
+<p>注意</p>
+<p>node（运行kubelet的节点）需要的是GCE虚拟机。<br>这些虚拟机需要与PD存在与相同GCE项目和Zone中。<br>4.awsElasticBlockStore</p>
+<p>与GCE类似，该类型的Volume使用亚马逊公有云提供的EBS Volume存储数据，需要先创建一个EBSVolume才能使用awsElasticBlockStore。</p>
+<p>5.NFS</p>
+<p>使用NFS网络文件系统提供的共享目录存储数据时，我们需要在系统中部署一个NFS Server 。定义NFS类型的Volume的实例如下：</p>
+<p>volumes:</p>
+<ul>
+<li>name: nfs<br>nfs:<br> server； nfs-server.localhost  #改为你的nfs服务器地址<br> path: “/“<br>6.其他类型的volume</li>
+</ul>
+<p>iscsi：<br>flocker<br>glusterfs<br>rbd<br>gitRepo<br>secret</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">kubernetes</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/06/12/kubernetes中的volume/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-kubernetes1-4" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
