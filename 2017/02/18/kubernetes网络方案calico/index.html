@@ -6,17 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017/3 | Winnie&#39;s cabin</title>
+  <title>kubernetes网络方案calico | Winnie&#39;s cabin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="运维小记">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Winnie&#39;s cabin">
-<meta property="og:url" content="http://yoursite.com/archives/2017/03/index.html">
+  <meta name="description" content="环境系统：centos7.3192.168.40.50  local-master192.168.40.51  local-node1192.168.40.52  local-node21234567master:kubernetes-master-1.5.2-0.2.gitc55cf2b.el7.x86_64kubernetes-client-1.5.2-0.2.gitc55cf2b.el7.x">
+<meta name="keywords" content="kubernetes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="kubernetes网络方案calico">
+<meta property="og:url" content="http://yoursite.com/2017/02/18/kubernetes网络方案calico/index.html">
 <meta property="og:site_name" content="Winnie&#39;s cabin">
-<meta property="og:description" content="运维小记">
+<meta property="og:description" content="环境系统：centos7.3192.168.40.50  local-master192.168.40.51  local-node1192.168.40.52  local-node21234567master:kubernetes-master-1.5.2-0.2.gitc55cf2b.el7.x86_64kubernetes-client-1.5.2-0.2.gitc55cf2b.el7.x">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4618795-21f43a75ee0eb234.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4618795-e7a2c6917ec68d1e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4618795-6f10bc3d41b869f9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4618795-c1b7e8633575bcab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-09-19T03:03:44.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Winnie&#39;s cabin">
-<meta name="twitter:description" content="运维小记">
+<meta name="twitter:title" content="kubernetes网络方案calico">
+<meta name="twitter:description" content="环境系统：centos7.3192.168.40.50  local-master192.168.40.51  local-node1192.168.40.52  local-node21234567master:kubernetes-master-1.5.2-0.2.gitc55cf2b.el7.x86_64kubernetes-client-1.5.2-0.2.gitc55cf2b.el7.x">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/4618795-21f43a75ee0eb234.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   
     <link rel="alternative" href="/atom.xml" title="Winnie&#39;s cabin" type="application/atom+xml">
   
@@ -142,49 +149,198 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-kubernetes网络方案calico" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/18/kubernetes网络方案calico/" class="archive-article-date">
-  	<time datetime="2017-03-18T09:58:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-18</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/18/kubernetes网络方案calico/">kubernetes网络方案calico</a>
+    <h1 class="article-title" itemprop="name">
+      kubernetes网络方案calico
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
+        
+        <a href="/2017/02/18/kubernetes网络方案calico/" class="archive-article-date">
+  	<time datetime="2017-02-18T09:58:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><p>系统：centos7.3<br>192.168.40.50  local-master<br>192.168.40.51  local-node1<br>192.168.40.52  local-node2<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">master:</div><div class="line">kubernetes-master-1.5.2-0.2.gitc55cf2b.el7.x86_64</div><div class="line">kubernetes-client-1.5.2-0.2.gitc55cf2b.el7.x86_64</div><div class="line">etcd-3.1.0-2.el7.x86_64</div><div class="line">docker-client-1.12.6-11.el7.centos.x86_64</div><div class="line">docker-1.12.6-11.el7.centos.x86_64</div><div class="line">docker-common-1.12.6-11.el7.centos.x86_64</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">node:</div><div class="line">kubernetes-client-1.5.2-0.2.gitc55cf2b.el7.x86_64</div><div class="line">kubernetes-node-1.5.2-0.2.gitc55cf2b.el7.x86_64</div><div class="line">docker-client-1.12.6-11.el7.centos.x86_64</div><div class="line">docker-1.12.6-11.el7.centos.x86_64</div><div class="line">docker-common-1.12.6-11.el7.centos.x86_64</div></pre></td></tr></table></figure>
+<h1 id="一-修改各节点docker-ip"><a href="#一-修改各节点docker-ip" class="headerlink" title="一. 修改各节点docker ip"></a>一. 修改各节点docker ip</h1><p>master:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">vi  /usr/lib/systemd/system/docker.service</div><div class="line">--bip=172.25.0.1/24 \</div><div class="line"># systemctl  daemon-reload</div><div class="line"># systemctl  restart docker</div></pre></td></tr></table></figure></p>
+<p>node1：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">vi  /usr/lib/systemd/system/docker.service</div><div class="line">--bip=172.25.1.1/24 \</div><div class="line"># systemctl  daemon-reload</div><div class="line"># systemctl  restart docker</div></pre></td></tr></table></figure></p>
+<p>node2：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">vi  /usr/lib/systemd/system/docker.service</div><div class="line">--bip=172.25.2.1/24 \</div><div class="line"># systemctl  daemon-reload</div><div class="line"># systemctl  restart docker</div></pre></td></tr></table></figure></p>
+<h1 id="二-下载插件"><a href="#二-下载插件" class="headerlink" title="二.下载插件"></a>二.下载插件</h1><p>master：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># wget https://github.com/projectcalico/calicoctl/releases/download/v1.1.0/calicoctl</div><div class="line"># chmod +x calicoctl</div><div class="line"># mv calicoctl  /usr/bin/</div><div class="line"># docker pull docker.io/calico/node:v1.1.0</div><div class="line"># docker tag  docker.io/calico/node:v1.1.0  quay.io/calico/node:v1.1.0</div><div class="line"># wget -N -P /opt/cni/bin/ https://github.com/projectcalico/calico-cni/releases/download/v1.6.0/calico</div><div class="line"># wget -N -P /opt/cni/bin/ https://github.com/projectcalico/calico-cni/releases/download/v1.6.0/calico-ipam</div><div class="line"># chmod +x /opt/cni/bin/calico /opt/cni/bin/calico-ipam</div></pre></td></tr></table></figure></p>
+<p>node<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"># docker pull docker.io/calico/node:v1.1.0</div><div class="line"># docker tag  docker.io/calico/node:v1.1.0  quay.io/calico/node:v1.1.0</div><div class="line"># wget -N -P /opt/cni/bin/ https://github.com/projectcalico/calico-cni/releases/download/v1.6.0/calico</div><div class="line"># wget -N -P /opt/cni/bin/ https://github.com/projectcalico/calico-cni/releases/download/v1.6.0/calico-ipam</div><div class="line"># chmod +x /opt/cni/bin/calico /opt/cni/bin/calico-ipam</div></pre></td></tr></table></figure></p>
+<h1 id="三-配置文件"><a href="#三-配置文件" class="headerlink" title="三. 配置文件"></a>三. 配置文件</h1><p>参考：<a href="http://docs.projectcalico.org/v2.1/usage/configuration/as-service" target="_blank" rel="external">http://docs.projectcalico.org/v2.1/usage/configuration/as-service</a><br><strong>集群所有主机都需要配置以下三个文件</strong><br>创建calico-node启动文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"># vim /usr/lib/systemd/system/calico-node.service</div><div class="line"></div><div class="line">[Unit]</div><div class="line">Description=calico-node</div><div class="line">After=docker.service</div><div class="line">Requires=docker.service</div><div class="line">[Service]</div><div class="line">EnvironmentFile=/etc/calico/calico.env</div><div class="line">ExecStartPre=-/usr/bin/docker rm -f calico-node</div><div class="line">ExecStart=/usr/bin/docker run --net=host --privileged \</div><div class="line"> --name=calico-node \</div><div class="line"> -e NODENAME=$&#123;CALICO_NODENAME&#125; \</div><div class="line"> -e IP=$&#123;CALICO_IP&#125; \</div><div class="line"> -e IP6=$&#123;CALICO_IP6&#125; \</div><div class="line"> -e CALICO_NETWORKING_BACKEND=$&#123;CALICO_NETWORKING_BACKEND&#125; \</div><div class="line"> -e AS=$&#123;CALICO_AS&#125; \</div><div class="line"> -e NO_DEFAULT_POOLS=$&#123;CALICO_NO_DEFAULT_POOLS&#125; \</div><div class="line"> -e CALICO_LIBNETWORK_ENABLED=$&#123;CALICO_LIBNETWORK_ENABLED&#125; \</div><div class="line"> -e ETCD_ENDPOINTS=$&#123;ETCD_ENDPOINTS&#125; \</div><div class="line"> -e ETCD_CA_CERT_FILE=$&#123;ETCD_CA_CERT_FILE&#125; \</div><div class="line"> -e ETCD_CERT_FILE=$&#123;ETCD_CERT_FILE&#125; \</div><div class="line"> -e ETCD_KEY_FILE=$&#123;ETCD_KEY_FILE&#125; \</div><div class="line"> -v /var/log/calico:/var/log/calico \</div><div class="line"> -v /run/docker/plugins:/run/docker/plugins \</div><div class="line"> -v /lib/modules:/lib/modules \</div><div class="line"> -v /var/run/calico:/var/run/calico \</div><div class="line"> quay.io/calico/node:v1.1.0</div><div class="line">ExecStop=-/usr/bin/docker stop calico-node</div><div class="line"></div><div class="line">[Install]</div><div class="line">WantedBy=multi-user.target</div></pre></td></tr></table></figure></p>
+<p>创建calico-node服务的环境文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"># vi /etc/calico/calico.env</div><div class="line">ETCD_ENDPOINTS=http://local-master:2379</div><div class="line">ETCD_CA_FILE=&quot;&quot;</div><div class="line">ETCD_CERT_FILE=&quot;&quot;</div><div class="line">ETCD_KEY_FILE=&quot;&quot;</div><div class="line">CALICO_NODENAME=&quot;&quot;</div><div class="line">CALICO_NO_DEFAULT_POOLS=&quot;&quot;</div><div class="line">#CALICO_IP=&quot;&quot;</div><div class="line">CALICO_IP=&quot;&quot;</div><div class="line">CALICO_IP6=&quot;&quot;</div><div class="line">CALICO_AS=&quot;&quot;</div><div class="line">CALICO_LIBNETWORK_ENABLED=true</div><div class="line">CALICO_NETWORKING_BACKEND=bird</div></pre></td></tr></table></figure></p>
+<p>创建CNI网络配置文件，用于通知kubernetes创建一个名为calico-k8s-network的网络，并对此网络使用calico插件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"># mkdir /etc/cni/net.d</div><div class="line"># vi /etc/cni/net.d/10-calico.conf</div><div class="line">&#123;</div><div class="line">    &quot;name&quot;: &quot;calico-k8s-network&quot;,</div><div class="line">    &quot;type&quot;: &quot;calico&quot;,</div><div class="line">    &quot;etcd_endpoints&quot;: &quot;http://local-master:2379&quot;,</div><div class="line">    &quot;log_level&quot;: &quot;info&quot;,</div><div class="line">    &quot;ipam&quot;: &#123;</div><div class="line">        &quot;type&quot;: &quot;calico-ipam&quot;</div><div class="line">    &#125;,</div><div class="line">    &quot;policy&quot;: &#123;</div><div class="line">        &quot;type&quot;: &quot;k8s&quot;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>master主机上修改<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"># vim /etc/etcd/etcd.conf</div><div class="line"># [member]</div><div class="line">ETCD_NAME=default</div><div class="line">ETCD_DATA_DIR=&quot;/var/lib/etcd/default.etcd&quot;</div><div class="line">ETCD_LISTEN_PEER_URLS=&quot;http://local-master:2380&quot;</div><div class="line">ETCD_LISTEN_CLIENT_URLS=&quot;http://0.0.0.0:2379&quot;</div><div class="line">#[cluster]</div><div class="line">ETCD_INITIAL_CLUSTER=&quot;default=http://local-master:2380&quot;</div><div class="line">ETCD_ADVERTISE_CLIENT_URLS=http://local-master:2379</div></pre></td></tr></table></figure></p>
+<p>master 主机上<br><code>wget http://docs.projectcalico.org/v1.5/getting-started/kubernetes/installation/policy-controller.yaml</code><br>修改 policy-controller.yaml文件里的etcd的地址</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4618795-21f43a75ee0eb234.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></p>
+<h1 id="四-启动"><a href="#四-启动" class="headerlink" title="四. 启动"></a>四. 启动</h1><p>master<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># serivce etcd restart</div><div class="line"># kubectl  create -f policy-controller.yaml</div></pre></td></tr></table></figure></p>
+<p>每个节点上启动calico-node服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># systemctl enable calico-node</div><div class="line"># systemctl start calico-node</div><div class="line"># export ETCD_AUTHORITY=local-master:2379</div></pre></td></tr></table></figure></p>
+<h1 id="五-验证calico是否启动正常"><a href="#五-验证calico是否启动正常" class="headerlink" title="五.验证calico是否启动正常"></a>五.验证calico是否启动正常</h1><p><code>calicoctl node status</code><br><code>calicoctl get nodes --out=wide</code></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4618795-e7a2c6917ec68d1e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4618795-6f10bc3d41b869f9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></p>
+<h1 id="六-添加子网"><a href="#六-添加子网" class="headerlink" title="六.添加子网"></a>六.添加子网</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">[root@local-master v1.1.0]# cat pool.yaml </div><div class="line">apiVersion: v1</div><div class="line">kind: ipPool</div><div class="line">metadata:</div><div class="line">  cidr: 172.25.0.0/16</div><div class="line">spec:</div><div class="line">  ipip:</div><div class="line">    enabled: true</div><div class="line">    mode: always</div><div class="line">  nat-outgoing: true</div><div class="line">[root@local-master v1.1.0]# calicoctl  apply -f pool.yaml</div></pre></td></tr></table></figure>
+<p>查看子网</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4618795-c1b7e8633575bcab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></p>
+<h1 id="七-修改node上的配置"><a href="#七-修改node上的配置" class="headerlink" title="七.修改node上的配置"></a>七.修改node上的配置</h1><p>设置kube-proxy服务的proxy-mode配置为iptables，修改配置文件/etc/kubernetes/proxy：<br><code>KUBE_PROXY_ARGS=&quot; --proxy-mode=iptables&quot;</code><br><code>service kube-proxy restart</code></p>
+<h1 id="八-测试"><a href="#八-测试" class="headerlink" title="八.测试"></a>八.测试</h1><p>两个node分别创建一个容器，两个容器内能互ping成功<br>相关：<br><a href="http://docs.projectcalico.org/v2.1/introduction/" target="_blank" rel="external">http://docs.projectcalico.org/v2.1/introduction/</a><br><a href="http://www.tuicool.com/articles/RVba2yr" target="_blank" rel="external">http://www.tuicool.com/articles/RVba2yr</a><br><a href="http://blog.dataman-inc.com/shurenyun-docker-133/" target="_blank" rel="external">http://blog.dataman-inc.com/shurenyun-docker-133/</a></p>
 
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">kubernetes</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/02/18/kubernetes网络方案calico/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2017/07/10/zabbix-监控zookeeper集群/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          zabbix 监控zookeeper集群
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2017/02/15/docker-harbor私有仓库/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">docker harbor私有仓库</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -207,8 +363,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
@@ -275,6 +431,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">kubernetes</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
