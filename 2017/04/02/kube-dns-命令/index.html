@@ -6,19 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>kubernetes中的volume | Winnie&#39;s cabin</title>
+  <title>kube-dns 命令 | Winnie&#39;s cabin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="volume 是pod中能够被多个容器访问的共享目录。k8s中volume定义在pod上，然后被一个pod里面的多个容器挂载到具体的文件目录下；其次k8s中volume与pod的生命周期相同，与容器的生命周期不相关，当容器种植或者重启的时候，volume中的数据也不会丢失。k8s支持多种类型volume，例如GlusterFS、Cept等分布式文件系统 volume的类型  emptyDir  一">
-<meta name="keywords" content="kubernetes">
+  <meta name="description" content="背景：因为kubernetes中所有服务信息存储在etcd中，所以要保证etcd的高可用。12345环境：192.168.40.50   local-master192.168.40.51   local-node1   192.168.40.52   local-node2     版本：etcd-3.1.0-2.el7.x86_64 1.修改etcd配置文件12345678910[root@l">
 <meta property="og:type" content="article">
-<meta property="og:title" content="kubernetes中的volume">
-<meta property="og:url" content="http://yoursite.com/2016/06/12/kubernetes中的volume/index.html">
+<meta property="og:title" content="kube-dns 命令">
+<meta property="og:url" content="http://yoursite.com/2017/04/02/kube-dns-命令/index.html">
 <meta property="og:site_name" content="Winnie&#39;s cabin">
-<meta property="og:description" content="volume 是pod中能够被多个容器访问的共享目录。k8s中volume定义在pod上，然后被一个pod里面的多个容器挂载到具体的文件目录下；其次k8s中volume与pod的生命周期相同，与容器的生命周期不相关，当容器种植或者重启的时候，volume中的数据也不会丢失。k8s支持多种类型volume，例如GlusterFS、Cept等分布式文件系统 volume的类型  emptyDir  一">
-<meta property="og:updated_time" content="2017-09-19T03:56:14.000Z">
+<meta property="og:description" content="背景：因为kubernetes中所有服务信息存储在etcd中，所以要保证etcd的高可用。12345环境：192.168.40.50   local-master192.168.40.51   local-node1   192.168.40.52   local-node2     版本：etcd-3.1.0-2.el7.x86_64 1.修改etcd配置文件12345678910[root@l">
+<meta property="og:updated_time" content="2017-09-19T04:00:53.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="kubernetes中的volume">
-<meta name="twitter:description" content="volume 是pod中能够被多个容器访问的共享目录。k8s中volume定义在pod上，然后被一个pod里面的多个容器挂载到具体的文件目录下；其次k8s中volume与pod的生命周期相同，与容器的生命周期不相关，当容器种植或者重启的时候，volume中的数据也不会丢失。k8s支持多种类型volume，例如GlusterFS、Cept等分布式文件系统 volume的类型  emptyDir  一">
+<meta name="twitter:title" content="kube-dns 命令">
+<meta name="twitter:description" content="背景：因为kubernetes中所有服务信息存储在etcd中，所以要保证etcd的高可用。12345环境：192.168.40.50   local-master192.168.40.51   local-node1   192.168.40.52   local-node2     版本：etcd-3.1.0-2.el7.x86_64 1.修改etcd配置文件12345678910[root@l">
   
     <link rel="alternative" href="/atom.xml" title="Winnie&#39;s cabin" type="application/atom+xml">
   
@@ -144,57 +143,43 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-kubernetes中的volume" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-kube-dns-命令" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      kubernetes中的volume
+      kube-dns 命令
     </h1>
   
 
         
-        <a href="/2016/06/12/kubernetes中的volume/" class="archive-article-date">
-  	<time datetime="2016-06-12T11:53:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-06-12</time>
+        <a href="/2017/04/02/kube-dns-命令/" class="archive-article-date">
+  	<time datetime="2017-04-02T08:59:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-02</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>volume 是pod中能够被多个容器访问的共享目录。k8s中volume定义在pod上，然后被一个pod里面的多个容器挂载到具体的文件目录下；其次k8s中volume与pod的生命周期相同，与容器的生命周期不相关，当容器种植或者重启的时候，volume中的数据也不会丢失。k8s支持多种类型volume，例如GlusterFS、Cept等分布式文件系统</p>
-<p>volume的类型</p>
-<ol>
-<li>emptyDir</li>
-</ol>
-<p>一个emptyDir Volume是在pod分配到node的时候创建的。它的内容为空，并且不需要指定宿主机上对应目录文件，因为k8s会自动分配一个对应的目录。当pod从node上移除的时候，emptyDir中的数据也会被永久删除。</p>
-<p>emptyDir用途：</p>
-<p>(1)临时空间，例如用于某些应用程序运行时所需的临时目录，且无须永久保留。</p>
-<p>(2)长时间任务的中间过程checkpoint的临时保存目录。</p>
-<p>(3)一个容器需要从另一个容器中获取数据的目录。</p>
-<ol>
-<li>hostPath</li>
-</ol>
-<p>hostPath为pod上挂载宿主机上的文件或者目录。</p>
-<p>hostPath用途：</p>
-<p>(1) 容器应用程序生成的日志文件需要永久保存，可以使用宿主机的告诉文件系统管理进行存储。</p>
-<p>(2) 需要访问宿主机上docker引擎内部数据结构的容器应用时，可以通过定义hostPath为宿主机/var/lib/docker目录，使容器内部应用可以直接访问Docker的文件系统。</p>
-<p>注意：</p>
-<p>(1) 在不同的node上具有相同配置的pod可能会因为宿主机上的目录和文件不同从而导致对volume上目录和文件的访问结果不一致。</p>
-<p>(2)如果使用了资源配额管理，那么k8s无法将hostPath在宿主机使用的资源纳入管理。</p>
-<p>例子： 使用宿主机的/data/目录定义了一个hostPath类型的Volume<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">volume:</div><div class="line">- name: &quot;persistent-storage&quot;</div><div class="line">  hostPath:</div><div class="line">    path: &quot;/date&quot;</div></pre></td></tr></table></figure></p>
-<p>3.gcePersistentDisk</p>
-<p>使用这种类型的Volume表示使用谷歌公有云提供的永久磁盘（Persistent Disk,PD)存放Volume的数据，它与EmptyDir不同，PD上的内容是会永久保存，当Pod被删除时，PD只是被卸载，但不会被删除。</p>
-<p>前提：你需要先创建一个永久磁盘（PD），才能使用gcePersistentDisk。</p>
-<p>注意</p>
-<p>node（运行kubelet的节点）需要的是GCE虚拟机。<br>这些虚拟机需要与PD存在与相同GCE项目和Zone中。<br>4.awsElasticBlockStore</p>
-<p>与GCE类似，该类型的Volume使用亚马逊公有云提供的EBS Volume存储数据，需要先创建一个EBSVolume才能使用awsElasticBlockStore。</p>
-<p>5.NFS</p>
-<p>使用NFS网络文件系统提供的共享目录存储数据时，我们需要在系统中部署一个NFS Server 。定义NFS类型的Volume的实例如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">volumes:</div><div class="line"> - name: nfs</div><div class="line">  nfs:</div><div class="line">    server； nfs-server.localhost  #改为你的nfs服务器地址</div><div class="line">    path: &quot;/&quot;</div></pre></td></tr></table></figure></p>
-<p>6.其他类型的volume</p>
-<p>iscsi：<br>flocker<br>glusterfs<br>rbd<br>gitRepo<br>secret</p>
+        <p><strong>背景：</strong>因为kubernetes中所有服务信息存储在etcd中，所以要保证etcd的高可用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">环境：</div><div class="line">192.168.40.50   local-master</div><div class="line">192.168.40.51   local-node1   </div><div class="line">192.168.40.52   local-node2     </div><div class="line">版本：etcd-3.1.0-2.el7.x86_64</div></pre></td></tr></table></figure></p>
+<h1 id="1-修改etcd配置文件"><a href="#1-修改etcd配置文件" class="headerlink" title="1.修改etcd配置文件"></a>1.修改etcd配置文件</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">[root@local-master docker]# cat /etc/etcd/etcd.conf |grep -v &quot;^#&quot;</div><div class="line">ETCD_NAME=etcd0</div><div class="line">ETCD_DATA_DIR=&quot;/var/lib/etcd/etcd0.etcd&quot;</div><div class="line">ETCD_LISTEN_PEER_URLS=&quot;http://local-master:2380&quot;</div><div class="line">ETCD_LISTEN_CLIENT_URLS=&quot;http://0.0.0.0:2379&quot;</div><div class="line">ETCD_INITIAL_ADVERTISE_PEER_URLS=&quot;http://local-master:2380&quot;</div><div class="line">ETCD_INITIAL_CLUSTER=&quot;etcd0=http://local-master:2380,etcd1=http://local-node1:2380,etcd2=http://local-n</div><div class="line">ETCD_INITIAL_CLUSTER_STATE=&quot;new&quot;</div><div class="line">ETCD_INITIAL_CLUSTER_TOKEN=&quot;etcd-cluster&quot;</div><div class="line">ETCD_ADVERTISE_CLIENT_URLS=&quot;http://local-master:2379&quot;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">[root@local-node1 ~]# cat /etc/etcd/etcd.conf |grep -v &quot;^#&quot;</div><div class="line">ETCD_NAME=etcd1</div><div class="line">ETCD_DATA_DIR=&quot;/var/lib/etcd/etcd1.etcd&quot;</div><div class="line">ETCD_LISTEN_PEER_URLS=&quot;http://local-node1:2380&quot;</div><div class="line">ETCD_LISTEN_CLIENT_URLS=&quot;http://0.0.0.0:2379&quot;</div><div class="line">ETCD_INITIAL_ADVERTISE_PEER_URLS=&quot;http://local-node1:2380&quot;</div><div class="line">ETCD_INITIAL_CLUSTER=&quot;etcd0=http://local-master:2380,etcd1=http://local-node1:2380,etcd2=http://local-node2:2380&quot;</div><div class="line">ETCD_INITIAL_CLUSTER_STATE=&quot;new&quot;</div><div class="line">ETCD_INITIAL_CLUSTER_TOKEN=&quot;etcd-cluster&quot;</div><div class="line">ETCD_ADVERTISE_CLIENT_URLS=&quot;http://local-node1:2379&quot;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">[root@local-node2 ~]#  cat /etc/etcd/etcd.conf |grep -v &quot;^#&quot;</div><div class="line">ETCD_NAME=etcd2</div><div class="line">ETCD_DATA_DIR=&quot;/var/lib/etcd/etcd2.etcd&quot;</div><div class="line">ETCD_LISTEN_PEER_URLS=&quot;http://local-node2:2380&quot;</div><div class="line">ETCD_LISTEN_CLIENT_URLS=&quot;http://0.0.0.0:2379&quot;</div><div class="line">ETCD_INITIAL_ADVERTISE_PEER_URLS=&quot;http://local-node2:2380&quot;</div><div class="line">ETCD_INITIAL_CLUSTER=&quot;etcd0=http://local-master:2380,etcd1=http://local-node1:2380,etcd2=http://local-node2:2380&quot;</div><div class="line">ETCD_INITIAL_CLUSTER_STATE=&quot;new&quot;</div><div class="line">ETCD_INITIAL_CLUSTER_TOKEN=&quot;etcd-cluster&quot;</div><div class="line">ETCD_ADVERTISE_CLIENT_URLS=&quot;http://local-node2:2379&quot;</div></pre></td></tr></table></figure>
+<p>三台机同时启动etcd<br><code>systemctl  restart etcd &amp;&amp; systemctl enable etcd</code></p>
+<p>如果启动不成功，配置文件没有错。可以修改启动文件/usr/lib/systemd/system/etcd.service 。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">[Unit]</div><div class="line">Description=Etcd Server</div><div class="line">After=network.target</div><div class="line">After=network-online.target</div><div class="line">Wants=network-online.target</div><div class="line"></div><div class="line">[Service]</div><div class="line">Type=notify</div><div class="line">WorkingDirectory=/var/lib/etcd/</div><div class="line">EnvironmentFile=-/etc/etcd/etcd.conf</div><div class="line">User=etcd</div><div class="line"># set GOMAXPROCS to number of processors</div><div class="line">ExecStart=/bin/bash -c &quot;GOMAXPROCS=$(nproc) /usr/bin/etcd --name=\&quot;$&#123;ETCD_NAME&#125;\&quot; --data-dir=\&quot;$&#123;ETCD_DATA_DIR&#125;\&quot; --listen-client-urls=\&quot;$&#123;ETCD_LISTEN_CLIENT_URLS&#125;\&quot; --listen-client-urls=\&quot;$&#123;ETCD_LISTEN_CLIENT_URLS&#125;\&quot; --advertise-client-urls=\&quot;$&#123;ETCD_ADVERTISE_CLIENT_URLS&#125;\&quot; --initial-cluster-token=\&quot;$&#123;ETCD_INITIAL_CLUSTER_TOKEN&#125;\&quot; --initial-cluster=\&quot;$&#123;ETCD_INITIAL_CLUSTER&#125;\&quot; --initial-cluster-state=\&quot;$&#123;ETCD_INITIAL_CLUSTER_STATE&#125;\&quot;&quot;</div><div class="line">Restart=on-failure</div><div class="line">LimitNOFILE=65536</div><div class="line"></div><div class="line">[Install]</div><div class="line">WantedBy=multi-user.target</div></pre></td></tr></table></figure></p>
+<h1 id="2-修改calico网络配置"><a href="#2-修改calico网络配置" class="headerlink" title="2. 修改calico网络配置"></a>2. 修改calico网络配置</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">vim /etc/calico/calico.env</div><div class="line">ETCD_ENDPOINTS=http://local-master:2379,http://local-node1:2379,http://local-node2:2379</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">vim /etc/cni/net.d/10-calico.conf </div><div class="line">&#123;</div><div class="line">    &quot;name&quot;: &quot;calico-k8s-network&quot;,</div><div class="line">    &quot;type&quot;: &quot;calico&quot;,</div><div class="line">    &quot;etcd_endpoints&quot;: &quot;http://local-master:2379,http://local-node1:2379,http://local-node2:2379&quot;,</div><div class="line">    &quot;log_level&quot;: &quot;info&quot;,</div><div class="line">    &quot;ipam&quot;: &#123;</div><div class="line">        &quot;type&quot;: &quot;calico-ipam&quot;</div><div class="line">    &#125;,</div><div class="line">    &quot;policy&quot;: &#123;</div><div class="line">        &quot;type&quot;: &quot;k8s&quot;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p><strong>export ETCD_AUTHORITY=local-master:2379,local-node1:2379,local-node2:2379</strong><br><strong>systemctl restart calico-node</strong></p>
+<h1 id="3-修改k8s配置文件"><a href="#3-修改k8s配置文件" class="headerlink" title="3.修改k8s配置文件"></a>3.修改k8s配置文件</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">vi /etc/kubernetes/apiserver</div><div class="line">KUBE_ETCD_SERVERS=&quot;--etcd-servers=http://192.168.40.50:2379,http://192.168.40.51:2379,http://192.168.40.52:2379&quot;</div></pre></td></tr></table></figure>
+<p>重启master各个组件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">systemctl restart etcd  kube-apiserver kube-controller-manager kube-scheduler</div><div class="line">systemctl status etcd  kube-apiserver kube-controller-manager kube-scheduler</div></pre></td></tr></table></figure></p>
+<p>重启node各个组件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">systemctl restart etcd docker kubelet  kube-proxy</div><div class="line">systemctl status etcd docker kubelet  kube-proxy</div></pre></td></tr></table></figure></p>
+<h1 id="4-检查"><a href="#4-检查" class="headerlink" title="4.检查"></a>4.检查</h1><p>查看etcd的集群状态<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[root@local-master docker]# etcdctl  member list</div><div class="line">45ea5f54d4995521: name=etcd2 peerURLs=http://local-node2:2380 clientURLs=http://local-node2:2379 isLeader=false</div><div class="line">a9a9c48b6dc0323e: name=etcd0 peerURLs=http://local-master:2380 clientURLs=http://local-master:2379 isLeader=true</div><div class="line">d7b06390cd6b02b8: name=etcd1 peerURLs=http://local-node1:2380 clientURLs=http://local-node1:2379 isLeader=false</div></pre></td></tr></table></figure></p>
+<p>查看集群健康状态<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@local-master docker]# etcdctl  cluster-health</div><div class="line">member 45ea5f54d4995521 is healthy: got healthy result from http://local-node2:2379</div><div class="line">member a9a9c48b6dc0323e is healthy: got healthy result from http://local-master:2379</div><div class="line">member d7b06390cd6b02b8 is healthy: got healthy result from http://local-node1:2379</div><div class="line">cluster is healthy</div></pre></td></tr></table></figure></p>
+<p>kubectl get nodes<br>查看k8s是否获取到etcd中的资源信息、</p>
+<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><p>在master主机上面kubernetes的进程不要依赖etcd启动，不然master主机上的etcd进程停止后，整个k8s集群会调度不起来</p>
+<p>参考<br><a href="https://mritd.me/2016/09/01/Etcd-%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/#43%E6%B5%8B%E8%AF%95" target="_blank" rel="external">https://mritd.me/2016/09/01/Etcd-%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/#43%E6%B5%8B%E8%AF%95</a><br><a href="http://www.pangxie.space/docker/702" target="_blank" rel="external">http://www.pangxie.space/docker/702</a><br><a href="https://github.com/kubernetes/kubernetes/tree/master/test/fixtures/doc-yaml/admin/high-availability" target="_blank" rel="external">https://github.com/kubernetes/kubernetes/tree/master/test/fixtures/doc-yaml/admin/high-availability</a></p>
 
       
 
@@ -224,17 +209,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">kubernetes</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
@@ -285,7 +259,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2016/06/12/kubernetes中的volume/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/04/02/kube-dns-命令/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -299,18 +273,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/02/03/docker-私有仓库/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/07/10/zabbix-监控zookeeper集群/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          docker 私有仓库
+          zabbix 监控zookeeper集群
         
       </div>
     </a>
   
   
-    <a href="/2016/06/10/kubernetes-DNS配置/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">kubernetes DNS配置</div>
+    <a href="/2017/02/20/kubernetes中加入etcd集群/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">kubernetes中加入etcd集群</div>
       <i class="icon-circle-right"></i>
     </a>
   
