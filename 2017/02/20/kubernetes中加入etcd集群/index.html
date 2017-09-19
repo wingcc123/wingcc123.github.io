@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: kubernetes | Winnie&#39;s cabin</title>
+  <title>kubernetes中加入etcd集群 | Winnie&#39;s cabin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="运维小记">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Winnie&#39;s cabin">
-<meta property="og:url" content="http://yoursite.com/tags/kubernetes/index.html">
+  <meta name="description" content="背景：因为kubernetes中所有服务信息存储在etcd中，所以要保证etcd的高可用。12345环境：192.168.40.50   local-master192.168.40.51   local-node1   192.168.40.52   local-node2     版本：etcd-3.1.0-2.el7.x86_64 1.修改etcd配置文件12345678910[root@l">
+<meta name="keywords" content="kubernetes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="kubernetes中加入etcd集群">
+<meta property="og:url" content="http://yoursite.com/2017/02/20/kubernetes中加入etcd集群/index.html">
 <meta property="og:site_name" content="Winnie&#39;s cabin">
-<meta property="og:description" content="运维小记">
+<meta property="og:description" content="背景：因为kubernetes中所有服务信息存储在etcd中，所以要保证etcd的高可用。12345环境：192.168.40.50   local-master192.168.40.51   local-node1   192.168.40.52   local-node2     版本：etcd-3.1.0-2.el7.x86_64 1.修改etcd配置文件12345678910[root@l">
+<meta property="og:updated_time" content="2017-09-19T03:44:20.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Winnie&#39;s cabin">
-<meta name="twitter:description" content="运维小记">
+<meta name="twitter:title" content="kubernetes中加入etcd集群">
+<meta name="twitter:description" content="背景：因为kubernetes中所有服务信息存储在etcd中，所以要保证etcd的高可用。12345环境：192.168.40.50   local-master192.168.40.51   local-node1   192.168.40.52   local-node2     版本：etcd-3.1.0-2.el7.x86_64 1.修改etcd配置文件12345678910[root@l">
   
     <link rel="alternative" href="/atom.xml" title="Winnie&#39;s cabin" type="application/atom+xml">
   
@@ -142,198 +144,72 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-kubernetes中加入etcd集群" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      kubernetes中加入etcd集群
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/02/20/kubernetes中加入etcd集群/" class="archive-article-date">
+
+        
+        <a href="/2017/02/20/kubernetes中加入etcd集群/" class="archive-article-date">
   	<time datetime="2017-02-20T03:43:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-20</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/02/20/kubernetes中加入etcd集群/">kubernetes中加入etcd集群</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">kubernetes</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
+        
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/02/18/kubernetes网络方案calico/" class="archive-article-date">
-  	<time datetime="2017-02-18T09:58:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/02/18/kubernetes网络方案calico/">kubernetes网络方案calico</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">kubernetes</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/02/15/docker-harbor私有仓库/" class="archive-article-date">
-  	<time datetime="2017-02-15T03:02:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/02/15/docker-harbor私有仓库/">docker harbor私有仓库</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">kubernetes</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/02/03/docker-私有仓库/" class="archive-article-date">
-  	<time datetime="2017-02-03T10:08:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/02/03/docker-私有仓库/">docker 私有仓库</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">kubernetes</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
+    <div class="article-entry" itemprop="articleBody">
       
-        </div></section>
+        <p><strong>背景：</strong>因为kubernetes中所有服务信息存储在etcd中，所以要保证etcd的高可用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">环境：</div><div class="line">192.168.40.50   local-master</div><div class="line">192.168.40.51   local-node1   </div><div class="line">192.168.40.52   local-node2     </div><div class="line">版本：etcd-3.1.0-2.el7.x86_64</div></pre></td></tr></table></figure></p>
+<h1 id="1-修改etcd配置文件"><a href="#1-修改etcd配置文件" class="headerlink" title="1.修改etcd配置文件"></a>1.修改etcd配置文件</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">[root@local-master docker]# cat /etc/etcd/etcd.conf |grep -v &quot;^#&quot;</div><div class="line">ETCD_NAME=etcd0</div><div class="line">ETCD_DATA_DIR=&quot;/var/lib/etcd/etcd0.etcd&quot;</div><div class="line">ETCD_LISTEN_PEER_URLS=&quot;http://local-master:2380&quot;</div><div class="line">ETCD_LISTEN_CLIENT_URLS=&quot;http://0.0.0.0:2379&quot;</div><div class="line">ETCD_INITIAL_ADVERTISE_PEER_URLS=&quot;http://local-master:2380&quot;</div><div class="line">ETCD_INITIAL_CLUSTER=&quot;etcd0=http://local-master:2380,etcd1=http://local-node1:2380,etcd2=http://local-n</div><div class="line">ETCD_INITIAL_CLUSTER_STATE=&quot;new&quot;</div><div class="line">ETCD_INITIAL_CLUSTER_TOKEN=&quot;etcd-cluster&quot;</div><div class="line">ETCD_ADVERTISE_CLIENT_URLS=&quot;http://local-master:2379&quot;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">[root@local-node1 ~]# cat /etc/etcd/etcd.conf |grep -v &quot;^#&quot;</div><div class="line">ETCD_NAME=etcd1</div><div class="line">ETCD_DATA_DIR=&quot;/var/lib/etcd/etcd1.etcd&quot;</div><div class="line">ETCD_LISTEN_PEER_URLS=&quot;http://local-node1:2380&quot;</div><div class="line">ETCD_LISTEN_CLIENT_URLS=&quot;http://0.0.0.0:2379&quot;</div><div class="line">ETCD_INITIAL_ADVERTISE_PEER_URLS=&quot;http://local-node1:2380&quot;</div><div class="line">ETCD_INITIAL_CLUSTER=&quot;etcd0=http://local-master:2380,etcd1=http://local-node1:2380,etcd2=http://local-node2:2380&quot;</div><div class="line">ETCD_INITIAL_CLUSTER_STATE=&quot;new&quot;</div><div class="line">ETCD_INITIAL_CLUSTER_TOKEN=&quot;etcd-cluster&quot;</div><div class="line">ETCD_ADVERTISE_CLIENT_URLS=&quot;http://local-node1:2379&quot;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">[root@local-node2 ~]#  cat /etc/etcd/etcd.conf |grep -v &quot;^#&quot;</div><div class="line">ETCD_NAME=etcd2</div><div class="line">ETCD_DATA_DIR=&quot;/var/lib/etcd/etcd2.etcd&quot;</div><div class="line">ETCD_LISTEN_PEER_URLS=&quot;http://local-node2:2380&quot;</div><div class="line">ETCD_LISTEN_CLIENT_URLS=&quot;http://0.0.0.0:2379&quot;</div><div class="line">ETCD_INITIAL_ADVERTISE_PEER_URLS=&quot;http://local-node2:2380&quot;</div><div class="line">ETCD_INITIAL_CLUSTER=&quot;etcd0=http://local-master:2380,etcd1=http://local-node1:2380,etcd2=http://local-node2:2380&quot;</div><div class="line">ETCD_INITIAL_CLUSTER_STATE=&quot;new&quot;</div><div class="line">ETCD_INITIAL_CLUSTER_TOKEN=&quot;etcd-cluster&quot;</div><div class="line">ETCD_ADVERTISE_CLIENT_URLS=&quot;http://local-node2:2379&quot;</div></pre></td></tr></table></figure>
+<p>三台机同时启动etcd<br><code>systemctl  restart etcd &amp;&amp; systemctl enable etcd</code></p>
+<p>如果启动不成功，配置文件没有错。可以修改启动文件/usr/lib/systemd/system/etcd.service 。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">[Unit]</div><div class="line">Description=Etcd Server</div><div class="line">After=network.target</div><div class="line">After=network-online.target</div><div class="line">Wants=network-online.target</div><div class="line"></div><div class="line">[Service]</div><div class="line">Type=notify</div><div class="line">WorkingDirectory=/var/lib/etcd/</div><div class="line">EnvironmentFile=-/etc/etcd/etcd.conf</div><div class="line">User=etcd</div><div class="line"># set GOMAXPROCS to number of processors</div><div class="line">ExecStart=/bin/bash -c &quot;GOMAXPROCS=$(nproc) /usr/bin/etcd --name=\&quot;$&#123;ETCD_NAME&#125;\&quot; --data-dir=\&quot;$&#123;ETCD_DATA_DIR&#125;\&quot; --listen-client-urls=\&quot;$&#123;ETCD_LISTEN_CLIENT_URLS&#125;\&quot; --listen-client-urls=\&quot;$&#123;ETCD_LISTEN_CLIENT_URLS&#125;\&quot; --advertise-client-urls=\&quot;$&#123;ETCD_ADVERTISE_CLIENT_URLS&#125;\&quot; --initial-cluster-token=\&quot;$&#123;ETCD_INITIAL_CLUSTER_TOKEN&#125;\&quot; --initial-cluster=\&quot;$&#123;ETCD_INITIAL_CLUSTER&#125;\&quot; --initial-cluster-state=\&quot;$&#123;ETCD_INITIAL_CLUSTER_STATE&#125;\&quot;&quot;</div><div class="line">Restart=on-failure</div><div class="line">LimitNOFILE=65536</div><div class="line"></div><div class="line">[Install]</div><div class="line">WantedBy=multi-user.target</div></pre></td></tr></table></figure></p>
+<h1 id="2-修改calico网络配置"><a href="#2-修改calico网络配置" class="headerlink" title="2. 修改calico网络配置"></a>2. 修改calico网络配置</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">vim /etc/calico/calico.env</div><div class="line">ETCD_ENDPOINTS=http://local-master:2379,http://local-node1:2379,http://local-node2:2379</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">vim /etc/cni/net.d/10-calico.conf </div><div class="line">&#123;</div><div class="line">    &quot;name&quot;: &quot;calico-k8s-network&quot;,</div><div class="line">    &quot;type&quot;: &quot;calico&quot;,</div><div class="line">    &quot;etcd_endpoints&quot;: &quot;http://local-master:2379,http://local-node1:2379,http://local-node2:2379&quot;,</div><div class="line">    &quot;log_level&quot;: &quot;info&quot;,</div><div class="line">    &quot;ipam&quot;: &#123;</div><div class="line">        &quot;type&quot;: &quot;calico-ipam&quot;</div><div class="line">    &#125;,</div><div class="line">    &quot;policy&quot;: &#123;</div><div class="line">        &quot;type&quot;: &quot;k8s&quot;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p><strong>export ETCD_AUTHORITY=local-master:2379,local-node1:2379,local-node2:2379</strong><br><strong>systemctl restart calico-node</strong></p>
+<h1 id="3-修改k8s配置文件"><a href="#3-修改k8s配置文件" class="headerlink" title="3.修改k8s配置文件"></a>3.修改k8s配置文件</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">vi /etc/kubernetes/apiserver</div><div class="line">KUBE_ETCD_SERVERS=&quot;--etcd-servers=http://192.168.40.50:2379,http://192.168.40.51:2379,http://192.168.40.52:2379&quot;</div></pre></td></tr></table></figure>
+<p>重启master各个组件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">systemctl restart etcd  kube-apiserver kube-controller-manager kube-scheduler</div><div class="line">systemctl status etcd  kube-apiserver kube-controller-manager kube-scheduler</div></pre></td></tr></table></figure></p>
+<p>重启node各个组件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">systemctl restart etcd docker kubelet  kube-proxy</div><div class="line">systemctl status etcd docker kubelet  kube-proxy</div></pre></td></tr></table></figure></p>
+<h1 id="4-检查"><a href="#4-检查" class="headerlink" title="4.检查"></a>4.检查</h1><p>查看etcd的集群状态<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[root@local-master docker]# etcdctl  member list</div><div class="line">45ea5f54d4995521: name=etcd2 peerURLs=http://local-node2:2380 clientURLs=http://local-node2:2379 isLeader=false</div><div class="line">a9a9c48b6dc0323e: name=etcd0 peerURLs=http://local-master:2380 clientURLs=http://local-master:2379 isLeader=true</div><div class="line">d7b06390cd6b02b8: name=etcd1 peerURLs=http://local-node1:2380 clientURLs=http://local-node1:2379 isLeader=false</div></pre></td></tr></table></figure></p>
+<p>查看集群健康状态<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@local-master docker]# etcdctl  cluster-health</div><div class="line">member 45ea5f54d4995521 is healthy: got healthy result from http://local-node2:2379</div><div class="line">member a9a9c48b6dc0323e is healthy: got healthy result from http://local-master:2379</div><div class="line">member d7b06390cd6b02b8 is healthy: got healthy result from http://local-node1:2379</div><div class="line">cluster is healthy</div></pre></td></tr></table></figure></p>
+<p>kubectl get nodes<br>查看k8s是否获取到etcd中的资源信息、</p>
+<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><p>在master主机上面kubernetes的进程不要依赖etcd启动，不然master主机上的etcd进程停止后，整个k8s集群会调度不起来</p>
+<p>参考<br><a href="https://mritd.me/2016/09/01/Etcd-%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/#43%E6%B5%8B%E8%AF%95" target="_blank" rel="external">https://mritd.me/2016/09/01/Etcd-%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/#43%E6%B5%8B%E8%AF%95</a><br><a href="http://www.pangxie.space/docker/702" target="_blank" rel="external">http://www.pangxie.space/docker/702</a><br><a href="https://github.com/kubernetes/kubernetes/tree/master/test/fixtures/doc-yaml/admin/high-availability" target="_blank" rel="external">https://github.com/kubernetes/kubernetes/tree/master/test/fixtures/doc-yaml/admin/high-availability</a></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/05/10/kubernetes1-4/" class="archive-article-date">
-  	<time datetime="2016-05-10T03:25:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/10/kubernetes1-4/">kubernetes1.4</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -345,19 +221,115 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/02/20/kubernetes中加入etcd集群/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2017/07/10/zabbix-监控zookeeper集群/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          zabbix 监控zookeeper集群
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2017/02/18/kubernetes网络方案calico/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">kubernetes网络方案calico</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -380,9 +352,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
