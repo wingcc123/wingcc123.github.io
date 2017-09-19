@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/06/12/kubernetes中的volume/index.html">
 <meta property="og:site_name" content="Winnie&#39;s cabin">
 <meta property="og:description" content="volume 是pod中能够被多个容器访问的共享目录。k8s中volume定义在pod上，然后被一个pod里面的多个容器挂载到具体的文件目录下；其次k8s中volume与pod的生命周期相同，与容器的生命周期不相关，当容器种植或者重启的时候，volume中的数据也不会丢失。k8s支持多种类型volume，例如GlusterFS、Cept等分布式文件系统 volume的类型  emptyDir  一">
-<meta property="og:updated_time" content="2017-09-19T03:54:23.000Z">
+<meta property="og:updated_time" content="2017-09-19T03:56:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="kubernetes中的volume">
 <meta name="twitter:description" content="volume 是pod中能够被多个容器访问的共享目录。k8s中volume定义在pod上，然后被一个pod里面的多个容器挂载到具体的文件目录下；其次k8s中volume与pod的生命周期相同，与容器的生命周期不相关，当容器种植或者重启的时候，volume中的数据也不会丢失。k8s支持多种类型volume，例如GlusterFS、Cept等分布式文件系统 volume的类型  emptyDir  一">
@@ -184,22 +184,16 @@
 <p>注意：</p>
 <p>(1) 在不同的node上具有相同配置的pod可能会因为宿主机上的目录和文件不同从而导致对volume上目录和文件的访问结果不一致。</p>
 <p>(2)如果使用了资源配额管理，那么k8s无法将hostPath在宿主机使用的资源纳入管理。</p>
-<p>例子： 使用宿主机的/data/目录定义了一个hostPath类型的Volume</p>
-<p>volume:</p>
-<ul>
-<li>name: “persistent-storage”<br>hostPath:<br>  path: “/date”<br>3.gcePersistentDisk</li>
-</ul>
+<p>例子： 使用宿主机的/data/目录定义了一个hostPath类型的Volume<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">volume:</div><div class="line">- name: &quot;persistent-storage&quot;</div><div class="line">  hostPath:</div><div class="line">    path: &quot;/date&quot;</div></pre></td></tr></table></figure></p>
+<p>3.gcePersistentDisk</p>
 <p>使用这种类型的Volume表示使用谷歌公有云提供的永久磁盘（Persistent Disk,PD)存放Volume的数据，它与EmptyDir不同，PD上的内容是会永久保存，当Pod被删除时，PD只是被卸载，但不会被删除。</p>
 <p>前提：你需要先创建一个永久磁盘（PD），才能使用gcePersistentDisk。</p>
 <p>注意</p>
 <p>node（运行kubelet的节点）需要的是GCE虚拟机。<br>这些虚拟机需要与PD存在与相同GCE项目和Zone中。<br>4.awsElasticBlockStore</p>
 <p>与GCE类似，该类型的Volume使用亚马逊公有云提供的EBS Volume存储数据，需要先创建一个EBSVolume才能使用awsElasticBlockStore。</p>
 <p>5.NFS</p>
-<p>使用NFS网络文件系统提供的共享目录存储数据时，我们需要在系统中部署一个NFS Server 。定义NFS类型的Volume的实例如下：</p>
-<p>volumes:</p>
-<ul>
-<li>name: nfs<br>nfs:<br> server； nfs-server.localhost  #改为你的nfs服务器地址<br> path: “/“<br>6.其他类型的volume</li>
-</ul>
+<p>使用NFS网络文件系统提供的共享目录存储数据时，我们需要在系统中部署一个NFS Server 。定义NFS类型的Volume的实例如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">volumes:</div><div class="line"> - name: nfs</div><div class="line">  nfs:</div><div class="line">    server； nfs-server.localhost  #改为你的nfs服务器地址</div><div class="line">    path: &quot;/&quot;</div></pre></td></tr></table></figure></p>
+<p>6.其他类型的volume</p>
 <p>iscsi：<br>flocker<br>glusterfs<br>rbd<br>gitRepo<br>secret</p>
 
       
