@@ -417,14 +417,20 @@
 <ul>
 <li>VFS 对实际文件系统进行抽象，采用统一的数据结构在内存中描述所有实际的文件系统，向用户提供一组标准的文件操作函数。</li>
 <li>VFS 负责将标准文件操作映射到实际文件系统的操作</li>
-<li>抽象和映射保证了linux系统可以支持多种文件系统，使文件系统都具有基本相同的外部表现<ul>
-<li>VFS 通过一组统一的数据结构和操作函数结构来实现抽象<br>四种主要的数据结构（superblock,inode,dentry,file)<h3 id="2-目录，目录项，inode关系"><a href="#2-目录，目录项，inode关系" class="headerlink" title="2.目录，目录项，inode关系"></a>2.目录，目录项，inode关系</h3>一个目录项主要包括了文件名和索引节点号，索引节点号是指向索引节点表( system inode table )中对应的索引节点的。 或者这样解释一下目录项( 这是大家一起讨论出来的 )，因为目录可以包含子目录，目录是可以层层嵌套的，所以形成文件路径，而文件路径中的每一部分就是所谓的目录项（dentry）。</li>
+<li>抽象和映射保证了linux系统可以支持多种文件系统，使文件系统都具有基本相同的外部表现</li>
+<li>VFS 通过一组统一的数据结构和操作函数结构来实现抽象<br> 四种主要的数据结构（superblock,inode,dentry,file)</li>
 </ul>
-</li>
-</ul>
+<h3 id="2-目录，目录项，inode关系"><a href="#2-目录，目录项，inode关系" class="headerlink" title="2.目录，目录项，inode关系"></a>2.目录，目录项，inode关系</h3><p>  一个目录项主要包括了文件名和索引节点号，索引节点号是指向索引节点表( system inode table )中对应的索引节点的。 或者这样解释一下目录项( 这是大家一起讨论出来的 )，因为目录可以包含子目录，目录是可以层层嵌套的，所以形成文件路径，而文件路径中的每一部分就是所谓的目录项（dentry）。</p>
 <blockquote>
 <p>注：内核后来的版本采用ext文件系统时，目录项中就不是存放索引节点号，然后找到索引节点表，再找到索引节点了。而是目录项中存放文件名和一个指向索引节点的指针。<br>索引节点就是文件系统处理文件所需要的所有信息都存放在称为索引节点的数据结构中。主要就是文件的属性，包括链接数、文件所有者、文件建立和修改的时间，文件在磁盘的位置，文件大小、使用权限等等</p>
-<h1 id="四-inode"><a href="#四-inode" class="headerlink" title="四.inode"></a>四.inode</h1></blockquote>
+</blockquote>
+<h1 id="四-inode"><a href="#四-inode" class="headerlink" title="四.inode"></a>四.inode</h1><p>inode<br>   用于存储文件的各属性，包括：</p>
+<pre><code>- 所有者信息：文件的owner，group；
+- 权限信息：read、write和excite；
+- 时间信息：建立或改变时间（ctime）、最后读取时间（atime）、最后修改时间（mtime）；
+- 标志信息：一些flags；
+- 内容信息：type，size，以及相应的block的位置信息。
+</code></pre><p><img src="https://upload-images.jianshu.io/upload_images/4618795-88cec96efff1210b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="inode示意图.png"></p>
 <h1 id="五-文件权限"><a href="#五-文件权限" class="headerlink" title="五.文件权限"></a>五.文件权限</h1><h3 id="1-普通权限"><a href="#1-普通权限" class="headerlink" title="1.普通权限"></a>1.普通权限</h3><h5 id="文件权限"><a href="#文件权限" class="headerlink" title="文件权限"></a>文件权限</h5><pre><code>r: 可使用文件查看类工具获取其内容
 w: 可修改其内容
 x: 可以把此文件提请内核启动为一个进程
@@ -453,7 +459,7 @@ x: 可以使用ls -l查看此目录中文件列表，可以cd进入此目录
 </tr>
 </tbody>
 </table>
-<h3 id="3-特殊权限"><a href="#3-特殊权限" class="headerlink" title="3.特殊权限"></a>3.特殊权限</h3><table>
+<h3 id="2-特殊权限"><a href="#2-特殊权限" class="headerlink" title="2.特殊权限"></a>2.特殊权限</h3><table>
 <thead>
 <tr>
 <th>权限</th>
@@ -488,10 +494,10 @@ x: 可以使用ls -l查看此目录中文件列表，可以cd进入此目录
 <li>具有写权限的目录通常用户可以删除该目录中的任何文件，无论该文件的权限或拥有权</li>
 <li>在目录设置Sticky 位，只有文件的所有者或root可以删除该文件</li>
 <li>sticky 设置在文件上无意义</li>
-<li>tmp 目录有该权限<h3 id="4-访问控制列表"><a href="#4-访问控制列表" class="headerlink" title="4.访问控制列表"></a>4.访问控制列表</h3>为多用户或者组的文件和目录赋予访问权限rwx<br>用法如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">getfacl  file |directory</div><div class="line">setfacl  -m  u:user:rwx file|directory</div></pre></td></tr></table></figure>
+<li>tmp 目录有该权限<h3 id="3-访问控制列表"><a href="#3-访问控制列表" class="headerlink" title="3.访问控制列表"></a>3.访问控制列表</h3>为多用户或者组的文件和目录赋予访问权限rwx<br>用法如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">getfacl  file |directory</div><div class="line">setfacl  -m  u:user:rwx file|directory</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<h3 id="5-新建文件和目录的默认权限"><a href="#5-新建文件和目录的默认权限" class="headerlink" title="5.新建文件和目录的默认权限"></a>5.新建文件和目录的默认权限</h3><p>umask值 可以用来保留在创建文件权限<br>新建FILE权限: 666-umask<br>     如果所得结果某位存在执行（奇数）权限，则将其权限+1<br>新建DIR权限: 777-umask<br>非特权用户umask是 002<br>root的umask 是 022<br>umask: 查看<br>umask #: 设定<br>    umask 002<br>umask –S 模式方式显示<br>umask –p 输出可被调用<br>全局设置： /etc/bashrc 用户设置：~/.bashrc</p>
+<h3 id="4-新建文件和目录的默认权限"><a href="#4-新建文件和目录的默认权限" class="headerlink" title="4.新建文件和目录的默认权限"></a>4.新建文件和目录的默认权限</h3><p>umask值 可以用来保留在创建文件权限<br>新建FILE权限: 666-umask<br>     如果所得结果某位存在执行（奇数）权限，则将其权限+1<br>新建DIR权限: 777-umask<br>非特权用户umask是 002<br>root的umask 是 022<br>umask: 查看<br>umask #: 设定<br>    umask 002<br>umask –S 模式方式显示<br>umask –p 输出可被调用<br>全局设置： /etc/bashrc 用户设置：~/.bashrc</p>
 
       
 
