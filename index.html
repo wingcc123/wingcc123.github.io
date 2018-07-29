@@ -173,8 +173,10 @@
 <li>指<strong>完整层次结构目录(目录树）</strong>，用于组织和管理计算机系统上的文件，应当遵循FHS目录组织结构。在Linux和UNIX上，<strong>目录从根目录开始（“／”）</strong>，它包含一系列子目录，每个子目录下可以嵌套多个子目录等。<strong>根目录是linux的文件系统访问的唯一入口。在linux 中每个分区都是一个独立的文件系统。</strong>文件系统（目录树）包含一个控制块(掌握文件系统的信息)，inode块（inode包含文件属性的信息），数据块（包含文件存储的信息）</li>
 <li>指<strong>文件系统的类型</strong>，管理在计算机磁盘上或分区上数据的存储。不同的文件系统有不同的数据存储结构，用于控制磁盘空间分配给文件和关联文件的元数据和数据等。<blockquote>
 <p>参考：<a href="http://www.linfo.org/filesystem.html" target="_blank" rel="external">文件系统</a></p>
-<h3 id="2-文件系统的作用"><a href="#2-文件系统的作用" class="headerlink" title="2.文件系统的作用"></a>2.文件系统的作用</h3></blockquote>
+</blockquote>
 </li>
+</ul>
+<h3 id="2-文件系统的作用"><a href="#2-文件系统的作用" class="headerlink" title="2.文件系统的作用"></a>2.文件系统的作用</h3><ul>
 <li>管理磁盘的存储空间（实施存储空间分区，分配，回收与重组）</li>
 <li>实现文件的“按名存取”（增删改查文件等操作）</li>
 <li>实现对文件的共享，保密和保护措施</li>
@@ -245,10 +247,8 @@
 <li>文件是可以长久保存的信息形式。</li>
 <li>文件名是文件的标识，文件名<strong>区分大小写，长度小于256字节。</strong></li>
 <li>以“.” 开头的文件为隐藏文件，例如 /root/.bash_profile。</li>
-<li>文件有两类数据：源数据（metadata）和数据（data）。<br><strong>数据内容可以是多样的。</strong> 命令 <code>file  filename</code>可以 查看文件内容类型。<br><strong>元数据是描述数据的属性（名字，大小，inode等），</strong>atime（访问时间）mtine（修改时间）ctime（元数据改变时间））。  <ul>
+<li>文件有两类数据：源数据（metadata）和数据（data）。<br><strong>数据内容可以是多样的。</strong> 命令 <code>file  filename</code>可以 查看文件内容类型。<br><strong>元数据是描述数据的属性（名字，大小，inode等），</strong>atime（访问时间）mtine（修改时间）ctime（元数据改变时间））。  </li>
 <li>linux 中包含7类文件类型.命令<code>ls -l filename</code>查看文件类型</li>
-</ul>
-</li>
 </ul>
 <table>
 <thead>
@@ -352,9 +352,32 @@
 <td>/srv</td>
 <td>系统上运行的服务用到的数据</td>
 </tr>
+<tr>
+<td>/tmp</td>
+<td>临时文件存储位置 （30天没有访问自动删除）</td>
+</tr>
+<tr>
+<td>/var</td>
+<td>存放经常变化的数）</td>
+</tr>
+<tr>
+<td>/usr</td>
+<td>universal shared,read-only data</td>
+</tr>
+<tr>
+<td>/proc</td>
+<td>内核参数映射成文件，用于输出内核与进程信息相关的虚拟文件系统</td>
+</tr>
+<tr>
+<td>/sys</td>
+<td>设备映射成文件 。用于输出当前系统上硬件设备相关信息虚拟文件系统</td>
+</tr>
+<tr>
+<td>/selinux</td>
+<td>security enhanced linux  。selinux 相关的安全策略等信息的存储位置</td>
+</tr>
 </tbody>
 </table>
-<p>/tmp |临时文件存储位置 （30天没有访问自动删除）|<br>/var |存放经常变化的数）|<br>|/usr | universal shared,read-only data|<br>|/proc| 内核参数映射成文件，用于输出内核与进程信息相关的虚拟文件系统|<br>|/sys |设备映射成文件 。用于输出当前系统上硬件设备相关信息虚拟文件系统|<br>|/selinux |security enhanced linux  。selinux 相关的安全策略等信息的存储位置 |</p>
 <h3 id="6-路径"><a href="#6-路径" class="headerlink" title="6.路径"></a>6.路径</h3><ul>
 <li>linux中分为绝对路径和相对路径。<br> <em>绝对路径：以“／”开始，是完整的文件的位置路径，可用于任何想指定一个文件名的时候。</em><br><em>相对路径名不以“／”开始，指定相对于当前工作目录或某目录的位置。可以作为一个简短的形式指定一个文件名。</em></li>
 <li>filename=pathname+basename </li>
