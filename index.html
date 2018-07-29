@@ -144,108 +144,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-原码反码补码" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <table>
-<thead>
-<tr>
-<th>特性</th>
-<th>ext4</th>
-<th>xfs</th>
-<th>btrfs</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>结构</td>
-<td>Hashed B-tree</td>
-<td>B+Ttree</td>
-<td>Extent based</td>
-</tr>
-<tr>
-<td>创建时间</td>
-<td>2006</td>
-<td>1994</td>
-<td>2009</td>
-</tr>
-<tr>
-<td>最大文件大小</td>
-<td>16TB</td>
-<td>8EB</td>
-<td>16EB</td>
-</tr>
-<tr>
-<td>最大支持分区</td>
-<td>1EB</td>
-<td>8EB</td>
-<td>16EB</td>
-</tr>
-<tr>
-<td>透明压缩</td>
-<td>不支持</td>
-<td>不支持</td>
-<td>支持</td>
-</tr>
-<tr>
-<td>透明加密</td>
-<td>支持</td>
-<td>不支持</td>
-<td>不支持</td>
-</tr>
-<tr>
-<td>快照</td>
-<td>不支持</td>
-<td>不支持</td>
-<td>支持</td>
-</tr>
-</tbody>
-</table>
-<p>内核寻址的大小（32/64位区别)<br>实际上通过对文件的数据结构的操作来实现<br>mkfs        mount<br>mount        touch<br>mkdir        rmdir<br>cp        mv</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/07/29/原码反码补码/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-Linux文件管理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -269,16 +167,19 @@
         <p><img src="http://upload-images.jianshu.io/upload_images/4618795-71b17d8e7283076e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="linux目录结构"></p>
 <blockquote>
 <p>博文来自于自己的知识积累和理解，才疏学浅，错误之处敬请谅解</p>
+</blockquote>
 <h1 id="一-文件系统"><a href="#一-文件系统" class="headerlink" title="一.文件系统"></a>一.文件系统</h1><h3 id="1-什么是文件系统"><a href="#1-什么是文件系统" class="headerlink" title="1.什么是文件系统"></a>1.什么是文件系统</h3><p> 文件系统包含两种含义。</p>
 <ul>
 <li>指<strong>完整层次结构目录(目录树）</strong>，用于组织和管理计算机系统上的文件，应当遵循FHS目录组织结构。在Linux和UNIX上，<strong>目录从根目录开始（“／”）</strong>，它包含一系列子目录，每个子目录下可以嵌套多个子目录等。<strong>根目录是linux的文件系统访问的唯一入口。在linux 中每个分区都是一个独立的文件系统。</strong>文件系统（目录树）包含一个控制块(掌握文件系统的信息)，inode块（inode包含文件属性的信息），数据块（包含文件存储的信息）</li>
-<li>指<strong>文件系统的类型</strong>，管理在计算机磁盘上或分区上数据的存储。不同的文件系统有不同的数据存储结构，用于控制磁盘空间分配给文件和关联文件的元数据和数据等。<br>参考：<a href="http://www.linfo.org/filesystem.html" target="_blank" rel="external">文件系统</a><h3 id="2-文件系统的作用"><a href="#2-文件系统的作用" class="headerlink" title="2.文件系统的作用"></a>2.文件系统的作用</h3></li>
+<li>指<strong>文件系统的类型</strong>，管理在计算机磁盘上或分区上数据的存储。不同的文件系统有不同的数据存储结构，用于控制磁盘空间分配给文件和关联文件的元数据和数据等。<blockquote>
+<p>参考：<a href="http://www.linfo.org/filesystem.html" target="_blank" rel="external">文件系统</a></p>
+<h3 id="2-文件系统的作用"><a href="#2-文件系统的作用" class="headerlink" title="2.文件系统的作用"></a>2.文件系统的作用</h3></blockquote>
+</li>
 <li>管理磁盘的存储空间（实施存储空间分区，分配，回收与重组）</li>
 <li>实现文件的“按名存取”（增删改查文件等操作）</li>
 <li>实现对文件的共享，保密和保护措施</li>
 <li>提供文件访问的接口</li>
 </ul>
-</blockquote>
 <h3 id="3-常见文件系统类型"><a href="#3-常见文件系统类型" class="headerlink" title="3.常见文件系统类型"></a>3.常见文件系统类型</h3><table>
 <thead>
 <tr>
@@ -558,7 +459,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="一-计算机基本组成"><a href="#一-计算机基本组成" class="headerlink" title="一.计算机基本组成"></a>一.计算机基本组成</h1><p>冯.诺依曼体系结构奠定了现代计算机由<strong>输入输出设备，运算器，控制器，存储器</strong>五大部分组成。</p>
+        <h1 id="一-计算机基本组成"><a href="#一-计算机基本组成" class="headerlink" title="一.计算机基本组成"></a>一.计算机基本组成</h1><p>冯.诺依曼体系结构奠定了现代计算机由<strong>输入输出设备，运算器，控制器，存储器</strong>五大部分组成。<br>内核寻址的大小（32/64位区别)</p>
 <h1 id="二-操作系统"><a href="#二-操作系统" class="headerlink" title="二.操作系统"></a>二.操作系统</h1><h3 id="1-操作系统的作用"><a href="#1-操作系统的作用" class="headerlink" title="1.操作系统的作用"></a>1.操作系统的作用</h3><p>操作系统（Operating System，简称OS）是管理和控制计算机硬件与软件资源的计算机程序，是直接运行在“裸机”上的最基本的系统软件，任何其他软件都必须在操作系统的支持下才能运行。<br>操作系统是用户和计算机的接口，同时也是计算机硬件和其他软件的接口。<strong>实际上，用户是不用接触操作系统的，用户通过shell实现和操作系统的交互。</strong></p>
 <h3 id="2-操作系统版本"><a href="#2-操作系统版本" class="headerlink" title="2.操作系统版本"></a>2.操作系统版本</h3><p><img src="https://upload-images.jianshu.io/upload_images/4618795-41c3fffc56d01157.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="操作系统发行版本.png"></p>
 <h1 id="三-GUN-Linux"><a href="#三-GUN-Linux" class="headerlink" title="三.GUN/Linux"></a>三.GUN/Linux</h1><h3 id="1-GUN-Linux系统介绍"><a href="#1-GUN-Linux系统介绍" class="headerlink" title="1.GUN/Linux系统介绍"></a>1.GUN/Linux系统介绍</h3><p>一般来说linux 是是由Linus Torvalds 开发的操作系统内核。而GUN／Linux 才是操作系统，是由GUN计划以linux 为内核研发的操作系统。</p>
@@ -1233,6 +1134,110 @@
 
 
   
+    <article id="post-kubernetes中的volume" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/12/kubernetes中的volume/">kubernetes中的volume</a>
+    </h1>
+  
+
+        
+        <a href="/2016/06/12/kubernetes中的volume/" class="archive-article-date">
+  	<time datetime="2016-06-12T11:53:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-06-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>volume 是pod中能够被多个容器访问的共享目录。k8s中volume定义在pod上，然后被一个pod里面的多个容器挂载到具体的文件目录下；其次k8s中volume与pod的生命周期相同，与容器的生命周期不相关，当容器种植或者重启的时候，volume中的数据也不会丢失。k8s支持多种类型volume，例如GlusterFS、Cept等分布式文件系统</p>
+<p>volume的类型</p>
+<ol>
+<li>emptyDir</li>
+</ol>
+<p>一个emptyDir Volume是在pod分配到node的时候创建的。它的内容为空，并且不需要指定宿主机上对应目录文件，因为k8s会自动分配一个对应的目录。当pod从node上移除的时候，emptyDir中的数据也会被永久删除。</p>
+<p>emptyDir用途：</p>
+<p>(1)临时空间，例如用于某些应用程序运行时所需的临时目录，且无须永久保留。</p>
+<p>(2)长时间任务的中间过程checkpoint的临时保存目录。</p>
+<p>(3)一个容器需要从另一个容器中获取数据的目录。</p>
+<ol>
+<li>hostPath</li>
+</ol>
+<p>hostPath为pod上挂载宿主机上的文件或者目录。</p>
+<p>hostPath用途：</p>
+<p>(1) 容器应用程序生成的日志文件需要永久保存，可以使用宿主机的告诉文件系统管理进行存储。</p>
+<p>(2) 需要访问宿主机上docker引擎内部数据结构的容器应用时，可以通过定义hostPath为宿主机/var/lib/docker目录，使容器内部应用可以直接访问Docker的文件系统。</p>
+<p>注意：</p>
+<p>(1) 在不同的node上具有相同配置的pod可能会因为宿主机上的目录和文件不同从而导致对volume上目录和文件的访问结果不一致。</p>
+<p>(2)如果使用了资源配额管理，那么k8s无法将hostPath在宿主机使用的资源纳入管理。</p>
+<p>例子： 使用宿主机的/data/目录定义了一个hostPath类型的Volume<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">volume:</div><div class="line">- name: &quot;persistent-storage&quot;</div><div class="line">  hostPath:</div><div class="line">    path: &quot;/date&quot;</div></pre></td></tr></table></figure></p>
+<p>3.gcePersistentDisk</p>
+<p>使用这种类型的Volume表示使用谷歌公有云提供的永久磁盘（Persistent Disk,PD)存放Volume的数据，它与EmptyDir不同，PD上的内容是会永久保存，当Pod被删除时，PD只是被卸载，但不会被删除。</p>
+<p>前提：你需要先创建一个永久磁盘（PD），才能使用gcePersistentDisk。</p>
+<p>注意</p>
+<p>node（运行kubelet的节点）需要的是GCE虚拟机。<br>这些虚拟机需要与PD存在与相同GCE项目和Zone中。<br>4.awsElasticBlockStore</p>
+<p>与GCE类似，该类型的Volume使用亚马逊公有云提供的EBS Volume存储数据，需要先创建一个EBSVolume才能使用awsElasticBlockStore。</p>
+<p>5.NFS</p>
+<p>使用NFS网络文件系统提供的共享目录存储数据时，我们需要在系统中部署一个NFS Server 。定义NFS类型的Volume的实例如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">volumes:</div><div class="line"> - name: nfs</div><div class="line">  nfs:</div><div class="line">    server； nfs-server.localhost  #改为你的nfs服务器地址</div><div class="line">    path: &quot;/&quot;</div></pre></td></tr></table></figure></p>
+<p>6.其他类型的volume</p>
+<p>iscsi：<br>flocker<br>glusterfs<br>rbd<br>gitRepo<br>secret</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">kubernetes</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/06/12/kubernetes中的volume/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1330,11 +1335,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">kubernetes</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color1">kubernetes</a>
               </li>
              
               <li class="article-tag-list-item">

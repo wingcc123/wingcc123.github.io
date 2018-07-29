@@ -8,13 +8,13 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Linux文件管理 | Winnie&#39;s cabin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="博文来自于自己的知识积累和理解，才疏学浅，错误之处敬请谅解 一.文件系统1.什么是文件系统 文件系统包含两种含义。  指完整层次结构目录(目录树），用于组织和管理计算机系统上的文件，应当遵循FHS目录组织结构。在Linux和UNIX上，目录从根目录开始（“／”），它包含一系列子目录，每个子目录下可以嵌套多个子目录等。根目录是linux的文件系统访问的唯一入口。在linux 中每个分区都是一个独">
+  <meta name="description" content="博文来自于自己的知识积累和理解，才疏学浅，错误之处敬请谅解  一.文件系统1.什么是文件系统 文件系统包含两种含义。  指完整层次结构目录(目录树），用于组织和管理计算机系统上的文件，应当遵循FHS目录组织结构。在Linux和UNIX上，目录从根目录开始（“／”），它包含一系列子目录，每个子目录下可以嵌套多个子目录等。根目录是linux的文件系统访问的唯一入口。在linux 中每个分区都是一个">
 <meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux文件管理">
 <meta property="og:url" content="http://yoursite.com/2018/07/27/Linux文件管理/index.html">
 <meta property="og:site_name" content="Winnie&#39;s cabin">
-<meta property="og:description" content="博文来自于自己的知识积累和理解，才疏学浅，错误之处敬请谅解 一.文件系统1.什么是文件系统 文件系统包含两种含义。  指完整层次结构目录(目录树），用于组织和管理计算机系统上的文件，应当遵循FHS目录组织结构。在Linux和UNIX上，目录从根目录开始（“／”），它包含一系列子目录，每个子目录下可以嵌套多个子目录等。根目录是linux的文件系统访问的唯一入口。在linux 中每个分区都是一个独">
+<meta property="og:description" content="博文来自于自己的知识积累和理解，才疏学浅，错误之处敬请谅解  一.文件系统1.什么是文件系统 文件系统包含两种含义。  指完整层次结构目录(目录树），用于组织和管理计算机系统上的文件，应当遵循FHS目录组织结构。在Linux和UNIX上，目录从根目录开始（“／”），它包含一系列子目录，每个子目录下可以嵌套多个子目录等。根目录是linux的文件系统访问的唯一入口。在linux 中每个分区都是一个">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4618795-71b17d8e7283076e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4618795-fc0c169d9056b6f9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4618795-4545c79e3be1f895.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
@@ -29,10 +29,10 @@
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4618795-29c08777ee7e2351.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4618795-f7e544726da0e885.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4618795-a9a840b75f9555db.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-07-29T13:14:40.000Z">
+<meta property="og:updated_time" content="2018-07-29T13:17:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux文件管理">
-<meta name="twitter:description" content="博文来自于自己的知识积累和理解，才疏学浅，错误之处敬请谅解 一.文件系统1.什么是文件系统 文件系统包含两种含义。  指完整层次结构目录(目录树），用于组织和管理计算机系统上的文件，应当遵循FHS目录组织结构。在Linux和UNIX上，目录从根目录开始（“／”），它包含一系列子目录，每个子目录下可以嵌套多个子目录等。根目录是linux的文件系统访问的唯一入口。在linux 中每个分区都是一个独">
+<meta name="twitter:description" content="博文来自于自己的知识积累和理解，才疏学浅，错误之处敬请谅解  一.文件系统1.什么是文件系统 文件系统包含两种含义。  指完整层次结构目录(目录树），用于组织和管理计算机系统上的文件，应当遵循FHS目录组织结构。在Linux和UNIX上，目录从根目录开始（“／”），它包含一系列子目录，每个子目录下可以嵌套多个子目录等。根目录是linux的文件系统访问的唯一入口。在linux 中每个分区都是一个">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/4618795-71b17d8e7283076e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   
     <link rel="alternative" href="/atom.xml" title="Winnie&#39;s cabin" type="application/atom+xml">
@@ -182,16 +182,19 @@
         <p><img src="http://upload-images.jianshu.io/upload_images/4618795-71b17d8e7283076e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="linux目录结构"></p>
 <blockquote>
 <p>博文来自于自己的知识积累和理解，才疏学浅，错误之处敬请谅解</p>
+</blockquote>
 <h1 id="一-文件系统"><a href="#一-文件系统" class="headerlink" title="一.文件系统"></a>一.文件系统</h1><h3 id="1-什么是文件系统"><a href="#1-什么是文件系统" class="headerlink" title="1.什么是文件系统"></a>1.什么是文件系统</h3><p> 文件系统包含两种含义。</p>
 <ul>
 <li>指<strong>完整层次结构目录(目录树）</strong>，用于组织和管理计算机系统上的文件，应当遵循FHS目录组织结构。在Linux和UNIX上，<strong>目录从根目录开始（“／”）</strong>，它包含一系列子目录，每个子目录下可以嵌套多个子目录等。<strong>根目录是linux的文件系统访问的唯一入口。在linux 中每个分区都是一个独立的文件系统。</strong>文件系统（目录树）包含一个控制块(掌握文件系统的信息)，inode块（inode包含文件属性的信息），数据块（包含文件存储的信息）</li>
-<li>指<strong>文件系统的类型</strong>，管理在计算机磁盘上或分区上数据的存储。不同的文件系统有不同的数据存储结构，用于控制磁盘空间分配给文件和关联文件的元数据和数据等。<br>参考：<a href="http://www.linfo.org/filesystem.html" target="_blank" rel="external">文件系统</a><h3 id="2-文件系统的作用"><a href="#2-文件系统的作用" class="headerlink" title="2.文件系统的作用"></a>2.文件系统的作用</h3></li>
+<li>指<strong>文件系统的类型</strong>，管理在计算机磁盘上或分区上数据的存储。不同的文件系统有不同的数据存储结构，用于控制磁盘空间分配给文件和关联文件的元数据和数据等。<blockquote>
+<p>参考：<a href="http://www.linfo.org/filesystem.html" target="_blank" rel="external">文件系统</a></p>
+<h3 id="2-文件系统的作用"><a href="#2-文件系统的作用" class="headerlink" title="2.文件系统的作用"></a>2.文件系统的作用</h3></blockquote>
+</li>
 <li>管理磁盘的存储空间（实施存储空间分区，分配，回收与重组）</li>
 <li>实现文件的“按名存取”（增删改查文件等操作）</li>
 <li>实现对文件的共享，保密和保护措施</li>
 <li>提供文件访问的接口</li>
 </ul>
-</blockquote>
 <h3 id="3-常见文件系统类型"><a href="#3-常见文件系统类型" class="headerlink" title="3.常见文件系统类型"></a>3.常见文件系统类型</h3><table>
 <thead>
 <tr>
@@ -502,15 +505,6 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/07/29/原码反码补码/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          (no title)
-        
-      </div>
-    </a>
-  
   
     <a href="/2018/07/25/Linux以及开源协议简介/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">Linux以及开源协议简介</div>
@@ -639,11 +633,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">kubernetes</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color1">kubernetes</a>
               </li>
              
               <li class="article-tag-list-item">
