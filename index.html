@@ -51,7 +51,7 @@
 		  <h1 class="header-author"><a href="">Winnie Pong</a></h1>
 		</hgroup>
 		
-		<p class="header-subtitle">勿忘初心，保持生猛，还有好奇心</p>
+		<p class="header-subtitle">业精于勤而荒于嬉，行成于思毁于随，生命在于折腾</p>
 		
 
 		<nav class="header-menu">
@@ -105,7 +105,7 @@
 			  <h1 class="header-author js-header-author">Winnie Pong</h1>
 			</hgroup>
 			
-			<p class="header-subtitle"><i class="icon icon-quo-left"></i>勿忘初心，保持生猛，还有好奇心<i class="icon icon-quo-right"></i></p>
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>业精于勤而荒于嬉，行成于思毁于随，生命在于折腾<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -147,24 +147,64 @@
     <article id="post-原码反码补码" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/25/原码反码补码/">原码反码补码</a>
-    </h1>
-  
-
-        
-        <a href="/2018/07/25/原码反码补码/" class="archive-article-date">
-  	<time datetime="2018-07-25T12:39:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-25</time>
-</a>
-        
-      </header>
-    
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <table>
+<thead>
+<tr>
+<th>特性</th>
+<th>ext4</th>
+<th>xfs</th>
+<th>btrfs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>结构</td>
+<td>Hashed B-tree</td>
+<td>B+Ttree</td>
+<td>Extent based</td>
+</tr>
+<tr>
+<td>创建时间</td>
+<td>2006</td>
+<td>1994</td>
+<td>2009</td>
+</tr>
+<tr>
+<td>最大文件大小</td>
+<td>16TB</td>
+<td>8EB</td>
+<td>16EB</td>
+</tr>
+<tr>
+<td>最大支持分区</td>
+<td>1EB</td>
+<td>8EB</td>
+<td>16EB</td>
+</tr>
+<tr>
+<td>透明压缩</td>
+<td>不支持</td>
+<td>不支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>透明加密</td>
+<td>支持</td>
+<td>不支持</td>
+<td>不支持</td>
+</tr>
+<tr>
+<td>快照</td>
+<td>不支持</td>
+<td>不支持</td>
+<td>支持</td>
+</tr>
+</tbody>
+</table>
+<p>内核寻址的大小（32/64位区别)<br>实际上通过对文件的数据结构的操作来实现<br>mkfs        mount<br>mount        touch<br>mkdir        rmdir<br>cp        mv</p>
+
       
 
       
@@ -176,7 +216,299 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/07/25/原码反码补码/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/07/29/原码反码补码/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Linux文件管理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/27/Linux文件管理/">Linux文件管理</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/27/Linux文件管理/" class="archive-article-date">
+  	<time datetime="2018-07-27T04:25:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="http://upload-images.jianshu.io/upload_images/4618795-71b17d8e7283076e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="linux目录结构"></p>
+<blockquote>
+<p>博文来自于自己的知识积累和理解，才疏学浅，错误之处敬请谅解</p>
+<h1 id="一-文件系统"><a href="#一-文件系统" class="headerlink" title="一.文件系统"></a>一.文件系统</h1><h3 id="1-什么是文件系统"><a href="#1-什么是文件系统" class="headerlink" title="1.什么是文件系统"></a>1.什么是文件系统</h3><p> 文件系统包含两种含义。</p>
+<ul>
+<li>指<strong>完整层次结构目录(目录树）</strong>，用于组织和管理计算机系统上的文件，应当遵循FHS目录组织结构。在Linux和UNIX上，<strong>目录从根目录开始（“／”）</strong>，它包含一系列子目录，每个子目录下可以嵌套多个子目录等。<strong>根目录是linux的文件系统访问的唯一入口。在linux 中每个分区都是一个独立的文件系统。</strong>文件系统（目录树）包含一个控制块(掌握文件系统的信息)，inode块（inode包含文件属性的信息），数据块（包含文件存储的信息）</li>
+<li>指<strong>文件系统的类型</strong>，管理在计算机磁盘上或分区上数据的存储。不同的文件系统有不同的数据存储结构，用于控制磁盘空间分配给文件和关联文件的元数据和数据等。<br>参考：<a href="http://www.linfo.org/filesystem.html" target="_blank" rel="external">文件系统</a><h3 id="2-文件系统的作用"><a href="#2-文件系统的作用" class="headerlink" title="2.文件系统的作用"></a>2.文件系统的作用</h3></li>
+<li>管理磁盘的存储空间（实施存储空间分区，分配，回收与重组）</li>
+<li>实现文件的“按名存取”（增删改查文件等操作）</li>
+<li>实现对文件的共享，保密和保护措施</li>
+<li>提供文件访问的接口</li>
+</ul>
+</blockquote>
+<h3 id="3-常见文件系统类型"><a href="#3-常见文件系统类型" class="headerlink" title="3.常见文件系统类型"></a>3.常见文件系统类型</h3><table>
+<thead>
+<tr>
+<th>特性</th>
+<th>ext4</th>
+<th>xfs</th>
+<th>btrfs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>算法</td>
+<td>Hashed B-tree</td>
+<td>B+Ttree</td>
+<td>Extent based</td>
+</tr>
+<tr>
+<td>创建时间</td>
+<td>2006</td>
+<td>1994</td>
+<td>2009</td>
+</tr>
+<tr>
+<td>最大文件大小</td>
+<td>16TB</td>
+<td>8EB</td>
+<td>16EB</td>
+</tr>
+<tr>
+<td>最大支持分区</td>
+<td>1EB</td>
+<td>8EB</td>
+<td>16EB</td>
+</tr>
+<tr>
+<td>透明压缩</td>
+<td>不支持</td>
+<td>不支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>透明加密</td>
+<td>支持</td>
+<td>不支持</td>
+<td>不支持</td>
+</tr>
+<tr>
+<td>快照</td>
+<td>不支持</td>
+<td>不支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>COW(Copy On Write)</td>
+<td>不支持</td>
+<td>不支持</td>
+<td>支持</td>
+</tr>
+</tbody>
+</table>
+<h3 id="4-文件"><a href="#4-文件" class="headerlink" title="4.文件"></a>4.文件</h3><ul>
+<li>文件是一组相关信息的有序集合。（In Linux，a file is a linear stream of bytes.)</li>
+<li>文件是可以长久保存的信息形式。</li>
+<li>文件名是文件的标识，文件名<strong>区分大小写，长度小于256字节。</strong></li>
+<li>以“.” 开头的文件为隐藏文件，例如 /root/.bash_profile。</li>
+<li>文件有两类数据：源数据（metadata）和数据（data）。<br><strong>数据内容可以是多样的。</strong> 命令 <code>file  filename</code>可以 查看文件内容类型。<br><strong>元数据是描述数据的属性（名字，大小，inode等），</strong>atime（访问时间）mtine（修改时间）ctime（元数据改变时间））。  <ul>
+<li>linux 中包含7类文件类型.命令<code>ls -l filename</code>查看文件类型</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>文件类型</th>
+<th>标识符</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>普通文件</td>
+<td>-</td>
+</tr>
+<tr>
+<td>目录文件</td>
+<td>d</td>
+</tr>
+<tr>
+<td>链接文件</td>
+<td>l</td>
+</tr>
+<tr>
+<td>套接字文件</td>
+<td>s</td>
+</tr>
+<tr>
+<td>块文件</td>
+<td>b</td>
+</tr>
+<tr>
+<td>字符设备</td>
+<td>c</td>
+</tr>
+<tr>
+<td>管道文件</td>
+<td>p</td>
+</tr>
+</tbody>
+</table>
+<h3 id="5-目录"><a href="#5-目录" class="headerlink" title="5.目录"></a>5.目录</h3><ul>
+<li>文件系统通过目录组织文件，目录也是文件</li>
+<li>目录的内容包含inode和文件名的映射关系</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>目录</th>
+<th>详情</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/boot</td>
+<td>引导文件存放目录。存放内核文件，引导加载器（bootloader，grub),initramfs 等</td>
+</tr>
+<tr>
+<td>/bin</td>
+<td>供所有用户使用的基本命令，不能关联到独立分区</td>
+</tr>
+<tr>
+<td>/sbin</td>
+<td>基本的管理类的命令，不能关联到独立分区，</td>
+</tr>
+<tr>
+<td>/lib</td>
+<td>启动的时候程序依赖的基本共享库文件以及neigh模块文件（/lib/modules）</td>
+</tr>
+<tr>
+<td>/lib64</td>
+<td>用于x86_64 基本共享库文件</td>
+</tr>
+<tr>
+<td>/etc</td>
+<td>配置文件目录</td>
+</tr>
+<tr>
+<td>/home</td>
+<td>家目录</td>
+</tr>
+<tr>
+<td>/root</td>
+<td>管理员的家目录</td>
+</tr>
+<tr>
+<td>/media</td>
+<td>便携式移动设备挂载点</td>
+</tr>
+<tr>
+<td>/mnt</td>
+<td>磁盘等临时挂载点</td>
+</tr>
+<tr>
+<td>/dev</td>
+<td>设备文件以及特殊文件的存储位置</td>
+</tr>
+<tr>
+<td>/opt</td>
+<td>第三方应用程序的安装位置</td>
+</tr>
+<tr>
+<td>/srv</td>
+<td>系统上运行的服务用到的数据</td>
+</tr>
+</tbody>
+</table>
+<p>/tmp |临时文件存储位置 （30天没有访问自动删除）|<br>/var |存放经常变化的数）|<br>|/usr | universal shared,read-only data|<br>|/proc| 内核参数映射成文件，用于输出内核与进程信息相关的虚拟文件系统|<br>|/sys |设备映射成文件 。用于输出当前系统上硬件设备相关信息虚拟文件系统|<br>|/selinux |security enhanced linux  。selinux 相关的安全策略等信息的存储位置 |</p>
+<h3 id="6-路径"><a href="#6-路径" class="headerlink" title="6.路径"></a>6.路径</h3><ul>
+<li>linux中分为绝对路径和相对路径。<br> <em>绝对路径：以“／”开始，是完整的文件的位置路径，可用于任何想指定一个文件名的时候。</em><br><em>相对路径名不以“／”开始，指定相对于当前工作目录或某目录的位置。可以作为一个简短的形式指定一个文件名。</em></li>
+<li>filename=pathname+basename </li>
+<li>linux 中分为相对路径和绝对路径</li>
+<li>路径 不超过4095字节（小于4k）</li>
+</ul>
+<h1 id="二-文件的操作"><a href="#二-文件的操作" class="headerlink" title="二.文件的操作"></a>二.文件的操作</h1><p><strong>文件的操作实际上通过对文件的数据结构的操作来实现。</strong><br>常用命令如下：<br><img src="https://upload-images.jianshu.io/upload_images/4618795-fc0c169d9056b6f9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h3 id="1-mkfs-格式化磁盘）"><a href="#1-mkfs-格式化磁盘）" class="headerlink" title="1.mkfs(格式化磁盘）"></a>1.mkfs(格式化磁盘）</h3><p>磁盘格式化过程就是<strong>创建文件系统</strong>的过程，将存储空间分为两部分。元数据（存放索引），数据区（分割为磁盘块）。<br>通过先访问元数据区找到真实存放在数据区中的磁盘块中的数据.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#分区/dev/sdb1 格式化为ext4文件系统命令.-t指定文件系统类型。</div><div class="line">mkfs -t ext4 /dev/sdb1</div></pre></td></tr></table></figure>
+<h3 id="2-mount（挂载文件系统）"><a href="#2-mount（挂载文件系统）" class="headerlink" title="2.mount（挂载文件系统）"></a>2.mount（挂载文件系统）</h3><p> 将一个文件系统关联到存储设备的过程叫做mount。mount 命令是用来将文件系统关联到当前的文件系统中。在mount 的过程中，你要提供文件系统的种类和挂载点。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#挂载已经格式化后的/dev/sdb1到/home 目录下</div><div class="line">mount /dev/sdb1 /home</div></pre></td></tr></table></figure>
+<h3 id="3-touch-（创建空文件和刷新时间）"><a href="#3-touch-（创建空文件和刷新时间）" class="headerlink" title="3.touch （创建空文件和刷新时间）"></a>3.touch （创建空文件和刷新时间）</h3><h6 id="①-创建一个名为test-文件，生成一个对应的i节点"><a href="#①-创建一个名为test-文件，生成一个对应的i节点" class="headerlink" title="①.创建一个名为test 文件，生成一个对应的i节点"></a>①.创建一个名为test 文件，生成一个对应的i节点</h6><p><img src="https://upload-images.jianshu.io/upload_images/4618795-4545c79e3be1f895.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="创建空文件.png"></p>
+<h6 id="②-修改文件时间属性（atime-ctime"><a href="#②-修改文件时间属性（atime-ctime" class="headerlink" title="②.修改文件时间属性（atime,ctime)"></a>②.修改文件时间属性（atime,ctime)</h6><p><img src="https://upload-images.jianshu.io/upload_images/4618795-3716c9d2c6aaa01c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="修改atime和ctime.png"></p>
+<h6 id="③-常用参数"><a href="#③-常用参数" class="headerlink" title="③.常用参数"></a>③.常用参数</h6><pre><code>-a  仅改变 atime和ctime
+-m  仅改变 mtime和ctime
+-t  [[CC]YY]MMDDhhmm[.ss] 
+    指定atime和mtime的时间戳
+-c  如果文件不存在，则不予创建
+</code></pre><h3 id="4-mkdir（创建空文件夹）"><a href="#4-mkdir（创建空文件夹）" class="headerlink" title="4.mkdir（创建空文件夹）"></a>4.mkdir（创建空文件夹）</h3><h6 id="①-创建一个名为test2-目录，生成一个对应的i节点，并且该目录下有两个硬链接。"><a href="#①-创建一个名为test2-目录，生成一个对应的i节点，并且该目录下有两个硬链接。" class="headerlink" title="①.创建一个名为test2 目录，生成一个对应的i节点，并且该目录下有两个硬链接。"></a>①.创建一个名为test2 目录，生成一个对应的i节点，并且该目录下有两个硬链接。</h6><p><img src="https://upload-images.jianshu.io/upload_images/4618795-4e915eac10732b3c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="创建目录.png"><br>默认新创建的目录下有..上级目录的硬链接和.当前目录的硬链接，所以硬链接数为2<br><img src="https://upload-images.jianshu.io/upload_images/4618795-224973941af83992.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h6 id="②-创建多级目录"><a href="#②-创建多级目录" class="headerlink" title="②.创建多级目录"></a>②.创建多级目录</h6><p>创建多级目录需要加<code>-p</code>参数，目录下每增加一个<strong>子目录</strong>，硬链接数会加1<br><img src="https://upload-images.jianshu.io/upload_images/4618795-788c2e75da59ef8d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h3 id="5-cp（复制文件和目录）"><a href="#5-cp（复制文件和目录）" class="headerlink" title="5.cp（复制文件和目录）"></a>5.cp（复制文件和目录）</h3><p>工作原理：读取源目标文件的数据写入到新文件中</p>
+<h6 id="①-拷贝单个文件到新目录中，不存在则创建，存在改文件名则由用户选择是否覆盖"><a href="#①-拷贝单个文件到新目录中，不存在则创建，存在改文件名则由用户选择是否覆盖" class="headerlink" title="①.拷贝单个文件到新目录中，不存在则创建，存在改文件名则由用户选择是否覆盖."></a>①.拷贝单个文件到新目录中，不存在则创建，存在改文件名则由用户选择是否覆盖.</h6><p><img src="https://upload-images.jianshu.io/upload_images/4618795-0ad8a4867a040d13.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="拷贝单文件.png"></p>
+<h6 id="②-拷贝多个文件到新目录中"><a href="#②-拷贝多个文件到新目录中" class="headerlink" title="②.拷贝多个文件到新目录中"></a>②.拷贝多个文件到新目录中</h6><p><img src="https://upload-images.jianshu.io/upload_images/4618795-e1e5d1df5229c511.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="拷贝多文件.png"></p>
+<h6 id="③-拷贝目录"><a href="#③-拷贝目录" class="headerlink" title="③.拷贝目录"></a>③.拷贝目录</h6><p>拷贝目录需要加上<code>-r</code> ,目录文件不存在则创建<br><img src="https://upload-images.jianshu.io/upload_images/4618795-7cdb89c9bb9cccd6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="拷贝目录.png"><br>新目录下都是新文件，inode和源目标文件不一致<br><img src="https://upload-images.jianshu.io/upload_images/4618795-e63e00983ed4707e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="对比inode.png"></p>
+<h6 id="④-其他常用参数"><a href="#④-其他常用参数" class="headerlink" title="④ 其他常用参数"></a>④ 其他常用参数</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">-i：覆盖前提示	 –n:不覆盖，注意两者顺序</div><div class="line">-r, -R: 递归复制目录及内部的所有内容</div><div class="line">-a: 归档，相当于-dR --preserv=all</div><div class="line">-d：--no-dereference --preserv=links 不复制原文件，只复制链接名</div><div class="line">-u:--update 只复制源比目标更新文件或目标不存在的文件</div><div class="line">--preserv[=ATTR_LIST]</div><div class="line">	mode: 权限</div><div class="line">	ownership: 属主属组</div><div class="line">	timestamp: </div><div class="line">	links</div><div class="line">	xattr</div><div class="line">	context</div><div class="line">	all</div></pre></td></tr></table></figure>
+<h3 id="5-mv（移动和重命名文件）"><a href="#5-mv（移动和重命名文件）" class="headerlink" title="5.mv（移动和重命名文件）"></a>5.mv（移动和重命名文件）</h3><p>工作原理：删除inode表中原有文件的inode和文件名的映射关系，建立指定的文件名的对应关系</p>
+<h6 id="①-在同一文件系统下移动和重命名文件：不影响inode表（除时间戳）或磁盘上的数据位置：没有数据被移动！"><a href="#①-在同一文件系统下移动和重命名文件：不影响inode表（除时间戳）或磁盘上的数据位置：没有数据被移动！" class="headerlink" title="①.在同一文件系统下移动和重命名文件：不影响inode表（除时间戳）或磁盘上的数据位置：没有数据被移动！"></a>①.在同一文件系统下移动和重命名文件：不影响inode表（除时间戳）或磁盘上的数据位置：没有数据被移动！</h6><p><img src="https://upload-images.jianshu.io/upload_images/4618795-29c08777ee7e2351.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="移动并重命名.png"><br>1.st  创建一个新的文件名/root/file1/mvfile2.<br>2.nd 建立mvfile1 的inode编号 657251 和mvfile2的映射关系<br>3.rd 删除mvfile1 和 inode 657251 的路径链接</p>
+<h6 id="②-不同文件系统下移动：mv相当于cp和rm"><a href="#②-不同文件系统下移动：mv相当于cp和rm" class="headerlink" title="②.不同文件系统下移动：mv相当于cp和rm"></a>②.不同文件系统下移动：mv相当于cp和rm</h6><p><img src="https://upload-images.jianshu.io/upload_images/4618795-f7e544726da0e885.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h3 id="6-rm（删除）"><a href="#6-rm（删除）" class="headerlink" title="6.rm（删除）"></a>6.rm（删除）</h3><p>工作原理：硬链接数为0，从而释放的inode号可以被重用,把数据块放在空闲列表中,删除目录项,数据实际上不会马上被删除，但当另一个文件使用数据块时将被覆盖。</p>
+<h6 id="①-删除目录"><a href="#①-删除目录" class="headerlink" title="①  删除目录"></a>①  删除目录</h6><p><img src="https://upload-images.jianshu.io/upload_images/4618795-a9a840b75f9555db.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="删除目录.png"></p>
+<h6 id="②-其他常用参数"><a href="#②-其他常用参数" class="headerlink" title="② 其他常用参数"></a>② 其他常用参数</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">-i: 交互式</div><div class="line">-f: 强制删除</div><div class="line">-r: 递归</div><div class="line">      	--no-preserve-root</div></pre></td></tr></table></figure>
+<h1 id="三-inode"><a href="#三-inode" class="headerlink" title="三.inode"></a>三.inode</h1><h1 id="四-VFS"><a href="#四-VFS" class="headerlink" title="四.VFS"></a>四.VFS</h1><h1 id="五-文件权限"><a href="#五-文件权限" class="headerlink" title="五.文件权限"></a>五.文件权限</h1>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/27/Linux文件管理/">展开全文 >></a>
         </p>
       
 
@@ -253,7 +585,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
         		</li>
       		
 		</ul>
@@ -901,110 +1233,6 @@
 
 
   
-    <article id="post-kubernetes中的volume" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/06/12/kubernetes中的volume/">kubernetes中的volume</a>
-    </h1>
-  
-
-        
-        <a href="/2016/06/12/kubernetes中的volume/" class="archive-article-date">
-  	<time datetime="2016-06-12T11:53:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-06-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>volume 是pod中能够被多个容器访问的共享目录。k8s中volume定义在pod上，然后被一个pod里面的多个容器挂载到具体的文件目录下；其次k8s中volume与pod的生命周期相同，与容器的生命周期不相关，当容器种植或者重启的时候，volume中的数据也不会丢失。k8s支持多种类型volume，例如GlusterFS、Cept等分布式文件系统</p>
-<p>volume的类型</p>
-<ol>
-<li>emptyDir</li>
-</ol>
-<p>一个emptyDir Volume是在pod分配到node的时候创建的。它的内容为空，并且不需要指定宿主机上对应目录文件，因为k8s会自动分配一个对应的目录。当pod从node上移除的时候，emptyDir中的数据也会被永久删除。</p>
-<p>emptyDir用途：</p>
-<p>(1)临时空间，例如用于某些应用程序运行时所需的临时目录，且无须永久保留。</p>
-<p>(2)长时间任务的中间过程checkpoint的临时保存目录。</p>
-<p>(3)一个容器需要从另一个容器中获取数据的目录。</p>
-<ol>
-<li>hostPath</li>
-</ol>
-<p>hostPath为pod上挂载宿主机上的文件或者目录。</p>
-<p>hostPath用途：</p>
-<p>(1) 容器应用程序生成的日志文件需要永久保存，可以使用宿主机的告诉文件系统管理进行存储。</p>
-<p>(2) 需要访问宿主机上docker引擎内部数据结构的容器应用时，可以通过定义hostPath为宿主机/var/lib/docker目录，使容器内部应用可以直接访问Docker的文件系统。</p>
-<p>注意：</p>
-<p>(1) 在不同的node上具有相同配置的pod可能会因为宿主机上的目录和文件不同从而导致对volume上目录和文件的访问结果不一致。</p>
-<p>(2)如果使用了资源配额管理，那么k8s无法将hostPath在宿主机使用的资源纳入管理。</p>
-<p>例子： 使用宿主机的/data/目录定义了一个hostPath类型的Volume<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">volume:</div><div class="line">- name: &quot;persistent-storage&quot;</div><div class="line">  hostPath:</div><div class="line">    path: &quot;/date&quot;</div></pre></td></tr></table></figure></p>
-<p>3.gcePersistentDisk</p>
-<p>使用这种类型的Volume表示使用谷歌公有云提供的永久磁盘（Persistent Disk,PD)存放Volume的数据，它与EmptyDir不同，PD上的内容是会永久保存，当Pod被删除时，PD只是被卸载，但不会被删除。</p>
-<p>前提：你需要先创建一个永久磁盘（PD），才能使用gcePersistentDisk。</p>
-<p>注意</p>
-<p>node（运行kubelet的节点）需要的是GCE虚拟机。<br>这些虚拟机需要与PD存在与相同GCE项目和Zone中。<br>4.awsElasticBlockStore</p>
-<p>与GCE类似，该类型的Volume使用亚马逊公有云提供的EBS Volume存储数据，需要先创建一个EBSVolume才能使用awsElasticBlockStore。</p>
-<p>5.NFS</p>
-<p>使用NFS网络文件系统提供的共享目录存储数据时，我们需要在系统中部署一个NFS Server 。定义NFS类型的Volume的实例如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">volumes:</div><div class="line"> - name: nfs</div><div class="line">  nfs:</div><div class="line">    server； nfs-server.localhost  #改为你的nfs服务器地址</div><div class="line">    path: &quot;/&quot;</div></pre></td></tr></table></figure></p>
-<p>6.其他类型的volume</p>
-<p>iscsi：<br>flocker<br>glusterfs<br>rbd<br>gitRepo<br>secret</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">kubernetes</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/06/12/kubernetes中的volume/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1106,7 +1334,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
