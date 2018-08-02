@@ -144,6 +144,160 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-基础语法作业" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/02/基础语法作业/">基础语法作业</a>
+    </h1>
+  
+
+        
+        <a href="/2018/08/02/基础语法作业/" class="archive-article-date">
+  	<time datetime="2018-08-02T10:52:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一-打印99乘法表"><a href="#一-打印99乘法表" class="headerlink" title="一.打印99乘法表"></a>一.打印99乘法表</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">for i in range(10):</div><div class="line">    for j in range(1,10):</div><div class="line">        if  i &gt;= j:</div><div class="line">            print(&quot;&#123;&#125;*&#123;&#125;=&#123;&#125;&quot;.format(j,i,j*i), end=&apos; &apos;)</div><div class="line">    print()</div></pre></td></tr></table></figure>
+<h1 id="二-打印菱形"><a href="#二-打印菱形" class="headerlink" title="二.打印菱形"></a>二.打印菱形</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">length = int(input(&apos;please input the length :&apos;))</div><div class="line">for i in range(-(length//2),length//2+1):</div><div class="line">    if i &gt; 0:</div><div class="line">        a = length -(i*2)</div><div class="line">        b = i</div><div class="line">    else:</div><div class="line">        a = (i*2) + length</div><div class="line">        b = -i</div><div class="line">    print(b*&apos; &apos;+a*&apos;*&apos;)</div></pre></td></tr></table></figure>
+<h1 id="三-打印100以内的斐波那契数列"><a href="#三-打印100以内的斐波那契数列" class="headerlink" title="三. 打印100以内的斐波那契数列"></a>三. 打印100以内的斐波那契数列</h1><p>斐波那契数列Fn = F（n-1）+F（n-2）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">#第一项</div><div class="line">s1 = 1</div><div class="line">#第二项</div><div class="line">s2 = 1</div><div class="line">while True:</div><div class="line">    s3 = s1 + s2</div><div class="line">    s1 = s2</div><div class="line">    s2 = s3</div><div class="line">    if s3 &gt; 100:</div><div class="line">        break</div><div class="line">    print(s3)</div></pre></td></tr></table></figure></p>
+<h1 id="四-求斐波那契数列第101项"><a href="#四-求斐波那契数列第101项" class="headerlink" title="四.求斐波那契数列第101项"></a>四.求斐波那契数列第101项</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">s1=1</div><div class="line">s2=1</div><div class="line">for i in range(3,102):</div><div class="line">    s3 = s1 + s2</div><div class="line">    s1 = s2</div><div class="line">    s2 = s3</div><div class="line">print(s3)</div></pre></td></tr></table></figure>
+<h1 id="五-求10万内的所有素数"><a href="#五-求10万内的所有素数" class="headerlink" title="五.求10万内的所有素数"></a>五.求10万内的所有素数</h1><p>第一种方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">import time</div><div class="line">start = time.clock()</div><div class="line">number = 100000</div><div class="line">count = 1</div><div class="line">print(2,end=&apos; &apos;)</div><div class="line">#除了2以外，所有素数都是奇数</div><div class="line">for i in range(3,25,2):</div><div class="line">    flag = True</div><div class="line">    for j in range(2,int(i**0.5)+ 1):</div><div class="line">        m = i % j</div><div class="line">        if m == 0 :</div><div class="line">            flag = False</div><div class="line">            break</div><div class="line">        else:</div><div class="line">            flag = True</div><div class="line">    if flag:</div><div class="line">        count += 1</div><div class="line">        print(i, end=&apos; &apos;)</div><div class="line">for num in range(5,number,2):</div><div class="line">    if num % 6 != 1 and num % 6 != 5:</div><div class="line">        continue</div><div class="line">    else :</div><div class="line">        flag = False</div><div class="line">        for i in range(5,int(num**0.5 + 1),6):</div><div class="line">            if ( not num % i ) or ( not num % (i+2) ):</div><div class="line">                flag = False</div><div class="line">                break</div><div class="line">            else:</div><div class="line">                flag = True</div><div class="line">    if flag :</div><div class="line">        print(num, end= &apos; &apos;)</div><div class="line">        count += 1</div><div class="line">print()</div><div class="line">print(count)</div><div class="line">end = time.clock()</div><div class="line">time = end - start</div><div class="line">print(time)</div></pre></td></tr></table></figure></p>
+<p>第二种：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">import time</div><div class="line">start = time.clock()</div><div class="line">number = 100000</div><div class="line">count = 1</div><div class="line">print(2,end=&apos; &apos;)</div><div class="line">#除了2以外，所有素数都是奇数</div><div class="line">for i in range(3,24,2):</div><div class="line">    flag = True</div><div class="line">    for j in range(2,int(i**0.5)+ 1):</div><div class="line">        m = i % j</div><div class="line">        if m == 0 :</div><div class="line">            flag = False</div><div class="line">            break</div><div class="line">        else:</div><div class="line">            flag = True</div><div class="line">    if flag:</div><div class="line">        count += 1</div><div class="line">        print(i, end=&apos; &apos;)</div><div class="line">for num in range(25,number,2):</div><div class="line">    if num % 6 != 1 and num % 6 != 5:</div><div class="line">        continue</div><div class="line">    else :</div><div class="line">        flag = False</div><div class="line">        for i in range(5,int(num**0.5 + 1),6):</div><div class="line">            if ( not num % i ) or ( not num % (i+2) ):</div><div class="line">                flag = False</div><div class="line">                break</div><div class="line">            else:</div><div class="line">                flag = True</div><div class="line">    if flag :</div><div class="line">        print(num, end= &apos; &apos;)</div><div class="line">        count += 1</div><div class="line">print()</div><div class="line">print(count)</div><div class="line">end = time.clock()</div><div class="line">time = end - start</div><div class="line">print(time)</div></pre></td></tr></table></figure></p>
+<p>```</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/08/02/基础语法作业/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-位运算" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/01/位运算/">位运算</a>
+    </h1>
+  
+
+        
+        <a href="/2018/08/01/位运算/" class="archive-article-date">
+  	<time datetime="2018-08-01T00:49:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一-机器数和真值"><a href="#一-机器数和真值" class="headerlink" title="一.机器数和真值"></a>一.机器数和真值</h1><p>一个数在计算机中的二进制表示形式，叫做这个数的机器数。机器数是带符号的，在计算机用一个最高位存放符号，正数为0，负数为1.</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/08/01/位运算/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-pyenv-virtualenv-jupyter" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -182,6 +336,7 @@
 <h1 id="四-安装jupyter"><a href="#四-安装jupyter" class="headerlink" title="四.安装jupyter"></a>四.安装jupyter</h1><h3 id="1-修改pip源"><a href="#1-修改pip源" class="headerlink" title="1.修改pip源"></a>1.修改pip源</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">mkdir ~/.pip</div><div class="line">cat &gt;&gt; ~/.pip/pip.conf &lt;&lt; EOF</div><div class="line">[global]</div><div class="line">index-url=https://mirrors.aliyun.com/pypi/simple/</div><div class="line">trusted-host=mirrors.aliyun.com</div><div class="line">EOF</div></pre></td></tr></table></figure>
 <h3 id="2-安装jupyter（可以在虚拟环境中安装）"><a href="#2-安装jupyter（可以在虚拟环境中安装）" class="headerlink" title="2.安装jupyter（可以在虚拟环境中安装）"></a>2.安装jupyter（可以在虚拟环境中安装）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">pip install jupyter</div><div class="line">#生成jupyter配置文件</div><div class="line">jupyter notebook --generate-config</div><div class="line">#根据提示输入密码</div><div class="line">jupyter notebook password</div><div class="line">#启动jupyter</div><div class="line">nohup jupyter notebook --no-browser --ip=0.0.0.0  --port=10000 &amp;&gt; jupyter.log &amp;</div><div class="line">#默认端口是8888 ，可以省略</div></pre></td></tr></table></figure>
 <h3 id="3-浏览器登陆"><a href="#3-浏览器登陆" class="headerlink" title="3.浏览器登陆"></a>3.浏览器登陆</h3><p><a href="http://192.168.220.135:10000" target="_blank" rel="external">http://192.168.220.135:10000</a><br><img src="https://upload-images.jianshu.io/upload_images/4618795-d8e2cbce6fec0c15.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h3 id="4-脚本"><a href="#4-脚本" class="headerlink" title="4.脚本"></a>4.脚本</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">#./$0 [start|status|stop]</div><div class="line">cmd=$1</div><div class="line">start()&#123;</div><div class="line">   nohup jupyter notebook --no-browser --ip=192.168.220.135 &amp;&gt; jupyter.log &amp;</div><div class="line">   pid=$!</div><div class="line">   echo $pid &gt; jupyter.pid</div><div class="line">&#125;</div><div class="line">stop()&#123;</div><div class="line">   cat jupyter.pid|xargs kill -9</div><div class="line">&#125;</div><div class="line">status()&#123;</div><div class="line">   netstat -ntul |grep 8888 &gt;/dev/null</div><div class="line">   flag=$?</div><div class="line">   if [ $flag -eq 0 ];then</div><div class="line">      echo &quot;jupyter is running&quot;</div><div class="line">   else</div><div class="line">      echo &quot;jupyter  stopper&quot;</div><div class="line">   fi</div><div class="line">&#125;</div><div class="line">case $1 in</div><div class="line">    start)</div><div class="line">      start</div><div class="line">      ;;</div><div class="line">    stop)</div><div class="line">      stop</div><div class="line">      ;;</div><div class="line">    status)</div><div class="line">      status</div><div class="line">      ;;</div><div class="line">     *)</div><div class="line">      echo &quot;$0 [start|stop|status]&quot;</div><div class="line">      ;;</div><div class="line">esac</div></pre></td></tr></table></figure>
 
       
 
@@ -1175,168 +1330,6 @@ x: 可以使用ls -l查看此目录中文件列表，可以cd进入此目录
 
 
   
-    <article id="post-docker-私有仓库" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/03/docker-私有仓库/">docker 私有仓库</a>
-    </h1>
-  
-
-        
-        <a href="/2017/02/03/docker-私有仓库/" class="archive-article-date">
-  	<time datetime="2017-02-03T10:08:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>#建立私有仓库</p>
-<p>###1.master先从公有仓库下载registry 镜像<br><code>docker pull registry</code></p>
-<p>###2.修改每个结点的docker配置文件<br><code>vim /etc/sysconfig/docker</code><br><code>INSECURE_REGISTRY=&#39;--insecure-registry=test-registry:5000&#39;</code></p>
-<p>###3.master启动镜像<br><code>docker run -d -p 5000:5000 --restart=always --privileged --name registry  -v /root/docker/my_registry:/var/lib/registry registry</code></p>
-<blockquote>
-<p>如果先启动registry 容器的话再修改配置文件，要先停止或者删除容器，然后重启docker</p>
-</blockquote>
-<p>#把导入镜像，推进私有仓库<br>etcd.tar  kube2sky.tar  skydns.tar<br>docker load -i etcd.tar<br>docker load -i skydns.tar<br>docker load -i  kube2sky.tar<br>可以用 docker tag  name name2  修改镜像名字<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">#docker tag docker.io/kubernetes/etcd   test-registry:5000/etcd</div><div class="line">#docker push test-registry:5000/etcd</div><div class="line">The push refers to a repository [test-registry:5000/etcd]</div><div class="line">5f70bf18a086: Pushed</div><div class="line">bd143efc7820: Pushed</div><div class="line">1768c2e82057: Pushed</div><div class="line">fa2d9737fa36: Pushed</div><div class="line">213b4bb251d6: Pushed</div><div class="line">fedec15c59be: Pushed</div><div class="line">055433d86af4: Pushed</div><div class="line">7f02483a9752: Pushed</div></pre></td></tr></table></figure></p>
-<p>然后 docker push  imagename   把镜像推上私有仓库<br>curl  <a href="http://test-registry:5000/v2/_catalog" target="_blank" rel="external">http://test-registry:5000/v2/_catalog</a><br>查看私有仓库里面的镜像<br>curl <a href="http://test-registry:5000/v2/imagename/tags/list" target="_blank" rel="external">http://test-registry:5000/v2/imagename/tags/list</a><br>查看私有仓库里面的镜像的版本<br>curl <a href="http://test-registry:5000/v2/imagename/manifests/tag" target="_blank" rel="external">http://test-registry:5000/v2/imagename/manifests/tag</a> (镜像每一层的哈希值（digest））</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">kubernetes</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/02/03/docker-私有仓库/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-mysql-主从不同步解决" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/20/mysql-主从不同步解决/">mysql 主从不同步解决</a>
-    </h1>
-  
-
-        
-        <a href="/2016/09/20/mysql-主从不同步解决/" class="archive-article-date">
-  	<time datetime="2016-09-20T12:12:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-09-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>情况：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">mysql&gt; show slave status\G                                                </div><div class="line"> </div><div class="line">Slave_IO_Running: Yes</div><div class="line">Slave_SQL_Running: No</div></pre></td></tr></table></figure></p>
-<p>master<br><code>show processlist;</code>查看下进程是否Sleep太多。<br><code>show master status</code>查看master是否正常。<br><img src="http://upload-images.jianshu.io/upload_images/4618795-2c71f9ba705abfbc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="查看master进程.jpg"><br>master正常，那么就是主从二进制日志的时候发生异常。</p>
-<p>两个解决方法：</p>
-<p>#方式一：重新做主从，完全同步<br>该方法适用于主从库数据相差较大，或者要求数据完全统一的情况<br>1.先进入主库，进行锁表，防止数据写入<br><code>flush tables with read lock;</code><br>2.进行数据备份<br><code>mysqldump -uroot -p &gt; mysql.bak.sql</code><br>3.查看master 状态<br>记录file名和pos位置<br>4.把mysql备份文件传到从库机器，进行数据恢复<br><code>scp mysql.bak.sql root@slave:/tmp/</code><br>5.停止从库的状态<br><code>stop slave;</code><br>6.然后到从库执行mysql命令，导入数据备份<br><code>mysql -uroot -p &lt; mysql.bak.sql</code><br>7.设置从库同步，注意该处的同步点，就是主库show master status信息里的| File| Position两项<br><code>change master to master_host = &#39;192.168.220.201&#39;, master_user = &#39;rsync&#39;, master_port=3306, master_password=&#39;&#39;, master_log_file = &#39;mysqld-bin.000001&#39;, master_log_pos=3260;</code><br>8.重新开启从同步<br><code>start slave;</code><br>9.查看同步状态<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">show slave status\G </div><div class="line">Slave_IO_Running: Yes</div><div class="line">Slave_SQL_Running: Yes</div></pre></td></tr></table></figure></p>
-<p>#方法二：忽略错误后，继续同步<br>该方法适用于主从库数据相差不大，或者要求数据可以不完全统一的情况，数据要求不严格的情况</p>
-<p>解决：<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">stop slave;</div><div class="line"> </div><div class="line">#表示跳过一步错误，后面的数字可变</div><div class="line">set global sql_slave_skip_counter =1;</div><div class="line">start slave;</div><div class="line">show slave status\G  </div><div class="line"> ...</div><div class="line">Slave_IO_Running: Yes</div><div class="line">Slave_SQL_Running: Yes</div></pre></td></tr></table></figure></p>
-<p>#第三种：第三方工具如pt-table-sync</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/09/20/mysql-主从不同步解决/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1434,11 +1427,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color1">kubernetes</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">kubernetes</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
