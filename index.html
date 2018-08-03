@@ -164,7 +164,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="一-打印99乘法表"><a href="#一-打印99乘法表" class="headerlink" title="一.打印99乘法表"></a>一.打印99乘法表</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">for i in range(10):</div><div class="line">    for j in range(1,10):</div><div class="line">        if  i &gt;= j:</div><div class="line">            print(&quot;&#123;&#125;*&#123;&#125;=&#123;&#125;&quot;.format(j,i,j*i), end=&apos; &apos;)</div><div class="line">    print()</div></pre></td></tr></table></figure>
+        <h1 id="一-打印99乘法表"><a href="#一-打印99乘法表" class="headerlink" title="一.打印99乘法表"></a>一.打印99乘法表</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">for i in range(10):</div><div class="line">    for j in range(1,i+1):</div><div class="line">        print(&quot;&#123;&#125;*&#123;&#125;=&#123;&#125;&quot;.format(j,i,j*i), end=&apos; &apos;)</div><div class="line">    print()</div></pre></td></tr></table></figure>
 <h1 id="二-打印菱形"><a href="#二-打印菱形" class="headerlink" title="二.打印菱形"></a>二.打印菱形</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">length = int(input(&apos;please input the length :&apos;))</div><div class="line">for i in range(-(length//2),length//2+1):</div><div class="line">    if i &gt; 0:</div><div class="line">        a = length -(i*2)</div><div class="line">        b = i</div><div class="line">    else:</div><div class="line">        a = (i*2) + length</div><div class="line">        b = -i</div><div class="line">    print(b*&apos; &apos;+a*&apos;*&apos;)</div></pre></td></tr></table></figure>
 <h1 id="三-打印100以内的斐波那契数列"><a href="#三-打印100以内的斐波那契数列" class="headerlink" title="三. 打印100以内的斐波那契数列"></a>三. 打印100以内的斐波那契数列</h1><p>斐波那契数列Fn = F（n-1）+F（n-2）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">#第一项</div><div class="line">s1 = 1</div><div class="line">#第二项</div><div class="line">s2 = 1</div><div class="line">while True:</div><div class="line">    s3 = s1 + s2</div><div class="line">    s1 = s2</div><div class="line">    s2 = s3</div><div class="line">    if s3 &gt; 100:</div><div class="line">        break</div><div class="line">    print(s3)</div></pre></td></tr></table></figure></p>
 <h1 id="四-求斐波那契数列第101项"><a href="#四-求斐波那契数列第101项" class="headerlink" title="四.求斐波那契数列第101项"></a>四.求斐波那契数列第101项</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">s1=1</div><div class="line">s2=1</div><div class="line">for i in range(3,102):</div><div class="line">    s3 = s1 + s2</div><div class="line">    s1 = s2</div><div class="line">    s2 = s3</div><div class="line">print(s3)</div></pre></td></tr></table></figure>
@@ -1538,11 +1538,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
