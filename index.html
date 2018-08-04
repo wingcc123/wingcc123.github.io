@@ -173,12 +173,65 @@
 <li>大小写敏感<br><strong>注意：</strong><br>1.不允许使用中文<br>2.不能使用有歧义的标识符，例如class<em><br>3.不能随便使用下划线开头的标识符<br>4.“</em> ”标识符表示用后即焚<h3 id="2-运算符"><a href="#2-运算符" class="headerlink" title="2. 运算符"></a>2. 运算符</h3>算数运算符 &gt;位运算符&gt;身份运算符&gt;成员运算符&gt;逻辑运算符<br><img src="https://upload-images.jianshu.io/upload_images/4618795-4738ebbe40048510.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><h3 id="3-表达式"><a href="#3-表达式" class="headerlink" title="3.表达式"></a>3.表达式</h3>由数字，符号，括号，变量等的组合</li>
 <li>算数表达式</li>
 <li>逻辑表达式</li>
-<li>赋值表达式<br><strong>赋值即定义</strong><h3 id="4-真值表"><a href="#4-真值表" class="headerlink" title="4.真值表"></a>4.真值表</h3>对象／常量 | 值 |<br>—-|——|<br>“” |False |<br>“string” |True |<br>0|False |<blockquote>
-<p>=1| True|<br>&lt;=-1|True |<br>()|False |<br>[]|False |<br>{}|False |<br>None|False |<br>False :None,0,四大皆空</p>
-<h1 id="三-程序控制"><a href="#三-程序控制" class="headerlink" title="三.程序控制"></a>三.程序控制</h1><h3 id="1-if语句"><a href="#1-if语句" class="headerlink" title="1.if语句"></a>1.if语句</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">if condition1:   #condition 必须是一个布尔类型</div><div class="line">    block1:</div><div class="line">elif condition2:</div><div class="line">    block2:</div><div class="line">else:</div><div class="line">    block3</div></pre></td></tr></table></figure>
-</blockquote>
-</li>
+<li>赋值表达式<br><strong>赋值即定义</strong><h3 id="4-真值表"><a href="#4-真值表" class="headerlink" title="4.真值表"></a>4.真值表</h3></li>
 </ul>
+<table>
+<thead>
+<tr>
+<th>对象／常量</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>“”</td>
+<td>False</td>
+<td></td>
+</tr>
+<tr>
+<td>“string”</td>
+<td>True</td>
+<td></td>
+</tr>
+<tr>
+<td> 0</td>
+<td>False</td>
+<td></td>
+</tr>
+<tr>
+<td> &gt;=1</td>
+<td>True</td>
+<td></td>
+</tr>
+<tr>
+<td> &lt;=-1</td>
+<td>True</td>
+<td></td>
+</tr>
+<tr>
+<td> ()</td>
+<td>False</td>
+<td></td>
+</tr>
+<tr>
+<td> []</td>
+<td>False</td>
+<td></td>
+</tr>
+<tr>
+<td> {}</td>
+<td>False</td>
+<td></td>
+</tr>
+<tr>
+<td> None</td>
+<td>False</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>False :None,0,四大皆空</p>
+<h1 id="三-程序控制"><a href="#三-程序控制" class="headerlink" title="三.程序控制"></a>三.程序控制</h1><h3 id="1-if语句"><a href="#1-if语句" class="headerlink" title="1.if语句"></a>1.if语句</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">if condition1:   #condition 必须是一个布尔类型</div><div class="line">    block1:</div><div class="line">elif condition2:</div><div class="line">    block2:</div><div class="line">else:</div><div class="line">    block3</div></pre></td></tr></table></figure>
 <h3 id="2-for语句"><a href="#2-for语句" class="headerlink" title="2.for语句"></a>2.for语句</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">for element in iteratable: # 可迭代对象</div><div class="line">    block</div></pre></td></tr></table></figure>
 <p>for..else 字句<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">for element in iteratable: # 可迭代对象</div><div class="line">    block</div><div class="line">else:   ###当正常结束for循环的时候可以执行else语句</div></pre></td></tr></table></figure></p>
 <h3 id="3-continue-break"><a href="#3-continue-break" class="headerlink" title="3.continue,break"></a>3.continue,break</h3><ul>
