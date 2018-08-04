@@ -144,19 +144,19 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-基础语法作业" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-python基础" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/02/基础语法作业/">python基础</a>
+      <a class="article-title" href="/2018/08/02/python基础/">python基础</a>
     </h1>
   
 
         
-        <a href="/2018/08/02/基础语法作业/" class="archive-article-date">
+        <a href="/2018/08/02/python基础/" class="archive-article-date">
   	<time datetime="2018-08-02T10:52:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-02</time>
 </a>
         
@@ -239,9 +239,9 @@
 <li>break 终止当前循环</li>
 <li>continue和break 是循环的控制语句，只影响当前循环，包括while，for循环</li>
 <li>如果循环嵌套，continue和break也只是影响语句所在那一层</li>
-<li>continue 和 break 不是跳出语句块，所以 if cond:break 不是跳出if ,而是终止if外的break所在的循环<h1 id="四-字符串格式化"><a href="#四-字符串格式化" class="headerlink" title="四.字符串格式化"></a>四.字符串格式化</h1><strong>str.format()函数</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt;&quot;&#123;&#125; &#123;&#125;&quot;.format(&quot;hello&quot;, &quot;world&quot;)    # 不设置指定位置，按默认顺序</div><div class="line">&apos;hello world&apos;</div><div class="line"> </div><div class="line">&gt;&gt;&gt; &quot;&#123;0&#125; &#123;1&#125;&quot;.format(&quot;hello&quot;, &quot;world&quot;)  # 设置指定位置</div><div class="line">&apos;hello world&apos;</div><div class="line"> </div><div class="line">&gt;&gt;&gt; &quot;&#123;1&#125; &#123;0&#125; &#123;1&#125;&quot;.format(&quot;hello&quot;, &quot;world&quot;)  # 设置指定位置</div><div class="line">&apos;world hello world&apos;</div></pre></td></tr></table></figure>
-</li>
+<li>continue 和 break 不是跳出语句块，所以 if cond:break 不是跳出if ,而是终止if外的break所在的循环</li>
 </ul>
+<h1 id="四-字符串格式化"><a href="#四-字符串格式化" class="headerlink" title="四.字符串格式化"></a>四.字符串格式化</h1><p><strong>str.format()函数</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt;&quot;&#123;&#125; &#123;&#125;&quot;.format(&quot;hello&quot;, &quot;world&quot;)    # 不设置指定位置，按默认顺序</div><div class="line">&apos;hello world&apos;</div><div class="line"> </div><div class="line">&gt;&gt;&gt; &quot;&#123;0&#125; &#123;1&#125;&quot;.format(&quot;hello&quot;, &quot;world&quot;)  # 设置指定位置</div><div class="line">&apos;hello world&apos;</div><div class="line"> </div><div class="line">&gt;&gt;&gt; &quot;&#123;1&#125; &#123;0&#125; &#123;1&#125;&quot;.format(&quot;hello&quot;, &quot;world&quot;)  # 设置指定位置</div><div class="line">&apos;world hello world&apos;</div></pre></td></tr></table></figure></p>
 <table>
 <thead>
 <tr>
@@ -351,7 +351,7 @@
 <p><img src="https://upload-images.jianshu.io/upload_images/4618795-64683aff2f08893e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="fib第101项.png"></p>
 <h3 id="4-求10万内的所有素数"><a href="#4-求10万内的所有素数" class="headerlink" title="4.求10万内的所有素数"></a>4.求10万内的所有素数</h3><p>假设a&gt;=b<br>m = a<em>b &gt;= b^2<br>a &gt;= m <em>*0.5<br>b &lt;= m </em></em>0.5<br>因为如果一个数不是素数是合数， 那么一定可以由两个自然数相乘得到，合数m 一定有小于或者等于m的平方根的因数，所以只要验证素数的除数的范围只需其平方根。<br>第一种方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">import time</div><div class="line">start = time.clock()</div><div class="line">number = 100000</div><div class="line">count = 1</div><div class="line">print(2,end=&apos; &apos;)</div><div class="line">#除了2以外，所有素数都是奇数</div><div class="line">for num in range(3,24,2):</div><div class="line">    flag = True</div><div class="line">    for i in range(2,int(num**0.5)+ 1):</div><div class="line">        m = num % i</div><div class="line">        if m == 0 :</div><div class="line">            flag = False</div><div class="line">            break</div><div class="line">        else:</div><div class="line">            flag = True</div><div class="line">    if flag:</div><div class="line">        count += 1</div><div class="line">        print(num, end=&apos; &apos;)</div><div class="line">for num in range(25,number,2):</div><div class="line">  ##大于6的质数除以6，余数都是1或者5</div><div class="line">    if num % 6 != 1 and num % 6 != 5:</div><div class="line">        continue</div><div class="line">    else :</div><div class="line">        flag = False</div><div class="line">        for i in range(5,int(num**0.5 + 1),6):</div><div class="line">            if ( not num % i ) or ( not num % (i+2) ):</div><div class="line">                flag = False</div><div class="line">                break</div><div class="line">            else:</div><div class="line">                flag = True</div><div class="line">    if flag :</div><div class="line">        print(num, end= &apos; &apos;)</div><div class="line">        count += 1</div><div class="line">print()</div><div class="line">print(count)</div><div class="line">end = time.clock()</div><div class="line">time = end - start</div><div class="line">print(time)</div></pre></td></tr></table></figure></p>
 <p>第二种方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">import time</div><div class="line">start = time.clock()</div><div class="line">count = 2</div><div class="line">print(2, end=&apos; &apos;)</div><div class="line">print(3, end=&apos; &apos;)</div><div class="line">number = 100000</div><div class="line">for num in range(5,number,2):</div><div class="line">  #大于6的质数除以6，余数都是1或者5</div><div class="line">    if num % 6 != 1 and num % 6 != 5:</div><div class="line">        continue</div><div class="line">    else :</div><div class="line">        flag = False</div><div class="line">        if num &lt; 30 :</div><div class="line">            for i in range(3,num,2):</div><div class="line">                if not ( num % i ):</div><div class="line">                    flag = False</div><div class="line">                    break</div><div class="line">                else:</div><div class="line">                    flag = True</div><div class="line">        else:</div><div class="line">            for i in range(5,int(num**0.5 + 1),6):</div><div class="line">                if ( not num % i ) or ( not num % (i+2) ):</div><div class="line">                    flag = False</div><div class="line">                    break</div><div class="line">                else:</div><div class="line">                     flag = True</div><div class="line">    if flag :</div><div class="line">        print(num, end= &apos; &apos;)</div><div class="line">        count += 1</div><div class="line">print()</div><div class="line">print(count)</div><div class="line">end = time.clock()</div><div class="line">time = end - start</div><div class="line">print(time)</div></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">#打印10万以内的素数</div><div class="line">#第三种方法</div><div class="line">n = 100000</div><div class="line">#除了2 以外的素数，都是奇数</div><div class="line">count=1</div><div class="line">print(2,end=&apos; &apos;)</div><div class="line">for i in range(3,n,2):</div><div class="line">    flag = False</div><div class="line">    if i &gt; 10 and  i % 5 == 0 :</div><div class="line">        continue</div><div class="line">    for j in range(3,int(i**0.5)+1,2):</div><div class="line">        if i % j == 0:</div><div class="line">            break </div><div class="line">    else:</div><div class="line">        print(i,end=&apos; &apos;)</div><div class="line">        count += 1</div><div class="line"></div><div class="line">print()</div><div class="line">print(count)</div></pre></td></tr></table></figure>
+<p>第三种方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">#打印10万以内的素数</div><div class="line">n = 100000</div><div class="line">#除了2 以外的素数，都是奇数</div><div class="line">count=1</div><div class="line">print(2,end=&apos; &apos;)</div><div class="line">for i in range(3,n,2):</div><div class="line">    flag = False</div><div class="line">    if i &gt; 10 and  i % 5 == 0 :</div><div class="line">        continue</div><div class="line">    for j in range(3,int(i**0.5)+1,2):</div><div class="line">        if i % j == 0:</div><div class="line">            break </div><div class="line">    else:</div><div class="line">        print(i,end=&apos; &apos;)</div><div class="line">        count += 1</div><div class="line"></div><div class="line">print()</div><div class="line">print(count)</div></pre></td></tr></table></figure></p>
 <p><strong>总共9592个，最后一项是99991</strong></p>
 
       
@@ -376,7 +376,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/02/基础语法作业/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/08/02/python基础/">展开全文 >></a>
         </p>
       
 
@@ -1721,11 +1721,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
