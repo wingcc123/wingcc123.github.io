@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://yoursite.com/2018/08/01/位运算/index.html">
 <meta property="og:site_name" content="Winnie&#39;s cabin">
 <meta property="og:description" content="一.机器数和真值1.机器数一个数在计算机中的二进制表示形式，叫做这个数的机器数。机器数是带符号的，在计算机用一个最高位存放符号，正数为0，负数为1. 2.真值因为第一位是符号位，所以机器数的形式值就不等于真正的数值 二.原码，反码，补码对于一个数，计算机需要使用一定编程方式进行存储，原码，反码，补码就是机器存储一个具体数字的编码方式。 1.原码原码就是符号位加上真值的绝对值，即用第一位表示符号，其">
-<meta property="og:updated_time" content="2018-08-04T12:50:31.000Z">
+<meta property="og:updated_time" content="2018-08-12T02:50:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="位运算">
 <meta name="twitter:description" content="一.机器数和真值1.机器数一个数在计算机中的二进制表示形式，叫做这个数的机器数。机器数是带符号的，在计算机用一个最高位存放符号，正数为0，负数为1. 2.真值因为第一位是符号位，所以机器数的形式值就不等于真正的数值 二.原码，反码，补码对于一个数，计算机需要使用一定编程方式进行存储，原码，反码，补码就是机器存储一个具体数字的编码方式。 1.原码原码就是符号位加上真值的绝对值，即用第一位表示符号，其">
@@ -242,7 +242,11 @@
 <h3 id="4-总结"><a href="#4-总结" class="headerlink" title="4.总结"></a>4.总结</h3><ul>
 <li>正数的反码和补码都与原码相同。</li>
 <li>负数的反码为对该数的原码除符号位外各位取反。</li>
-<li>负数的补码为对该数的原码除符号位外各位取反，然后在最后一位加1<h1 id="二-位运算"><a href="#二-位运算" class="headerlink" title="二.位运算"></a>二.位运算</h1>位运算，负数都按照补码形式进行<h3 id="1-按位与-amp"><a href="#1-按位与-amp" class="headerlink" title="1.按位与(&amp;)"></a>1.按位与(&amp;)</h3>运算规则：0&amp;0=0;  0&amp;1=0;   1&amp;0=0;    1&amp;1=1;<br>即：两位同时为“1”，结果才为“1”，否则为0<br>负数按补码形式参加按位与运算。<br>60 &amp; 13 对两个数进行操作，然后返回一个新的数，这个数的每个位都需要两个输入数的同一位都为1的时候才为1<br>60   0011 1100<br>13   0000 1101<br>值   0000 1100<br>等于12<br>作用：</li>
+<li>负数的补码为对该数的原码除符号位外各位取反，然后在最后一位加1</li>
+</ul>
+<h1 id="三-位运算"><a href="#三-位运算" class="headerlink" title="三.位运算"></a>三.位运算</h1><p>位运算，负数都按照补码形式进行</p>
+<h3 id="1-按位与-amp"><a href="#1-按位与-amp" class="headerlink" title="1.按位与(&amp;)"></a>1.按位与(&amp;)</h3><p>运算规则：0&amp;0=0;  0&amp;1=0;   1&amp;0=0;    1&amp;1=1;<br>即：两位同时为“1”，结果才为“1”，否则为0<br>负数按补码形式参加按位与运算。<br>60 &amp; 13 对两个数进行操作，然后返回一个新的数，这个数的每个位都需要两个输入数的同一位都为1的时候才为1<br>60   0011 1100<br>13   0000 1101<br>值   0000 1100<br>等于12<br>作用：</p>
+<ul>
 <li>清零。如果想将一个单元清零，即使其全部二进制位为0，只要与一个各位都为零的数值相与，结果为零。</li>
 <li>取一个数中指定位.(找一个数，对应X要取的位，该数的对应位为1，其余位为零，此数与X进行“与运算”可以得到X中的指定位)<br>假设：X=10101110 。取X的低4位，用 X &amp; 0000 1111 = 00001110 即可得到；</li>
 </ul>
@@ -523,6 +527,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">

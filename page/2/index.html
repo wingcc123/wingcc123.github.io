@@ -144,6 +144,99 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-docker-harbor私有仓库" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/15/docker-harbor私有仓库/">docker harbor私有仓库</a>
+    </h1>
+  
+
+        
+        <a href="/2017/02/15/docker-harbor私有仓库/" class="archive-article-date">
+  	<time datetime="2017-02-15T03:02:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Harbor 是 Vmwar 公司开源的 企业级的 Docker Registry 管理项目</p>
+<p>它主要 提供 Dcoker Registry 管理UI，可基于角色访问控制, AD/LDAP 集成，日志审核等功能，完全的支持中文。</p>
+<p>Harbor 的所有组件都在 Dcoker 中部署，所以 Harbor 可使用 Docker Compose 快速部署。</p>
+<p><strong>Ps</strong><br>  docker &gt; =v 1.10.0<br> docker-compose &gt;= v1.6.0 **</p>
+<p>环境：<br>192.168.40.50 local-master<br>192.168.40.51 local-node1</p>
+<h1 id="一-安装"><a href="#一-安装" class="headerlink" title="一.安装"></a>一.安装</h1><p>下载地址：<a href="https://github.com/vmware/harbor/releases" target="_blank" rel="external">https://github.com/vmware/harbor/releases</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">安装离线安装版本</div><div class="line"># yum install python2-pip</div><div class="line"># pip install --upgrade pip</div><div class="line"># pip install docker-compose</div><div class="line"># wget https://github.com/vmware/harbor/releases/download/0.5.0/harbor-offline-installer-0.5.0.tgz</div><div class="line"># tar xvf harbor-offline-installer-0.5.0.tgz</div></pre></td></tr></table></figure></p>
+<p><strong>官网安装教程:</strong> <a href="https://github.com/vmware/harbor/blob/master/docs/installation_guide.md" target="_blank" rel="external">https://github.com/vmware/harbor/blob/master/docs/installation_guide.md</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">目录结构</div><div class="line">[root@local-master harbor]# ll -h</div><div class="line">total 865M</div><div class="line">drwxr-xr-x 4 root root   37 Mar 29 15:10 common</div><div class="line">-rw-r--r-- 1 root root 2.2K Dec  6 16:35 docker-compose.yml</div><div class="line">-rw------- 1 root root 865M Dec  6 16:37 harbor.0.5.0.tgz</div><div class="line">-rw-r--r-- 1 root root 3.7K Mar 30 14:46 harbor.cfg</div><div class="line">-rwxr-xr-x 1 root root 4.4K Dec  6 16:35 install.sh</div><div class="line">-rw-r--r-- 1 root root 212K Dec  6 16:35 LICENSE</div><div class="line">-rw-r--r-- 1 root root  483 Dec  6 16:35 NOTICE</div><div class="line">-rwxr-xr-x 1 root root  12K Dec  6 16:35 prepare</div></pre></td></tr></table></figure></p>
+<p>修改配置文件harbor.cfg<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line">[root@local-master harbor]# cat harbor.cfg  |grep -v &apos;^#&apos;</div><div class="line">hostname = 192.168.40.50</div><div class="line">ui_url_protocol = http</div><div class="line">email_identity = </div><div class="line">email_server = smtp.mydomain.com</div><div class="line">email_server_port = 25</div><div class="line">email_username = sample_admin@mydomain.com</div><div class="line">email_password = xxx</div><div class="line">email_from = admin &lt;sample_admin@mydomain.com&gt;</div><div class="line">email_ssl = false</div><div class="line"></div><div class="line">harbor_admin_password = Harbor12345</div><div class="line">#界面默认登陆用户是admin，密码是Harbor12345</div><div class="line">登陆成功后再修改密码</div><div class="line"></div><div class="line">auth_mode = db_auth</div><div class="line"></div><div class="line">ldap_url = ldaps://ldap.mydomain.com</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">ldap_basedn = ou=people,dc=mydomain,dc=com</div><div class="line"></div><div class="line"></div><div class="line">ldap_uid = uid </div><div class="line"></div><div class="line">ldap_scope = 3 </div><div class="line"></div><div class="line">db_password = root123</div><div class="line"></div><div class="line">self_registration = on</div><div class="line"></div><div class="line">use_compressed_js = on</div><div class="line"></div><div class="line">max_job_workers = 3 </div><div class="line"></div><div class="line">token_expiration = 30</div><div class="line"></div><div class="line">verify_remote_cert = on</div><div class="line"></div><div class="line">customize_crt = off</div><div class="line"></div><div class="line">crt_country = CN</div><div class="line">crt_state = State</div><div class="line">crt_location = CN</div><div class="line">crt_organization = organization</div><div class="line">crt_organizationalunit = organizational unit</div><div class="line">crt_commonname = example.com</div><div class="line">crt_email = example@example.com</div><div class="line"></div><div class="line">project_creation_restriction = everyone</div><div class="line"></div><div class="line">ssl_cert = /data/cert/server.crt</div><div class="line">ssl_cert_key = /data/cert/server.key</div></pre></td></tr></table></figure></p>
+<h1 id="二-加载镜像"><a href="#二-加载镜像" class="headerlink" title="二.加载镜像"></a>二.加载镜像</h1><p>[root@local-master harbor]# docker load -i harbor.0.5.0.tgz<br><img src="http://upload-images.jianshu.io/upload_images/4618795-b8240cf889e9e9a8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="harbor.png"></p>
+<h1 id="三-安装和启动"><a href="#三-安装和启动" class="headerlink" title="三.安装和启动"></a>三.安装和启动</h1><p><code>[root@local-master harbor]# ./install.sh</code><br><img src="http://upload-images.jianshu.io/upload_images/4618795-33db19704cbfba95.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="本地启动的容器"></p>
+<h1 id="四-访问harbor管理界面"><a href="#四-访问harbor管理界面" class="headerlink" title="四.访问harbor管理界面"></a>四.访问harbor管理界面</h1><p><a href="http://ip" target="_blank" rel="external">http://ip</a><br>账号 admin<br>密码 Harbor12345 </p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4618795-bcee4fe595a9a850.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="harbor界面"></p>
+<h1 id="五-配置docker使用harbor作为私有仓库"><a href="#五-配置docker使用harbor作为私有仓库" class="headerlink" title="五.配置docker使用harbor作为私有仓库"></a>五.配置docker使用harbor作为私有仓库</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#vi /etc/sysconfig/docker</div><div class="line">INSECURE_REGISTRY=&apos;--insecure-registry=local-master:80&apos;</div><div class="line">#systemctl restart docker</div></pre></td></tr></table></figure>
+<h1 id="六-上传镜像和下载镜像"><a href="#六-上传镜像和下载镜像" class="headerlink" title="六. 上传镜像和下载镜像"></a>六. 上传镜像和下载镜像</h1><p>登陆界面添加项目：yiwu</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4618795-12efc97cd07b7cf6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="添加项目"><br>master主机上配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">修改docker的tag </div><div class="line">[root@local-master harbor]# docker tag  index.tenxcloud.com/google_containers/kubernetes-dashboard-amd64:v1.4.1 local-master:80/yiwu/kubernetes-dashboard-amd64:v1.4.1</div><div class="line"></div><div class="line">[root@local-master harbor]# docker login local-master:80</div><div class="line">Username: admin</div><div class="line">Password:Harbor12345</div><div class="line">Login Succeeded</div><div class="line">## 或者docker login -u admin -p Harbor12345 -e e-mail-adress local-master:80</div><div class="line">将本地镜像推上私有仓库</div><div class="line"># docker push   local-master:80/yiwu/kubernetes-dashboard-amd64:v1.4.1</div></pre></td></tr></table></figure></p>
+<p>node节点配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[root@local-node2 ~]# cat /etc/sysconfig/docker |grep INSECURE_REGISTRY</div><div class="line"># adding the registry to the INSECURE_REGISTRY line and uncommenting it.</div><div class="line"># INSECURE_REGISTRY=&apos;--insecure-registry&apos;</div><div class="line">INSECURE_REGISTRY=&apos;--insecure-registry=local-master:80&apos;</div><div class="line"># systemctl  restart docker</div><div class="line">拉取镜像</div><div class="line"># docker pull  local-master:80/yiwu/kubernetes-dashboard-amd64:v1.4</div></pre></td></tr></table></figure></p>
+<h1 id="七-管理"><a href="#七-管理" class="headerlink" title="七. 管理"></a>七. 管理</h1><p>进入harbor安装目录，可以使用<code>docker-compose</code>命令管理harbor的生命周期<br>停止Harbor:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$  docker-compose stop</div><div class="line">Stopping nginx ... done</div><div class="line">Stopping harbor-jobservice ... done</div><div class="line">Stopping harbor-ui ... done</div><div class="line">Stopping harbor-db ... done</div><div class="line">Stopping registry ... done</div><div class="line">Stopping harbor-log ... done</div></pre></td></tr></table></figure></p>
+<p>启动 Harbor:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$  docker-compose start</div><div class="line">Starting log ... done</div><div class="line">Starting ui ... done</div><div class="line">Starting mysql ... done</div><div class="line">Starting jobservice ... done</div><div class="line">Starting registry ... done</div><div class="line">Starting proxy ... done</div></pre></td></tr></table></figure></p>
+<p>如果要修改harbor的配置，首先要停止harbor的容器实例，然后修改harbor.cfg文件然后执行./install 启动harbor。<br>重启docker后一定要<code>docker-compose start</code>，harbor才能正常</p>
+<p>参考：<br>1.<a href="https://mritd.me/2016/06/27/Harbor-%E4%BC%81%E4%B8%9A%E7%BA%A7-Docker-Registry-%E5%88%9D%E8%AF%95/" target="_blank" rel="external">https://mritd.me/2016/06/27/Harbor-%E4%BC%81%E4%B8%9A%E7%BA%A7-Docker-Registry-%E5%88%9D%E8%AF%95/</a><br>2.<a href="http://blog.csdn.net/shenshouer/article/details/53390581" target="_blank" rel="external">http://blog.csdn.net/shenshouer/article/details/53390581</a><br>3.<a href="http://www.cnblogs.com/jicki/p/5737369.html" target="_blank" rel="external">http://www.cnblogs.com/jicki/p/5737369.html</a><br>4.<a href="http://blog.csdn.net/u013127762/article/details/54314595" target="_blank" rel="external">http://blog.csdn.net/u013127762/article/details/54314595</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">kubernetes</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/02/15/docker-harbor私有仓库/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-docker-私有仓库" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -709,6 +802,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
