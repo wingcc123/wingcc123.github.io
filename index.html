@@ -144,6 +144,175 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-封装和解构-丢弃变量" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/15/封装和解构-丢弃变量/">封装和解构,丢弃变量</a>
+    </h1>
+  
+
+        
+        <a href="/2018/08/15/封装和解构-丢弃变量/" class="archive-article-date">
+  	<time datetime="2018-08-15T08:36:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一-封装"><a href="#一-封装" class="headerlink" title="一.封装"></a>一.封装</h1><ul>
+<li>将多个值使用逗号分割，组合在一起</li>
+<li>本质上，封装成一个元组，返回<br><img src="https://upload-images.jianshu.io/upload_images/4618795-c62b66105a5c8ce8.gif?imageMogr2/auto-orient/strip" alt="封装.gif"><h1 id="二-解构"><a href="#二-解构" class="headerlink" title="二.解构"></a>二.解构</h1></li>
+<li>把右边多个元素集合解开，并顺序的赋给其它变量</li>
+<li>左边接纳的变量数要和右边解开的元素个数一致,否则出现报错ValueError</li>
+<li>左边要出现至少两个的标识符才能解构<br><img src="https://upload-images.jianshu.io/upload_images/4618795-ba08c172c50849e6.gif?imageMogr2/auto-orient/strip" alt="解构.gif"><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; x = 100</div><div class="line">&gt;&gt;&gt; y = 10</div><div class="line">&gt;&gt;&gt; x,y = y,x   #先将右边的y,x 封装成元组(10,100)，左边再解构该元组，实现了值的交换</div><div class="line">&gt;&gt;&gt; x</div><div class="line">10</div><div class="line">&gt;&gt;&gt; y</div><div class="line">100</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="三-python3-解构"><a href="#三-python3-解构" class="headerlink" title="三. python3 解构"></a>三. python3 解构</h1><ul>
+<li>使用”<strong>*变量名</strong>“接收多个元素,组成一个列表，不能单独使用</li>
+<li>在解构中只能出现一个<em>变量名<br>![</em>变量名.gif](<a href="https://upload-images.jianshu.io/upload_images/4618795-7381082112854a01.gif?imageMogr2/auto-orient/strip" target="_blank" rel="external">https://upload-images.jianshu.io/upload_images/4618795-7381082112854a01.gif?imageMogr2/auto-orient/strip</a>)<h1 id="四-丢弃变量"><a href="#四-丢弃变量" class="headerlink" title="四. 丢弃变量"></a>四. 丢弃变量</h1></li>
+<li>在python中如果不关心一个变量，可以定义该变量的名字为”_”</li>
+<li>“_” 是一个合法的标识符，也可以作为一个有效的变量使用，但是容易和python 中的库冲突.<br><img src="https://upload-images.jianshu.io/upload_images/4618795-e73573d1c7701a36.gif?imageMogr2/auto-orient/strip" alt="丢弃变量.gif"></li>
+</ul>
+<h1 id="五-练习"><a href="#五-练习" class="headerlink" title="五.练习"></a>五.练习</h1><ul>
+<li><ol>
+<li>从lst = list(range(10)) 列表中取出第二个，第四个，以及倒数第二个元素。</li>
+</ol>
+</li>
+<li><ol>
+<li>从lst=[1,(2,3,4),5] 中，提取4。</li>
+</ol>
+</li>
+<li><ol>
+<li>文件/etc/sysconfig/network-scripts/ifcfg-eth0 ，获取ifcfg-eth0。</li>
+</ol>
+</li>
+</ul>
+<p>答案：<br>第一题：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; lst</div><div class="line">[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</div><div class="line">&gt;&gt;&gt; lst = list(range(10))</div><div class="line">&gt;&gt;&gt; lst</div><div class="line">[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</div><div class="line">&gt;&gt;&gt; _,a,_,b,*_,c,_= lst</div><div class="line">&gt;&gt;&gt; a,b,c</div><div class="line">(1, 3, 8)</div></pre></td></tr></table></figure></p>
+<p>第二题:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; lst=[1,(2,3,4)]</div><div class="line">&gt;&gt;&gt; lst=[1,(2,3,4),5]</div><div class="line">&gt;&gt;&gt; _,(*_,a),_ = lst</div><div class="line">&gt;&gt;&gt; a</div><div class="line">4</div></pre></td></tr></table></figure></p>
+<p>第三题：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; *_,basename =  &quot;/etc/sysconfig/network-scripts/ifcfg-eth0&quot;.split(&quot;/&quot;)</div><div class="line">&gt;&gt;&gt; basename</div><div class="line">&apos;ifcfg-eth0&apos;</div></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/08/15/封装和解构-丢弃变量/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-network" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/13/network/">网络基础</a>
+    </h1>
+  
+
+        
+        <a href="/2018/08/13/network/" class="archive-article-date">
+  	<time datetime="2018-08-13T01:51:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>IP地址位数=网络位+主机位=32</p>
+<p>子网掩码划分vlan<br>子网掩码加长n位，则当前子网基础上划分2<strong>个子王。每个子网的ip地址= 2</strong>(32-子网位)</p>
+<p>网络段：主机位全是0，本网络<br>广播地址：主机位全是1，代表所有主机<br>169.254.0.0  没有dhcp，未获取ip地址</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/08/13/network/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-线性结构(列表、元组、字符串、bytes、bytearray)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -428,7 +597,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
         		</li>
       		
 		</ul>
@@ -1665,192 +1834,6 @@ x: 可以使用ls -l查看此目录中文件列表，可以cd进入此目录
 
 
   
-    <article id="post-kubernetes中加入etcd集群" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/20/kubernetes中加入etcd集群/">kubernetes中加入etcd集群</a>
-    </h1>
-  
-
-        
-        <a href="/2017/02/20/kubernetes中加入etcd集群/" class="archive-article-date">
-  	<time datetime="2017-02-20T03:43:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>背景：</strong>因为kubernetes中所有服务信息存储在etcd中，所以要保证etcd的高可用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">环境：</div><div class="line">192.168.40.50   local-master</div><div class="line">192.168.40.51   local-node1   </div><div class="line">192.168.40.52   local-node2     </div><div class="line">版本：etcd-3.1.0-2.el7.x86_64</div></pre></td></tr></table></figure></p>
-<h1 id="1-修改etcd配置文件"><a href="#1-修改etcd配置文件" class="headerlink" title="1.修改etcd配置文件"></a>1.修改etcd配置文件</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">[root@local-master docker]# cat /etc/etcd/etcd.conf |grep -v &quot;^#&quot;</div><div class="line">ETCD_NAME=etcd0</div><div class="line">ETCD_DATA_DIR=&quot;/var/lib/etcd/etcd0.etcd&quot;</div><div class="line">ETCD_LISTEN_PEER_URLS=&quot;http://local-master:2380&quot;</div><div class="line">ETCD_LISTEN_CLIENT_URLS=&quot;http://0.0.0.0:2379&quot;</div><div class="line">ETCD_INITIAL_ADVERTISE_PEER_URLS=&quot;http://local-master:2380&quot;</div><div class="line">ETCD_INITIAL_CLUSTER=&quot;etcd0=http://local-master:2380,etcd1=http://local-node1:2380,etcd2=http://local-n</div><div class="line">ETCD_INITIAL_CLUSTER_STATE=&quot;new&quot;</div><div class="line">ETCD_INITIAL_CLUSTER_TOKEN=&quot;etcd-cluster&quot;</div><div class="line">ETCD_ADVERTISE_CLIENT_URLS=&quot;http://local-master:2379&quot;</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">[root@local-node1 ~]# cat /etc/etcd/etcd.conf |grep -v &quot;^#&quot;</div><div class="line">ETCD_NAME=etcd1</div><div class="line">ETCD_DATA_DIR=&quot;/var/lib/etcd/etcd1.etcd&quot;</div><div class="line">ETCD_LISTEN_PEER_URLS=&quot;http://local-node1:2380&quot;</div><div class="line">ETCD_LISTEN_CLIENT_URLS=&quot;http://0.0.0.0:2379&quot;</div><div class="line">ETCD_INITIAL_ADVERTISE_PEER_URLS=&quot;http://local-node1:2380&quot;</div><div class="line">ETCD_INITIAL_CLUSTER=&quot;etcd0=http://local-master:2380,etcd1=http://local-node1:2380,etcd2=http://local-node2:2380&quot;</div><div class="line">ETCD_INITIAL_CLUSTER_STATE=&quot;new&quot;</div><div class="line">ETCD_INITIAL_CLUSTER_TOKEN=&quot;etcd-cluster&quot;</div><div class="line">ETCD_ADVERTISE_CLIENT_URLS=&quot;http://local-node1:2379&quot;</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">[root@local-node2 ~]#  cat /etc/etcd/etcd.conf |grep -v &quot;^#&quot;</div><div class="line">ETCD_NAME=etcd2</div><div class="line">ETCD_DATA_DIR=&quot;/var/lib/etcd/etcd2.etcd&quot;</div><div class="line">ETCD_LISTEN_PEER_URLS=&quot;http://local-node2:2380&quot;</div><div class="line">ETCD_LISTEN_CLIENT_URLS=&quot;http://0.0.0.0:2379&quot;</div><div class="line">ETCD_INITIAL_ADVERTISE_PEER_URLS=&quot;http://local-node2:2380&quot;</div><div class="line">ETCD_INITIAL_CLUSTER=&quot;etcd0=http://local-master:2380,etcd1=http://local-node1:2380,etcd2=http://local-node2:2380&quot;</div><div class="line">ETCD_INITIAL_CLUSTER_STATE=&quot;new&quot;</div><div class="line">ETCD_INITIAL_CLUSTER_TOKEN=&quot;etcd-cluster&quot;</div><div class="line">ETCD_ADVERTISE_CLIENT_URLS=&quot;http://local-node2:2379&quot;</div></pre></td></tr></table></figure>
-<p>三台机同时启动etcd<br><code>systemctl  restart etcd &amp;&amp; systemctl enable etcd</code></p>
-<p>如果启动不成功，配置文件没有错。可以修改启动文件/usr/lib/systemd/system/etcd.service 。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">[Unit]</div><div class="line">Description=Etcd Server</div><div class="line">After=network.target</div><div class="line">After=network-online.target</div><div class="line">Wants=network-online.target</div><div class="line"></div><div class="line">[Service]</div><div class="line">Type=notify</div><div class="line">WorkingDirectory=/var/lib/etcd/</div><div class="line">EnvironmentFile=-/etc/etcd/etcd.conf</div><div class="line">User=etcd</div><div class="line"># set GOMAXPROCS to number of processors</div><div class="line">ExecStart=/bin/bash -c &quot;GOMAXPROCS=$(nproc) /usr/bin/etcd --name=\&quot;$&#123;ETCD_NAME&#125;\&quot; --data-dir=\&quot;$&#123;ETCD_DATA_DIR&#125;\&quot; --listen-client-urls=\&quot;$&#123;ETCD_LISTEN_CLIENT_URLS&#125;\&quot; --listen-client-urls=\&quot;$&#123;ETCD_LISTEN_CLIENT_URLS&#125;\&quot; --advertise-client-urls=\&quot;$&#123;ETCD_ADVERTISE_CLIENT_URLS&#125;\&quot; --initial-cluster-token=\&quot;$&#123;ETCD_INITIAL_CLUSTER_TOKEN&#125;\&quot; --initial-cluster=\&quot;$&#123;ETCD_INITIAL_CLUSTER&#125;\&quot; --initial-cluster-state=\&quot;$&#123;ETCD_INITIAL_CLUSTER_STATE&#125;\&quot;&quot;</div><div class="line">Restart=on-failure</div><div class="line">LimitNOFILE=65536</div><div class="line"></div><div class="line">[Install]</div><div class="line">WantedBy=multi-user.target</div></pre></td></tr></table></figure></p>
-<h1 id="2-修改calico网络配置"><a href="#2-修改calico网络配置" class="headerlink" title="2. 修改calico网络配置"></a>2. 修改calico网络配置</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">vim /etc/calico/calico.env</div><div class="line">ETCD_ENDPOINTS=http://local-master:2379,http://local-node1:2379,http://local-node2:2379</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">vim /etc/cni/net.d/10-calico.conf </div><div class="line">&#123;</div><div class="line">    &quot;name&quot;: &quot;calico-k8s-network&quot;,</div><div class="line">    &quot;type&quot;: &quot;calico&quot;,</div><div class="line">    &quot;etcd_endpoints&quot;: &quot;http://local-master:2379,http://local-node1:2379,http://local-node2:2379&quot;,</div><div class="line">    &quot;log_level&quot;: &quot;info&quot;,</div><div class="line">    &quot;ipam&quot;: &#123;</div><div class="line">        &quot;type&quot;: &quot;calico-ipam&quot;</div><div class="line">    &#125;,</div><div class="line">    &quot;policy&quot;: &#123;</div><div class="line">        &quot;type&quot;: &quot;k8s&quot;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<p><strong>export ETCD_AUTHORITY=local-master:2379,local-node1:2379,local-node2:2379</strong><br><strong>systemctl restart calico-node</strong></p>
-<h1 id="3-修改k8s配置文件"><a href="#3-修改k8s配置文件" class="headerlink" title="3.修改k8s配置文件"></a>3.修改k8s配置文件</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">vi /etc/kubernetes/apiserver</div><div class="line">KUBE_ETCD_SERVERS=&quot;--etcd-servers=http://192.168.40.50:2379,http://192.168.40.51:2379,http://192.168.40.52:2379&quot;</div></pre></td></tr></table></figure>
-<p>重启master各个组件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">systemctl restart etcd  kube-apiserver kube-controller-manager kube-scheduler</div><div class="line">systemctl status etcd  kube-apiserver kube-controller-manager kube-scheduler</div></pre></td></tr></table></figure></p>
-<p>重启node各个组件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">systemctl restart etcd docker kubelet  kube-proxy</div><div class="line">systemctl status etcd docker kubelet  kube-proxy</div></pre></td></tr></table></figure></p>
-<h1 id="4-检查"><a href="#4-检查" class="headerlink" title="4.检查"></a>4.检查</h1><p>查看etcd的集群状态<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[root@local-master docker]# etcdctl  member list</div><div class="line">45ea5f54d4995521: name=etcd2 peerURLs=http://local-node2:2380 clientURLs=http://local-node2:2379 isLeader=false</div><div class="line">a9a9c48b6dc0323e: name=etcd0 peerURLs=http://local-master:2380 clientURLs=http://local-master:2379 isLeader=true</div><div class="line">d7b06390cd6b02b8: name=etcd1 peerURLs=http://local-node1:2380 clientURLs=http://local-node1:2379 isLeader=false</div></pre></td></tr></table></figure></p>
-<p>查看集群健康状态<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@local-master docker]# etcdctl  cluster-health</div><div class="line">member 45ea5f54d4995521 is healthy: got healthy result from http://local-node2:2379</div><div class="line">member a9a9c48b6dc0323e is healthy: got healthy result from http://local-master:2379</div><div class="line">member d7b06390cd6b02b8 is healthy: got healthy result from http://local-node1:2379</div><div class="line">cluster is healthy</div></pre></td></tr></table></figure></p>
-<p>kubectl get nodes<br>查看k8s是否获取到etcd中的资源信息、</p>
-<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><p>在master主机上面kubernetes的进程不要依赖etcd启动，不然master主机上的etcd进程停止后，整个k8s集群会调度不起来</p>
-<p>参考<br><a href="https://mritd.me/2016/09/01/Etcd-%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/#43%E6%B5%8B%E8%AF%95" target="_blank" rel="external">https://mritd.me/2016/09/01/Etcd-%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/#43%E6%B5%8B%E8%AF%95</a><br><a href="http://www.pangxie.space/docker/702" target="_blank" rel="external">http://www.pangxie.space/docker/702</a><br><a href="https://github.com/kubernetes/kubernetes/tree/master/test/fixtures/doc-yaml/admin/high-availability" target="_blank" rel="external">https://github.com/kubernetes/kubernetes/tree/master/test/fixtures/doc-yaml/admin/high-availability</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">kubernetes</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/02/20/kubernetes中加入etcd集群/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-kubernetes网络方案calico" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/18/kubernetes网络方案calico/">kubernetes网络方案calico</a>
-    </h1>
-  
-
-        
-        <a href="/2017/02/18/kubernetes网络方案calico/" class="archive-article-date">
-  	<time datetime="2017-02-18T09:58:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><p>系统：centos7.3<br>192.168.40.50  local-master<br>192.168.40.51  local-node1<br>192.168.40.52  local-node2<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">master:</div><div class="line">kubernetes-master-1.5.2-0.2.gitc55cf2b.el7.x86_64</div><div class="line">kubernetes-client-1.5.2-0.2.gitc55cf2b.el7.x86_64</div><div class="line">etcd-3.1.0-2.el7.x86_64</div><div class="line">docker-client-1.12.6-11.el7.centos.x86_64</div><div class="line">docker-1.12.6-11.el7.centos.x86_64</div><div class="line">docker-common-1.12.6-11.el7.centos.x86_64</div></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">node:</div><div class="line">kubernetes-client-1.5.2-0.2.gitc55cf2b.el7.x86_64</div><div class="line">kubernetes-node-1.5.2-0.2.gitc55cf2b.el7.x86_64</div><div class="line">docker-client-1.12.6-11.el7.centos.x86_64</div><div class="line">docker-1.12.6-11.el7.centos.x86_64</div><div class="line">docker-common-1.12.6-11.el7.centos.x86_64</div></pre></td></tr></table></figure>
-<h1 id="一-修改各节点docker-ip"><a href="#一-修改各节点docker-ip" class="headerlink" title="一. 修改各节点docker ip"></a>一. 修改各节点docker ip</h1><p>master:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">vi  /usr/lib/systemd/system/docker.service</div><div class="line">--bip=172.25.0.1/24 \</div><div class="line"># systemctl  daemon-reload</div><div class="line"># systemctl  restart docker</div></pre></td></tr></table></figure></p>
-<p>node1：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">vi  /usr/lib/systemd/system/docker.service</div><div class="line">--bip=172.25.1.1/24 \</div><div class="line"># systemctl  daemon-reload</div><div class="line"># systemctl  restart docker</div></pre></td></tr></table></figure></p>
-<p>node2：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">vi  /usr/lib/systemd/system/docker.service</div><div class="line">--bip=172.25.2.1/24 \</div><div class="line"># systemctl  daemon-reload</div><div class="line"># systemctl  restart docker</div></pre></td></tr></table></figure></p>
-<h1 id="二-下载插件"><a href="#二-下载插件" class="headerlink" title="二.下载插件"></a>二.下载插件</h1><p>master：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># wget https://github.com/projectcalico/calicoctl/releases/download/v1.1.0/calicoctl</div><div class="line"># chmod +x calicoctl</div><div class="line"># mv calicoctl  /usr/bin/</div><div class="line"># docker pull docker.io/calico/node:v1.1.0</div><div class="line"># docker tag  docker.io/calico/node:v1.1.0  quay.io/calico/node:v1.1.0</div><div class="line"># wget -N -P /opt/cni/bin/ https://github.com/projectcalico/calico-cni/releases/download/v1.6.0/calico</div><div class="line"># wget -N -P /opt/cni/bin/ https://github.com/projectcalico/calico-cni/releases/download/v1.6.0/calico-ipam</div><div class="line"># chmod +x /opt/cni/bin/calico /opt/cni/bin/calico-ipam</div></pre></td></tr></table></figure></p>
-<p>node<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"># docker pull docker.io/calico/node:v1.1.0</div><div class="line"># docker tag  docker.io/calico/node:v1.1.0  quay.io/calico/node:v1.1.0</div><div class="line"># wget -N -P /opt/cni/bin/ https://github.com/projectcalico/calico-cni/releases/download/v1.6.0/calico</div><div class="line"># wget -N -P /opt/cni/bin/ https://github.com/projectcalico/calico-cni/releases/download/v1.6.0/calico-ipam</div><div class="line"># chmod +x /opt/cni/bin/calico /opt/cni/bin/calico-ipam</div></pre></td></tr></table></figure></p>
-<h1 id="三-配置文件"><a href="#三-配置文件" class="headerlink" title="三. 配置文件"></a>三. 配置文件</h1><p>参考：<a href="http://docs.projectcalico.org/v2.1/usage/configuration/as-service" target="_blank" rel="external">http://docs.projectcalico.org/v2.1/usage/configuration/as-service</a><br><strong>集群所有主机都需要配置以下三个文件</strong><br>创建calico-node启动文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"># vim /usr/lib/systemd/system/calico-node.service</div><div class="line"></div><div class="line">[Unit]</div><div class="line">Description=calico-node</div><div class="line">After=docker.service</div><div class="line">Requires=docker.service</div><div class="line">[Service]</div><div class="line">EnvironmentFile=/etc/calico/calico.env</div><div class="line">ExecStartPre=-/usr/bin/docker rm -f calico-node</div><div class="line">ExecStart=/usr/bin/docker run --net=host --privileged \</div><div class="line"> --name=calico-node \</div><div class="line"> -e NODENAME=$&#123;CALICO_NODENAME&#125; \</div><div class="line"> -e IP=$&#123;CALICO_IP&#125; \</div><div class="line"> -e IP6=$&#123;CALICO_IP6&#125; \</div><div class="line"> -e CALICO_NETWORKING_BACKEND=$&#123;CALICO_NETWORKING_BACKEND&#125; \</div><div class="line"> -e AS=$&#123;CALICO_AS&#125; \</div><div class="line"> -e NO_DEFAULT_POOLS=$&#123;CALICO_NO_DEFAULT_POOLS&#125; \</div><div class="line"> -e CALICO_LIBNETWORK_ENABLED=$&#123;CALICO_LIBNETWORK_ENABLED&#125; \</div><div class="line"> -e ETCD_ENDPOINTS=$&#123;ETCD_ENDPOINTS&#125; \</div><div class="line"> -e ETCD_CA_CERT_FILE=$&#123;ETCD_CA_CERT_FILE&#125; \</div><div class="line"> -e ETCD_CERT_FILE=$&#123;ETCD_CERT_FILE&#125; \</div><div class="line"> -e ETCD_KEY_FILE=$&#123;ETCD_KEY_FILE&#125; \</div><div class="line"> -v /var/log/calico:/var/log/calico \</div><div class="line"> -v /run/docker/plugins:/run/docker/plugins \</div><div class="line"> -v /lib/modules:/lib/modules \</div><div class="line"> -v /var/run/calico:/var/run/calico \</div><div class="line"> quay.io/calico/node:v1.1.0</div><div class="line">ExecStop=-/usr/bin/docker stop calico-node</div><div class="line"></div><div class="line">[Install]</div><div class="line">WantedBy=multi-user.target</div></pre></td></tr></table></figure></p>
-<p>创建calico-node服务的环境文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"># vi /etc/calico/calico.env</div><div class="line">ETCD_ENDPOINTS=http://local-master:2379</div><div class="line">ETCD_CA_FILE=&quot;&quot;</div><div class="line">ETCD_CERT_FILE=&quot;&quot;</div><div class="line">ETCD_KEY_FILE=&quot;&quot;</div><div class="line">CALICO_NODENAME=&quot;&quot;</div><div class="line">CALICO_NO_DEFAULT_POOLS=&quot;&quot;</div><div class="line">#CALICO_IP=&quot;&quot;</div><div class="line">CALICO_IP=&quot;&quot;</div><div class="line">CALICO_IP6=&quot;&quot;</div><div class="line">CALICO_AS=&quot;&quot;</div><div class="line">CALICO_LIBNETWORK_ENABLED=true</div><div class="line">CALICO_NETWORKING_BACKEND=bird</div></pre></td></tr></table></figure></p>
-<p>创建CNI网络配置文件，用于通知kubernetes创建一个名为calico-k8s-network的网络，并对此网络使用calico插件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"># mkdir /etc/cni/net.d</div><div class="line"># vi /etc/cni/net.d/10-calico.conf</div><div class="line">&#123;</div><div class="line">    &quot;name&quot;: &quot;calico-k8s-network&quot;,</div><div class="line">    &quot;type&quot;: &quot;calico&quot;,</div><div class="line">    &quot;etcd_endpoints&quot;: &quot;http://local-master:2379&quot;,</div><div class="line">    &quot;log_level&quot;: &quot;info&quot;,</div><div class="line">    &quot;ipam&quot;: &#123;</div><div class="line">        &quot;type&quot;: &quot;calico-ipam&quot;</div><div class="line">    &#125;,</div><div class="line">    &quot;policy&quot;: &#123;</div><div class="line">        &quot;type&quot;: &quot;k8s&quot;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
-<p>master主机上修改<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"># vim /etc/etcd/etcd.conf</div><div class="line"># [member]</div><div class="line">ETCD_NAME=default</div><div class="line">ETCD_DATA_DIR=&quot;/var/lib/etcd/default.etcd&quot;</div><div class="line">ETCD_LISTEN_PEER_URLS=&quot;http://local-master:2380&quot;</div><div class="line">ETCD_LISTEN_CLIENT_URLS=&quot;http://0.0.0.0:2379&quot;</div><div class="line">#[cluster]</div><div class="line">ETCD_INITIAL_CLUSTER=&quot;default=http://local-master:2380&quot;</div><div class="line">ETCD_ADVERTISE_CLIENT_URLS=http://local-master:2379</div></pre></td></tr></table></figure></p>
-<p>master 主机上<br><code>wget http://docs.projectcalico.org/v1.5/getting-started/kubernetes/installation/policy-controller.yaml</code><br>修改 policy-controller.yaml文件里的etcd的地址</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/4618795-21f43a75ee0eb234.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></p>
-<h1 id="四-启动"><a href="#四-启动" class="headerlink" title="四. 启动"></a>四. 启动</h1><p>master<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># serivce etcd restart</div><div class="line"># kubectl  create -f policy-controller.yaml</div></pre></td></tr></table></figure></p>
-<p>每个节点上启动calico-node服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># systemctl enable calico-node</div><div class="line"># systemctl start calico-node</div><div class="line"># export ETCD_AUTHORITY=local-master:2379</div></pre></td></tr></table></figure></p>
-<h1 id="五-验证calico是否启动正常"><a href="#五-验证calico是否启动正常" class="headerlink" title="五.验证calico是否启动正常"></a>五.验证calico是否启动正常</h1><p><code>calicoctl node status</code><br><code>calicoctl get nodes --out=wide</code></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/4618795-e7a2c6917ec68d1e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/4618795-6f10bc3d41b869f9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></p>
-<h1 id="六-添加子网"><a href="#六-添加子网" class="headerlink" title="六.添加子网"></a>六.添加子网</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">[root@local-master v1.1.0]# cat pool.yaml </div><div class="line">apiVersion: v1</div><div class="line">kind: ipPool</div><div class="line">metadata:</div><div class="line">  cidr: 172.25.0.0/16</div><div class="line">spec:</div><div class="line">  ipip:</div><div class="line">    enabled: true</div><div class="line">    mode: always</div><div class="line">  nat-outgoing: true</div><div class="line">[root@local-master v1.1.0]# calicoctl  apply -f pool.yaml</div></pre></td></tr></table></figure>
-<p>查看子网</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/4618795-c1b7e8633575bcab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></p>
-<h1 id="七-修改node上的配置"><a href="#七-修改node上的配置" class="headerlink" title="七.修改node上的配置"></a>七.修改node上的配置</h1><p>设置kube-proxy服务的proxy-mode配置为iptables，修改配置文件/etc/kubernetes/proxy：<br><code>KUBE_PROXY_ARGS=&quot; --proxy-mode=iptables&quot;</code><br><code>service kube-proxy restart</code></p>
-<h1 id="八-测试"><a href="#八-测试" class="headerlink" title="八.测试"></a>八.测试</h1><p>两个node分别创建一个容器，两个容器内能互ping成功<br>相关：<br><a href="http://docs.projectcalico.org/v2.1/introduction/" target="_blank" rel="external">http://docs.projectcalico.org/v2.1/introduction/</a><br><a href="http://www.tuicool.com/articles/RVba2yr" target="_blank" rel="external">http://www.tuicool.com/articles/RVba2yr</a><br><a href="http://blog.dataman-inc.com/shurenyun-docker-133/" target="_blank" rel="external">http://blog.dataman-inc.com/shurenyun-docker-133/</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">kubernetes</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/02/18/kubernetes网络方案calico/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1961,10 +1944,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
