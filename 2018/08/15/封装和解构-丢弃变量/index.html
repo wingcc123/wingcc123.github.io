@@ -8,20 +8,21 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>封装和解构,丢弃变量 | Winnie&#39;s cabin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一.封装 将多个值使用逗号分割，组合在一起 本质上，封装成一个元组，返回二.解构 把右边多个元素集合解开，并顺序的赋给其它变量 左边接纳的变量数要和右边解开的元素个数一致,否则出现报错ValueError 左边要出现至少两个的标识符才能解构1234567&amp;gt;&amp;gt;&amp;gt; x = 100&amp;gt;&amp;gt;&amp;gt; y = 10&amp;gt;&amp;gt;&amp;gt; x,y = y,x   #先将右边的y,x">
+  <meta name="description" content="一.封装 将多个值使用逗号分割，组合在一起 本质上，封装成一个元组，返回二.解构 把右边多个元素集合解开，并顺序的赋给其它变量 左边接纳的变量数要和右边解开的元素个数一致,否则出现报错ValueError 左边要出现至少两个的标识符才能解构  1234567&amp;gt;&amp;gt;&amp;gt; x = 100&amp;gt;&amp;gt;&amp;gt; y = 10&amp;gt;&amp;gt;&amp;gt; x,y = y,x   #先将右边的y">
 <meta name="keywords" content="python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="封装和解构,丢弃变量">
 <meta property="og:url" content="http://yoursite.com/2018/08/15/封装和解构-丢弃变量/index.html">
 <meta property="og:site_name" content="Winnie&#39;s cabin">
-<meta property="og:description" content="一.封装 将多个值使用逗号分割，组合在一起 本质上，封装成一个元组，返回二.解构 把右边多个元素集合解开，并顺序的赋给其它变量 左边接纳的变量数要和右边解开的元素个数一致,否则出现报错ValueError 左边要出现至少两个的标识符才能解构1234567&amp;gt;&amp;gt;&amp;gt; x = 100&amp;gt;&amp;gt;&amp;gt; y = 10&amp;gt;&amp;gt;&amp;gt; x,y = y,x   #先将右边的y,x">
+<meta property="og:description" content="一.封装 将多个值使用逗号分割，组合在一起 本质上，封装成一个元组，返回二.解构 把右边多个元素集合解开，并顺序的赋给其它变量 左边接纳的变量数要和右边解开的元素个数一致,否则出现报错ValueError 左边要出现至少两个的标识符才能解构  1234567&amp;gt;&amp;gt;&amp;gt; x = 100&amp;gt;&amp;gt;&amp;gt; y = 10&amp;gt;&amp;gt;&amp;gt; x,y = y,x   #先将右边的y">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4618795-c62b66105a5c8ce8.gif?imageMogr2/auto-orient/strip">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4618795-ba08c172c50849e6.gif?imageMogr2/auto-orient/strip">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4618795-7381082112854a01.gif?imageMogr2/auto-orient/strip">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4618795-e73573d1c7701a36.gif?imageMogr2/auto-orient/strip">
-<meta property="og:updated_time" content="2018-08-15T08:37:45.000Z">
+<meta property="og:updated_time" content="2018-08-15T08:57:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="封装和解构,丢弃变量">
-<meta name="twitter:description" content="一.封装 将多个值使用逗号分割，组合在一起 本质上，封装成一个元组，返回二.解构 把右边多个元素集合解开，并顺序的赋给其它变量 左边接纳的变量数要和右边解开的元素个数一致,否则出现报错ValueError 左边要出现至少两个的标识符才能解构1234567&amp;gt;&amp;gt;&amp;gt; x = 100&amp;gt;&amp;gt;&amp;gt; y = 10&amp;gt;&amp;gt;&amp;gt; x,y = y,x   #先将右边的y,x">
+<meta name="twitter:description" content="一.封装 将多个值使用逗号分割，组合在一起 本质上，封装成一个元组，返回二.解构 把右边多个元素集合解开，并顺序的赋给其它变量 左边接纳的变量数要和右边解开的元素个数一致,否则出现报错ValueError 左边要出现至少两个的标识符才能解构  1234567&amp;gt;&amp;gt;&amp;gt; x = 100&amp;gt;&amp;gt;&amp;gt; y = 10&amp;gt;&amp;gt;&amp;gt; x,y = y,x   #先将右边的y">
 <meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/4618795-c62b66105a5c8ce8.gif?imageMogr2/auto-orient/strip">
   
     <link rel="alternative" href="/atom.xml" title="Winnie&#39;s cabin" type="application/atom+xml">
@@ -173,12 +174,15 @@
 <li>本质上，封装成一个元组，返回<br><img src="https://upload-images.jianshu.io/upload_images/4618795-c62b66105a5c8ce8.gif?imageMogr2/auto-orient/strip" alt="封装.gif"><h1 id="二-解构"><a href="#二-解构" class="headerlink" title="二.解构"></a>二.解构</h1></li>
 <li>把右边多个元素集合解开，并顺序的赋给其它变量</li>
 <li>左边接纳的变量数要和右边解开的元素个数一致,否则出现报错ValueError</li>
-<li>左边要出现至少两个的标识符才能解构<br><img src="https://upload-images.jianshu.io/upload_images/4618795-ba08c172c50849e6.gif?imageMogr2/auto-orient/strip" alt="解构.gif"><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; x = 100</div><div class="line">&gt;&gt;&gt; y = 10</div><div class="line">&gt;&gt;&gt; x,y = y,x   #先将右边的y,x 封装成元组(10,100)，左边再解构该元组，实现了值的交换</div><div class="line">&gt;&gt;&gt; x</div><div class="line">10</div><div class="line">&gt;&gt;&gt; y</div><div class="line">100</div></pre></td></tr></table></figure>
-</li>
+<li>左边要出现至少两个的标识符才能解构</li>
 </ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/4618795-ba08c172c50849e6.gif?imageMogr2/auto-orient/strip" alt="解构.gif"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; x = 100</div><div class="line">&gt;&gt;&gt; y = 10</div><div class="line">&gt;&gt;&gt; x,y = y,x   #先将右边的y,x 封装成元组(10,100)，左边再解构该元组，实现了值的交换</div><div class="line">&gt;&gt;&gt; x</div><div class="line">10</div><div class="line">&gt;&gt;&gt; y</div><div class="line">100</div></pre></td></tr></table></figure></p>
 <h1 id="三-python3-解构"><a href="#三-python3-解构" class="headerlink" title="三. python3 解构"></a>三. python3 解构</h1><ul>
 <li>使用”<strong>*变量名</strong>“接收多个元素,组成一个列表，不能单独使用</li>
-<li>在解构中只能出现一个<em>变量名<br>![</em>变量名.gif](<a href="https://upload-images.jianshu.io/upload_images/4618795-7381082112854a01.gif?imageMogr2/auto-orient/strip" target="_blank" rel="external">https://upload-images.jianshu.io/upload_images/4618795-7381082112854a01.gif?imageMogr2/auto-orient/strip</a>)<h1 id="四-丢弃变量"><a href="#四-丢弃变量" class="headerlink" title="四. 丢弃变量"></a>四. 丢弃变量</h1></li>
+<li>在解构中只能出现一个*变量名</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/4618795-7381082112854a01.gif?imageMogr2/auto-orient/strip" alt="*变量名.gif"></p>
+<h1 id="四-丢弃变量"><a href="#四-丢弃变量" class="headerlink" title="四. 丢弃变量"></a>四. 丢弃变量</h1><ul>
 <li>在python中如果不关心一个变量，可以定义该变量的名字为”_”</li>
 <li>“_” 是一个合法的标识符，也可以作为一个有效的变量使用，但是容易和python 中的库冲突.<br><img src="https://upload-images.jianshu.io/upload_images/4618795-e73573d1c7701a36.gif?imageMogr2/auto-orient/strip" alt="丢弃变量.gif"></li>
 </ul>
