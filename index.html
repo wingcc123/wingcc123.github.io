@@ -201,33 +201,99 @@
 <li>按照形参位置顺序传参，传参的顺序必须形参顺序和个数一致。</li>
 <li>关键字传入实参的时候，传参时的关键字必须和定义的形参名和个数一致，传参的顺序可以和形参顺序不一致。<br><img src="https://upload-images.jianshu.io/upload_images/4618795-3f5a5a620903498d.gif?imageMogr2/auto-orient/strip" alt="位置参数.gif"></li>
 </ul>
-<h5 id="②-参数默认值（缺省值）"><a href="#②-参数默认值（缺省值）" class="headerlink" title="② 参数默认值（缺省值）"></a>② 参数默认值（缺省值）</h5><p>在定义形参的时候可以给形参赋予一个默认值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line">def fn(x=3,y=2):</div><div class="line">    print(&quot;x=&#123;&#125;,y=&#123;&#125;&quot;.format(x,y))</div><div class="line">```  </div><div class="line">- 参数的默认值可以在未传入足够的实参的时候，对没有给定的参数赋值为默认值</div><div class="line">- 设置参数的缺省值，可以简化函数调用</div><div class="line"></div><div class="line">##### ③可变位置参数 </div><div class="line"></div><div class="line">- 在位置参数前面使用“*” 表示该形参是可变参数，可以接受0到多个实参</div><div class="line">- 收集多个实参为一个元组tuple</div><div class="line">- 不接受关键字传参</div><div class="line">- 可变位置参数必须在位置参数后面</div><div class="line"></div><div class="line">##### ④keyword-only参数（python3 后加入）</div><div class="line"></div><div class="line">- 在可变位置参数后面，出现的形参</div><div class="line">- 在传参的时候一定要使用关键字传参</div><div class="line"></div><div class="line">##### ⑤ 可变关键字参数</div><div class="line">- 在形参签名使用“**”符号，表示可以接受0到多个关键字参数</div><div class="line">- 收集的实参的关键字和值组成一个字典dict，该字典在函数中是可以改变的</div><div class="line">- 如果形参中有keyword-only参数，一定要在该参数后面</div><div class="line"></div><div class="line">##### ⑥总结</div><div class="line">- 形参一般顺序是，位置参数，缺省位置参数，可变位置参数，keywork-only参数（可以带缺省值)，可变关键字参数</div><div class="line"></div><div class="line">### 函数参数解构</div><div class="line">- 给函数提供**实参**的时候，可以在可迭代对象中使用* 或者**，把集合类型的解构解开，提取出所有元素作为函数的实参</div><div class="line">- 非字典类型使用*解构成位置参数</div><div class="line">- 字典类型使用 ** 解构成关键字参数</div><div class="line">- 提出出来的元素树木要和参数的要求匹配，也要和参数的类型匹配</div><div class="line">- 参数解构只能用在函数中，print() 函数等</div><div class="line"></div><div class="line">![参数解构.gif](https://upload-images.jianshu.io/upload_images/4618795-11be35ae6853265d.gif?imageMogr2/auto-orient/strip)</div><div class="line"></div><div class="line"># 四. 函数嵌套</div><div class="line">在一个函数中定义了另外一个函数,内部的函数不能在外部直接使用，会抛出NameError 异常。</div><div class="line">函数有可见范围，这就是作用域的概念</div><div class="line">![函数嵌套.gif](https://upload-images.jianshu.io/upload_images/4618795-4d661206cf245638.gif?imageMogr2/auto-orient/strip)</div><div class="line"></div><div class="line">### 1.作用域</div><div class="line"></div><div class="line">- 一个标识符的可见范围，这就是标识符的作用域。一般常说的是变量的作用域。</div><div class="line">作用域分为：全局作用域，和局部作用域</div><div class="line">- 全局作用域</div><div class="line">  在整个程序运行环境中可见</div><div class="line">- 局部作用域</div><div class="line">  在函数，类等内部可见,局部变量使用范围不能超过其所在的局部作用域</div></pre></td></tr></table></figure>
-<p>def outer2():<br>    o = 65<br>    def inner():<br>        o = 97<br>        print(“inner {}”.format(o))<br>    print(“outer {}”.format(o))<br>    inner()<br>outer2()</p>
-<p>#结果</p>
-<p>#outer 65</p>
-<p>#inner 97<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">通过上述嵌套结构例子可以看出</div><div class="line">- 外层变量作用域在内层作用域可见</div><div class="line">- 内层作用域inner中，如果定义了o = 97,相当于当前作用域中重新定义了一个新的变量o，但是这个o并没有 覆盖外层作用域outer中的o</div><div class="line"></div><div class="line">##### ①.全局变量globle</div></pre></td></tr></table></figure></p>
-<p>x = 5<br>def foo():</p>
-<p>##如果不使用global，会出现先引用后赋值的异常报错<br>    global x<br>    x += 1<br>    print(“x =”,x)<br>foo()<br>print(“x =”,x)</p>
-<p>###结果</p>
-<p>#x = 6</p>
-<p>#x = 6<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">- 使用global 关键字的变量，将函数内的x声明为外部的全局作用域定义的x</div><div class="line">- 全局作用作用域中必须要有x的定义</div><div class="line">- 使用global可以告诉内部作用域，去全局作用域查找变量的定义，之后在函数内对x的所有操作，都相当于在为全局作用域的变量x操作赋值</div></pre></td></tr></table></figure></p>
-<p>x = 5<br>def foo():<br>    global x<br>    x += 1<br>    print(“x =”,x)<br>    x = 9<br>foo()<br>print(“x =”,x)</p>
-<p>##结果</p>
-<p>#x = 6</p>
-<p>#x = 9<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"> **globle 使用原则**</div><div class="line"></div><div class="line">- 外部作用域变量会内部作用域可见，但也不要在这个内部的局部作用域中直接使用，因为函数的目的就是为了封装，尽量与外界隔离</div><div class="line">- 如果函数需要使用外部全局变量，请使用函数的形参传参解决</div><div class="line">&gt;不要用global，学习它，只是为了深入理解变量作用域！！！</div><div class="line"></div><div class="line">对“作用域”可以进行如下理解：</div><div class="line">1.在最顶层，比如shell层，有一个符号表会跟踪记录这一层所有的名称定义和绑定</div><div class="line">2.调用函数的时候，会建立一个新的符号表（常称为栈帧）。这个表跟踪记录函数中所有的名称定义（包括形参）和它们当前的绑定。如果函数体内又调用了一个函数，就再建立一个栈帧。</div><div class="line">3.函数结束时候，它的栈帧也随之消息。</div><div class="line">### 2.闭包</div><div class="line"></div><div class="line">- 自由变量：未在本地作用域定义的变量。</div><div class="line">   例如：定义在内层函数外的外层函数的作用域中的变量</div><div class="line">- 闭包：就是一个概念，出现在嵌套函数中，指的是**内层函数引用到了外层函数的自由变量，**这就形成了闭包.</div></pre></td></tr></table></figure></p>
-<p>def counter():<br>    c = [0]<br>    def inc():<br>        c[0] += 1  #应用的是自由变量正式counter的变量c<br>        return c[0]<br>    print(c[0])<br>    return inc</p>
-<p>#counter()()<br>foo = counter()<br>print(foo(),foo())   #调用的是inner()<br>print(foo())<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">这是python2 实现闭包的方式，python3 还可以使用nonlocal 关键字</div><div class="line"></div><div class="line">##### ①nonlocal 关键字</div><div class="line">使用nonlocal 关键字，将变量标记为不再本地作用域定义，而在上级的某一级局部作用域中定义，但**不能是全局作用域中的定义**</div></pre></td></tr></table></figure></p>
-<p>def counter():<br>    count = 0<br>    def inc():<br>        nonlocal count<br>        count += 1<br>        return count<br>    return inc<br>foo = counter()<br>print(foo())<br>print(foo())<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">- count 是外层函数的局部变量，被内部函数引用</div><div class="line">- 内部函数使用nonlocal 关键字声明count变量在上级作用域而非 本地作用域中定义</div><div class="line">- 形成了闭包</div><div class="line"></div><div class="line">##### ②默认值的作用域</div></pre></td></tr></table></figure></p>
-<p>def foo(xyz=[]):<br>    xyz.append(1)<br>    print(xyz)<br>foo()<br>foo()</p>
-<p>###result</p>
-<p>#[1]</p>
-<p>#[1, 1]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">- 函数也是对象，python 把函数的默认值放在了属性中，这个属性就伴随着这个函数对象的整个生命周期</div><div class="line">-  查看foo.&amp;#95;&amp;#95;defaults&amp;#95;&amp;#95;属性 `([1, 1],)`</div></pre></td></tr></table></figure></p>
-<p>def foo(xyz=[],u=’abc’,z=123):<br>    xyz.append(1)<br>    return xyz<br>print(foo(),id(foo))<br>print(foo.<strong>defaults</strong>)<br>print(foo(),id(foo))<br>print(foo.<strong>defaults</strong>)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">- 函数地址并没有变，就是说函数这个对象没有变，调用它，它的属性&amp;#95;&amp;#95;defaults&amp;#95;&amp;#95; 中使用元组保存默认值</div><div class="line">- xyz 默认值是引用类型，引用类型的元素变动，并不是元组的变化</div><div class="line"></div><div class="line">**非引用类型例子**</div></pre></td></tr></table></figure></p>
-<p>def foo(w,u=’abc’,z=123):<br>    u = ‘xyz’<br>    z = 789<br>    print(w,u,z)<br>print(foo.<strong>defaults</strong>)<br>foo(‘wing’)<br>print(foo.<strong>defaults</strong>)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">属性&amp;#95;&amp;#95;defaults&amp;#95;&amp;#95;中使用元组保存所有位置参数默认值，它不会因为在函数体内使用了它而发生改变</div></pre></td></tr></table></figure></p>
-<p>def foo(w,u=’abc’,*,z=123,zz=[456]):<br>    u = ‘xyz’<br>    z = 789<br>    zz.append(1)<br>    print(w,u,z,zz)<br>print(foo.<strong>defaults</strong>)<br>foo(‘wing’)<br>print(foo.<strong>kwdefaults</strong>)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">- 属性&amp;#95;&amp;#95;defaults&amp;#95;&amp;#95; 中使用元组保存所有位置参数默认值</div><div class="line">- 属性&amp;#95;&amp;#95;kwdefaults&amp;#95;&amp;#95; 中使用字典保存所有keyword-only 参数的默认值</div><div class="line">- 使用可变类型作为形参默认值的时候，就可能修改这个默认值</div><div class="line"></div><div class="line">**1.函数体内，不改变默认值**</div></pre></td></tr></table></figure></p>
-<p>def foo(xyz=[],u=’abc’,z=123):<br>    xyz = xyz[:]     #影子拷贝<br>    xyz.append(1)<br>    print(xyz)<br>print(foo.<strong>defaults</strong>)<br>foo()<br>print(foo.<strong>defaults</strong>)<br>foo([10])<br>foo()<br>print(foo.<strong>defaults</strong>)<br>foo([10,5])<br>print(foo.<strong>defaults</strong>)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">- 函数中的xyz 都是传入参数或者默认参数的副本，如果就想修改原参数，不可以</div><div class="line"></div><div class="line">**2.使用不可变类型的默认值**</div></pre></td></tr></table></figure></p>
-<p>def foo(xyz=None,u=’abc’,z=123):<br>    if xyz is None:<br>        xyz = []<br>    xyz.append(1)<br>    print(xyz)<br>print(foo.<strong>defaults</strong>)<br>foo()<br>print(foo.<strong>defaults</strong>)<br>foo([10])<br>print(foo.<strong>defaults</strong>)<br>foo([10,5])<br>print(foo.<strong>defaults</strong>)<br>```</p>
+<h5 id="②-参数默认值（缺省值）"><a href="#②-参数默认值（缺省值）" class="headerlink" title="② 参数默认值（缺省值）"></a>② 参数默认值（缺省值）</h5><p>在定义形参的时候可以给形参赋予一个默认值.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">def fn(x=3,y=2):</div><div class="line">    print(&quot;x=&#123;&#125;,y=&#123;&#125;&quot;.format(x,y))</div></pre></td></tr></table></figure></p>
+<ul>
+<li>参数的默认值可以在未传入足够的实参的时候，对没有给定的参数赋值为默认值</li>
+<li>设置参数的缺省值，可以简化函数调用</li>
+</ul>
+<h5 id="③可变位置参数"><a href="#③可变位置参数" class="headerlink" title="③可变位置参数"></a>③可变位置参数</h5><ul>
+<li>在位置参数前面使用“*” 表示该形参是可变参数，可以接受0到多个实参</li>
+<li>收集多个实参为一个元组tuple</li>
+<li>不接受关键字传参</li>
+<li>可变位置参数必须在位置参数后面</li>
+</ul>
+<h5 id="④keyword-only参数（python3-后加入）"><a href="#④keyword-only参数（python3-后加入）" class="headerlink" title="④keyword-only参数（python3 后加入）"></a>④keyword-only参数（python3 后加入）</h5><ul>
+<li>在可变位置参数后面，出现的形参</li>
+<li>在传参的时候一定要使用关键字传参</li>
+</ul>
+<h5 id="⑤-可变关键字参数"><a href="#⑤-可变关键字参数" class="headerlink" title="⑤ 可变关键字参数"></a>⑤ 可变关键字参数</h5><ul>
+<li>在形参签名使用“**”符号，表示可以接受0到多个关键字参数</li>
+<li>收集的实参的关键字和值组成一个字典dict，该字典在函数中是可以改变的</li>
+<li>如果形参中有keyword-only参数，一定要在该参数后面</li>
+</ul>
+<h5 id="⑥总结"><a href="#⑥总结" class="headerlink" title="⑥总结"></a>⑥总结</h5><ul>
+<li>形参一般顺序是，位置参数，缺省位置参数，可变位置参数，keywork-only参数（可以带缺省值)，可变关键字参数</li>
+</ul>
+<h3 id="函数参数解构"><a href="#函数参数解构" class="headerlink" title="函数参数解构"></a>函数参数解构</h3><ul>
+<li>给函数提供<strong>实参</strong>的时候，可以在可迭代对象中使用<em> 或者*</em>，把集合类型的解构解开，提取出所有元素作为函数的实参</li>
+<li>非字典类型使用*解构成位置参数</li>
+<li>字典类型使用 ** 解构成关键字参数</li>
+<li>提出出来的元素树木要和参数的要求匹配，也要和参数的类型匹配</li>
+<li>参数解构只能用在函数中，print() 函数等</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/4618795-11be35ae6853265d.gif?imageMogr2/auto-orient/strip" alt="参数解构.gif"></p>
+<h1 id="四-函数嵌套"><a href="#四-函数嵌套" class="headerlink" title="四. 函数嵌套"></a>四. 函数嵌套</h1><p>在一个函数中定义了另外一个函数,内部的函数不能在外部直接使用，会抛出NameError 异常。<br>函数有可见范围，这就是作用域的概念<br><img src="https://upload-images.jianshu.io/upload_images/4618795-4d661206cf245638.gif?imageMogr2/auto-orient/strip" alt="函数嵌套.gif"></p>
+<h3 id="1-作用域"><a href="#1-作用域" class="headerlink" title="1.作用域"></a>1.作用域</h3><ul>
+<li>一个标识符的可见范围，这就是标识符的作用域。一般常说的是变量的作用域。<br>作用域分为：全局作用域，和局部作用域</li>
+<li>全局作用域<br>在整个程序运行环境中可见</li>
+<li>局部作用域<br>在函数，类等内部可见,局部变量使用范围不能超过其所在的局部作用域</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">def outer2():</div><div class="line">    o = 65</div><div class="line">    def inner():</div><div class="line">        o = 97</div><div class="line">        print(&quot;inner &#123;&#125;&quot;.format(o))</div><div class="line">    print(&quot;outer &#123;&#125;&quot;.format(o))</div><div class="line">    inner()</div><div class="line">outer2()</div><div class="line"></div><div class="line">#结果</div><div class="line">#outer 65</div><div class="line">#inner 97</div></pre></td></tr></table></figure>
+<p>通过上述嵌套结构例子可以看出</p>
+<ul>
+<li>外层变量作用域在内层作用域可见</li>
+<li>内层作用域inner中，如果定义了o = 97,相当于当前作用域中重新定义了一个新的变量o，但是这个o并没有 覆盖外层作用域outer中的o。</li>
+</ul>
+<h5 id="①-全局变量globle"><a href="#①-全局变量globle" class="headerlink" title="①.全局变量globle"></a>①.全局变量globle</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">x = 5</div><div class="line">def foo():</div><div class="line">##如果不使用global，会出现先引用后赋值的异常报错</div><div class="line">    global x </div><div class="line">    x += 1 </div><div class="line">    print(&quot;x =&quot;,x)</div><div class="line">foo()</div><div class="line">print(&quot;x =&quot;,x)</div><div class="line">###结果</div><div class="line">#x = 6</div><div class="line">#x = 6</div></pre></td></tr></table></figure>
+<ul>
+<li>使用global 关键字的变量，将函数内的x声明为外部的全局作用域定义的x</li>
+<li>全局作用作用域中必须要有x的定义</li>
+<li>使用global可以告诉内部作用域，去全局作用域查找变量的定义，之后在函数内对x的所有操作，都相当于在为全局作用域的变量x操作赋值</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">x = 5</div><div class="line">def foo():</div><div class="line">    global x</div><div class="line">    x += 1</div><div class="line">    print(&quot;x =&quot;,x)</div><div class="line">    x = 9</div><div class="line">foo()</div><div class="line">print(&quot;x =&quot;,x)</div><div class="line"></div><div class="line">##结果</div><div class="line">#x = 6</div><div class="line">#x = 9</div></pre></td></tr></table></figure>
+<p><strong>globle 使用原则</strong></p>
+<ul>
+<li>外部作用域变量会内部作用域可见，但也不要在这个内部的局部作用域中直接使用，因为函数的目的就是为了封装，尽量与外界隔离</li>
+<li>如果函数需要使用外部全局变量，请使用函数的形参传参解决</li>
+</ul>
+<blockquote>
+<p>不要用global，学习它，只是为了深入理解变量作用域！！！</p>
+</blockquote>
+<p>对“作用域”可以进行如下理解：<br>1.在最顶层，比如shell层，有一个符号表会跟踪记录这一层所有的名称定义和绑定<br>2.调用函数的时候，会建立一个新的符号表（常称为栈帧）。这个表跟踪记录函数中所有的名称定义（包括形参）和它们当前的绑定。如果函数体内又调用了一个函数，就再建立一个栈帧。<br>3.函数结束时候，它的栈帧也随之消息。</p>
+<h3 id="2-闭包"><a href="#2-闭包" class="headerlink" title="2.闭包"></a>2.闭包</h3><ul>
+<li>自由变量：未在本地作用域定义的变量。<br> 例如：定义在内层函数外的外层函数的作用域中的变量</li>
+<li>闭包：就是一个概念，出现在嵌套函数中，指的是<strong>内层函数引用到了外层函数的自由变量，</strong>这就形成了闭包.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">def counter():</div><div class="line">    c = [0]</div><div class="line">    def inc():</div><div class="line">        c[0] += 1  #应用的是自由变量正式counter的变量c</div><div class="line">        return c[0]</div><div class="line">    print(c[0])</div><div class="line">    return inc</div><div class="line">  </div><div class="line">#counter()()</div><div class="line">foo = counter()</div><div class="line">print(foo(),foo())   #调用的是inner()</div><div class="line">print(foo())</div></pre></td></tr></table></figure>
+<p>这是python2 实现闭包的方式，python3 还可以使用nonlocal 关键字</p>
+<h5 id="①nonlocal-关键字"><a href="#①nonlocal-关键字" class="headerlink" title="①nonlocal 关键字"></a>①nonlocal 关键字</h5><p>使用nonlocal 关键字，将变量标记为不再本地作用域定义，而在上级的某一级局部作用域中定义，但<strong>不能是全局作用域中的定义</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">def counter():</div><div class="line">    count = 0</div><div class="line">    def inc():</div><div class="line">        nonlocal count</div><div class="line">        count += 1</div><div class="line">        return count</div><div class="line">    return inc</div><div class="line">foo = counter()</div><div class="line">print(foo())</div><div class="line">print(foo())</div></pre></td></tr></table></figure></p>
+<ul>
+<li>count 是外层函数的局部变量，被内部函数引用</li>
+<li>内部函数使用nonlocal 关键字声明count变量在上级作用域而非 本地作用域中定义</li>
+<li>形成了闭包</li>
+</ul>
+<h5 id="②默认值的作用域"><a href="#②默认值的作用域" class="headerlink" title="②默认值的作用域"></a>②默认值的作用域</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">def foo(xyz=[]):</div><div class="line">    xyz.append(1)</div><div class="line">    print(xyz)</div><div class="line">foo()</div><div class="line">foo()</div><div class="line"></div><div class="line">###result</div><div class="line">#[1]</div><div class="line">#[1, 1]</div></pre></td></tr></table></figure>
+<ul>
+<li>函数也是对象，python 把函数的默认值放在了属性中，这个属性就伴随着这个函数对象的整个生命周期</li>
+<li><p>查看foo.&#95;&#95;defaults&#95;&#95;属性 <code>([1, 1],)</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">def foo(xyz=[],u=&apos;abc&apos;,z=123):</div><div class="line">    xyz.append(1)</div><div class="line">    return xyz</div><div class="line">print(foo(),id(foo))</div><div class="line">print(foo.__defaults__)</div><div class="line">print(foo(),id(foo))</div><div class="line">print(foo.__defaults__)</div></pre></td></tr></table></figure>
+</li>
+<li><p>函数地址并没有变，就是说函数这个对象没有变，调用它，它的属性&#95;&#95;defaults&#95;&#95; 中使用元组保存默认值</p>
+</li>
+<li>xyz 默认值是引用类型，引用类型的元素变动，并不是元组的变化</li>
+</ul>
+<p><strong>非引用类型例子</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">def foo(w,u=&apos;abc&apos;,z=123):</div><div class="line">    u = &apos;xyz&apos;</div><div class="line">    z = 789</div><div class="line">    print(w,u,z)</div><div class="line">print(foo.__defaults__)</div><div class="line">foo(&apos;wing&apos;)</div><div class="line">print(foo.__defaults__)</div></pre></td></tr></table></figure></p>
+<p>属性&#95;&#95;defaults&#95;&#95;中使用元组保存所有位置参数默认值，它不会因为在函数体内使用了它而发生改变<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">def foo(w,u=&apos;abc&apos;,*,z=123,zz=[456]):</div><div class="line">    u = &apos;xyz&apos;</div><div class="line">    z = 789</div><div class="line">    zz.append(1)</div><div class="line">    print(w,u,z,zz)</div><div class="line">print(foo.__defaults__)</div><div class="line">foo(&apos;wing&apos;)</div><div class="line">print(foo.__kwdefaults__)</div></pre></td></tr></table></figure></p>
+<ul>
+<li>属性&#95;&#95;defaults&#95;&#95; 中使用元组保存所有位置参数默认值</li>
+<li>属性&#95;&#95;kwdefaults&#95;&#95; 中使用字典保存所有keyword-only 参数的默认值</li>
+<li>使用可变类型作为形参默认值的时候，就可能修改这个默认值</li>
+</ul>
+<p><strong>1.函数体内，不改变默认值</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">def foo(xyz=[],u=&apos;abc&apos;,z=123):</div><div class="line">    xyz = xyz[:]     #影子拷贝</div><div class="line">    xyz.append(1)</div><div class="line">    print(xyz)</div><div class="line">print(foo.__defaults__)</div><div class="line">foo()</div><div class="line">print(foo.__defaults__)</div><div class="line">foo([10])    </div><div class="line">foo()</div><div class="line">print(foo.__defaults__)</div><div class="line">foo([10,5])</div><div class="line">print(foo.__defaults__)</div></pre></td></tr></table></figure></p>
+<ul>
+<li>函数中的xyz 都是传入参数或者默认参数的副本，如果就想修改原参数，不可以</li>
+</ul>
+<p><strong>2.使用不可变类型的默认值</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">def foo(xyz=None,u=&apos;abc&apos;,z=123):</div><div class="line">    if xyz is None:</div><div class="line">        xyz = []</div><div class="line">    xyz.append(1)</div><div class="line">    print(xyz)</div><div class="line">print(foo.__defaults__)</div><div class="line">foo()</div><div class="line">print(foo.__defaults__)</div><div class="line">foo([10])    </div><div class="line">print(foo.__defaults__)</div><div class="line">foo([10,5])</div><div class="line">print(foo.__defaults__)</div></pre></td></tr></table></figure></p>
 <ul>
 <li>如果使用缺省值None就创建一个列表</li>
 <li>如果传入一个列表，就修改这个列表</li>
