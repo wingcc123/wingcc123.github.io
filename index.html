@@ -322,8 +322,44 @@
 <li>上级作用域销毁时</li>
 </ul>
 <h1 id="五-文档字符串："><a href="#五-文档字符串：" class="headerlink" title="五.文档字符串："></a>五.文档字符串：</h1><p>  <code>&quot;&quot;&quot; text &quot;&quot;&quot;</code><br>三引号之间的文本在Python中称为文档字符串。按照惯例，使用文档字符串提供函数的规范。可以使用内置的函数help访问这些字符串。<br><img src="https://upload-images.jianshu.io/upload_images/4618795-264da77543dad07d.gif?imageMogr2/auto-orient/strip" alt="文档字符串.gif"></p>
-<h1 id="六-递归"><a href="#六-递归" class="headerlink" title="六.递归"></a>六.递归</h1><p>每个递归函数由两部分组成：基线条件（base case） 和递归条件（recursive case）。<br>递归条件指函数调用自己，而基线条件则指的是函数不再调用自己，从而避免形成无限循环</p>
-<h1 id="七-高阶函数"><a href="#七-高阶函数" class="headerlink" title="七.高阶函数"></a>七.高阶函数</h1><p>函数作为参数，<br>返回值是函数</p>
+<h1 id="六-递归"><a href="#六-递归" class="headerlink" title="六.递归"></a>六.递归</h1><h3 id="2-定义"><a href="#2-定义" class="headerlink" title="2.定义"></a>2.定义</h3><p><strong> 函数直接或者间接调用自身就是递归</strong></p>
+<ul>
+<li>递归需要边界条件，递归前进段，递归返回段</li>
+<li>递归一定要有<strong>边界条件</strong></li>
+<li>当边界条件不满足的时候，递归前进</li>
+<li>当边界条件满足的时候，递归返回</li>
+</ul>
+<h3 id="2-递归要求"><a href="#2-递归要求" class="headerlink" title="2.递归要求"></a>2.递归要求</h3><ul>
+<li>递归一定要有退出条件，递归调用一定要执行到这个退出条件。没有退出条件的递归调用，就是无限调用</li>
+<li>递归深度不宜过深<br>可以通过<code>sys.getrecursionlimit()</code> 查看解释器的深度限制</li>
+</ul>
+<h3 id="3-递归的性能"><a href="#3-递归的性能" class="headerlink" title="3.递归的性能"></a>3.递归的性能</h3><ul>
+<li>循环稍微复杂一些，但是只要不是死循环，可以多次迭代直至算出结果。</li>
+<li>递归有深度限制，如果递归复杂，函数反复亚栈，栈内存很快就溢出了。</li>
+<li>递归中可以通过形参记录每次递归的计算，减少递归次数</li>
+</ul>
+<h3 id="4-间接递归："><a href="#4-间接递归：" class="headerlink" title="4.间接递归："></a>4.间接递归：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">def foo1():</div><div class="line">    foo2()</div><div class="line">def foo2():</div><div class="line">    foo1()</div><div class="line">foo1()</div></pre></td></tr></table></figure>
+<p>间接递归，是通过别的函数调用了函数自身。<br>但是，如果构成了循环递归抵用是非常危险的，但是往往这种情况在代码复杂的情况下，还是可能发生这种调用。要用代码的规范来避免这种递归调用的发生。</p>
+<h3 id="5-递归总结"><a href="#5-递归总结" class="headerlink" title="5.递归总结"></a>5.递归总结</h3><ul>
+<li>递归是一种很自然的表达，符合逻辑思维</li>
+<li>递归相对运行效率低，每一次调用函数都要开辟栈帧</li>
+<li>递归有深度限制，如果递归层次太深，函数反复压栈,栈内存很快就溢出了</li>
+<li>如果是有限次数的递归，可以使用递归调用,或者使用循环代替，循环代码稍微复杂一点，但是只要不是死循环，可以多次迭代直至算出结果</li>
+<li>绝大多数递归，都可以使用循环实现</li>
+<li>即使递归代码间接，不建议使用递归</li>
+</ul>
+<h1 id="七-匿名函数"><a href="#七-匿名函数" class="headerlink" title="七.匿名函数"></a>七.匿名函数</h1><ul>
+<li>没有函数名</li>
+<li>借助lambda 表达式构建匿名函数 </li>
+<li>格式：<code>lambda 参数列表：表达式</code></li>
+<li>使用lambda 关键字来定义匿名函数</li>
+<li>参数列表不需要小括号</li>
+<li>冒号是用来分割参数列表和表达式的</li>
+<li>不需要使用return ，表达式的值，就是匿名函数返回值</li>
+<li>lambda表达式(匿名函数) 只能写在一行上，被称为单行函数</li>
+<li>用途：在高阶函数传参时，使用lamdba表达式，往往能简化代码。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">print((lambda :0)())</div><div class="line">print((lambda x,y=3:x+y)(5))</div><div class="line">print((lambda x, y=3: x + y)(5, 6))</div><div class="line">print((lambda x, *, y=30: x + y)(5))</div><div class="line">print((lambda x, *, y=30: x + y)(5, y=10))</div><div class="line">print((lambda *args: (x for x in args))(*range(5)))</div><div class="line">print((lambda *args: [x+1 for x in args])(*range(5)))</div><div class="line">print((lambda *args: &#123;x+2 for x in args&#125;)(*range(5)))</div><div class="line">[x for x in (lambda *args: map(lambda x: x+1, args))(*range(5))] </div><div class="line">[x for x in (lambda *args: map(lambda x: (x+1,args), args))(*range(5))]</div></pre></td></tr></table></figure>
+</li>
+</ul>
 
       
 
