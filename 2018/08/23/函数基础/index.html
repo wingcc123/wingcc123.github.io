@@ -19,7 +19,7 @@
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4618795-11be35ae6853265d.gif?imageMogr2/auto-orient/strip">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4618795-4d661206cf245638.gif?imageMogr2/auto-orient/strip">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4618795-264da77543dad07d.gif?imageMogr2/auto-orient/strip">
-<meta property="og:updated_time" content="2018-08-31T11:39:51.000Z">
+<meta property="og:updated_time" content="2018-08-31T11:41:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="函数基础">
 <meta name="twitter:description" content="Python 中的函数是由若干语句组成的语句块、函数名称、参数列表构成，它是组织代码的最小单元，可以完成一定的功能 一.函数的作用 结构化编程对代码的最基本的封装，一般按照功能组织一段代码 封装的目的是为了复用，减少冗余代码 代码更加简洁美观，可读易懂  二.函数的分类 内建函数 ： max(),reversed() 库函数：math.ceil()  三.函数定义、调用1.def关键字定义函数12">
@@ -264,7 +264,7 @@
 <blockquote>
 <p>不要用global，学习它，只是为了深入理解变量作用域！！！</p>
 </blockquote>
-<p>对“作用域”可以进行如下理解：<br>1.在最顶层，比如shell层，有一个符号表会跟踪记录这一层所有的名称定义和绑定<br>2.调用函数的时候，会建立一个新的符号表（常称为栈帧）。这个表跟踪记录函数中所有的名称定义（包括形参）和它们当前的绑定。如果函数体内又调用了一个函数，就再建立一个栈帧。<br>3.函数结束时候，它的栈帧也随之消息。</p>
+<p>对“作用域”可以进行如下理解：<br>1.在最顶层，比如shell层，有一个符号表会跟踪记录这一层所有的名称定义和绑定<br>2.调用函数的时候，会建立一个新的符号表（常称为栈帧）。这个表跟踪记录函数中所有的名称定义（包括形参）和它们当前的绑定。如果函数体内又调用了一个函数，就再建立一个栈帧。<br>3.函数结束时候，它的栈帧也随之消失。</p>
 <h3 id="2-闭包"><a href="#2-闭包" class="headerlink" title="2.闭包"></a>2.闭包</h3><ul>
 <li>自由变量：未在本地作用域定义的变量。<br> 例如：定义在内层函数外的外层函数的作用域中的变量</li>
 <li>闭包：就是一个概念，出现在嵌套函数中，指的是<strong>内层函数引用到了外层函数的自由变量，</strong>这就形成了闭包.</li>
