@@ -19,7 +19,7 @@
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4618795-11be35ae6853265d.gif?imageMogr2/auto-orient/strip">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4618795-4d661206cf245638.gif?imageMogr2/auto-orient/strip">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4618795-264da77543dad07d.gif?imageMogr2/auto-orient/strip">
-<meta property="og:updated_time" content="2018-08-27T01:41:55.000Z">
+<meta property="og:updated_time" content="2018-08-31T11:39:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="函数基础">
 <meta name="twitter:description" content="Python 中的函数是由若干语句组成的语句块、函数名称、参数列表构成，它是组织代码的最小单元，可以完成一定的功能 一.函数的作用 结构化编程对代码的最基本的封装，一般按照功能组织一段代码 封装的目的是为了复用，减少冗余代码 代码更加简洁美观，可读易懂  二.函数的分类 内建函数 ： max(),reversed() 库函数：math.ceil()  三.函数定义、调用1.def关键字定义函数12">
@@ -230,7 +230,7 @@
 <li>形参一般顺序是，位置参数，缺省位置参数，可变位置参数，keywork-only参数（可以带缺省值)，可变关键字参数</li>
 </ul>
 <h3 id="函数参数解构"><a href="#函数参数解构" class="headerlink" title="函数参数解构"></a>函数参数解构</h3><ul>
-<li>给函数提供<strong>实参</strong>的时候，可以在可迭代对象中使用<em> 或者*</em>，把集合类型的解构解开，提取出所有元素作为函数的实参</li>
+<li>给函数提供<strong>实参</strong>的时候，可以在可迭代对象中使用* 或者&#42;&#42;，把集合类型的解构解开，提取出所有元素作为函数的实参</li>
 <li>非字典类型使用*解构成位置参数</li>
 <li>字典类型使用 ** 解构成关键字参数</li>
 <li>提出出来的元素树木要和参数的要求匹配，也要和参数的类型匹配</li>
@@ -327,7 +327,7 @@
 <li>上级作用域销毁时</li>
 </ul>
 <h1 id="五-文档字符串："><a href="#五-文档字符串：" class="headerlink" title="五.文档字符串："></a>五.文档字符串：</h1><p>  <code>&quot;&quot;&quot; text &quot;&quot;&quot;</code><br>三引号之间的文本在Python中称为文档字符串。按照惯例，使用文档字符串提供函数的规范。可以使用内置的函数help访问这些字符串。<br><img src="https://upload-images.jianshu.io/upload_images/4618795-264da77543dad07d.gif?imageMogr2/auto-orient/strip" alt="文档字符串.gif"></p>
-<h1 id="六-递归"><a href="#六-递归" class="headerlink" title="六.递归"></a>六.递归</h1><h3 id="2-定义"><a href="#2-定义" class="headerlink" title="2.定义"></a>2.定义</h3><p><strong> 函数直接或者间接调用自身就是递归</strong></p>
+<h1 id="六-递归"><a href="#六-递归" class="headerlink" title="六.递归"></a>六.递归</h1><h3 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h3><p><strong> 函数直接或者间接调用自身就是递归</strong></p>
 <ul>
 <li>递归需要边界条件，递归前进段，递归返回段</li>
 <li>递归一定要有<strong>边界条件</strong></li>
@@ -468,6 +468,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2018/08/31/高阶函数/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          高阶函数&amp;装饰器
+        
+      </div>
+    </a>
   
   
     <a href="/2018/08/18/set-dictionary/" id="article-nav-older" class="article-nav-link-wrap">

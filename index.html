@@ -144,6 +144,114 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-高阶函数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/31/高阶函数/">高阶函数&amp;装饰器</a>
+    </h1>
+  
+
+        
+        <a href="/2018/08/31/高阶函数/" class="archive-article-date">
+  	<time datetime="2018-08-31T11:29:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-31</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一-高阶函数"><a href="#一-高阶函数" class="headerlink" title="一.高阶函数"></a>一.高阶函数</h1><p> 高阶函数至少满足以下一个条件</p>
+<ol>
+<li>接受一个或者多个函数作为参数</li>
+<li>返回一个函数</li>
+</ol>
+<h3 id="1-内建函数-高阶函数"><a href="#1-内建函数-高阶函数" class="headerlink" title="1. 内建函数-高阶函数"></a>1. 内建函数-高阶函数</h3><ul>
+<li>sorted(iterable[, key][, reverse]) –&gt; list </li>
+<li>filter(function or None, iterable) –&gt; filter object</li>
+<li>map(func, *iterables) –&gt; map objec </li>
+</ul>
+<h3 id="2-柯里化-Currying"><a href="#2-柯里化-Currying" class="headerlink" title="2. 柯里化(Currying)"></a>2. 柯里化(Currying)</h3><ul>
+<li>指的是将原来接受两个参数的函数变成新的接受一个参数的过程，新的函数返回一个以原有第二个参数为参数的函数</li>
+<li>z=f(x,y) 转化成 z=f(x)(y) 的形式</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">def add(x,y):</div><div class="line">    return x + y</div><div class="line">#add(5,6)</div><div class="line"></div><div class="line"></div><div class="line">def add(x):</div><div class="line">    def _add(y):</div><div class="line">        return x + y</div><div class="line">    return _add</div><div class="line"></div><div class="line">#add(5)(6)</div></pre></td></tr></table></figure>
+<h1 id="二-装饰器"><a href="#二-装饰器" class="headerlink" title="二.装饰器"></a>二.装饰器</h1><p>自身是函数， 可以增强其他函数功能<br>一般接受一个函数对象作为参数，以对其进行增强</p>
+<h3 id="1-装饰器-无参"><a href="#1-装饰器-无参" class="headerlink" title="1.装饰器(无参)"></a>1.装饰器(无参)</h3><ul>
+<li>它是一个函数</li>
+<li>函数作为它的形参</li>
+<li>返回值是函数</li>
+<li>可以使用<code>@functionname</code>方式，简化调用</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">def add(x,y):</div><div class="line">    return x + y</div><div class="line">def logger(fn):</div><div class="line">    def warpper(*args,**kwargs):</div><div class="line">        print(&quot;args=&#123;&#125;,kwargs=&#123;&#125;&quot;.format(args,kwargs))</div><div class="line">        x = fn(*args,**kwargs)</div><div class="line">        return x </div><div class="line">    return warpper</div><div class="line"></div><div class="line">logger(add)(4,y=5)</div></pre></td></tr></table></figure>
+<p>以下add 的使用装饰器的代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">def logger(fn):</div><div class="line">    def warpper(*args,**kwargs):</div><div class="line">        print(&quot;args=&#123;&#125;,kwargs=&#123;&#125;&quot;.format(args,kwargs))</div><div class="line">        x = fn(*args,**kwargs)</div><div class="line">        return x </div><div class="line">    return warpper</div><div class="line"></div><div class="line">@logger  # add = logger(add)</div><div class="line">def add(x,y):</div><div class="line">    return x + y</div><div class="line"></div><div class="line">add(4,y=5)   # logger(add)(4,y=5) - &gt; warpper(4,y=5)</div></pre></td></tr></table></figure></p>
+<h3 id="2-装饰器-带参数"><a href="#2-装饰器-带参数" class="headerlink" title="2.装饰器(带参数)"></a>2.装饰器(带参数)</h3><ul>
+<li>它是一个函数</li>
+<li>函数作为它的形参</li>
+<li>返回值是一个不带参的装饰器函数</li>
+<li>可以使用<code>@functionname(参数列表)</code>方式调用</li>
+<li>可以看作在装饰器外层又加了一层函数</li>
+<li>多个装饰器执行顺序从下往上执行</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">def copy_properties(fn):</div><div class="line">    &quot;&quot;&quot;</div><div class="line">    将装饰器函数的属性 修改 成被装饰器装饰的函数的属性</div><div class="line">    &quot;&quot;&quot;</div><div class="line">    def _copy(decorator_fn):         </div><div class="line">        decorator_fn.__name__ = fn.__name__</div><div class="line">        decorator_fn.__doc__ = fn.__doc__</div><div class="line">        return decorator_fn</div><div class="line">    return _copy</div><div class="line"></div><div class="line">def logger(fn):</div><div class="line">    def wrapper(*args,**kwargs):</div><div class="line">        &quot;&quot;&quot;This is function warpper&quot;&quot;&quot;</div><div class="line">        x = fn(*args,**kwargs)</div><div class="line">        return x </div><div class="line">    copy_properties(fn)(wrapper)</div><div class="line">    return wrapper</div><div class="line"></div><div class="line">@logger</div><div class="line">def add(x,y):</div><div class="line">    &quot;&quot;&quot;Thie is function add&quot;&quot;&quot;</div><div class="line">    return x + y</div><div class="line"></div><div class="line">add.__doc__</div></pre></td></tr></table></figure>
+<p>可以修改成如下代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">def copy_properties(fn):</div><div class="line">    &quot;&quot;&quot;</div><div class="line">    将装饰器函数的属性 修改 成被装饰器装饰的函数的属性</div><div class="line">    &quot;&quot;&quot;</div><div class="line">    def _copy(decorator_fn):</div><div class="line">        decorator_fn.__name__ = fn.__name__</div><div class="line">        decorator_fn.__doc__ = fn.__doc__</div><div class="line">        return decorator_fn</div><div class="line">    return _copy</div><div class="line"></div><div class="line">def logger(fn):</div><div class="line">     #warpper = copy_properties(fn)(wrapper)</div><div class="line">    @copy_properties(fn)  </div><div class="line">    def wrapper(*args,**kwargs):</div><div class="line">        &quot;&quot;&quot;This is function warpper&quot;&quot;&quot;</div><div class="line">        x = fn(*args,**kwargs)</div><div class="line">        return x </div><div class="line">    return wrapper</div><div class="line"></div><div class="line">@logger</div><div class="line">def add(x,y):</div><div class="line">    &quot;&quot;&quot;Thie is function add&quot;&quot;&quot;</div><div class="line">    return x + y</div><div class="line"></div><div class="line">add.__doc__</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">import time</div><div class="line">import datetime</div><div class="line"># 获取函数的执行时长，对时长超过阀值的函数记录</div><div class="line">def logger(duration):</div><div class="line">    def _logger(fn):</div><div class="line">        @copy_properties(fn)  # wrapper=wrapper(fn)(warpper)</div><div class="line">        def wrapper(*args,**kwargs):</div><div class="line">            start = datetime.datetime.now()</div><div class="line">            ret = fn(*args,**kwargs)</div><div class="line">            delta = (datetime.datetime.now()-start).total_seconds()</div><div class="line">            print(&quot;so slow&quot;) if delta &gt; duration else print(&apos;so fase&apos;)</div><div class="line">            return ret</div><div class="line">        return wrapper</div><div class="line">    return _logger</div><div class="line"></div><div class="line">@logger(5)  # add= logger(5)</div><div class="line">def add(x,y):</div><div class="line">    time.sleep(5)</div><div class="line">    return x + y </div><div class="line"></div><div class="line">print(add(5,6))</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/08/31/高阶函数/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-函数基础" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -225,7 +333,7 @@
 <li>形参一般顺序是，位置参数，缺省位置参数，可变位置参数，keywork-only参数（可以带缺省值)，可变关键字参数</li>
 </ul>
 <h3 id="函数参数解构"><a href="#函数参数解构" class="headerlink" title="函数参数解构"></a>函数参数解构</h3><ul>
-<li>给函数提供<strong>实参</strong>的时候，可以在可迭代对象中使用<em> 或者*</em>，把集合类型的解构解开，提取出所有元素作为函数的实参</li>
+<li>给函数提供<strong>实参</strong>的时候，可以在可迭代对象中使用* 或者&#42;&#42;，把集合类型的解构解开，提取出所有元素作为函数的实参</li>
 <li>非字典类型使用*解构成位置参数</li>
 <li>字典类型使用 ** 解构成关键字参数</li>
 <li>提出出来的元素树木要和参数的要求匹配，也要和参数的类型匹配</li>
@@ -322,7 +430,7 @@
 <li>上级作用域销毁时</li>
 </ul>
 <h1 id="五-文档字符串："><a href="#五-文档字符串：" class="headerlink" title="五.文档字符串："></a>五.文档字符串：</h1><p>  <code>&quot;&quot;&quot; text &quot;&quot;&quot;</code><br>三引号之间的文本在Python中称为文档字符串。按照惯例，使用文档字符串提供函数的规范。可以使用内置的函数help访问这些字符串。<br><img src="https://upload-images.jianshu.io/upload_images/4618795-264da77543dad07d.gif?imageMogr2/auto-orient/strip" alt="文档字符串.gif"></p>
-<h1 id="六-递归"><a href="#六-递归" class="headerlink" title="六.递归"></a>六.递归</h1><h3 id="2-定义"><a href="#2-定义" class="headerlink" title="2.定义"></a>2.定义</h3><p><strong> 函数直接或者间接调用自身就是递归</strong></p>
+<h1 id="六-递归"><a href="#六-递归" class="headerlink" title="六.递归"></a>六.递归</h1><h3 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h3><p><strong> 函数直接或者间接调用自身就是递归</strong></p>
 <ul>
 <li>递归需要边界条件，递归前进段，递归返回段</li>
 <li>递归一定要有<strong>边界条件</strong></li>
@@ -2091,96 +2199,9 @@ x: 可以使用ls -l查看此目录中文件列表，可以cd进入此目录
 
 
   
-    <article id="post-Linux以及开源协议简介" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/25/Linux以及开源协议简介/">Linux以及开源协议简介</a>
-    </h1>
-  
-
-        
-        <a href="/2018/07/25/Linux以及开源协议简介/" class="archive-article-date">
-  	<time datetime="2018-07-25T03:25:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="一-计算机基本组成"><a href="#一-计算机基本组成" class="headerlink" title="一.计算机基本组成"></a>一.计算机基本组成</h1><p>冯.诺依曼体系结构奠定了现代计算机由<strong>输入输出设备，运算器，控制器，存储器</strong>五大部分组成。<br>内核寻址的大小（32/64位区别)</p>
-<h1 id="二-操作系统"><a href="#二-操作系统" class="headerlink" title="二.操作系统"></a>二.操作系统</h1><h3 id="1-操作系统的作用"><a href="#1-操作系统的作用" class="headerlink" title="1.操作系统的作用"></a>1.操作系统的作用</h3><p>操作系统（Operating System，简称OS）是管理和控制计算机硬件与软件资源的计算机程序，是直接运行在“裸机”上的最基本的系统软件，任何其他软件都必须在操作系统的支持下才能运行。<br>操作系统是用户和计算机的接口，同时也是计算机硬件和其他软件的接口。<strong>实际上，用户是不用接触操作系统的，用户通过shell实现和操作系统的交互。</strong></p>
-<h3 id="2-操作系统版本"><a href="#2-操作系统版本" class="headerlink" title="2.操作系统版本"></a>2.操作系统版本</h3><p><img src="https://upload-images.jianshu.io/upload_images/4618795-41c3fffc56d01157.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="操作系统发行版本.png"></p>
-<h1 id="三-GUN-Linux"><a href="#三-GUN-Linux" class="headerlink" title="三.GUN/Linux"></a>三.GUN/Linux</h1><h3 id="1-GUN-Linux系统介绍"><a href="#1-GUN-Linux系统介绍" class="headerlink" title="1.GUN/Linux系统介绍"></a>1.GUN/Linux系统介绍</h3><p>一般来说linux 是是由Linus Torvalds 开发的操作系统内核。而GUN／Linux 才是操作系统，是由GUN计划以linux 为内核研发的操作系统。</p>
-<h3 id="2-linux-的哲学思想"><a href="#2-linux-的哲学思想" class="headerlink" title="2.linux 的哲学思想"></a>2.linux 的哲学思想</h3><ul>
-<li>一切皆文件（包括硬件），99.9%</li>
-<li>小型，单一用途的程序</li>
-<li>链接程序，共同完成复杂的任务</li>
-<li>避免令人困惑的用户界面</li>
-<li>配置数据存储在文本中</li>
-<li>没有消息就是好消息</li>
-</ul>
-<h1 id="四-拥抱开源"><a href="#四-拥抱开源" class="headerlink" title="四.拥抱开源"></a>四.拥抱开源</h1><h3 id="1-GUN计划"><a href="#1-GUN计划" class="headerlink" title="1.GUN计划"></a>1.GUN计划</h3><p>GNU 计划是由理查德·马修·斯托曼(Richard M. Stallman)在1983年创建的。该计划的目的是发展一个完全自由的类 Unix 操作系统。自该计划发起以来，吸引了大量的企业和个人开发者参与其中，它倡导的开放、自由的软件，为个各开源软件项目贡献代码，使得开源软件蓬勃发展。</p>
-<h3 id="2-开源协议"><a href="#2-开源协议" class="headerlink" title="2.开源协议"></a>2.开源协议</h3><p>软件作者在网络上公开了自己软件代码后，其他人必须要遵循原作者的规定的开源协议。必须清楚各个开源协议的作用范围，以免误用。<br><img src="https://upload-images.jianshu.io/upload_images/4618795-8dc48cb88c99cd9c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="开源协议简介.png"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/07/25/Linux以及开源协议简介/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
