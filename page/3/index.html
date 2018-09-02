@@ -144,6 +144,107 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-kubernetes-DNS配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/10/kubernetes-DNS配置/">kubernetes DNS配置</a>
+    </h1>
+  
+
+        
+        <a href="/2016/06/10/kubernetes-DNS配置/" class="archive-article-date">
+  	<time datetime="2016-06-10T03:57:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-06-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#部署kubernetes dns 服务<br>k8s中的service分配的虚拟IP是固定的，而pod异常后新生成的pod ip会发生变化，可以通过service做代理关联到后端的pod。<br>通过设置k8s中的dns服务可以直接解析service的名字，得到对应service的ip，可以实现服务在集群内部互相访问。</p>
+<blockquote>
+<p>本文档操作前提：<br>1.建立私有仓库，将etcd、skydns 和kube2sky 镜像上传到私有仓库<br>2.k8s中的网络已经打通</p>
+</blockquote>
+<p>#修改每个node上的kubelet配置文件<br>–cluster_dns=10.254.0.3 为DNS服务的ClusterIP地址<br>–cluster_domain=cluster.local 为DNS服务中设置的域名</p>
+<p> <code>$ vi /etc/kubernetes/kubelet
+KUBELET_ARGS=&quot;--cluster_dns=10.254.0.3 --cluster_domain=cluster.local &quot;</code><br>重启kubelet </p>
+<p>#创建dns rc和service</p>
+<p>#######定义yaml文件</p>
+<p>1.skydns-rc.yaml<br>分别定义了三个容器：etcd、kube2sky、skydns<br>一个pod中包含三个容器。<br>可以通过kubectl  describe pod pod-name   –namespace=ns-name  查看详细pod的详细信息</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div></pre></td><td class="code"><pre><div class="line">apiVersion: v1</div><div class="line">kind: ReplicationController</div><div class="line">metadata:</div><div class="line">  name: kube-dns-v9</div><div class="line">  namespace: kube-system</div><div class="line">  labels:</div><div class="line">    k8s-app: kube-dns</div><div class="line">    version: v9</div><div class="line">    kubernetes.io/cluster-service: &quot;true&quot;</div><div class="line">spec:</div><div class="line">  replicas: 1</div><div class="line">  selector:</div><div class="line">    k8s-app: kube-dns</div><div class="line">    version: v9</div><div class="line">  template:</div><div class="line">    metadata:</div><div class="line">      labels:</div><div class="line">        k8s-app: kube-dns</div><div class="line">        version: v9</div><div class="line">        kubernetes.io/cluster-service: &quot;true&quot;</div><div class="line">    spec:</div><div class="line">      containers:</div><div class="line">      - name: etcd</div><div class="line">        image: test-registry:5000/etcd</div><div class="line">        resources:</div><div class="line">          limits:</div><div class="line">            cpu: 100m</div><div class="line">            memory: 50Mi</div><div class="line">        command:</div><div class="line">        - /usr/local/bin/etcd</div><div class="line">        - -data-dir</div><div class="line">        - /var/etcd/data</div><div class="line">        - -listen-client-urls</div><div class="line">        - http://127.0.0.1:2379,http://127.0.0.1:4001</div><div class="line">        - -advertise-client-urls</div><div class="line">        - http://127.0.0.1:2379,http://127.0.0.1:4001</div><div class="line">        - -initial-cluster-token</div><div class="line">        - skydns-etcd</div><div class="line">        volumeMounts:</div><div class="line">        - name: etcd-storage</div><div class="line">          mountPath: /var/etcd/data</div><div class="line">      - name: kube2sky</div><div class="line">        image: test-registry:5000/kube2sky</div><div class="line">        resources:</div><div class="line">          limits:</div><div class="line">            cpu: 100m</div><div class="line">            memory: 50Mi</div><div class="line">        args:</div><div class="line">        - -domain=cluster.local                        #设置k8s集群中Service所属的域名</div><div class="line">        - -kube_master_url=http://192.168.30.60:8080   #k8s中master的ip地址和apiserver中配置的端口号</div><div class="line">      - name: skydns</div><div class="line">        image: test-registry:5000/skydns</div><div class="line">        resources:</div><div class="line">          limits:</div><div class="line">            cpu: 100m</div><div class="line">            memory: 50Mi</div><div class="line">        args:</div><div class="line">        - -machines=http://localhost:4001</div><div class="line">        - -addr=0.0.0.0:53</div><div class="line">        - -domain=cluster.local</div><div class="line">        ports:</div><div class="line">        - containerPort: 53</div><div class="line">          name: dns</div><div class="line">          protocol: UDP</div><div class="line">        - containerPort: 53</div><div class="line">          name: dns-tcp</div><div class="line">          protocol: TCP</div><div class="line">      volumes:</div><div class="line">      - name: etcd-storage</div><div class="line">        emptyDir: &#123;&#125;</div></pre></td></tr></table></figure>
+<p>2.skydns-svc.yaml<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">apiVersion: v1</div><div class="line">kind: Service</div><div class="line">metadata:</div><div class="line">  name: kube-dns</div><div class="line">  namespace: kube-system</div><div class="line">  labels:</div><div class="line">    k8s-app: kube-dns</div><div class="line">    kubernetes.io/cluster-service: &quot;true&quot;</div><div class="line">    kubernetes.io/name: &quot;KubeDNS&quot;</div><div class="line">spec:</div><div class="line">  selector:</div><div class="line">    k8s-app: kube-dns</div><div class="line">  clusterIP: 10.254.0.3           #/etc/kubernetes/kubelet中已经设定好clusterIP</div><div class="line">  ports:</div><div class="line">  - name: dns</div><div class="line">    port: 53</div><div class="line">    protocol: UDP</div><div class="line">  - name: dns-tcp</div><div class="line">    port: 53</div><div class="line">    protocol: TCP</div></pre></td></tr></table></figure></p>
+<p>#####创建rc和service<br><code>kubectl create -f  skydns-rc.yaml,skydns-svc.yaml</code></p>
+<p>#检查服务<br><code>kubectl  get svc --all-namespaces 
+kubectl get rc --all-namespaces 
+kubectl get pods --all-namespaces</code></p>
+<p>###排错<br>pod启动失败<br>1.检查镜像是否可以docker pull<br>2.检查镜像是否正常，docker run -it  imageID  sh<br>3.检查私有仓库<br>curl  <a href="http://test-registry:5000/v2/_catalog" target="_blank" rel="external">http://test-registry:5000/v2/_catalog</a><br>查看私有仓库里面的镜像</p>
+<p>4.删除rc，检查kubelet 中的配置，然后重新启动<br>5.查看pod中的某个容器日志<br> kubectl logs pod-name -c container-name –all-namespaces<br> kubectl logs pod-name -c container-name –namespace=name<br>…….<br>…….</p>
+<p>#验证服务</p>
+<p>1.创建一个名为redis-master的Service<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">apiVersion: v1</div><div class="line">kind: Service</div><div class="line">metadata:</div><div class="line">  name: redis-master</div><div class="line">  labels:</div><div class="line">    name: redis-master</div><div class="line">spec:</div><div class="line">  selector:</div><div class="line">    name: redis-master</div><div class="line">  ports:</div><div class="line">  - port: 6379</div><div class="line">    targetPort: 6379</div></pre></td></tr></table></figure></p>
+<p><code>kubectl  create -f redis-service.yaml</code> 创建服务<br>2.创建一个带有nslookup工具的pod<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">apiVersion: v1</div><div class="line">kind: Pod</div><div class="line">metadata:</div><div class="line">    name: busybox</div><div class="line">    namespace: default</div><div class="line">spec:</div><div class="line">    containers:</div><div class="line">      - image: docker.io/busybox</div><div class="line">        command:</div><div class="line">          - sleep</div><div class="line">          - &quot;3600&quot;</div><div class="line">        imagePullPolicy: IfNotPresent</div><div class="line">        name: busybox</div><div class="line">    restartPolicy: Always</div></pre></td></tr></table></figure></p>
+<p>使用<code>kubectl create -f busybox.yaml</code>创建</p>
+<p>3.进入busybox中解析服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[root@k8s-master conf]# kubectl  exec -it busybox sh</div><div class="line">/ # nslookup redis-master</div><div class="line">Server:    10.254.0.3</div><div class="line">Address 1: 10.254.0.3</div><div class="line"></div><div class="line">Name:      redis-master</div><div class="line">Address 1: 10.254.222.213</div></pre></td></tr></table></figure></p>
+<p>#k8s dns原理</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4618795-9f1134b8d11edd3c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片.png"></p>
+<p>(1)etcd：DNS的存储<br>(2)kube2sky：将k8s master中的Service（服务）注册到etcd中<br>(3)skyDNS：提供DNS域名解析服务</p>
+<p>1.在kube2sky容器中需要指定访问k8s master的地址，获取k8s集群中的服务。<br>2.kube2sky容器和skydns容器的启动参数-domain，设置Kubernetes集群中Service所属的域名，本例中为cluster.local。启动后，kube2sky会监听Kubernetes，当有新的Service创建时，就会使用kubelet配置的<code>-cluster_dns=10.254.0.3 --cluster_domain=cluster.local</code>,在创建的资源中指定使用对应的dns服务器，并且生成相应的记录并保存到etcd中。kube2sky为每个Service生成两条记录，例如：<br><code>redis-master.default.cluster.local</code><br><code>redis-master.default.svc.cluster.local</code><br>3.skydns从etcd中获取dns的数据，然后解析服务。<br>4.etcd的数据来自kube2sky容器，kube2sky通过监听k8s master 中API获取集群所有Service的信息。然后将Service的信息保存到etcd容器中，提供给skydns使用</p>
+<p>资料参考：权威指南第二版P153</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">kubernetes</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/06/10/kubernetes-DNS配置/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-kubernetes1-4" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
