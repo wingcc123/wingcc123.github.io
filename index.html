@@ -208,7 +208,45 @@
 </table>
 <h1 id="二-open"><a href="#二-open" class="headerlink" title="二.open"></a>二.open</h1><p><code>open(file, mode=&#39;r&#39;, buffering=-1, encoding=None, errors=None, newline=None, closefd=True, opener=None)</code><br>创建并打开一个文件test，然后关闭<br>打开一个文件，返回一个文件对象（流对象）和文件描述符。<br>打开文件失败，则返回异常。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#touch test   #linux</div><div class="line">#New-Item &quot;new test.txt&quot; -type File   #powershell </div><div class="line">f = open(&quot;test&quot;) # file对象</div><div class="line"># windows &lt;_io.TextIOWrapper name=&apos;test&apos; mode=&apos;r&apos; encoding=&apos;cp936&apos;&gt; # linux &lt;_io.TextIOWrapper name=&apos;test&apos; mode=&apos;r&apos; encoding=&apos;UTF-8&apos;&gt; print(f.read()) # 读取文件</div><div class="line">f.close() # 关闭文件</div></pre></td></tr></table></figure></p>
 <h3 id="1-open参数详解"><a href="#1-open参数详解" class="headerlink" title="1.open参数详解"></a>1.open参数详解</h3><h5 id="①-file"><a href="#①-file" class="headerlink" title="① file"></a>① file</h5><p>打开或者要创建的文件名，如果不指定路径，默认是当前路径<br>或者是文件描述符（整型）</p>
-<h5 id="②-mode"><a href="#②-mode" class="headerlink" title="② mode"></a>② mode</h5><p>文件打开的模式。默认以<strong>文本只读</strong>   <code>mode=rt</code>的模式打开已经存在的文件<br>|描述字符 | 含义 |<br>|:—–:|:—–:|<br>|r|缺省值，只读打开，如果文件不存在，则抛出错误FileNotFoundError异常|<br>|w|只写打开，没有文件则创建文件，如果文件存在，清空文件|<br>|x|创建文件，并只写方式打开，文件存在则报错|<br>|a|写入打开，如果文件存在，则追加文件内容，不存在则先创建再追加|<br>|b|二进制模式，文件按照字节理解，字节操作使用bytes类型|<br>|t|缺省值，文本模式，将文件按照某种字符标码理解，按照字符操作|<br>|+|不能单独使用，读写打开一个文件。给原来只读，只写当时打开提供缺失的读或者写功能|</p>
+<h5 id="②-mode"><a href="#②-mode" class="headerlink" title="② mode"></a>② mode</h5><p>文件打开的模式。默认以<strong>文本只读</strong>   <code>mode=rt</code>的模式打开已经存在的文件</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">描述字符</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">r</td>
+<td style="text-align:center">缺省值，只读打开，如果文件不存在，则抛出错误FileNotFoundError异常</td>
+</tr>
+<tr>
+<td style="text-align:center">w</td>
+<td style="text-align:center">只写打开，没有文件则创建文件，如果文件存在，清空文件</td>
+</tr>
+<tr>
+<td style="text-align:center">x</td>
+<td style="text-align:center">创建文件，并只写方式打开，文件存在则报错</td>
+</tr>
+<tr>
+<td style="text-align:center">a</td>
+<td style="text-align:center">写入打开，如果文件存在，则追加文件内容，不存在则先创建再追加</td>
+</tr>
+<tr>
+<td style="text-align:center">b</td>
+<td style="text-align:center">二进制模式，文件按照字节理解，字节操作使用bytes类型</td>
+</tr>
+<tr>
+<td style="text-align:center">t</td>
+<td style="text-align:center">缺省值，文本模式，将文件按照某种字符标码理解，按照字符操作</td>
+</tr>
+<tr>
+<td style="text-align:center">+</td>
+<td style="text-align:center">不能单独使用，读写打开一个文件。给原来只读，只写当时打开提供缺失的读或者写功能</td>
+</tr>
+</tbody>
+</table>
 <p><strong>文件指针</strong><br>文件指针，指向当前<strong>字节位置</strong><br> f.seek(offset, whence=0, /) (f 是文件对象）<br>改变文件流的位置<br>offset 相对于whence偏移了多少个字节<br>whence 可以有三个选择的值</p>
 <ul>
 <li>0 – start of stream (the default); offset should be zero or positive  文件开头，默认</li>
@@ -2061,11 +2099,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color1">kubernetes</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">kubernetes</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
