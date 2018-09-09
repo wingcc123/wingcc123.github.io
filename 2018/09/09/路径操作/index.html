@@ -6,19 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>kubernetes中的volume | Winnie&#39;s cabin</title>
+  <title>路径操作 | Winnie&#39;s cabin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="volume 是pod中能够被多个容器访问的共享目录。k8s中volume定义在pod上，然后被一个pod里面的多个容器挂载到具体的文件目录下；其次k8s中volume与pod的生命周期相同，与容器的生命周期不相关，当容器种植或者重启的时候，volume中的数据也不会丢失。k8s支持多种类型volume，例如GlusterFS、Cept等分布式文件系统 volume的类型  emptyDir  一">
-<meta name="keywords" content="kubernetes">
+  <meta name="description" content="一.os.pathpython3.4 版本之前使用os.path 模块进行路径的操作  path.join(a, p)使用*操作系统默认的文件分隔符连接多个路径名,如果路径名中出现绝对路径，则该绝对路径名前所有路径名不能拼接。 path.exists(path)判断文件是否真实存在。如果是软连接，如果软连接的指向文件已经丢失，也会返回False   path.split(p)使用操作系统默认的文件">
+<meta name="keywords" content="python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="kubernetes中的volume">
-<meta property="og:url" content="http://yoursite.com/2016/06/12/kubernetes中的volume/index.html">
+<meta property="og:title" content="路径操作">
+<meta property="og:url" content="http://yoursite.com/2018/09/09/路径操作/index.html">
 <meta property="og:site_name" content="Winnie&#39;s cabin">
-<meta property="og:description" content="volume 是pod中能够被多个容器访问的共享目录。k8s中volume定义在pod上，然后被一个pod里面的多个容器挂载到具体的文件目录下；其次k8s中volume与pod的生命周期相同，与容器的生命周期不相关，当容器种植或者重启的时候，volume中的数据也不会丢失。k8s支持多种类型volume，例如GlusterFS、Cept等分布式文件系统 volume的类型  emptyDir  一">
-<meta property="og:updated_time" content="2017-09-19T03:56:14.000Z">
+<meta property="og:description" content="一.os.pathpython3.4 版本之前使用os.path 模块进行路径的操作  path.join(a, p)使用*操作系统默认的文件分隔符连接多个路径名,如果路径名中出现绝对路径，则该绝对路径名前所有路径名不能拼接。 path.exists(path)判断文件是否真实存在。如果是软连接，如果软连接的指向文件已经丢失，也会返回False   path.split(p)使用操作系统默认的文件">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4618795-a7f5fb272c6969b5.gif?imageMogr2/auto-orient/strip">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4618795-ab7a23b8e16cd010.gif?imageMogr2/auto-orient/strip">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4618795-37c4a3eed7a6851c.gif?imageMogr2/auto-orient/strip">
+<meta property="og:updated_time" content="2018-09-09T10:30:28.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="kubernetes中的volume">
-<meta name="twitter:description" content="volume 是pod中能够被多个容器访问的共享目录。k8s中volume定义在pod上，然后被一个pod里面的多个容器挂载到具体的文件目录下；其次k8s中volume与pod的生命周期相同，与容器的生命周期不相关，当容器种植或者重启的时候，volume中的数据也不会丢失。k8s支持多种类型volume，例如GlusterFS、Cept等分布式文件系统 volume的类型  emptyDir  一">
+<meta name="twitter:title" content="路径操作">
+<meta name="twitter:description" content="一.os.pathpython3.4 版本之前使用os.path 模块进行路径的操作  path.join(a, p)使用*操作系统默认的文件分隔符连接多个路径名,如果路径名中出现绝对路径，则该绝对路径名前所有路径名不能拼接。 path.exists(path)判断文件是否真实存在。如果是软连接，如果软连接的指向文件已经丢失，也会返回False   path.split(p)使用操作系统默认的文件">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/4618795-a7f5fb272c6969b5.gif?imageMogr2/auto-orient/strip">
   
     <link rel="alternative" href="/atom.xml" title="Winnie&#39;s cabin" type="application/atom+xml">
   
@@ -144,57 +148,92 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-kubernetes中的volume" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-路径操作" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      kubernetes中的volume
+      路径操作
     </h1>
   
 
         
-        <a href="/2016/06/12/kubernetes中的volume/" class="archive-article-date">
-  	<time datetime="2016-06-12T11:53:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-06-12</time>
+        <a href="/2018/09/09/路径操作/" class="archive-article-date">
+  	<time datetime="2018-09-09T10:30:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-09</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>volume 是pod中能够被多个容器访问的共享目录。k8s中volume定义在pod上，然后被一个pod里面的多个容器挂载到具体的文件目录下；其次k8s中volume与pod的生命周期相同，与容器的生命周期不相关，当容器种植或者重启的时候，volume中的数据也不会丢失。k8s支持多种类型volume，例如GlusterFS、Cept等分布式文件系统</p>
-<p>volume的类型</p>
-<ol>
-<li>emptyDir</li>
-</ol>
-<p>一个emptyDir Volume是在pod分配到node的时候创建的。它的内容为空，并且不需要指定宿主机上对应目录文件，因为k8s会自动分配一个对应的目录。当pod从node上移除的时候，emptyDir中的数据也会被永久删除。</p>
-<p>emptyDir用途：</p>
-<p>(1)临时空间，例如用于某些应用程序运行时所需的临时目录，且无须永久保留。</p>
-<p>(2)长时间任务的中间过程checkpoint的临时保存目录。</p>
-<p>(3)一个容器需要从另一个容器中获取数据的目录。</p>
-<ol>
-<li>hostPath</li>
-</ol>
-<p>hostPath为pod上挂载宿主机上的文件或者目录。</p>
-<p>hostPath用途：</p>
-<p>(1) 容器应用程序生成的日志文件需要永久保存，可以使用宿主机的告诉文件系统管理进行存储。</p>
-<p>(2) 需要访问宿主机上docker引擎内部数据结构的容器应用时，可以通过定义hostPath为宿主机/var/lib/docker目录，使容器内部应用可以直接访问Docker的文件系统。</p>
-<p>注意：</p>
-<p>(1) 在不同的node上具有相同配置的pod可能会因为宿主机上的目录和文件不同从而导致对volume上目录和文件的访问结果不一致。</p>
-<p>(2)如果使用了资源配额管理，那么k8s无法将hostPath在宿主机使用的资源纳入管理。</p>
-<p>例子： 使用宿主机的/data/目录定义了一个hostPath类型的Volume<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">volume:</div><div class="line">- name: &quot;persistent-storage&quot;</div><div class="line">  hostPath:</div><div class="line">    path: &quot;/date&quot;</div></pre></td></tr></table></figure></p>
-<p>3.gcePersistentDisk</p>
-<p>使用这种类型的Volume表示使用谷歌公有云提供的永久磁盘（Persistent Disk,PD)存放Volume的数据，它与EmptyDir不同，PD上的内容是会永久保存，当Pod被删除时，PD只是被卸载，但不会被删除。</p>
-<p>前提：你需要先创建一个永久磁盘（PD），才能使用gcePersistentDisk。</p>
-<p>注意</p>
-<p>node（运行kubelet的节点）需要的是GCE虚拟机。<br>这些虚拟机需要与PD存在与相同GCE项目和Zone中。<br>4.awsElasticBlockStore</p>
-<p>与GCE类似，该类型的Volume使用亚马逊公有云提供的EBS Volume存储数据，需要先创建一个EBSVolume才能使用awsElasticBlockStore。</p>
-<p>5.NFS</p>
-<p>使用NFS网络文件系统提供的共享目录存储数据时，我们需要在系统中部署一个NFS Server 。定义NFS类型的Volume的实例如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">volumes:</div><div class="line"> - name: nfs</div><div class="line">  nfs:</div><div class="line">    server； nfs-server.localhost  #改为你的nfs服务器地址</div><div class="line">    path: &quot;/&quot;</div></pre></td></tr></table></figure></p>
-<p>6.其他类型的volume</p>
-<p>iscsi：<br>flocker<br>glusterfs<br>rbd<br>gitRepo<br>secret</p>
+        <h1 id="一-os-path"><a href="#一-os-path" class="headerlink" title="一.os.path"></a>一.os.path</h1><p>python3.4 版本之前使用os.path 模块进行路径的操作</p>
+<ul>
+<li>path.join(a, <em>p)<br>使用<em>*操作系统默认的文件分隔符</em></em>连接多个路径名,如果路径名中出现绝对路径，则该绝对路径名前所有路径名不能拼接。</li>
+<li>path.exists(path)<br>判断文件是否真实存在。<br>如果是软连接，如果软连接的指向文件已经丢失，也会返回False  </li>
+<li>path.split(p)<br>使用<strong>操作系统默认的文件分隔符</strong>分隔文件路径，返回一个元组(head, tail),tail 是最后一个分隔符之后的内容。</li>
+<li>path.abspath(path)<br>返回绝对路径</li>
+<li>path.basename(p)<br>返回基名</li>
+<li>path.dirname(p)<br>返回目录名</li>
+<li>path.splitdrive(p)<br>windows系统专用，分割驱动器和文件路径，在linux 驱动器总是为空的。<br><img src="https://upload-images.jianshu.io/upload_images/4618795-a7f5fb272c6969b5.gif?imageMogr2/auto-orient/strip" alt="os.path.gif"></li>
+</ul>
+<h1 id="二-pathlib-模块-3-4版本以后可用"><a href="#二-pathlib-模块-3-4版本以后可用" class="headerlink" title="二.pathlib 模块 (3.4版本以后可用)"></a>二.pathlib 模块 (3.4版本以后可用)</h1><p>提供Path对象操作路径</p>
+<ul>
+<li>Path(<em>args, *</em>kwargs)<br>生成一个PosixPath／ WindowsPathPath 的对象<h3 id="1-路径拼接"><a href="#1-路径拼接" class="headerlink" title="1.路径拼接"></a>1.路径拼接</h3></li>
+<li>通过“／” 拼接生成一个新的Path对象<br>1.Path对象／Path对象<br>2.Path对象／字符串<br>3.字符串／Path对象</li>
+<li>joinpath(*other) 连接多个字符串或者Path对象，生成一个新的Path对象</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/4618795-ab7a23b8e16cd010.gif?imageMogr2/auto-orient/strip" alt="pathlib.gif"></p>
+<h3 id="2-获取路径"><a href="#2-获取路径" class="headerlink" title="2. 获取路径"></a>2. 获取路径</h3><ul>
+<li>pathobj.parts 属性，返回路径中的每一部分</li>
+<li>str(pathobj) 获取路径字符串</li>
+<li>bytes(pathobj)  获取路径字符串的bytes</li>
+<li>pathobj.parent 获取路径的逻辑父目录</li>
+<li><p>pathobj.parents 获取一组路径的逻辑父目录的序列，可迭代 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">pathobj.parents[0] = pathobj.parent </div><div class="line">pathobj.parents[1] = pathobj.parent.parent </div><div class="line">...</div></pre></td></tr></table></figure>
+</li>
+<li><p>pathobj.name  获取路径的最后一部分（basename）</p>
+</li>
+<li>pathobj.suffix  获取路径的最后一部分的后缀</li>
+<li>pathobj.stem 获取路径的最后一部分，没有后缀</li>
+<li>pathobj.suffixs 返回多个后缀列表</li>
+<li>pathobj.with_suffix(suffix)  有后缀则替换，无则添加后缀，后缀必须以”.”开头，例如：<code>.txt</code> 。返回一个新的path对象</li>
+<li>with_name(name) 替换路径最后一个部分并返回一个新的路径<br><img src="https://upload-images.jianshu.io/upload_images/4618795-37c4a3eed7a6851c.gif?imageMogr2/auto-orient/strip" alt="pathlib2"><h3 id="3-常用方法"><a href="#3-常用方法" class="headerlink" title="3.  常用方法"></a>3.  常用方法</h3></li>
+<li>p.cwd() 获取当前工作目录</li>
+<li>p.home()   获取当前家目录</li>
+<li>p.is_dir() 是否是目录，目录存在返回True</li>
+<li>p.is_file() 是否是普通文件，文件存在返回True </li>
+<li>p.is_symlink() 是否是软链接</li>
+<li>p.is_socket() 是否是socket文件 </li>
+<li>p.is_block_device() 是否是块设备 </li>
+<li>p.is_char_device() 是否是字符设备 </li>
+<li>p.is_fifo() 是否是管道文件</li>
+<li>is_absolute() 是否是绝对路径</li>
+<li>p.resolve() 返回一个新的路径，这个新路径就是当前Path对象的绝对路径，如果是软链接则直接被解析</li>
+<li>p.absolute() 获取绝对路径</li>
+<li>p.exists() 目录或文件是否存在</li>
+<li>p.rmdir() 删除空目录。没有提供判断目录为空的方法 </li>
+<li>p.touch(mode=0o666, exist_ok=True)   创建一个文件.<br><code>exist_ok</code>参数，在3.5版本加入。False时，路径存在，抛出FileExistsError;<strong>True时，FileExistsError被忽略</strong></li>
+<li>p.mkdir(mode=0o777, parents=False, exist_ok=True)<br><code>parents=True</code>等同于<code>mkdir -p</code>;False时，父目录不存在，则抛出FileNotFoundError</li>
+<li>p.as_uri() 将路径返回成URI，例如’file:///etc/passwd’</li>
+<li>p.iterdir() 如果p 是目录，则可以迭代出在目录p下的文件，返回一个生成器</li>
+<li>p.glob(pattern)  如果p 是目录，则找出文件名符合指定pattern的文件，返回一个生成器。</li>
+<li>p.rglob(pattern)  如果p 是目录，则<strong>递归该目录下的文件</strong>，找出文件名符合指定pattern的文件，返回一个生成器。</li>
+<li>p.match(pattern)  文件名是否符合指定pattern，返回bool</li>
+<li>p.stat() 等同stat</li>
+<li>p.lstat 同stat()，但如果是符号链接,则现实符号链接本身的文件信息</li>
+</ul>
+<h3 id="4-文件操作"><a href="#4-文件操作" class="headerlink" title="4. 文件操作"></a>4. 文件操作</h3><ul>
+<li>p.open(mode=’r’, buffering=-1, encoding=None, errors=None, newline=None)<br>使用方法类似内建函数open。返回一个文件对象，文件对象需要close<blockquote>
+<p>3.5增加的新函数</p>
+</blockquote>
+</li>
+<li>p.read_bytes()<br>以’rb’读取路径对应文件，并返回二进制流。</li>
+<li>p.read_text(encoding=None, errors=None)<br>以’rt’方式读取路径对应文件，返回文本。</li>
+<li>p.write_bytes(data)<br>以’wb’方式写入数据到路径对应文件。</li>
+<li>p.write_text(data, encoding=None, errors=None)<br>以’wt’方式写入字符串到路径对应文件。</li>
+</ul>
 
       
 
@@ -229,7 +268,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">kubernetes</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
         		</li>
       		
 		</ul>
@@ -285,7 +324,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2016/06/12/kubernetes中的volume/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2018/09/09/路径操作/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -299,18 +338,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2016/09/20/mysql-主从不同步解决/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          mysql 主从不同步解决
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/06/10/kubernetes-DNS配置/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">kubernetes DNS配置</div>
+    <a href="/2018/09/02/文件操作/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">文件操作</div>
       <i class="icon-circle-right"></i>
     </a>
   
