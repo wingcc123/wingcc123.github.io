@@ -19,7 +19,7 @@
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4618795-b803f17b968c2872.gif?imageMogr2/auto-orient/strip">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4618795-2f0873ba6a2872f0.gif?imageMogr2/auto-orient/strip">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4618795-e1afc6f757dbe6cc.gif?imageMogr2/auto-orient/strip">
-<meta property="og:updated_time" content="2018-09-23T13:38:19.000Z">
+<meta property="og:updated_time" content="2018-09-23T13:40:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="魔术方法">
 <meta name="twitter:description" content="一. &amp;#95;&amp;#95;dir&amp;#95;&amp;#95;1.意义:返回类或者对象的所有成员名称列表。 2.dir()本质：dir() 函数本质就是调用 &amp;#95;&amp;#95;dir&amp;#95;&amp;#95;()方法。  使用实例调用的时候：1.如果实例的类中提供 &amp;#95;&amp;#95;dir&amp;#95;&amp;#95;()，就会调用并且返回其返回值， (&amp;#95;&amp;#95;dir&amp;#95;&amp;#95; 方法的返回值一定要">
@@ -268,7 +268,32 @@
 <li>str(),format(),print()函数，如果&#95;&#95;str&#95;&#95; 没有定义，就会找&#95;&#95;repr&#95;&#95; ，如果&#95;&#95;repr&#95;&#95; 没有定义，就会直接返回对象的内存地址信息。</li>
 <li>repr(),和print存放在容器中实例的时候，如果没有&#95;&#95;repr&#95;&#95; ，则会返回对象的内存地址</li>
 </ul>
-<h1 id="六-运算符重载"><a href="#六-运算符重载" class="headerlink" title="六.运算符重载"></a>六.运算符重载</h1><h3 id="1-意义-5"><a href="#1-意义-5" class="headerlink" title="1. 意义"></a>1. 意义</h3><p>提供运算符重载，可以基于不同的类型对象作出不同的运算<br>|运算符|特殊方法|含义|<br>|:—:|:—:|:—:|<br>|&lt;, &lt;=, ==, &gt;, &gt;=, !=|&#95;&#95;lt&#95;&#95; , &#95;&#95;le&#95;&#95; , &#95;&#95;eq&#95;&#95; , &#95;&#95;gt&#95;&#95; , &#95;&#95;ge&#95;&#95; , &#95;&#95;ne&#95;&#95;| 比较运算符|<br>|+, -, <em>, /, %, //, **, divmod|&#95;&#95;add&#95;&#95; , &#95;&#95;sub&#95;&#95; , &#95;&#95;mul&#95;&#95; , &#95;&#95;truediv&#95;&#95; , &#95;&#95;mod&#95;&#95; , &#95;&#95;floordiv&#95;&#95; , &#95;&#95;pow&#95;&#95; , &#95;&#95;divmod&#95;&#95;|算数运算符，移位，位运算等|<br>|+=, -=, </em>=, /=, %=, //=, **=|&#95;&#95;iadd&#95;&#95; , &#95;&#95;isub&#95;&#95; , &#95;&#95;imul&#95;&#95; , &#95;&#95;itruediv&#95;&#95; , &#95;&#95;imod&#95;&#95; , &#95;&#95;ifloordiv&#95;&#95; , &#95;&#95;ipow&#95;&#95;||</p>
+<h1 id="六-运算符重载"><a href="#六-运算符重载" class="headerlink" title="六.运算符重载"></a>六.运算符重载</h1><h3 id="1-意义-5"><a href="#1-意义-5" class="headerlink" title="1. 意义"></a>1. 意义</h3><p>提供运算符重载，可以基于不同的类型对象作出不同的运算</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">运算符</th>
+<th style="text-align:center">特殊方法</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">&lt;, &lt;=, ==, &gt;, &gt;=, !=</td>
+<td style="text-align:center">&#95;&#95;lt&#95;&#95; , &#95;&#95;le&#95;&#95; , &#95;&#95;eq&#95;&#95; , &#95;&#95;gt&#95;&#95; , &#95;&#95;ge&#95;&#95; , &#95;&#95;ne&#95;&#95;</td>
+<td style="text-align:center">比较运算符</td>
+</tr>
+<tr>
+<td style="text-align:center">+, -, <em>, /, %, //, *</em>, divmod</td>
+<td style="text-align:center">&#95;&#95;add&#95;&#95; , &#95;&#95;sub&#95;&#95; , &#95;&#95;mul&#95;&#95; , &#95;&#95;truediv&#95;&#95; , &#95;&#95;mod&#95;&#95; , &#95;&#95;floordiv&#95;&#95; , &#95;&#95;pow&#95;&#95; , &#95;&#95;divmod&#95;&#95;</td>
+<td style="text-align:center">算数运算符，移位，位运算等</td>
+</tr>
+<tr>
+<td style="text-align:center">+=, -=, <em>=, /=, %=, //=, *</em>=</td>
+<td style="text-align:center">&#95;&#95;iadd&#95;&#95; , &#95;&#95;isub&#95;&#95; , &#95;&#95;imul&#95;&#95; , &#95;&#95;itruediv&#95;&#95; , &#95;&#95;imod&#95;&#95; , &#95;&#95;ifloordiv&#95;&#95; , &#95;&#95;ipow&#95;&#95;</td>
+</tr>
+</tbody>
+</table>
 <h3 id="2-定义-5"><a href="#2-定义-5" class="headerlink" title="2.定义"></a>2.定义</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">class Person():</div><div class="line">    def __init__(self,name,age):</div><div class="line">        self.name =  name</div><div class="line">        self.age = age</div><div class="line">    </div><div class="line">    def __sub__(self,other):</div><div class="line">        return self.age - other.age</div><div class="line">    </div><div class="line">    def __isub__(self,other):  #如果没有定义__isub__,则会调用__sub__</div><div class="line">        return Person(self.name,self - other) </div><div class="line">    </div><div class="line">tom = Person(&apos;tom&apos;,18)</div><div class="line">jerry = Person(&apos;jerry&apos;,16)</div><div class="line">print(tom - jerry)</div><div class="line">print(&apos;tom.age&apos;,tom.age)</div><div class="line">tom -= jerry </div><div class="line">print(&apos;tom.age&apos;,tom.age)</div></pre></td></tr></table></figure>
 <h3 id="3-总结-6"><a href="#3-总结-6" class="headerlink" title="3.总结"></a>3.总结</h3><ul>
 <li>&#95;&#95;isub&#95;&#95;方法定义，一般会使用in-place 来修改自身，如果没有定义&#95;&#95;isub&#95;&#95;,则会调用&#95;&#95;sub&#95;&#95;</li>
