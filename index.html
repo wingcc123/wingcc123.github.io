@@ -144,6 +144,196 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-魔术方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/23/魔术方法/">魔术方法</a>
+    </h1>
+  
+
+        
+        <a href="/2018/09/23/魔术方法/" class="archive-article-date">
+  	<time datetime="2018-09-23T13:37:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一-95-95-dir-95-95"><a href="#一-95-95-dir-95-95" class="headerlink" title="一. &#95;&#95;dir&#95;&#95;"></a>一. &#95;&#95;dir&#95;&#95;</h1><h3 id="1-意义"><a href="#1-意义" class="headerlink" title="1.意义:"></a>1.意义:</h3><p><strong>返回类或者对象的所有成员名称列表。</strong></p>
+<h3 id="2-dir-本质："><a href="#2-dir-本质：" class="headerlink" title="2.dir()本质："></a>2.dir()本质：</h3><p>dir() 函数本质就是调用 &#95;&#95;dir&#95;&#95;()方法。</p>
+<blockquote>
+<p>使用实例调用的时候：<br>1.如果实例的类中提供 &#95;&#95;dir&#95;&#95;()，就会调用并且返回其返回值， <strong>(&#95;&#95;dir&#95;&#95; 方法的返回值一定要是可迭代对象)</strong>，<br>2.如果没有类中提供，则会从实例和类以及祖先类中收集信息。（实际上收集的是字典，然后返回一个包含字典key的列表）</p>
+</blockquote>
+<p><img src="https://upload-images.jianshu.io/upload_images/4618795-5f68e3d14b12f0ca.gif?imageMogr2/auto-orient/strip" alt="dir.gif"></p>
+<h1 id="3-总结"><a href="#3-总结" class="headerlink" title="3.总结"></a>3.总结</h1><p><code>dir([object]) -&gt; list of strings</code>是内建函数 ，会返回一个属性名称列表。<br>①如果没有参数调用，则返回当前范围中的属性。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">当前范围</th>
+<th style="text-align:center">收集的信息</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">模块</td>
+<td style="text-align:center">模块的属性和变量名</td>
+</tr>
+<tr>
+<td style="text-align:center">函数</td>
+<td style="text-align:center">本地作用域的变量名</td>
+</tr>
+<tr>
+<td style="text-align:center">方法</td>
+<td style="text-align:center">本地作用域的变量名</td>
+</tr>
+</tbody>
+</table>
+<p>② dir(obj)调用</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">obj 类型</th>
+<th style="text-align:center">收集的信息</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">模块</td>
+<td style="text-align:center">返回一个包含模块的属性名和变量名的列表</td>
+</tr>
+<tr>
+<td style="text-align:center">类型或者类对象</td>
+<td style="text-align:center">返回一个包含类的属性名，以及它的基类的属性名的列表</td>
+</tr>
+</tbody>
+</table>
+<h1 id="二-95-95-new-95-95"><a href="#二-95-95-new-95-95" class="headerlink" title="二.&#95;&#95;new&#95;&#95;"></a>二.&#95;&#95;new&#95;&#95;</h1><h3 id="1-意义-1"><a href="#1-意义-1" class="headerlink" title="1.意义"></a>1.意义</h3><p><strong>实例化一个对象的时候会调用&#95;&#95;new&#95;&#95;</strong></p>
+<h3 id="2-定义"><a href="#2-定义" class="headerlink" title="2.定义"></a>2.定义</h3><ul>
+<li>该方法需要一个返回值，如果该返回值不是cls的实例，那么就不会调用&#95;&#95;init&#95;&#95;</li>
+<li>该方法永远都是静态方法</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">class Person:</div><div class="line">    def __new__(cls,*args,**kwargs):</div><div class="line">        print(cls)</div><div class="line">        print(args)</div><div class="line">        print(kwargs)</div><div class="line">        #return 1</div><div class="line"></div><div class="line">        #return None</div><div class="line">        return super().__new__(cls)</div><div class="line"></div><div class="line">    def __init__(self,name):</div><div class="line">        self.name = name</div><div class="line"> </div><div class="line">tom = Person(&apos;tom&apos;)</div><div class="line">print(tom.name)</div></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/4618795-b803f17b968c2872.gif?imageMogr2/auto-orient/strip" alt="new.gif"></p>
+<h3 id="3-总结-1"><a href="#3-总结-1" class="headerlink" title="3.总结"></a>3.总结</h3><p>&#95;&#95;new&#95;&#95; 方法很少使用，即使创建了该方法，也会使用<code>return super().__new__(cls)</code>基类object的<code>__new__</code>方法来创建实例并且返回</p>
+<h1 id="三-95-95-hash-95-95"><a href="#三-95-95-hash-95-95" class="headerlink" title="三.  &#95;&#95;hash&#95;&#95;"></a>三.  &#95;&#95;hash&#95;&#95;</h1><h3 id="1-意义-2"><a href="#1-意义-2" class="headerlink" title="1.意义"></a>1.意义</h3><p><strong>返回一个整数</strong><br>内建函数hash(obj) ，如果obj 中的存在 &#95;&#95;hash&#95;&#95;会自动调用</p>
+<h3 id="2-定义-1"><a href="#2-定义-1" class="headerlink" title="2.定义"></a>2.定义</h3><ul>
+<li>返回值必须是整数</li>
+</ul>
+<h3 id="3-总结-2"><a href="#3-总结-2" class="headerlink" title="3.总结"></a>3.总结</h3><ul>
+<li>如果类中定义 &#95;&#95;hash&#95;&#95;方法并且返回值是整数 ，那么这个类的实例就是可hash 的</li>
+<li>两个对象比较之前一定要有相同的hash值，然后会进行比较</li>
+<li>hash冲突：不同的对象有可能hash出来相同值</li>
+<li>如果类中定义&#95;&#95;hash&#95;&#95; = None，则该类不能hash</li>
+<li>可以通过isinstance(a,collections.Hashable)判断是否可以hash</li>
+</ul>
+<h1 id="四-95-95-eq-95-95"><a href="#四-95-95-eq-95-95" class="headerlink" title="四.&#95;&#95;eq&#95;&#95;"></a>四.&#95;&#95;eq&#95;&#95;</h1><h3 id="一-意义"><a href="#一-意义" class="headerlink" title="一.意义"></a>一.意义</h3><p>对应==操作符，可以判读2个对象是否相等，返回bool值</p>
+<h3 id="2-定义-2"><a href="#2-定义-2" class="headerlink" title="2. 定义"></a>2. 定义</h3><ul>
+<li>返回值必须是布尔值</li>
+<li>要有两个参数self，other<br><img src="https://upload-images.jianshu.io/upload_images/4618795-2f0873ba6a2872f0.gif?imageMogr2/auto-orient/strip" alt="hash_eq.gif"></li>
+</ul>
+<h3 id="3-总结-3"><a href="#3-总结-3" class="headerlink" title="3.总结"></a>3.总结</h3><ul>
+<li>&#95;&#95;hash&#95;&#95; 方法只是返回一个hash值作为set的key，但是<strong>去重</strong>还需要 &#95;&#95;eq&#95;&#95;来判断两个对象是否相等</li>
+<li>因此，一般来说提供 &#95;&#95;hash&#95;&#95;方法可以等到set／dict的key，而去重需要使用 &#95;&#95;eq&#95;&#95;判断两个值是否相等。</li>
+<li>set 的去重顺序：首先判断hash值是否相等，如果相等再判断对象是否相等。</li>
+</ul>
+<h1 id="五-95-95-bool-95-95"><a href="#五-95-95-bool-95-95" class="headerlink" title="五.&#95;&#95;bool&#95;&#95;"></a>五.&#95;&#95;bool&#95;&#95;</h1><h3 id="1-意义-3"><a href="#1-意义-3" class="headerlink" title="1.意义"></a>1.意义</h3><ul>
+<li>内置函数bool() ，或者对象放在逻辑表达式的位置的时候会调用，</li>
+</ul>
+<h3 id="2-定义-3"><a href="#2-定义-3" class="headerlink" title="2.定义"></a>2.定义</h3><ul>
+<li>返回值必须是布尔值<br><img src="https://upload-images.jianshu.io/upload_images/4618795-e1afc6f757dbe6cc.gif?imageMogr2/auto-orient/strip" alt="bool.gif"></li>
+</ul>
+<h3 id="3-总结-4"><a href="#3-总结-4" class="headerlink" title="3.总结"></a>3.总结</h3><p>逻辑判断的时候：</p>
+<ul>
+<li>如果类中存在&#95;&#95;bool&#95;&#95;方法，调用这个方法返回的布尔值；</li>
+<li>没有定义&#95;&#95;bool&#95;&#95;,那么就找&#95;&#95;len&#95;&#95;()返回的长度，非0为真；</li>
+<li>如果&#95;&#95;len&#95;&#95;也没有定义，那么所有实例都返回真。</li>
+</ul>
+<h1 id="五-可视化"><a href="#五-可视化" class="headerlink" title="五.可视化"></a>五.可视化</h1><h3 id="1-意义-4"><a href="#1-意义-4" class="headerlink" title="1.意义"></a>1.意义</h3><ul>
+<li>&#95;&#95;repr&#95;&#95; :内建函数repr()对一个对象获取<strong>字符串</strong>表达，实例存放在其他容器中的时候，则会调用&#95;&#95;repr&#95;&#95;方法返回字符串表达。</li>
+<li>&#95;&#95;str&#95;&#95; : str(),format(),print()函数默认调用，需要返回对象的<strong>字符串</strong>表达式。</li>
+<li>&#95;&#95;bytes&#95;&#95; bytes()函数调用，返回一个对象bytes表达，即<strong>返回bytes对象</strong></li>
+</ul>
+<h3 id="2-定义-4"><a href="#2-定义-4" class="headerlink" title="2.定义"></a>2.定义</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">class Person():</div><div class="line">    def __init__(self,name,age):</div><div class="line">        self.name =  name</div><div class="line">        self.age = age</div><div class="line">    </div><div class="line">    def __repr__(self):</div><div class="line">        return &apos;repr:&#123;&#125;,&#123;&#125;&apos;.format(self.name,self.age)</div><div class="line">    </div><div class="line">    def __str__(self):</div><div class="line">        return &apos;str:&#123;&#125;,&#123;&#125;&apos;.format(self.name,self.age)</div><div class="line">    </div><div class="line">    def __bytes__(self):</div><div class="line">        import json</div><div class="line">        return json.dumps(self.__dict__).encode()</div><div class="line">    </div><div class="line">tom = Person(&apos;tom&apos;,&apos;18&apos;)</div><div class="line">print(tom)</div><div class="line">print([tom])</div><div class="line">print([str(tom)])</div><div class="line">print(bytes(tom))</div></pre></td></tr></table></figure>
+<h3 id="3-总结-5"><a href="#3-总结-5" class="headerlink" title="3.总结"></a>3.总结</h3><ul>
+<li>str(),format(),print()函数，如果&#95;&#95;str&#95;&#95; 没有定义，就会找&#95;&#95;repr&#95;&#95; ，如果&#95;&#95;repr&#95;&#95; 没有定义，就会直接返回对象的内存地址信息。</li>
+<li>repr(),和print存放在容器中实例的时候，如果没有&#95;&#95;repr&#95;&#95; ，则会返回对象的内存地址</li>
+</ul>
+<h1 id="六-运算符重载"><a href="#六-运算符重载" class="headerlink" title="六.运算符重载"></a>六.运算符重载</h1><h3 id="1-意义-5"><a href="#1-意义-5" class="headerlink" title="1. 意义"></a>1. 意义</h3><p>提供运算符重载，可以基于不同的类型对象作出不同的运算<br>|运算符|特殊方法|含义|<br>|:—:|:—:|:—:|<br>|&lt;, &lt;=, ==, &gt;, &gt;=, !=|&#95;&#95;lt&#95;&#95; , &#95;&#95;le&#95;&#95; , &#95;&#95;eq&#95;&#95; , &#95;&#95;gt&#95;&#95; , &#95;&#95;ge&#95;&#95; , &#95;&#95;ne&#95;&#95;| 比较运算符|<br>|+, -, <em>, /, %, //, **, divmod|&#95;&#95;add&#95;&#95; , &#95;&#95;sub&#95;&#95; , &#95;&#95;mul&#95;&#95; , &#95;&#95;truediv&#95;&#95; , &#95;&#95;mod&#95;&#95; , &#95;&#95;floordiv&#95;&#95; , &#95;&#95;pow&#95;&#95; , &#95;&#95;divmod&#95;&#95;|算数运算符，移位，位运算等|<br>|+=, -=, </em>=, /=, %=, //=, **=|&#95;&#95;iadd&#95;&#95; , &#95;&#95;isub&#95;&#95; , &#95;&#95;imul&#95;&#95; , &#95;&#95;itruediv&#95;&#95; , &#95;&#95;imod&#95;&#95; , &#95;&#95;ifloordiv&#95;&#95; , &#95;&#95;ipow&#95;&#95;||</p>
+<h3 id="2-定义-5"><a href="#2-定义-5" class="headerlink" title="2.定义"></a>2.定义</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">class Person():</div><div class="line">    def __init__(self,name,age):</div><div class="line">        self.name =  name</div><div class="line">        self.age = age</div><div class="line">    </div><div class="line">    def __sub__(self,other):</div><div class="line">        return self.age - other.age</div><div class="line">    </div><div class="line">    def __isub__(self,other):  #如果没有定义__isub__,则会调用__sub__</div><div class="line">        return Person(self.name,self - other) </div><div class="line">    </div><div class="line">tom = Person(&apos;tom&apos;,18)</div><div class="line">jerry = Person(&apos;jerry&apos;,16)</div><div class="line">print(tom - jerry)</div><div class="line">print(&apos;tom.age&apos;,tom.age)</div><div class="line">tom -= jerry </div><div class="line">print(&apos;tom.age&apos;,tom.age)</div></pre></td></tr></table></figure>
+<h3 id="3-总结-6"><a href="#3-总结-6" class="headerlink" title="3.总结"></a>3.总结</h3><ul>
+<li>&#95;&#95;isub&#95;&#95;方法定义，一般会使用in-place 来修改自身，如果没有定义&#95;&#95;isub&#95;&#95;,则会调用&#95;&#95;sub&#95;&#95;</li>
+<li>类型的需要比较大小至少需要三个运算方法 ： &#95;&#95;eq&#95;&#95;，&#95;&#95;gt&#95;&#95;，&#95;&#95;ge&#95;&#95;</li>
+<li>也可以使用@functolls.total_ordering 装饰器实现类型比较</li>
+</ul>
+<h1 id="七-容器相关方法"><a href="#七-容器相关方法" class="headerlink" title="七.容器相关方法"></a>七.容器相关方法</h1><ul>
+<li>&#95;&#95;len&#95;&#95; ：内建函数len(),返回对象的长度，返回值&gt;= 0.</li>
+<li>&#95;&#95;iter&#95;&#95; ：内建函数iter()，迭代容器时候调用，返回一个新的迭代器对象</li>
+<li>&#95;&#95;contains&#95;&#95;：in成员运算符，如果没有则调用 &#95;&#95;iter&#95;&#95;</li>
+<li>&#95;&#95;getitem&#95;&#95;：实现self[key]访问。序列对象，key接受整数为索引，或者切片类。对于set和dict，key为hashable，key不存在则会抛异常。</li>
+<li>&#95;&#95;setitem&#95;&#95; 和&#95;&#95;getitem&#95;&#95;相似，设置值的方法</li>
+<li>&#95;&#95;missing&#95;&#95; 字典或者其子类使用&#95;&#95;getitem&#95;&#95;调用的时候，key不存在则执行该方法。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">class Cart:</div><div class="line">    def __init__(self):</div><div class="line">        self.items = []</div><div class="line">    def __len__(self):</div><div class="line">        return len(self.items)</div><div class="line">    def additem(self, item):</div><div class="line">        self.items.append(item)</div><div class="line">    def __iter__(self):</div><div class="line">        # yield from self.items</div><div class="line">        return iter(self.items)</div><div class="line">    def __getitem__(self, index): # 索引访问 </div><div class="line">        return self.items[index]</div><div class="line">    def __setitem__(self, key, value): # 索引赋值 </div><div class="line">        self.items[key] = value</div><div class="line">    def __str__(self):</div><div class="line">        return str(self.items)    </div><div class="line">    def __add__(self, other): # +</div><div class="line">        self.items.append(other)</div><div class="line">        return self   </div><div class="line"></div><div class="line">cart = Cart()</div><div class="line">cart.additem(1)</div><div class="line">cart.additem(&apos;abc&apos;)</div><div class="line">cart.additem(3)</div><div class="line"># 长度、bool </div><div class="line">print(len(cart)) </div><div class="line">print(bool(cart))</div><div class="line"># 迭代</div><div class="line">for x in cart:</div><div class="line">    print(x)</div><div class="line"># in</div><div class="line">print(3 in cart)</div><div class="line">print(2 in cart)</div><div class="line"># 索引操作 </div><div class="line">print(cart[1]) </div><div class="line">cart[1] = &apos;xyz&apos; </div><div class="line">print(cart)</div></pre></td></tr></table></figure>
+<h1 id="八-95-95-call-95-95"><a href="#八-95-95-call-95-95" class="headerlink" title="八.&#95;&#95;call&#95;&#95;"></a>八.&#95;&#95;call&#95;&#95;</h1><h3 id="1-意义-6"><a href="#1-意义-6" class="headerlink" title="1.意义"></a>1.意义</h3><p>类中定义该方法，则实例可以想函数一样调用</p>
+<h3 id="2-定义-6"><a href="#2-定义-6" class="headerlink" title="2.定义"></a>2.定义</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">class Point():</div><div class="line">    def __init__(self,x,y):</div><div class="line">        self.x = x</div><div class="line">        self.y = y</div><div class="line">    def __call__(self,*args,**kwargs):</div><div class="line">        return &quot;&lt;Point &#123;&#125;:&#123;&#125;&gt;&quot;.format(self.x, self.y)</div><div class="line">p = Point(1,2)</div><div class="line">print(p)</div><div class="line">print(p())</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/09/23/魔术方法/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-面向对象" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1781,268 +1971,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/08/12/线性结构(列表、元组、字符串、bytes、bytearray)/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-python基础" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/02/python基础/">python基础</a>
-    </h1>
-  
-
-        
-        <a href="/2018/08/02/python基础/" class="archive-article-date">
-  	<time datetime="2018-08-02T10:52:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="一-python语言"><a href="#一-python语言" class="headerlink" title="一.python语言"></a>一.python语言</h1><p>python 是一门动态，强类型语言。<br>不需要声明变量类型，不同的变量类型不能一起操作</p>
-<h1 id="二-基础语法"><a href="#二-基础语法" class="headerlink" title="二.基础语法"></a>二.基础语法</h1><h3 id="1-标识符（变量名）"><a href="#1-标识符（变量名）" class="headerlink" title="1. 标识符（变量名）"></a>1. 标识符（变量名）</h3><ul>
-<li>一个名字，代表一个数值</li>
-<li>只能是字母，下划线，数字</li>
-<li>只能以字母或者下划线开头</li>
-<li>不能使用python 关键字</li>
-<li>大小写敏感<br><strong>注意：</strong><br>1.不允许使用中文<br>2.不能使用有歧义的标识符，例如class<em><br>3.不能随便使用下划线开头的标识符<br>4.“</em> ”标识符表示用后即焚<h3 id="2-运算符"><a href="#2-运算符" class="headerlink" title="2. 运算符"></a>2. 运算符</h3>算数运算符 &gt;位运算符&gt;身份运算符&gt;成员运算符&gt;逻辑运算符<br><img src="https://upload-images.jianshu.io/upload_images/4618795-4738ebbe40048510.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><h3 id="3-表达式"><a href="#3-表达式" class="headerlink" title="3.表达式"></a>3.表达式</h3>由数字，符号，括号，变量等的组合</li>
-<li>算数表达式</li>
-<li>逻辑表达式</li>
-<li>赋值表达式<br><strong>赋值即定义</strong><h3 id="4-真值表"><a href="#4-真值表" class="headerlink" title="4.真值表"></a>4.真值表</h3></li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>对象／常量</th>
-<th>值</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>“”</td>
-<td>False</td>
-<td></td>
-</tr>
-<tr>
-<td>“string”</td>
-<td>True</td>
-<td></td>
-</tr>
-<tr>
-<td> 0</td>
-<td>False</td>
-<td></td>
-</tr>
-<tr>
-<td> &gt;=1</td>
-<td>True</td>
-<td></td>
-</tr>
-<tr>
-<td> &lt;=-1</td>
-<td>True</td>
-<td></td>
-</tr>
-<tr>
-<td> ()</td>
-<td>False</td>
-<td></td>
-</tr>
-<tr>
-<td> []</td>
-<td>False</td>
-<td></td>
-</tr>
-<tr>
-<td> {}</td>
-<td>False</td>
-<td></td>
-</tr>
-<tr>
-<td> None</td>
-<td>False</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>False :None,0,四大皆空</p>
-<h1 id="三-程序控制"><a href="#三-程序控制" class="headerlink" title="三.程序控制"></a>三.程序控制</h1><h3 id="1-if语句"><a href="#1-if语句" class="headerlink" title="1.if语句"></a>1.if语句</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">if condition1:   #condition 必须是一个布尔类型</div><div class="line">    block1:</div><div class="line">elif condition2:</div><div class="line">    block2:</div><div class="line">else:</div><div class="line">    block3</div></pre></td></tr></table></figure>
-<h3 id="2-for语句"><a href="#2-for语句" class="headerlink" title="2.for语句"></a>2.for语句</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">for element in iteratable: # 可迭代对象</div><div class="line">    block</div></pre></td></tr></table></figure>
-<p>for..else 字句<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">for element in iteratable: # 可迭代对象</div><div class="line">    block</div><div class="line">else:   ###当正常结束for循环的时候可以执行else语句</div></pre></td></tr></table></figure></p>
-<h3 id="3-continue-break"><a href="#3-continue-break" class="headerlink" title="3.continue,break"></a>3.continue,break</h3><ul>
-<li>continue 中断当前循环的档次执行，继续下一次循环</li>
-<li>break 终止当前循环</li>
-<li>continue和break 是循环的控制语句，只影响当前循环，包括while，for循环</li>
-<li>如果循环嵌套，continue和break也只是影响语句所在那一层</li>
-<li>continue 和 break 不是跳出语句块，所以 if cond:break 不是跳出if ,而是终止if外的break所在的循环</li>
-</ul>
-<h1 id="四-字符串格式化"><a href="#四-字符串格式化" class="headerlink" title="四.字符串格式化"></a>四.字符串格式化</h1><p><strong>str.format()函数</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt;&quot;&#123;&#125; &#123;&#125;&quot;.format(&quot;hello&quot;, &quot;world&quot;)    # 不设置指定位置，按默认顺序</div><div class="line">&apos;hello world&apos;</div><div class="line"> </div><div class="line">&gt;&gt;&gt; &quot;&#123;0&#125; &#123;1&#125;&quot;.format(&quot;hello&quot;, &quot;world&quot;)  # 设置指定位置</div><div class="line">&apos;hello world&apos;</div><div class="line"> </div><div class="line">&gt;&gt;&gt; &quot;&#123;1&#125; &#123;0&#125; &#123;1&#125;&quot;.format(&quot;hello&quot;, &quot;world&quot;)  # 设置指定位置</div><div class="line">&apos;world hello world&apos;</div></pre></td></tr></table></figure></p>
-<table>
-<thead>
-<tr>
-<th>数字</th>
-<th>格式</th>
-<th>输出</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>3.1415926</td>
-<td>{:.2f}</td>
-<td>3.14</td>
-<td>保留小数点后两位</td>
-</tr>
-<tr>
-<td>3.1415926</td>
-<td>{:+.2f}</td>
-<td>+3.14</td>
-<td>带符号保留小数点后两位</td>
-</tr>
-<tr>
-<td>-1</td>
-<td>{:+.2f}</td>
-<td>-1.00</td>
-<td>带符号保留小数点后两位</td>
-</tr>
-<tr>
-<td>2.71828</td>
-<td>{:.0f}</td>
-<td>3</td>
-<td>不带小数</td>
-</tr>
-<tr>
-<td>5</td>
-<td>{:0&gt;2d}</td>
-<td>05</td>
-<td>数字补零 (填充左边, 宽度为2)</td>
-</tr>
-<tr>
-<td>5</td>
-<td>{:x&lt;4d}</td>
-<td>5xxx</td>
-<td>数字补x (填充右边, 宽度为4)</td>
-</tr>
-<tr>
-<td>10</td>
-<td>{:x&lt;4d}</td>
-<td>10xx</td>
-<td>数字补x (填充右边, 宽度为4)</td>
-</tr>
-<tr>
-<td>1000000</td>
-<td>{:,}</td>
-<td>1,000,000</td>
-<td>以逗号分隔的数字格式</td>
-</tr>
-<tr>
-<td>0.25</td>
-<td>{:.2%}</td>
-<td>25.00%</td>
-<td>百分比格式</td>
-</tr>
-<tr>
-<td>1000000000</td>
-<td>{:.2e}</td>
-<td>1.00e+09</td>
-<td>指数记法</td>
-</tr>
-<tr>
-<td>13</td>
-<td>{:10d}</td>
-<td>13</td>
-<td>右对齐 (默认, 宽度为10)</td>
-</tr>
-<tr>
-<td>13</td>
-<td>{:&lt;10d}</td>
-<td>13</td>
-<td>左对齐 (宽度为10)</td>
-</tr>
-<tr>
-<td>13</td>
-<td>{:^10d}</td>
-<td>13</td>
-<td>中间对齐 (宽度为10)</td>
-</tr>
-</tbody>
-</table>
-<h1 id="五-练习"><a href="#五-练习" class="headerlink" title="五.练习"></a>五.练习</h1><h3 id="1-打印99乘法表"><a href="#1-打印99乘法表" class="headerlink" title="1.打印99乘法表"></a>1.打印99乘法表</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">#打印99乘法表</div><div class="line">for i in range(1,10): #[1,9]</div><div class="line">    for j in range(1,i+1):  #通过对角线分析可以知道，i&gt;=j ,所以范围是[1,i]</div><div class="line">        # 控制输出格式，向左对齐，如果j=1 ，宽度为2，否则宽度为3</div><div class="line">        print(&apos;&#123;&#125;*&#123;&#125;=&#123;:&lt;&#123;&#125;&#125;&apos;.format(j,i,j*i,2 if j == 1 else 3), end=&quot;&quot;)</div><div class="line">    print()</div></pre></td></tr></table></figure>
-<p><img src="https://upload-images.jianshu.io/upload_images/4618795-ed294117a2b2f225.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="99乘法表.png"></p>
-<p>打印方向99乘法表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">#方法一</div><div class="line"></div><div class="line">for i in range(1,10): # [1,9]</div><div class="line">    for j in range(1,10):</div><div class="line">        if j &gt;= i: # [i,10] ,打印乘法表</div><div class="line">            print(&quot;&#123;&#125;*&#123;&#125;=&#123;:&lt;&#123;&#125;&#125;&quot;.format(i,j,i+j,3 if j &lt; 5 else 4), end=&quot;&quot;)</div><div class="line">        else : #如果i &gt; j 补空格，[1,i)</div><div class="line">            print(&quot;&#123;&#125; &#123;&#125; &#123;:&lt;&#123;&#125;&#125;&quot;.format(&quot; &quot;,&quot; &quot;,&quot; &quot;,3 if j &lt; 5 else 4), end=&quot;&quot;)</div><div class="line">    print()</div></pre></td></tr></table></figure></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/4618795-8d6bcd192e0d2e14.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="反99乘法表.png"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">#方法二</div><div class="line"></div><div class="line">for i in range(1,10):#[1,9]</div><div class="line">    s = &quot;&quot; # 定义一个空字符串</div><div class="line">    for j in range(i,10): #[i,10]</div><div class="line">        #将输出拼接为一行的字符串</div><div class="line">        s += &apos;&#123;&#125;*&#123;&#125;=&#123;:&lt;&#123;&#125;&#125;&apos;.format(i,j,i+j,3 if j &lt; 5 else 4)</div><div class="line">        #讲整行字符串右对齐，宽度是75</div><div class="line">    print(&quot;&#123;:&gt;75&#125;&quot;.format(s))</div></pre></td></tr></table></figure>
-<p><img src="https://upload-images.jianshu.io/upload_images/4618795-c8da20f127878a61.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="反99乘法表.png"></p>
-<h3 id="2-打印菱形"><a href="#2-打印菱形" class="headerlink" title="2.打印菱形"></a>2.打印菱形</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">#打印菱形</div><div class="line">#方法一</div><div class="line">n = 7 </div><div class="line">for x in range(-(n//2),n//2+1):#[-3,3]</div><div class="line">    if x &lt; 0:</div><div class="line">        y = -x</div><div class="line">    else:</div><div class="line">        y = x</div><div class="line">    print(y*&apos; &apos;+(n-2*y)*&apos;*&apos;)</div></pre></td></tr></table></figure>
-<p><img src="https://upload-images.jianshu.io/upload_images/4618795-ca181c6707f0100b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="菱形.png"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">#打印菱形</div><div class="line">#方法二，坐标建模，菱形的范围就在|x|+|y|&lt; n//2+1</div><div class="line">n = 7</div><div class="line">for x in range(n//2,-(n//2+1),-1): #[3,-3]</div><div class="line">    print(abs(x)*&apos; &apos;,end=&apos;&apos;)</div><div class="line">    for y in range(-(n//2),(n//2)+1):#[-3,3]</div><div class="line">        if abs(x)+abs(y)&lt;(n//2+1):</div><div class="line">            print(&apos;*&apos;,end=&apos;&apos;)</div><div class="line">    print()</div></pre></td></tr></table></figure>
-<p><img src="https://upload-images.jianshu.io/upload_images/4618795-1df26648e619e8b9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="菱形.png"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#打印对顶三角形</div><div class="line">n = 7</div><div class="line">for x in range(-(n//2),n//2+1):</div><div class="line">    y = -x if x &lt;= 0 else x  #三元表达式</div><div class="line">    print((n//2-y)*&apos; &apos;+(2*y+1)*&apos;*&apos;)</div></pre></td></tr></table></figure>
-<p><img src="https://upload-images.jianshu.io/upload_images/4618795-662c89eee8198975.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="对顶三角形.png"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">#打印闪电</div><div class="line">n = 7</div><div class="line">for x in range(-(n//2),n//2+1):</div><div class="line">    if x == 0:</div><div class="line">        print(n*&apos;*&apos;)</div><div class="line">    elif x &lt; 0:</div><div class="line">        print(-x*&apos; &apos;+(n//2+1+x)*&apos;*&apos;)</div><div class="line">    else:</div><div class="line">        print(n//2*&apos; &apos;+(n//2+1-x)*&apos;*&apos;)</div></pre></td></tr></table></figure></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/4618795-a2360e3ede81d20b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="闪电.png"></p>
-<h3 id="3-斐波那契数列"><a href="#3-斐波那契数列" class="headerlink" title="3. 斐波那契数列"></a>3. 斐波那契数列</h3><p>斐波那契数列F(0) = 0 , F(1) = 1, n &gt; 1, F(n) = F(n-1) + F(n-2)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">#打印100以内的斐波那契数列</div><div class="line">#第0项</div><div class="line">a = 0</div><div class="line">#第1项</div><div class="line">b = 1</div><div class="line">print(0 ,1,end=&apos; &apos;)</div><div class="line">while True:</div><div class="line">    c = a + b</div><div class="line">    a,b = b,c</div><div class="line">    if c &gt; 100:</div><div class="line">        break</div><div class="line">    print(c , end=&apos; &apos;)</div></pre></td></tr></table></figure></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/4618795-16f078de31da8c4d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="100以内fib数.png"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">#求斐波那契数列第101项</div><div class="line">a = 0</div><div class="line">b = 1</div><div class="line">for i in range(2,102): #[2,101]</div><div class="line">    c = a + b</div><div class="line">    a,b = b,c</div><div class="line">print(c)</div></pre></td></tr></table></figure>
-<p><img src="https://upload-images.jianshu.io/upload_images/4618795-64683aff2f08893e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="fib第101项.png"></p>
-<h3 id="4-求10万内的所有素数"><a href="#4-求10万内的所有素数" class="headerlink" title="4.求10万内的所有素数"></a>4.求10万内的所有素数</h3><p>假设a&gt;=b<br>m = a<em>b &gt;= b^2<br>a &gt;= m <em>*0.5<br>b &lt;= m </em></em>0.5<br>因为如果一个数不是素数是合数， 那么一定可以由两个自然数相乘得到，合数m 一定有小于或者等于m的平方根的因数，所以只要验证素数的除数的范围只需其平方根。<br>第一种方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">import time</div><div class="line">start = time.clock()</div><div class="line">number = 100000</div><div class="line">count = 1</div><div class="line">print(2,end=&apos; &apos;)</div><div class="line">#除了2以外，所有素数都是奇数</div><div class="line">for num in range(3,24,2):</div><div class="line">    flag = True</div><div class="line">    for i in range(2,int(num**0.5)+ 1):</div><div class="line">        m = num % i</div><div class="line">        if m == 0 :</div><div class="line">            flag = False</div><div class="line">            break</div><div class="line">        else:</div><div class="line">            flag = True</div><div class="line">    if flag:</div><div class="line">        count += 1</div><div class="line">        print(num, end=&apos; &apos;)</div><div class="line">for num in range(25,number,2):</div><div class="line">  ##大于6的质数除以6，余数都是1或者5</div><div class="line">    if num % 6 != 1 and num % 6 != 5:</div><div class="line">        continue</div><div class="line">    else :</div><div class="line">        flag = False</div><div class="line">        for i in range(5,int(num**0.5 + 1),6):</div><div class="line">            if ( not num % i ) or ( not num % (i+2) ):</div><div class="line">                flag = False</div><div class="line">                break</div><div class="line">            else:</div><div class="line">                flag = True</div><div class="line">    if flag :</div><div class="line">        print(num, end= &apos; &apos;)</div><div class="line">        count += 1</div><div class="line">print()</div><div class="line">print(count)</div><div class="line">end = time.clock()</div><div class="line">time = end - start</div><div class="line">print(time)</div></pre></td></tr></table></figure></p>
-<p>第二种方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">import time</div><div class="line">start = time.clock()</div><div class="line">count = 2</div><div class="line">print(2, end=&apos; &apos;)</div><div class="line">print(3, end=&apos; &apos;)</div><div class="line">number = 100000</div><div class="line">for num in range(5,number,2):</div><div class="line">  #大于6的质数除以6，余数都是1或者5</div><div class="line">    if num % 6 != 1 and num % 6 != 5:</div><div class="line">        continue</div><div class="line">    else :</div><div class="line">        flag = False</div><div class="line">        if num &lt; 30 :</div><div class="line">            for i in range(3,num,2):</div><div class="line">                if not ( num % i ):</div><div class="line">                    flag = False</div><div class="line">                    break</div><div class="line">                else:</div><div class="line">                    flag = True</div><div class="line">        else:</div><div class="line">            for i in range(5,int(num**0.5 + 1),6):</div><div class="line">                if ( not num % i ) or ( not num % (i+2) ):</div><div class="line">                    flag = False</div><div class="line">                    break</div><div class="line">                else:</div><div class="line">                     flag = True</div><div class="line">    if flag :</div><div class="line">        print(num, end= &apos; &apos;)</div><div class="line">        count += 1</div><div class="line">print()</div><div class="line">print(count)</div><div class="line">end = time.clock()</div><div class="line">time = end - start</div><div class="line">print(time)</div></pre></td></tr></table></figure></p>
-<p>第三种方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">#打印10万以内的素数</div><div class="line">n = 100000</div><div class="line">#除了2 以外的素数，都是奇数</div><div class="line">count=1</div><div class="line">print(2,end=&apos; &apos;)</div><div class="line">for i in range(3,n,2):</div><div class="line">    flag = False</div><div class="line">    if i &gt; 10 and  i % 5 == 0 :</div><div class="line">        continue</div><div class="line">    for j in range(3,int(i**0.5)+1,2):</div><div class="line">        if i % j == 0:</div><div class="line">            break </div><div class="line">    else:</div><div class="line">        print(i,end=&apos; &apos;)</div><div class="line">        count += 1</div><div class="line"></div><div class="line">print()</div><div class="line">print(count)</div></pre></td></tr></table></figure></p>
-<p><strong>总共9592个，最后一项是99991</strong></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/02/python基础/">展开全文 >></a>
         </p>
       
 
