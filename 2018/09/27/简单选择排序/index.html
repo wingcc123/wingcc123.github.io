@@ -6,24 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>封装和解构,丢弃变量 | Winnie&#39;s cabin</title>
+  <title>简单选择排序 | Winnie&#39;s cabin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一.封装 将多个值使用逗号分割，组合在一起 本质上，封装成一个元组，返回二.解构 把右边多个元素集合解开，并顺序的赋给其它变量 左边接纳的变量数要和右边解开的元素个数一致,否则出现报错ValueError 左边要出现至少两个的标识符才能解构  1234567&amp;gt;&amp;gt;&amp;gt; x = 100&amp;gt;&amp;gt;&amp;gt; y = 10&amp;gt;&amp;gt;&amp;gt; x,y = y,x   #先将右边的y">
-<meta name="keywords" content="python">
+  <meta name="description" content="属于选择排序 两两比较，找出极值(极大值或者极小值)的索引，然后和某一端(开头或者结尾)交换。 时间复杂度O(n2) 减少了交换次数，提高了效率，性能略好于冒泡法  123456789101112def Selection_sorts(array,reverse=False):    &amp;quot;&amp;quot;&amp;quot; reverse=False 升序&amp;quot;&amp;quot;&amp;quot;">
+<meta name="keywords" content="算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="封装和解构,丢弃变量">
-<meta property="og:url" content="http://yoursite.com/2018/08/15/封装和解构-丢弃变量/index.html">
+<meta property="og:title" content="简单选择排序">
+<meta property="og:url" content="http://yoursite.com/2018/09/27/简单选择排序/index.html">
 <meta property="og:site_name" content="Winnie&#39;s cabin">
-<meta property="og:description" content="一.封装 将多个值使用逗号分割，组合在一起 本质上，封装成一个元组，返回二.解构 把右边多个元素集合解开，并顺序的赋给其它变量 左边接纳的变量数要和右边解开的元素个数一致,否则出现报错ValueError 左边要出现至少两个的标识符才能解构  1234567&amp;gt;&amp;gt;&amp;gt; x = 100&amp;gt;&amp;gt;&amp;gt; y = 10&amp;gt;&amp;gt;&amp;gt; x,y = y,x   #先将右边的y">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4618795-c62b66105a5c8ce8.gif?imageMogr2/auto-orient/strip">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4618795-ba08c172c50849e6.gif?imageMogr2/auto-orient/strip">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4618795-7381082112854a01.gif?imageMogr2/auto-orient/strip">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4618795-e73573d1c7701a36.gif?imageMogr2/auto-orient/strip">
-<meta property="og:updated_time" content="2018-08-15T08:57:19.000Z">
+<meta property="og:description" content="属于选择排序 两两比较，找出极值(极大值或者极小值)的索引，然后和某一端(开头或者结尾)交换。 时间复杂度O(n2) 减少了交换次数，提高了效率，性能略好于冒泡法  123456789101112def Selection_sorts(array,reverse=False):    &amp;quot;&amp;quot;&amp;quot; reverse=False 升序&amp;quot;&amp;quot;&amp;quot;">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4618795-56873f95709421ca.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4618795-9552239fba10b77d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-09-27T11:56:28.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="封装和解构,丢弃变量">
-<meta name="twitter:description" content="一.封装 将多个值使用逗号分割，组合在一起 本质上，封装成一个元组，返回二.解构 把右边多个元素集合解开，并顺序的赋给其它变量 左边接纳的变量数要和右边解开的元素个数一致,否则出现报错ValueError 左边要出现至少两个的标识符才能解构  1234567&amp;gt;&amp;gt;&amp;gt; x = 100&amp;gt;&amp;gt;&amp;gt; y = 10&amp;gt;&amp;gt;&amp;gt; x,y = y,x   #先将右边的y">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/4618795-c62b66105a5c8ce8.gif?imageMogr2/auto-orient/strip">
+<meta name="twitter:title" content="简单选择排序">
+<meta name="twitter:description" content="属于选择排序 两两比较，找出极值(极大值或者极小值)的索引，然后和某一端(开头或者结尾)交换。 时间复杂度O(n2) 减少了交换次数，提高了效率，性能略好于冒泡法  123456789101112def Selection_sorts(array,reverse=False):    &amp;quot;&amp;quot;&amp;quot; reverse=False 升序&amp;quot;&amp;quot;&amp;quot;">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/4618795-56873f95709421ca.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   
     <link rel="alternative" href="/atom.xml" title="Winnie&#39;s cabin" type="application/atom+xml">
   
@@ -149,60 +147,42 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-封装和解构-丢弃变量" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-简单选择排序" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      封装和解构,丢弃变量
+      简单选择排序
     </h1>
   
 
         
-        <a href="/2018/08/15/封装和解构-丢弃变量/" class="archive-article-date">
-  	<time datetime="2018-08-15T08:36:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-15</time>
+        <a href="/2018/09/27/简单选择排序/" class="archive-article-date">
+  	<time datetime="2018-09-27T11:55:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-27</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="一-封装"><a href="#一-封装" class="headerlink" title="一.封装"></a>一.封装</h1><ul>
-<li>将多个值使用逗号分割，组合在一起</li>
-<li>本质上，封装成一个元组，返回<br><img src="https://upload-images.jianshu.io/upload_images/4618795-c62b66105a5c8ce8.gif?imageMogr2/auto-orient/strip" alt="封装.gif"><h1 id="二-解构"><a href="#二-解构" class="headerlink" title="二.解构"></a>二.解构</h1></li>
-<li>把右边多个元素集合解开，并顺序的赋给其它变量</li>
-<li>左边接纳的变量数要和右边解开的元素个数一致,否则出现报错ValueError</li>
-<li>左边要出现至少两个的标识符才能解构</li>
+        <ul>
+<li>属于选择排序</li>
+<li>两两比较，找出极值(极大值或者极小值)的索引，然后和某一端(开头或者结尾)交换。</li>
+<li>时间复杂度O(n2)</li>
+<li>减少了交换次数，提高了效率，性能略好于冒泡法</li>
 </ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/4618795-ba08c172c50849e6.gif?imageMogr2/auto-orient/strip" alt="解构.gif"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; x = 100</div><div class="line">&gt;&gt;&gt; y = 10</div><div class="line">&gt;&gt;&gt; x,y = y,x   #先将右边的y,x 封装成元组(10,100)，左边再解构该元组，实现了值的交换</div><div class="line">&gt;&gt;&gt; x</div><div class="line">10</div><div class="line">&gt;&gt;&gt; y</div><div class="line">100</div></pre></td></tr></table></figure></p>
-<h1 id="三-python3-解构"><a href="#三-python3-解构" class="headerlink" title="三. python3 解构"></a>三. python3 解构</h1><ul>
-<li>使用”<strong>*变量名</strong>“接收多个元素,组成一个列表，不能单独使用</li>
-<li>在解构中只能出现一个*变量名</li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">def Selection_sorts(array,reverse=False):</div><div class="line">    &quot;&quot;&quot; reverse=False 升序&quot;&quot;&quot;</div><div class="line">    length = len(array)</div><div class="line">    for i in range(length):</div><div class="line">        extremum_index = i   #极值索引</div><div class="line">        for j in range(i+1,length):           </div><div class="line">            if (array[j] &gt; array[extremum_index] if reverse else array[j] &lt; array[extremum_index]):</div><div class="line">                extremum_index = j</div><div class="line">        if extremum_index != i: </div><div class="line">            array[i],array[extremum_index] = array[extremum_index],array[i]</div><div class="line">       # print(i,array)</div><div class="line">    return array</div></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/4618795-56873f95709421ca.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><p>二元选择排序</p>
+<ul>
+<li>同时找到最大值和最小值</li>
+<li>索引值不相同且值不相同才会发生交换</li>
+<li>没有发生交换的时候退出循环</li>
 </ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/4618795-7381082112854a01.gif?imageMogr2/auto-orient/strip" alt="*变量名.gif"></p>
-<h1 id="四-丢弃变量"><a href="#四-丢弃变量" class="headerlink" title="四. 丢弃变量"></a>四. 丢弃变量</h1><ul>
-<li>在python中如果不关心一个变量，可以定义该变量的名字为”_”</li>
-<li>“_” 是一个合法的标识符，也可以作为一个有效的变量使用，但是容易和python 中的库冲突.<br><img src="https://upload-images.jianshu.io/upload_images/4618795-e73573d1c7701a36.gif?imageMogr2/auto-orient/strip" alt="丢弃变量.gif"></li>
-</ul>
-<h1 id="五-练习"><a href="#五-练习" class="headerlink" title="五.练习"></a>五.练习</h1><ul>
-<li><ol>
-<li>从lst = list(range(10)) 列表中取出第二个，第四个，以及倒数第二个元素。</li>
-</ol>
-</li>
-<li><ol>
-<li>从lst=[1,(2,3,4),5] 中，提取4。</li>
-</ol>
-</li>
-<li><ol>
-<li>文件/etc/sysconfig/network-scripts/ifcfg-eth0 ，获取ifcfg-eth0。</li>
-</ol>
-</li>
-</ul>
-<p>答案：<br>第一题：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; lst</div><div class="line">[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</div><div class="line">&gt;&gt;&gt; lst = list(range(10))</div><div class="line">&gt;&gt;&gt; lst</div><div class="line">[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</div><div class="line">&gt;&gt;&gt; _,a,_,b,*_,c,_= lst</div><div class="line">&gt;&gt;&gt; a,b,c</div><div class="line">(1, 3, 8)</div></pre></td></tr></table></figure></p>
-<p>第二题:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; lst=[1,(2,3,4)]</div><div class="line">&gt;&gt;&gt; lst=[1,(2,3,4),5]</div><div class="line">&gt;&gt;&gt; _,(*_,a),_ = lst</div><div class="line">&gt;&gt;&gt; a</div><div class="line">4</div></pre></td></tr></table></figure></p>
-<p>第三题：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; *_,basename =  &quot;/etc/sysconfig/network-scripts/ifcfg-eth0&quot;.split(&quot;/&quot;)</div><div class="line">&gt;&gt;&gt; basename</div><div class="line">&apos;ifcfg-eth0&apos;</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">def Selection_sorts(array):</div><div class="line">    length = len(array)</div><div class="line">    for i in range(length//2):</div><div class="line">        </div><div class="line">        minindex = -i-1 </div><div class="line">        maxindex = i       </div><div class="line">        for j in range(i+1,length-i):</div><div class="line">            if array[maxindex] &lt; array[j]:</div><div class="line">                maxindex = j</div><div class="line">            if array[minindex] &gt; array[-j-1]:</div><div class="line">                minindex = -j-1</div><div class="line">        # 如果最大值等于最小值则已经排序完成</div><div class="line">        if array[maxindex]  == array[minindex] :break</div><div class="line">        if maxindex != i:</div><div class="line">            array[i],array[maxindex] = array[maxindex],array[i]</div><div class="line">            #如果最小值的索引已经被交换过，需要更新索引</div><div class="line">            if i == length + minindex:</div><div class="line">                minindex = maxindex</div><div class="line">       #最小值更改且值不相同，才进行交换</div><div class="line">        if minindex != -i-1 and array[minindex] != array[-i-1]:</div><div class="line">            array[-i-1],array[minindex] = array[minindex],array[-i-1]</div><div class="line">    return array</div></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/4618795-9552239fba10b77d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br>以下是加入参数reverse，可以控制升序或者降序<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">def Selection_sorts(array,reverse=False):</div><div class="line">    &quot;&quot;&quot; reverse=False 升序&quot;&quot;&quot;</div><div class="line">    length = len(array)</div><div class="line">    for i in range(length//2):</div><div class="line">        minindex = -i-1 if reverse else i</div><div class="line">        maxindex = i if reverse else -i-1 </div><div class="line">        originmax = maxindex</div><div class="line">        originmin = minindex</div><div class="line">        for j in range(i+1,length-i):</div><div class="line">            </div><div class="line">            if reverse:</div><div class="line">                if array[maxindex] &lt; array[j]:</div><div class="line">                    maxindex = j</div><div class="line">                if array[minindex] &gt; array[-j-1]:</div><div class="line">                    minindex = -j-1</div><div class="line">            else:</div><div class="line">                if array[maxindex] &lt; array[-j-1]:</div><div class="line">                    maxindex = -j-1</div><div class="line">                if array[minindex] &gt; array[j]:</div><div class="line">                    minindex = j</div><div class="line">                </div><div class="line">        if array[maxindex]  == array[minindex] :break</div><div class="line">        if maxindex != originmax:</div><div class="line">            array[originmax],array[maxindex] = array[maxindex],array[originmax]</div><div class="line">            if ( originmax == minindex+length if reverse else originmax == minindex - length ):</div><div class="line">                minindex = maxindex</div><div class="line">  </div><div class="line">        if minindex != originmin and array[minindex] != array[originmin]:</div><div class="line">            array[originmin],array[minindex] = array[minindex],array[originmin]</div><div class="line">    return array</div></pre></td></tr></table></figure></p>
 
       
 
@@ -237,7 +217,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
         		</li>
       		
 		</ul>
@@ -293,7 +273,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2018/08/15/封装和解构-丢弃变量/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2018/09/27/简单选择排序/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -307,18 +287,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/08/18/set-dictionary/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          set,dictionary
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/08/13/network/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">网络基础</div>
+    <a href="/2018/09/27/冒泡排序/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">冒泡排序</div>
       <i class="icon-circle-right"></i>
     </a>
   
