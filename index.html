@@ -1350,6 +1350,125 @@
 
 
   
+    <article id="post-生成器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/01/生成器/">生成器</a>
+    </h1>
+  
+
+        
+        <a href="/2018/09/01/生成器/" class="archive-article-date">
+  	<time datetime="2018-09-01T13:08:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一-生成器定义"><a href="#一-生成器定义" class="headerlink" title="一.生成器定义"></a>一.生成器定义</h1><ul>
+<li>生成器指的是生成器对象，可以由生成器表达式得到，也可以使用yield 关键字得到一个生成器函数，调用这个函数就会得到一个生成器对象</li>
+<li>生成器函数<br>函数体中包含yield语句的函数，返回一个生成器对象<br>生成器对象，是一个可迭代对象，是一个迭代器<br>生成器对象，是延时计算，惰性求值的</li>
+</ul>
+<p>###生成器函数定义<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">def inc():</div><div class="line">    for i in range(5):</div><div class="line">        yield i</div><div class="line">print(type(inc))</div><div class="line">print(type(inc()))</div><div class="line">x = inc()</div><div class="line">print(type(x))</div><div class="line">print(next(x))</div><div class="line">for m in  x:</div><div class="line">    print(m,&apos;*&apos;)</div><div class="line">for m in x:</div><div class="line">    print(m,&apos;**&apos;)</div></pre></td></tr></table></figure></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/4618795-2278dfacddfc7209.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<ul>
+<li>普通函数调用，函数会立即执行完毕，但是生成器函数可以使用next函数多次执行</li>
+<li>生成器函数等价于生成器表达式，但是生成器函数可以有更多的变化</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>包含yield语句的生成器函数生成生成器对象的时候，<strong>生成器函数的函数体不会被立即执行</strong></li>
+<li>next(generator) 会从函数的当前位置向后执行到之后碰到的第一个yield语句，会弹出值，并且暂停函数执行</li>
+<li>再次调用next函数，和上一条一样的处理过程</li>
+<li>没有多余的yield语句能够被执行，继续调用next函数，会抛出StopIteration异常</li>
+</ul>
+<h1 id="二-生成器应用"><a href="#二-生成器应用" class="headerlink" title="二.生成器应用"></a>二.生成器应用</h1><h3 id="1"><a href="#1" class="headerlink" title="1."></a>1.</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">def gen(): </div><div class="line">    print(&apos;line 1&apos;) </div><div class="line">    yield 1 </div><div class="line">    print(&apos;line 2&apos;) </div><div class="line">    yield 2 </div><div class="line">    print(&apos;line 3&apos;) </div><div class="line">    return 3   # 不能获取到return 的值，抛出异常StopIteration</div><div class="line">next(gen()) # line 1</div><div class="line">next(gen()) # line 1</div><div class="line">g = gen()</div><div class="line">print(next(g)) # line 1</div><div class="line">print(next(g)) # line 2</div><div class="line">print(next(g,&apos;End&apos;)) # StopIteration , 没有元素给个缺省值</div></pre></td></tr></table></figure>
+<ul>
+<li>在生成器函数中，使用多个yield 语句，执行一次后会暂停执行，把yield表达式的值返回</li>
+<li>再次执行会执行到下一个yield语句</li>
+<li>return 语句依然可以终止函数运行，但是return语句的返回值不能被获取到</li>
+<li>return 会导致无法继续获取下一个值，抛出StopIteration异常</li>
+<li>如果函数没有显式的return语句，如果生成器执行到结尾，一样会抛出StopIteration异常<h3 id="2-计数器"><a href="#2-计数器" class="headerlink" title="2.计数器"></a>2.计数器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">def inc():</div><div class="line">    def counter():</div><div class="line">        i = 0</div><div class="line">        while True:</div><div class="line">            i += 1</div><div class="line">            yield i</div><div class="line">    c = counter()</div><div class="line">    return lambda:next(c)</div><div class="line"></div><div class="line">foo = inc()</div><div class="line">print(foo()) # 1</div><div class="line">print(foo()) # 2</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="3-处理递归问题"><a href="#3-处理递归问题" class="headerlink" title="3.处理递归问题"></a>3.处理递归问题</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">def fib():</div><div class="line">    x = 0</div><div class="line">    y = 1</div><div class="line">    while True:</div><div class="line">        yield y</div><div class="line">        x,y = y,x+y</div><div class="line">foo = fib()</div><div class="line">for _ in range(5):</div><div class="line">    print(next(foo))</div></pre></td></tr></table></figure>
+<h3 id="4-协程-corountine"><a href="#4-协程-corountine" class="headerlink" title="4.协程 corountine"></a>4.协程 corountine</h3><ul>
+<li>生成器的高级用法</li>
+<li>比进程，线程轻量级</li>
+<li>是在用户空间调度函数的一种实现</li>
+<li>Python3 asyncio就是协程实现，已经加入到标准库</li>
+<li>Python3.5 使用async、await关键字直接原生支持协程</li>
+<li>协程是一种非抢占式调度</li>
+</ul>
+<h1 id="三-yield-from"><a href="#三-yield-from" class="headerlink" title="三.yield from"></a>三.yield from</h1><ul>
+<li>yield from是Python 3.3出现的新的语法</li>
+<li>yield from iterable 是 for item in iterable: yield item 形式的语法糖</li>
+<li>从可迭代对象中一个个拿元素<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">def counter(n):</div><div class="line">    for x in range(n):</div><div class="line">        yield x </div><div class="line">def inc(n):</div><div class="line">    yield from counter(n)</div><div class="line">foo = inc(10)</div><div class="line">print(next(foo))</div><div class="line">print(next(foo))</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="四-生成器交互"><a href="#四-生成器交互" class="headerlink" title="四.生成器交互"></a>四.生成器交互</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">def inc():</div><div class="line">    base = 1 </div><div class="line">    while True:</div><div class="line">        response = yield base</div><div class="line">        print(response,&apos;=&apos;*10)</div><div class="line">        if response :</div><div class="line">            base = response</div><div class="line">        base += 1</div><div class="line">        print(&apos;base=&#123;&#125;&apos;.format(base))</div><div class="line">g = inc()</div><div class="line">print(next(g))</div><div class="line">print(next(g))</div><div class="line">## 交互</div><div class="line">g.send(-1) # 相当于next同时传入-1 reponse=-1</div></pre></td></tr></table></figure>
+<ul>
+<li>生成器提供了一个send方法，该方法可以和生成器沟通</li>
+<li>调用send方法，就可以把send的实参传给yield语句做结果，这个结果可以在灯饰右边被赋值给其他变量</li>
+<li>send 和next 一样可以推动生成器启动并执行。</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/09/01/生成器/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-高阶函数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1429,275 +1548,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/08/31/高阶函数/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-函数基础" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/23/函数基础/">函数基础</a>
-    </h1>
-  
-
-        
-        <a href="/2018/08/23/函数基础/" class="archive-article-date">
-  	<time datetime="2018-08-23T12:34:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Python 中的函数是由若干语句组成的语句块、函数名称、参数列表构成，它是组织代码的最小单元，可以完成一定的功能</p>
-<h1 id="一-函数的作用"><a href="#一-函数的作用" class="headerlink" title="一.函数的作用"></a>一.函数的作用</h1><ul>
-<li>结构化编程对代码的最基本的封装，一般按照功能组织一段代码</li>
-<li>封装的目的是为了复用，减少冗余代码</li>
-<li>代码更加简洁美观，可读易懂</li>
-</ul>
-<h1 id="二-函数的分类"><a href="#二-函数的分类" class="headerlink" title="二.函数的分类"></a>二.函数的分类</h1><ul>
-<li>内建函数 ： max(),reversed()</li>
-<li>库函数：math.ceil()</li>
-</ul>
-<h1 id="三-函数定义、调用"><a href="#三-函数定义、调用" class="headerlink" title="三.函数定义、调用"></a>三.函数定义、调用</h1><h3 id="1-def关键字定义函数"><a href="#1-def关键字定义函数" class="headerlink" title="1.def关键字定义函数"></a>1.def关键字定义函数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">def 函数名(形参列表):</div><div class="line">    函数体(代码块)</div><div class="line">    [return 返回值]</div></pre></td></tr></table></figure>
-<ul>
-<li>函数名就是标识符，只能由英文，数字和下划线组成，不能以数字开头.</li>
-<li>python函数使用return语句返回“返回值”</li>
-<li>所有函数都有返回值，如果没有return语句，隐式调用return None</li>
-<li>return语句并不一定是函数的语句块的最后一条语句</li>
-<li>一个函数可以存在多个return 语句，但是只有一条可以被执行，如果没有return语句被执行，使用隐式调用return None</li>
-<li>如果有必要，可显示调用return None ，可以简写为return</li>
-<li>如果函数执行了return 语句，函数就会返回，当前被执行的return语句之后其他的语句就不会被执行</li>
-<li>return语句的作用：结束函数调用，返回值</li>
-<li>函数不能同时返回多个值</li>
-<li>函数是可调用的对象 callable()</li>
-</ul>
-<h3 id="2-函数调用"><a href="#2-函数调用" class="headerlink" title="2.函数调用"></a>2.函数调用</h3><ul>
-<li>函数定义，只是声明了一个函数，它是不会被执行的，需要调用</li>
-<li>函数调用，需要在函数名后名加上()</li>
-<li>调用函数的时候在()中写入的参数是实际参数，简称实参。</li>
-<li><strong>实参只有两种传参方式：按照形参位置顺序传参和关键字传参</strong><blockquote>
-<p>关键字传参必须放在最后</p>
-</blockquote>
-</li>
-</ul>
-<h3 id="3-函数形参"><a href="#3-函数形参" class="headerlink" title="3.函数形参"></a>3.函数形参</h3><h5 id="①位置参数"><a href="#①位置参数" class="headerlink" title="①位置参数"></a>①位置参数</h5><ul>
-<li>def fn(x,y) 可以使用 fn(1,2) 和fn(x=1,y=2)调用</li>
-<li>按照形参位置顺序传参，传参的顺序必须形参顺序和个数一致。</li>
-<li>关键字传入实参的时候，传参时的关键字必须和定义的形参名和个数一致，传参的顺序可以和形参顺序不一致。<br><img src="https://upload-images.jianshu.io/upload_images/4618795-3f5a5a620903498d.gif?imageMogr2/auto-orient/strip" alt="位置参数.gif"></li>
-</ul>
-<h5 id="②-参数默认值（缺省值）"><a href="#②-参数默认值（缺省值）" class="headerlink" title="② 参数默认值（缺省值）"></a>② 参数默认值（缺省值）</h5><p>在定义形参的时候可以给形参赋予一个默认值.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">def fn(x=3,y=2):</div><div class="line">    print(&quot;x=&#123;&#125;,y=&#123;&#125;&quot;.format(x,y))</div></pre></td></tr></table></figure></p>
-<ul>
-<li>参数的默认值可以在未传入足够的实参的时候，对没有给定的参数赋值为默认值</li>
-<li>设置参数的缺省值，可以简化函数调用</li>
-</ul>
-<h5 id="③可变位置参数"><a href="#③可变位置参数" class="headerlink" title="③可变位置参数"></a>③可变位置参数</h5><ul>
-<li>在位置参数前面使用“*” 表示该形参是可变参数，可以接受0到多个实参</li>
-<li>收集多个实参为一个元组tuple</li>
-<li>不接受关键字传参</li>
-<li>可变位置参数必须在位置参数后面</li>
-</ul>
-<h5 id="④keyword-only参数（python3-后加入）"><a href="#④keyword-only参数（python3-后加入）" class="headerlink" title="④keyword-only参数（python3 后加入）"></a>④keyword-only参数（python3 后加入）</h5><ul>
-<li>在可变位置参数后面，出现的形参</li>
-<li>在传参的时候一定要使用关键字传参</li>
-</ul>
-<h5 id="⑤-可变关键字参数"><a href="#⑤-可变关键字参数" class="headerlink" title="⑤ 可变关键字参数"></a>⑤ 可变关键字参数</h5><ul>
-<li>在形参签名使用“**”符号，表示可以接受0到多个关键字参数</li>
-<li>收集的实参的关键字和值组成一个字典dict，该字典在函数中是可以改变的</li>
-<li>如果形参中有keyword-only参数，一定要在该参数后面</li>
-</ul>
-<h5 id="⑥总结"><a href="#⑥总结" class="headerlink" title="⑥总结"></a>⑥总结</h5><ul>
-<li>形参一般顺序是，位置参数，缺省位置参数，可变位置参数，keywork-only参数（可以带缺省值)，可变关键字参数</li>
-</ul>
-<h3 id="函数参数解构"><a href="#函数参数解构" class="headerlink" title="函数参数解构"></a>函数参数解构</h3><ul>
-<li>给函数提供<strong>实参</strong>的时候，可以在可迭代对象中使用* 或者&#42;&#42;，把集合类型的解构解开，提取出所有元素作为函数的实参</li>
-<li>非字典类型使用*解构成位置参数</li>
-<li>字典类型使用 ** 解构成关键字参数</li>
-<li>提出出来的元素树木要和参数的要求匹配，也要和参数的类型匹配</li>
-<li>参数解构只能用在函数中，print() 函数等</li>
-</ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/4618795-11be35ae6853265d.gif?imageMogr2/auto-orient/strip" alt="参数解构.gif"></p>
-<h1 id="四-函数嵌套"><a href="#四-函数嵌套" class="headerlink" title="四. 函数嵌套"></a>四. 函数嵌套</h1><p>在一个函数中定义了另外一个函数,内部的函数不能在外部直接使用，会抛出NameError 异常。<br>函数有可见范围，这就是作用域的概念<br><img src="https://upload-images.jianshu.io/upload_images/4618795-4d661206cf245638.gif?imageMogr2/auto-orient/strip" alt="函数嵌套.gif"></p>
-<h3 id="1-作用域"><a href="#1-作用域" class="headerlink" title="1.作用域"></a>1.作用域</h3><ul>
-<li>一个标识符的可见范围，这就是标识符的作用域。一般常说的是变量的作用域。<br>作用域分为：全局作用域，和局部作用域</li>
-<li>全局作用域<br>在整个程序运行环境中可见</li>
-<li>局部作用域<br>在函数，类等内部可见,局部变量使用范围不能超过其所在的局部作用域</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">def outer2():</div><div class="line">    o = 65</div><div class="line">    def inner():</div><div class="line">        o = 97</div><div class="line">        print(&quot;inner &#123;&#125;&quot;.format(o))</div><div class="line">    print(&quot;outer &#123;&#125;&quot;.format(o))</div><div class="line">    inner()</div><div class="line">outer2()</div><div class="line"></div><div class="line">#结果</div><div class="line">#outer 65</div><div class="line">#inner 97</div></pre></td></tr></table></figure>
-<p>通过上述嵌套结构例子可以看出</p>
-<ul>
-<li>外层变量作用域在内层作用域可见</li>
-<li>内层作用域inner中，如果定义了o = 97,相当于当前作用域中重新定义了一个新的变量o，但是这个o并没有 覆盖外层作用域outer中的o。</li>
-</ul>
-<h5 id="①-全局变量globle"><a href="#①-全局变量globle" class="headerlink" title="①.全局变量globle"></a>①.全局变量globle</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">x = 5</div><div class="line">def foo():</div><div class="line">##如果不使用global，会出现先引用后赋值的异常报错</div><div class="line">    global x </div><div class="line">    x += 1 </div><div class="line">    print(&quot;x =&quot;,x)</div><div class="line">foo()</div><div class="line">print(&quot;x =&quot;,x)</div><div class="line">###结果</div><div class="line">#x = 6</div><div class="line">#x = 6</div></pre></td></tr></table></figure>
-<ul>
-<li>使用global 关键字的变量，将函数内的x声明为外部的全局作用域定义的x</li>
-<li>全局作用作用域中必须要有x的定义</li>
-<li>使用global可以告诉内部作用域，去全局作用域查找变量的定义，之后在函数内对x的所有操作，都相当于在为全局作用域的变量x操作赋值</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">x = 5</div><div class="line">def foo():</div><div class="line">    global x</div><div class="line">    x += 1</div><div class="line">    print(&quot;x =&quot;,x)</div><div class="line">    x = 9</div><div class="line">foo()</div><div class="line">print(&quot;x =&quot;,x)</div><div class="line"></div><div class="line">##结果</div><div class="line">#x = 6</div><div class="line">#x = 9</div></pre></td></tr></table></figure>
-<p><strong>globle 使用原则</strong></p>
-<ul>
-<li>外部作用域变量会内部作用域可见，但也不要在这个内部的局部作用域中直接使用，因为函数的目的就是为了封装，尽量与外界隔离</li>
-<li>如果函数需要使用外部全局变量，请使用函数的形参传参解决</li>
-</ul>
-<blockquote>
-<p>不要用global，学习它，只是为了深入理解变量作用域！！！</p>
-</blockquote>
-<p>对“作用域”可以进行如下理解：<br>1.在最顶层，比如shell层，有一个符号表会跟踪记录这一层所有的名称定义和绑定<br>2.调用函数的时候，会建立一个新的符号表（常称为栈帧）。这个表跟踪记录函数中所有的名称定义（包括形参）和它们当前的绑定。如果函数体内又调用了一个函数，就再建立一个栈帧。<br>3.函数结束时候，它的栈帧也随之消失。</p>
-<h3 id="2-闭包"><a href="#2-闭包" class="headerlink" title="2.闭包"></a>2.闭包</h3><ul>
-<li>自由变量：未在本地作用域定义的变量。<br> 例如：定义在内层函数外的外层函数的作用域中的变量</li>
-<li>闭包：就是一个概念，出现在嵌套函数中，指的是<strong>内层函数引用到了外层函数的自由变量，</strong>这就形成了闭包.</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">def counter():</div><div class="line">    c = [0]</div><div class="line">    def inc():</div><div class="line">        c[0] += 1  #应用的是自由变量正式counter的变量c</div><div class="line">        return c[0]</div><div class="line">    print(c[0])</div><div class="line">    return inc</div><div class="line">  </div><div class="line">#counter()()</div><div class="line">foo = counter()</div><div class="line">print(foo(),foo())   #调用的是inner()</div><div class="line">print(foo())</div></pre></td></tr></table></figure>
-<p>这是python2 实现闭包的方式，python3 还可以使用nonlocal 关键字</p>
-<h5 id="①nonlocal-关键字"><a href="#①nonlocal-关键字" class="headerlink" title="①nonlocal 关键字"></a>①nonlocal 关键字</h5><p>使用nonlocal 关键字，将变量标记为不再本地作用域定义，而在上级的某一级局部作用域中定义，但<strong>不能是全局作用域中的定义</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">def counter():</div><div class="line">    count = 0</div><div class="line">    def inc():</div><div class="line">        nonlocal count</div><div class="line">        count += 1</div><div class="line">        return count</div><div class="line">    return inc</div><div class="line">foo = counter()</div><div class="line">print(foo())</div><div class="line">print(foo())</div></pre></td></tr></table></figure></p>
-<ul>
-<li>count 是外层函数的局部变量，被内部函数引用</li>
-<li>内部函数使用nonlocal 关键字声明count变量在上级作用域而非 本地作用域中定义</li>
-<li>形成了闭包</li>
-</ul>
-<h5 id="②默认值的作用域"><a href="#②默认值的作用域" class="headerlink" title="②默认值的作用域"></a>②默认值的作用域</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">def foo(xyz=[]):</div><div class="line">    xyz.append(1)</div><div class="line">    print(xyz)</div><div class="line">foo()</div><div class="line">foo()</div><div class="line"></div><div class="line">###result</div><div class="line">#[1]</div><div class="line">#[1, 1]</div></pre></td></tr></table></figure>
-<ul>
-<li>函数也是对象，python 把函数的默认值放在了属性中，这个属性就伴随着这个函数对象的整个生命周期</li>
-<li><p>查看foo.&#95;&#95;defaults&#95;&#95;属性 <code>([1, 1],)</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">def foo(xyz=[],u=&apos;abc&apos;,z=123):</div><div class="line">    xyz.append(1)</div><div class="line">    return xyz</div><div class="line">print(foo(),id(foo))</div><div class="line">print(foo.__defaults__)</div><div class="line">print(foo(),id(foo))</div><div class="line">print(foo.__defaults__)</div></pre></td></tr></table></figure>
-</li>
-<li><p>函数地址并没有变，就是说函数这个对象没有变，调用它，它的属性&#95;&#95;defaults&#95;&#95; 中使用元组保存默认值</p>
-</li>
-<li>xyz 默认值是引用类型，引用类型的元素变动，并不是元组的变化</li>
-</ul>
-<p><strong>非引用类型例子</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">def foo(w,u=&apos;abc&apos;,z=123):</div><div class="line">    u = &apos;xyz&apos;</div><div class="line">    z = 789</div><div class="line">    print(w,u,z)</div><div class="line">print(foo.__defaults__)</div><div class="line">foo(&apos;wing&apos;)</div><div class="line">print(foo.__defaults__)</div></pre></td></tr></table></figure></p>
-<p>属性&#95;&#95;defaults&#95;&#95;中使用元组保存所有位置参数默认值，它不会因为在函数体内使用了它而发生改变<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">def foo(w,u=&apos;abc&apos;,*,z=123,zz=[456]):</div><div class="line">    u = &apos;xyz&apos;</div><div class="line">    z = 789</div><div class="line">    zz.append(1)</div><div class="line">    print(w,u,z,zz)</div><div class="line">print(foo.__defaults__)</div><div class="line">foo(&apos;wing&apos;)</div><div class="line">print(foo.__kwdefaults__)</div></pre></td></tr></table></figure></p>
-<ul>
-<li>属性&#95;&#95;defaults&#95;&#95; 中使用元组保存所有位置参数默认值</li>
-<li>属性&#95;&#95;kwdefaults&#95;&#95; 中使用字典保存所有keyword-only 参数的默认值</li>
-<li>使用可变类型作为形参默认值的时候，就可能修改这个默认值</li>
-</ul>
-<p><strong>1.函数体内，不改变默认值</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">def foo(xyz=[],u=&apos;abc&apos;,z=123):</div><div class="line">    xyz = xyz[:]     #影子拷贝</div><div class="line">    xyz.append(1)</div><div class="line">    print(xyz)</div><div class="line">print(foo.__defaults__)</div><div class="line">foo()</div><div class="line">print(foo.__defaults__)</div><div class="line">foo([10])    </div><div class="line">foo()</div><div class="line">print(foo.__defaults__)</div><div class="line">foo([10,5])</div><div class="line">print(foo.__defaults__)</div></pre></td></tr></table></figure></p>
-<ul>
-<li>函数中的xyz 都是传入参数或者默认参数的副本，如果就想修改原参数，不可以</li>
-</ul>
-<p><strong>2.使用不可变类型的默认值</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">def foo(xyz=None,u=&apos;abc&apos;,z=123):</div><div class="line">    if xyz is None:</div><div class="line">        xyz = []</div><div class="line">    xyz.append(1)</div><div class="line">    print(xyz)</div><div class="line">print(foo.__defaults__)</div><div class="line">foo()</div><div class="line">print(foo.__defaults__)</div><div class="line">foo([10])    </div><div class="line">print(foo.__defaults__)</div><div class="line">foo([10,5])</div><div class="line">print(foo.__defaults__)</div></pre></td></tr></table></figure></p>
-<ul>
-<li>如果使用缺省值None就创建一个列表</li>
-<li>如果传入一个列表，就修改这个列表</li>
-</ul>
-<p><strong>3.总结</strong></p>
-<ul>
-<li>第一种方法<br> 使用影子拷贝，创建了一个新的对象，永远不能改变传入的参数。</li>
-<li>第二种方法<br>通过值的判断就可以灵活的选择创建或者修改传入的参数，这种方式灵活，应用广泛。<br> 很多函数的定义，都可以看到使用None这个不可变的值作为默认参数，这可以说是一种惯用法<h1 id="四-变量名解析原则LEGB"><a href="#四-变量名解析原则LEGB" class="headerlink" title="四.变量名解析原则LEGB"></a>四.变量名解析原则LEGB</h1></li>
-<li>Local，本地作用域，局部作用域的local命名空间。函数调用时创建，调用结束消亡</li>
-<li>Enclosing，Python2.2时引入的嵌套函数，实现了闭包，这个就是嵌套函数的外部函数的命名空间</li>
-<li>Global 全局作用域，即一个模块的命名空间。模块被import时创建，解释器退出时消亡</li>
-<li>Build-in，内置模块的命名空间，生命周期从python解析器启动的时创建到解释器退出时消亡。例如print(open),print 和open 都是内置的变量<ul>
-<li>所以一个名词的查找顺序就是LEGB</li>
-</ul>
-</li>
-</ul>
-<h1 id="五-函数的销毁"><a href="#五-函数的销毁" class="headerlink" title="五.函数的销毁"></a>五.函数的销毁</h1><h4 id="全局函数销毁"><a href="#全局函数销毁" class="headerlink" title="全局函数销毁"></a>全局函数销毁</h4><ul>
-<li>重新定义同名函数</li>
-<li>del语句删除函数对象</li>
-<li>程序结束时</li>
-<li>局部函数</li>
-</ul>
-<h5 id="局部函数销毁"><a href="#局部函数销毁" class="headerlink" title="局部函数销毁"></a>局部函数销毁</h5><ul>
-<li>重新在上级作用域定义同名函数</li>
-<li>del语句删除函数名称，函数对象的引用计数减1</li>
-<li>上级作用域销毁时</li>
-</ul>
-<h1 id="五-文档字符串："><a href="#五-文档字符串：" class="headerlink" title="五.文档字符串："></a>五.文档字符串：</h1><p>  <code>&quot;&quot;&quot; text &quot;&quot;&quot;</code><br>三引号之间的文本在Python中称为文档字符串。按照惯例，使用文档字符串提供函数的规范。可以使用内置的函数help访问这些字符串。<br><img src="https://upload-images.jianshu.io/upload_images/4618795-264da77543dad07d.gif?imageMogr2/auto-orient/strip" alt="文档字符串.gif"></p>
-<h1 id="六-递归"><a href="#六-递归" class="headerlink" title="六.递归"></a>六.递归</h1><h3 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h3><p><strong> 函数直接或者间接调用自身就是递归</strong></p>
-<ul>
-<li>递归需要边界条件，递归前进段，递归返回段</li>
-<li>递归一定要有<strong>边界条件</strong></li>
-<li>当边界条件不满足的时候，递归前进</li>
-<li>当边界条件满足的时候，递归返回</li>
-</ul>
-<h3 id="2-递归要求"><a href="#2-递归要求" class="headerlink" title="2.递归要求"></a>2.递归要求</h3><ul>
-<li>递归一定要有退出条件，递归调用一定要执行到这个退出条件。没有退出条件的递归调用，就是无限调用</li>
-<li>递归深度不宜过深<br>可以通过<code>sys.getrecursionlimit()</code> 查看解释器的深度限制</li>
-</ul>
-<h3 id="3-递归的性能"><a href="#3-递归的性能" class="headerlink" title="3.递归的性能"></a>3.递归的性能</h3><ul>
-<li>循环稍微复杂一些，但是只要不是死循环，可以多次迭代直至算出结果。</li>
-<li>递归有深度限制，如果递归复杂，函数反复亚栈，栈内存很快就溢出了。</li>
-<li>递归中可以通过形参记录每次递归的计算，减少递归次数</li>
-</ul>
-<h3 id="4-间接递归："><a href="#4-间接递归：" class="headerlink" title="4.间接递归："></a>4.间接递归：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">def foo1():</div><div class="line">    foo2()</div><div class="line">def foo2():</div><div class="line">    foo1()</div><div class="line">foo1()</div></pre></td></tr></table></figure>
-<p>间接递归，是通过别的函数调用了函数自身。<br>但是，如果构成了循环递归抵用是非常危险的，但是往往这种情况在代码复杂的情况下，还是可能发生这种调用。要用代码的规范来避免这种递归调用的发生。</p>
-<h3 id="5-递归总结"><a href="#5-递归总结" class="headerlink" title="5.递归总结"></a>5.递归总结</h3><ul>
-<li>递归是一种很自然的表达，符合逻辑思维</li>
-<li>递归相对运行效率低，每一次调用函数都要开辟栈帧</li>
-<li>递归有深度限制，如果递归层次太深，函数反复压栈,栈内存很快就溢出了</li>
-<li>如果是有限次数的递归，可以使用递归调用,或者使用循环代替，循环代码稍微复杂一点，但是只要不是死循环，可以多次迭代直至算出结果</li>
-<li>绝大多数递归，都可以使用循环实现</li>
-<li>即使递归代码间接，不建议使用递归</li>
-</ul>
-<h1 id="七-匿名函数"><a href="#七-匿名函数" class="headerlink" title="七.匿名函数"></a>七.匿名函数</h1><ul>
-<li>没有函数名</li>
-<li>借助lambda 表达式构建匿名函数 </li>
-<li>格式：<code>lambda 参数列表：表达式</code></li>
-<li>使用lambda 关键字来定义匿名函数</li>
-<li>参数列表不需要小括号</li>
-<li>冒号是用来分割参数列表和表达式的</li>
-<li>不需要使用return ，表达式的值，就是匿名函数返回值</li>
-<li>lambda表达式(匿名函数) 只能写在一行上，被称为单行函数</li>
-<li>用途：在高阶函数传参时，使用lamdba表达式，往往能简化代码。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">print((lambda :0)())</div><div class="line">print((lambda x,y=3:x+y)(5))</div><div class="line">print((lambda x, y=3: x + y)(5, 6))</div><div class="line">print((lambda x, *, y=30: x + y)(5))</div><div class="line">print((lambda x, *, y=30: x + y)(5, y=10))</div><div class="line">print((lambda *args: (x for x in args))(*range(5)))</div><div class="line">print((lambda *args: [x+1 for x in args])(*range(5)))</div><div class="line">print((lambda *args: &#123;x+2 for x in args&#125;)(*range(5)))</div><div class="line">[x for x in (lambda *args: map(lambda x: x+1, args))(*range(5))] </div><div class="line">[x for x in (lambda *args: map(lambda x: (x+1,args), args))(*range(5))]</div></pre></td></tr></table></figure>
-</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/23/函数基础/">展开全文 >></a>
         </p>
       
 
@@ -1824,11 +1674,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">kubernetes</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color1">kubernetes</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1840,11 +1690,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">zabbix</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color2">zabbix</a>
               </li>
             
             <div class="clearfix"></div>

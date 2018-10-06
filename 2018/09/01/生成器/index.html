@@ -6,19 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>文件操作 | Winnie&#39;s cabin</title>
+  <title>生成器 | Winnie&#39;s cabin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一.文件IO常用操作   方法 含义     open 打开   read 读取   write 写入   close 关闭   readline 单行读取   readlines 多行读取   seek 文件指针操作   tell 读取当前指针位置    二.openopen(file, mode=&amp;#39;r&amp;#39;, buffering=-1, encoding=None, errors=">
+  <meta name="description" content="一.生成器定义 生成器指的是生成器对象，可以由生成器表达式得到，也可以使用yield 关键字得到一个生成器函数，调用这个函数就会得到一个生成器对象 生成器函数函数体中包含yield语句的函数，返回一个生成器对象生成器对象，是一个可迭代对象，是一个迭代器生成器对象，是延时计算，惰性求值的  ###生成器函数定义123456789101112def inc():    for i in range(5">
 <meta name="keywords" content="python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="文件操作">
-<meta property="og:url" content="http://yoursite.com/2018/09/02/文件操作/index.html">
+<meta property="og:title" content="生成器">
+<meta property="og:url" content="http://yoursite.com/2018/09/01/生成器/index.html">
 <meta property="og:site_name" content="Winnie&#39;s cabin">
-<meta property="og:description" content="一.文件IO常用操作   方法 含义     open 打开   read 读取   write 写入   close 关闭   readline 单行读取   readlines 多行读取   seek 文件指针操作   tell 读取当前指针位置    二.openopen(file, mode=&amp;#39;r&amp;#39;, buffering=-1, encoding=None, errors=">
-<meta property="og:updated_time" content="2018-09-09T11:28:36.000Z">
+<meta property="og:description" content="一.生成器定义 生成器指的是生成器对象，可以由生成器表达式得到，也可以使用yield 关键字得到一个生成器函数，调用这个函数就会得到一个生成器对象 生成器函数函数体中包含yield语句的函数，返回一个生成器对象生成器对象，是一个可迭代对象，是一个迭代器生成器对象，是延时计算，惰性求值的  ###生成器函数定义123456789101112def inc():    for i in range(5">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4618795-2278dfacddfc7209.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-10-06T13:08:51.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="文件操作">
-<meta name="twitter:description" content="一.文件IO常用操作   方法 含义     open 打开   read 读取   write 写入   close 关闭   readline 单行读取   readlines 多行读取   seek 文件指针操作   tell 读取当前指针位置    二.openopen(file, mode=&amp;#39;r&amp;#39;, buffering=-1, encoding=None, errors=">
+<meta name="twitter:title" content="生成器">
+<meta name="twitter:description" content="一.生成器定义 生成器指的是生成器对象，可以由生成器表达式得到，也可以使用yield 关键字得到一个生成器函数，调用这个函数就会得到一个生成器对象 生成器函数函数体中包含yield语句的函数，返回一个生成器对象生成器对象，是一个可迭代对象，是一个迭代器生成器对象，是延时计算，惰性求值的  ###生成器函数定义123456789101112def inc():    for i in range(5">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/4618795-2278dfacddfc7209.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   
     <link rel="alternative" href="/atom.xml" title="Winnie&#39;s cabin" type="application/atom+xml">
   
@@ -144,180 +146,72 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-文件操作" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-生成器" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      文件操作
+      生成器
     </h1>
   
 
         
-        <a href="/2018/09/02/文件操作/" class="archive-article-date">
-  	<time datetime="2018-09-02T13:39:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-02</time>
+        <a href="/2018/09/01/生成器/" class="archive-article-date">
+  	<time datetime="2018-09-01T13:08:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-01</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="一-文件IO常用操作"><a href="#一-文件IO常用操作" class="headerlink" title="一.文件IO常用操作"></a>一.文件IO常用操作</h1><table>
-<thead>
-<tr>
-<th style="text-align:center">方法</th>
-<th style="text-align:center">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">open</td>
-<td style="text-align:center">打开</td>
-</tr>
-<tr>
-<td style="text-align:center">read</td>
-<td style="text-align:center">读取</td>
-</tr>
-<tr>
-<td style="text-align:center">write</td>
-<td style="text-align:center">写入</td>
-</tr>
-<tr>
-<td style="text-align:center">close</td>
-<td style="text-align:center">关闭</td>
-</tr>
-<tr>
-<td style="text-align:center">readline</td>
-<td style="text-align:center">单行读取</td>
-</tr>
-<tr>
-<td style="text-align:center">readlines</td>
-<td style="text-align:center">多行读取</td>
-</tr>
-<tr>
-<td style="text-align:center">seek</td>
-<td style="text-align:center">文件指针操作</td>
-</tr>
-<tr>
-<td style="text-align:center">tell</td>
-<td style="text-align:center">读取当前指针位置</td>
-</tr>
-</tbody>
-</table>
-<h1 id="二-open"><a href="#二-open" class="headerlink" title="二.open"></a>二.open</h1><p><code>open(file, mode=&#39;r&#39;, buffering=-1, encoding=None, errors=None, newline=None, closefd=True, opener=None)</code><br>创建并打开一个文件test，然后关闭<br>打开一个文件，返回一个文件对象（流对象）和文件描述符。<br>打开文件失败，则返回异常。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#touch test   #linux</div><div class="line">#New-Item &quot;new test.txt&quot; -type File   #powershell </div><div class="line">f = open(&quot;test&quot;) # file对象</div><div class="line"># windows &lt;_io.TextIOWrapper name=&apos;test&apos; mode=&apos;r&apos; encoding=&apos;cp936&apos;&gt; # linux &lt;_io.TextIOWrapper name=&apos;test&apos; mode=&apos;r&apos; encoding=&apos;UTF-8&apos;&gt; print(f.read()) # 读取文件</div><div class="line">f.close() # 关闭文件</div></pre></td></tr></table></figure></p>
-<h3 id="1-open参数详解"><a href="#1-open参数详解" class="headerlink" title="1.open参数详解"></a>1.open参数详解</h3><h5 id="①-file"><a href="#①-file" class="headerlink" title="① file"></a>① file</h5><p>打开或者要创建的文件名，如果不指定路径，默认是当前路径<br>或者是文件描述符（整型）</p>
-<h5 id="②-mode"><a href="#②-mode" class="headerlink" title="② mode"></a>② mode</h5><p>文件打开的模式。默认以<strong>文本只读</strong>   <code>mode=rt</code>的模式打开已经存在的文件</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">描述字符</th>
-<th style="text-align:center">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">r</td>
-<td style="text-align:center">缺省值，只读打开，如果文件不存在，则抛出错误FileNotFoundError异常</td>
-</tr>
-<tr>
-<td style="text-align:center">w</td>
-<td style="text-align:center">只写打开，没有文件则创建文件，如果文件存在，清空文件</td>
-</tr>
-<tr>
-<td style="text-align:center">x</td>
-<td style="text-align:center">创建文件，并只写方式打开，文件存在则报错</td>
-</tr>
-<tr>
-<td style="text-align:center">a</td>
-<td style="text-align:center">写入打开，如果文件存在，则追加文件内容，不存在则先创建再追加</td>
-</tr>
-<tr>
-<td style="text-align:center">b</td>
-<td style="text-align:center">二进制模式，文件按照字节理解，字节操作使用bytes类型</td>
-</tr>
-<tr>
-<td style="text-align:center">t</td>
-<td style="text-align:center">缺省值，文本模式，将文件按照某种字符标码理解，按照字符操作</td>
-</tr>
-<tr>
-<td style="text-align:center">+</td>
-<td style="text-align:center">不能单独使用，读写打开一个文件。给原来只读，只写当时打开提供缺失的读或者写功能</td>
-</tr>
-</tbody>
-</table>
-<p><strong>文件指针</strong><br>文件指针，指向当前<strong>字节位置</strong><br> f.seek(offset, whence=0, /) (f 是文件对象）<br>改变文件流的位置<br>offset 相对于whence偏移了多少个字节<br>whence 可以有三个选择的值</p>
-<ul>
-<li>0 – start of stream (the default); offset should be zero or positive  文件开头，默认</li>
-<li>1 – current stream position; offset may be negative  当前位置</li>
-<li>2 – end of stream; offset is usually negative  文件末尾</li>
+        <h1 id="一-生成器定义"><a href="#一-生成器定义" class="headerlink" title="一.生成器定义"></a>一.生成器定义</h1><ul>
+<li>生成器指的是生成器对象，可以由生成器表达式得到，也可以使用yield 关键字得到一个生成器函数，调用这个函数就会得到一个生成器对象</li>
+<li>生成器函数<br>函数体中包含yield语句的函数，返回一个生成器对象<br>生成器对象，是一个可迭代对象，是一个迭代器<br>生成器对象，是延时计算，惰性求值的</li>
 </ul>
-<p>文本模式模式下：支持从开头向后偏移的。whence=1 表示从当前位置开始偏移，但是offset 只能为0，相当于原地不动。whence=2 表示从文本末尾开始偏移，offset 只能为0，seek 是按照字节偏移的</p>
-<p>二进制模式下：默认whence=0，从文件开头开始，offset只能是正整数。whence=1，offset可正可负。whence=2，offset可正可负。二进制模式支持任意起点的偏移，向后seek可以超界，但是向前的seek不可以超界，否则抛出异常。</p>
-<blockquote>
-<p>调用seek 会自动flush </p>
-</blockquote>
-<h3 id="2-buffering-缓冲区"><a href="#2-buffering-缓冲区" class="headerlink" title="2.buffering : 缓冲区"></a>2.buffering : 缓冲区</h3><p>buffer缓冲区<br>缓冲区是一个内存空间，一般来说是一个FIFO队列，到缓冲区满了或者达到阈值的时候，数据才会flush 到磁盘中。<br>flush() 将缓冲区数据写入磁盘close()关闭前会调用flush()</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">buffering</th>
-<th style="text-align:center">说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">buffering=-1</td>
-<td style="text-align:center">t,b都是默认使用<code>io.DEFAULT_BUFFER_SIZE</code>  的值，默认是4096或者8192。</td>
-</tr>
-<tr>
-<td style="text-align:center">buffering=0</td>
-<td style="text-align:center">b 关闭缓冲区 ，t 不支持</td>
-</tr>
-<tr>
-<td style="text-align:center">buffering=1</td>
-<td style="text-align:center">b 就1个字节，t 行缓冲，遇到换行符才flush</td>
-</tr>
-<tr>
-<td style="text-align:center">buffering&gt; 1</td>
-<td style="text-align:center">b模式表示缓冲的大小，t模式，还是使用默认的buffer_size</td>
-</tr>
-</tbody>
-</table>
-<h3 id="3-encoding"><a href="#3-encoding" class="headerlink" title="3.encoding"></a>3.encoding</h3><p>None 表示使用缺省编码，依赖操作系统。<br>windows默认是GBK（cp936）。<br>linux默认是UTF-8。</p>
-<h3 id="4-其他参数"><a href="#4-其他参数" class="headerlink" title="4.其他参数"></a>4.其他参数</h3><p>errors 编码错误将被捕获，None和strict表示有编码错误将抛出ValueError错误，ignore表示忽略。<br>newline文本模式中，换行的转换。<br>以为None、’’ 空串、’\r’、’\n’、’\r\n’ 读时，None表示’\r’、’\n’、’\r\n’都被 转换为’\n’;’’表示不会自动转换通用换行符;其它合法字符表示换行符就是指定字符，就会按照指定字符分行 写 时，None表示’\n’都会被替换为系统缺省行分隔符os.linesep;’\n’或’’表示’\n’不替换;其它合法字符表示’\n’会被 替换为指定的字符。<br>closefd 关闭文件描述符，True表示关闭它。False会在文件关闭后保持这个描述符。fileobj.fileno()查看</p>
-<h1 id="三-read"><a href="#三-read" class="headerlink" title="三.read"></a>三.read</h1><p>fileobj.read(size=-1, /)<br>size表示读取的多少个字符或字节;负数或者None表示读取到EOF</p>
+<p>###生成器函数定义<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">def inc():</div><div class="line">    for i in range(5):</div><div class="line">        yield i</div><div class="line">print(type(inc))</div><div class="line">print(type(inc()))</div><div class="line">x = inc()</div><div class="line">print(type(x))</div><div class="line">print(next(x))</div><div class="line">for m in  x:</div><div class="line">    print(m,&apos;*&apos;)</div><div class="line">for m in x:</div><div class="line">    print(m,&apos;**&apos;)</div></pre></td></tr></table></figure></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/4618795-2278dfacddfc7209.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
 <ul>
-<li>readline(size=-1)<br>一行行读取文件内容。size设置一次能读取行内几个字符或字节。</li>
-<li>readlines(hint=-1)<br>读取所有行的列表。指定hint则返回指定的行数</li>
+<li>普通函数调用，函数会立即执行完毕，但是生成器函数可以使用next函数多次执行</li>
+<li>生成器函数等价于生成器表达式，但是生成器函数可以有更多的变化</li>
 </ul>
-<h1 id="四-write"><a href="#四-write" class="headerlink" title="四.write"></a>四.write</h1><p>fileobj.write(s, /)<br>把字符串s写入到文件中并返回字符的个数。<br>writelines(lines)，将字符串列表写入文件。</p>
-<h1 id="五-close"><a href="#五-close" class="headerlink" title="五.close"></a>五.close</h1><p>flush 并关闭文件对象。<br>文件已经关闭，再次关闭没有任何 效果</p>
-<h1 id="六-上下文管理"><a href="#六-上下文管理" class="headerlink" title="六. 上下文管理"></a>六. 上下文管理</h1><p>交给python解释器去释放文件对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">with open(&quot;file&quot;) as f:</div><div class="line">    f.read()</div></pre></td></tr></table></figure></p>
-<p>或者以下这种写法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">f = open(&apos;test&apos;)</div><div class="line">with f:</div><div class="line">    f.read()</div></pre></td></tr></table></figure></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>包含yield语句的生成器函数生成生成器对象的时候，<strong>生成器函数的函数体不会被立即执行</strong></li>
+<li>next(generator) 会从函数的当前位置向后执行到之后碰到的第一个yield语句，会弹出值，并且暂停函数执行</li>
+<li>再次调用next函数，和上一条一样的处理过程</li>
+<li>没有多余的yield语句能够被执行，继续调用next函数，会抛出StopIteration异常</li>
+</ul>
+<h1 id="二-生成器应用"><a href="#二-生成器应用" class="headerlink" title="二.生成器应用"></a>二.生成器应用</h1><h3 id="1"><a href="#1" class="headerlink" title="1."></a>1.</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">def gen(): </div><div class="line">    print(&apos;line 1&apos;) </div><div class="line">    yield 1 </div><div class="line">    print(&apos;line 2&apos;) </div><div class="line">    yield 2 </div><div class="line">    print(&apos;line 3&apos;) </div><div class="line">    return 3   # 不能获取到return 的值，抛出异常StopIteration</div><div class="line">next(gen()) # line 1</div><div class="line">next(gen()) # line 1</div><div class="line">g = gen()</div><div class="line">print(next(g)) # line 1</div><div class="line">print(next(g)) # line 2</div><div class="line">print(next(g,&apos;End&apos;)) # StopIteration , 没有元素给个缺省值</div></pre></td></tr></table></figure>
 <ul>
-<li>使用with .. as 关键字</li>
-<li>上下文管理的语句块并不会开启新的作用域</li>
-<li>with语句块执行完毕，会自动关闭文件对象<br>对于类似于文件对象的IO对象，一般来说都需要在不使用的时候关闭、注销，以释放资源。 IO被打开的时候，会获得一个文件描述符。计算机资源是有限的，所以操作系统都会做限制。就是为了保护计算机 的资源不要被完全耗尽，计算资源是共享的，不是独占的。 一般情况下，除非特别明确的知道资源情况，否则不要提高资源的限制值来解决问题。</li>
-</ul>
-<h1 id="七-shutil模块-高级文件操作"><a href="#七-shutil模块-高级文件操作" class="headerlink" title="七. shutil模块 (高级文件操作)"></a>七. shutil模块 (高级文件操作)</h1><h3 id="1-复制"><a href="#1-复制" class="headerlink" title="1.复制"></a>1.复制</h3><ul>
-<li><p>copyfileobj(fsrc, fdst[, length])<br>文件对象的复制, <strong>fsrc和fdst都是open打开的文件对象</strong>,复制内容，fdst要求可写，length 制定了表示buffer的大小</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">import shutil</div><div class="line">with open(&apos;/tmp/test&apos;,&apos;r+&apos;) as f1:</div><div class="line">    with open(&apos;/tmp/test2&apos;,&apos;w&apos;) as f2:</div><div class="line">        shutil.copyfileobj(f1,f2)</div></pre></td></tr></table></figure>
+<li>在生成器函数中，使用多个yield 语句，执行一次后会暂停执行，把yield表达式的值返回</li>
+<li>再次执行会执行到下一个yield语句</li>
+<li>return 语句依然可以终止函数运行，但是return语句的返回值不能被获取到</li>
+<li>return 会导致无法继续获取下一个值，抛出StopIteration异常</li>
+<li>如果函数没有显式的return语句，如果生成器执行到结尾，一样会抛出StopIteration异常<h3 id="2-计数器"><a href="#2-计数器" class="headerlink" title="2.计数器"></a>2.计数器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">def inc():</div><div class="line">    def counter():</div><div class="line">        i = 0</div><div class="line">        while True:</div><div class="line">            i += 1</div><div class="line">            yield i</div><div class="line">    c = counter()</div><div class="line">    return lambda:next(c)</div><div class="line"></div><div class="line">foo = inc()</div><div class="line">print(foo()) # 1</div><div class="line">print(foo()) # 2</div></pre></td></tr></table></figure>
 </li>
-<li><p>copyfile(src, dst, <em>, follow_symlinks=True)<br>复制文件内容，不含元数据。<em>*src、dst为文件的路径字符串</em></em>,本质上调用的就是copyfileobj，所以不带元数据二进制内容复制。</p>
+</ul>
+<h3 id="3-处理递归问题"><a href="#3-处理递归问题" class="headerlink" title="3.处理递归问题"></a>3.处理递归问题</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">def fib():</div><div class="line">    x = 0</div><div class="line">    y = 1</div><div class="line">    while True:</div><div class="line">        yield y</div><div class="line">        x,y = y,x+y</div><div class="line">foo = fib()</div><div class="line">for _ in range(5):</div><div class="line">    print(next(foo))</div></pre></td></tr></table></figure>
+<h3 id="4-协程-corountine"><a href="#4-协程-corountine" class="headerlink" title="4.协程 corountine"></a>4.协程 corountine</h3><ul>
+<li>生成器的高级用法</li>
+<li>比进程，线程轻量级</li>
+<li>是在用户空间调度函数的一种实现</li>
+<li>Python3 asyncio就是协程实现，已经加入到标准库</li>
+<li>Python3.5 使用async、await关键字直接原生支持协程</li>
+<li>协程是一种非抢占式调度</li>
+</ul>
+<h1 id="三-yield-from"><a href="#三-yield-from" class="headerlink" title="三.yield from"></a>三.yield from</h1><ul>
+<li>yield from是Python 3.3出现的新的语法</li>
+<li>yield from iterable 是 for item in iterable: yield item 形式的语法糖</li>
+<li>从可迭代对象中一个个拿元素<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">def counter(n):</div><div class="line">    for x in range(n):</div><div class="line">        yield x </div><div class="line">def inc(n):</div><div class="line">    yield from counter(n)</div><div class="line">foo = inc(10)</div><div class="line">print(next(foo))</div><div class="line">print(next(foo))</div></pre></td></tr></table></figure>
 </li>
-<li>copymode(src, dst, *, follow_symlinks=True)<br>仅仅复制权限</li>
-<li>copystat(src, dst, *, follow_symlinks=True)<br>复制元数据，stat包含权限</li>
-<li>copy(src, dst, *, follow_symlinks=True)<br>复制文件内容、权限和部分元数据，不包括创建时间和修改时间。<br>本质上调用的是copyfile 和copymode</li>
-<li>copy2(src, dst, *, follow_symlinks=True)<br>本质上调用copyfile 和copystat。<br>比copy多了复制全部元数据，但需要平台支持。</li>
-<li>copytree(src,dst,symlinks=False,ignore=None,copy_function=copy2,ignore_dangling_symlinks=False)<br>递归复制目录。默认使用copy2，也就是带更多的元数据复制。<br>src、dst必须是目录，src必须存在，dst必须<strong>不存在</strong><br>ignore = func ，提供一个callable(src, names) -&gt; ignored_names。提供一个函数，它会被调用。src是源目录， names是os.listdir(src)的结果，就是列出src中的文件名，返回值是要被过滤的文件名的set类型数据。</li>
 </ul>
-<h3 id="2-删除"><a href="#2-删除" class="headerlink" title="2.删除"></a>2.删除</h3><p>-rmtree(path, ignore_errors=False, onerror=None)<br>递归删除。如同rm -rf一样危险，慎用。<br>ignore_errors为true，忽略错误。当为False或者omitted时onerror生效。<br>onerror为callable，接受函数function、path和execinfo。</p>
-<h3 id="3-移动"><a href="#3-移动" class="headerlink" title="3.移动"></a>3.移动</h3><ul>
-<li>move(src, dst, copy_function=copy2)<br>递归移动文件、目录到目标，返回目标。<br>本身使用的是 os.rename方法<br>如果不支持rename，如果是目录则想copytree再删除源目录。<br>默认使用copy2方法</li>
+<h1 id="四-生成器交互"><a href="#四-生成器交互" class="headerlink" title="四.生成器交互"></a>四.生成器交互</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">def inc():</div><div class="line">    base = 1 </div><div class="line">    while True:</div><div class="line">        response = yield base</div><div class="line">        print(response,&apos;=&apos;*10)</div><div class="line">        if response :</div><div class="line">            base = response</div><div class="line">        base += 1</div><div class="line">        print(&apos;base=&#123;&#125;&apos;.format(base))</div><div class="line">g = inc()</div><div class="line">print(next(g))</div><div class="line">print(next(g))</div><div class="line">## 交互</div><div class="line">g.send(-1) # 相当于next同时传入-1 reponse=-1</div></pre></td></tr></table></figure>
+<ul>
+<li>生成器提供了一个send方法，该方法可以和生成器沟通</li>
+<li>调用send方法，就可以把send的实参传给yield语句做结果，这个结果可以在灯饰右边被赋值给其他变量</li>
+<li>send 和next 一样可以推动生成器启动并执行。</li>
 </ul>
-<h3 id="4-打包"><a href="#4-打包" class="headerlink" title="4. 打包"></a>4. 打包</h3><p>make_archive(base_name, format, root_dir=None, base_dir=None, verbose=0, dry_run=0, owner=None, group=None, logger=None)<br>format 支持的格式有: “zip”, “tar”, “gztar”,”bztar”, or “xztar”等.</p>
 
       
 
@@ -408,7 +302,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2018/09/02/文件操作/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2018/09/01/生成器/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -422,18 +316,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/09/09/路径操作/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/09/02/文件操作/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          路径操作
+          文件操作
         
       </div>
     </a>
   
   
-    <a href="/2018/09/01/生成器/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">生成器</div>
+    <a href="/2018/08/31/高阶函数/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">高阶函数&amp;装饰器</div>
       <i class="icon-circle-right"></i>
     </a>
   
