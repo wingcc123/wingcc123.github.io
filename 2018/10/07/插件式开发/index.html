@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: python | Winnie&#39;s cabin</title>
+  <title>插件式开发 | Winnie&#39;s cabin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="运维小记">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Winnie&#39;s cabin">
-<meta property="og:url" content="http://yoursite.com/tags/python/page/2/index.html">
+  <meta name="description" content="动态导入运行时，根据用户需求(提供字符串)，找到模块的资源动态加载进来 1.内建函数&amp;#95;&amp;#95;import&amp;#95;&amp;#95;&amp;#95;&amp;#95;import&amp;#95;&amp;#95;(name, globals=None, locals=None, fromlist=(), level=0)name 模块名import 语句本质上就是调用这个函数，但是不鼓励直接使用它，建立使用importl">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="插件式开发">
+<meta property="og:url" content="http://yoursite.com/2018/10/07/插件式开发/index.html">
 <meta property="og:site_name" content="Winnie&#39;s cabin">
-<meta property="og:description" content="运维小记">
+<meta property="og:description" content="动态导入运行时，根据用户需求(提供字符串)，找到模块的资源动态加载进来 1.内建函数&amp;#95;&amp;#95;import&amp;#95;&amp;#95;&amp;#95;&amp;#95;import&amp;#95;&amp;#95;(name, globals=None, locals=None, fromlist=(), level=0)name 模块名import 语句本质上就是调用这个函数，但是不鼓励直接使用它，建立使用importl">
+<meta property="og:updated_time" content="2018-10-07T10:04:27.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Winnie&#39;s cabin">
-<meta name="twitter:description" content="运维小记">
+<meta name="twitter:title" content="插件式开发">
+<meta name="twitter:description" content="动态导入运行时，根据用户需求(提供字符串)，找到模块的资源动态加载进来 1.内建函数&amp;#95;&amp;#95;import&amp;#95;&amp;#95;&amp;#95;&amp;#95;import&amp;#95;&amp;#95;(name, globals=None, locals=None, fromlist=(), level=0)name 模块名import 语句本质上就是调用这个函数，但是不鼓励直接使用它，建立使用importl">
   
     <link rel="alternative" href="/atom.xml" title="Winnie&#39;s cabin" type="application/atom+xml">
   
@@ -142,36 +144,70 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-插件式开发" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      插件式开发
+    </h1>
+  
+
+        
+        <a href="/2018/10/07/插件式开发/" class="archive-article-date">
+  	<time datetime="2018-10-07T10:03:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-07</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>动态导入<br>运行时，根据用户需求(提供字符串)，找到模块的资源动态加载进来</p>
+<h1 id="1-内建函数-95-95-import-95-95"><a href="#1-内建函数-95-95-import-95-95" class="headerlink" title="1.内建函数&#95;&#95;import&#95;&#95;"></a>1.内建函数&#95;&#95;import&#95;&#95;</h1><p>&#95;&#95;import&#95;&#95;(name, globals=None, locals=None, fromlist=(), level=0)<br>name 模块名<br>import 语句本质上就是调用这个函数，但是不鼓励直接使用它，建立使用<code>importlib.import_module()</code><br>sys = &#95;&#95;import&#95;&#95;(‘sys’)  等价于import sys<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"># test2.py</div><div class="line">class A:</div><div class="line">    def showme(self):</div><div class="line">        print(&apos;I am A&apos;)</div><div class="line"># 主程序模块test.py</div><div class="line">if __name__ == &quot;__main__&quot;:</div><div class="line">    mod = __import__(&apos;test1&apos;)</div><div class="line">    cls = getattr(mod,&apos;A&apos;)</div><div class="line">    cls().showme()</div></pre></td></tr></table></figure></p>
+<h1 id="2-importlib-import-module"><a href="#2-importlib-import-module" class="headerlink" title="2.importlib.import_module()"></a>2.importlib.import_module()</h1><p><code>importlib.import_module(name, package=None)</code><br>支持绝对导入和相对导入，如果是相对导入，package必须设置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">#test1.py</div><div class="line">#!/usr/bin/env python</div><div class="line">import importlib</div><div class="line">def plugin_load(plugin_name:str,seq=&quot;:&quot;):</div><div class="line">    m,_,c = plugin_name.partition(seq)</div><div class="line">    mod = importlib.import_module(m)</div><div class="line">    cls = getattr(mod,c)  # 查看模块mode 有没有c的属性,返回c</div><div class="line">    return cls()    # 返回cls实例</div><div class="line">if __name__ == &apos;__main__&apos;:</div><div class="line">    # 装载插件</div><div class="line">    a = plugin_load(&apos;test2:A&apos;)</div><div class="line">    a.show()</div><div class="line">#test2.py</div><div class="line">#!/usr/bin/env python</div><div class="line">class A:</div><div class="line">    def show(self):</div><div class="line">        print(&apos;ok&apos;)</div></pre></td></tr></table></figure></p>
+<p>上面的例子就是插件化编程的核心代码。</p>
+<h1 id="3-插件化编程技术"><a href="#3-插件化编程技术" class="headerlink" title="3.插件化编程技术"></a>3.插件化编程技术</h1><h6 id="依赖的技术"><a href="#依赖的技术" class="headerlink" title="依赖的技术"></a>依赖的技术</h6><ul>
+<li>反射：运行时获取类型的信息，可以动态维护类型数据</li>
+<li>动态import ：推荐使用importlib模块，实现动态import模块的能力</li>
+<li>多线程： 可以开启一个线程，等待用户输入，从而加载指定名称的模块</li>
+</ul>
+<h6 id="加载的时间"><a href="#加载的时间" class="headerlink" title="加载的时间"></a>加载的时间</h6><ul>
+<li>程序启动时候<br>像pycharm这样的工具，需要很多组建，这些组建也可能是插件，启动时候扫描固定的目录，加载插件</li>
+<li>程序运行中<br>程序运行过程中，接收到用户指定或者请求，启动相应的插件</li>
+</ul>
+<p>如果插件过多，会导致程序启动很慢，如果用户需要再加载，如果插件太大，或者依赖很多，插件也会启动很慢。<br>所以先加载必须的、常用的插件；其他插件就程序运行中再动态的载入</p>
+<h3 id="插件和接口的区别"><a href="#插件和接口的区别" class="headerlink" title="插件和接口的区别"></a>插件和接口的区别</h3><p>接口往往是暴露出来的功能，例如模块提供的函数或者方法，加载模块后调用这些函数去完成功能。接口也是一种规范，它约定了必须实现的功能（必须提供某名称的函数），但是不管先怎么实现这个功能。<br>插件是把模块加载到系统中，运行它，增强当前系统功能，或者提供系统不具备的功能，往往插件技术应用在框架<br>设计中。系统本身设计简单化、轻量级，实现基本功能后，其他功能通过插件加入进来，方便扩展。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/08/23/函数基础/" class="archive-article-date">
-  	<time datetime="2018-08-23T12:34:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/23/函数基础/">函数基础</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -183,250 +219,105 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2018/10/07/插件式开发/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/08/18/set-dictionary/" class="archive-article-date">
-  	<time datetime="2018-08-18T02:15:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-18</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/10/07/模块化/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">模块化</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/18/set-dictionary/">set,dictionary</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/08/15/封装和解构-丢弃变量/" class="archive-article-date">
-  	<time datetime="2018-08-15T08:36:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/15/封装和解构-丢弃变量/">封装和解构,丢弃变量</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/08/12/线性结构(列表、元组、字符串、bytes、bytearray)/" class="archive-article-date">
-  	<time datetime="2018-08-12T10:00:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/12/线性结构(列表、元组、字符串、bytes、bytearray)/">线性结构（列表、元组、字符串、bytes、bytearray  ）</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/08/02/python基础/" class="archive-article-date">
-  	<time datetime="2018-08-02T10:52:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/02/python基础/">python基础</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/08/01/位运算/" class="archive-article-date">
-  	<time datetime="2018-08-01T00:49:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/01/位运算/">位运算</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/31/pyenv-virtualenv-jupyter/" class="archive-article-date">
-  	<time datetime="2018-07-31T10:41:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/31/pyenv-virtualenv-jupyter/">pyenv+virtualenv+jupyter</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/tags/python/">&laquo; Prev</a><a class="page-number" href="/tags/python/">1</a><span class="page-number current">2</span>
-    </nav>
   
 
 
@@ -450,9 +341,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

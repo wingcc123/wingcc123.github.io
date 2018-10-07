@@ -144,6 +144,94 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-插件式开发" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/10/07/插件式开发/">插件式开发</a>
+    </h1>
+  
+
+        
+        <a href="/2018/10/07/插件式开发/" class="archive-article-date">
+  	<time datetime="2018-10-07T10:03:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>动态导入<br>运行时，根据用户需求(提供字符串)，找到模块的资源动态加载进来</p>
+<h1 id="1-内建函数-95-95-import-95-95"><a href="#1-内建函数-95-95-import-95-95" class="headerlink" title="1.内建函数&#95;&#95;import&#95;&#95;"></a>1.内建函数&#95;&#95;import&#95;&#95;</h1><p>&#95;&#95;import&#95;&#95;(name, globals=None, locals=None, fromlist=(), level=0)<br>name 模块名<br>import 语句本质上就是调用这个函数，但是不鼓励直接使用它，建立使用<code>importlib.import_module()</code><br>sys = &#95;&#95;import&#95;&#95;(‘sys’)  等价于import sys<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"># test2.py</div><div class="line">class A:</div><div class="line">    def showme(self):</div><div class="line">        print(&apos;I am A&apos;)</div><div class="line"># 主程序模块test.py</div><div class="line">if __name__ == &quot;__main__&quot;:</div><div class="line">    mod = __import__(&apos;test1&apos;)</div><div class="line">    cls = getattr(mod,&apos;A&apos;)</div><div class="line">    cls().showme()</div></pre></td></tr></table></figure></p>
+<h1 id="2-importlib-import-module"><a href="#2-importlib-import-module" class="headerlink" title="2.importlib.import_module()"></a>2.importlib.import_module()</h1><p><code>importlib.import_module(name, package=None)</code><br>支持绝对导入和相对导入，如果是相对导入，package必须设置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">#test1.py</div><div class="line">#!/usr/bin/env python</div><div class="line">import importlib</div><div class="line">def plugin_load(plugin_name:str,seq=&quot;:&quot;):</div><div class="line">    m,_,c = plugin_name.partition(seq)</div><div class="line">    mod = importlib.import_module(m)</div><div class="line">    cls = getattr(mod,c)  # 查看模块mode 有没有c的属性,返回c</div><div class="line">    return cls()    # 返回cls实例</div><div class="line">if __name__ == &apos;__main__&apos;:</div><div class="line">    # 装载插件</div><div class="line">    a = plugin_load(&apos;test2:A&apos;)</div><div class="line">    a.show()</div><div class="line">#test2.py</div><div class="line">#!/usr/bin/env python</div><div class="line">class A:</div><div class="line">    def show(self):</div><div class="line">        print(&apos;ok&apos;)</div></pre></td></tr></table></figure></p>
+<p>上面的例子就是插件化编程的核心代码。</p>
+<h1 id="3-插件化编程技术"><a href="#3-插件化编程技术" class="headerlink" title="3.插件化编程技术"></a>3.插件化编程技术</h1><h6 id="依赖的技术"><a href="#依赖的技术" class="headerlink" title="依赖的技术"></a>依赖的技术</h6><ul>
+<li>反射：运行时获取类型的信息，可以动态维护类型数据</li>
+<li>动态import ：推荐使用importlib模块，实现动态import模块的能力</li>
+<li>多线程： 可以开启一个线程，等待用户输入，从而加载指定名称的模块</li>
+</ul>
+<h6 id="加载的时间"><a href="#加载的时间" class="headerlink" title="加载的时间"></a>加载的时间</h6><ul>
+<li>程序启动时候<br>像pycharm这样的工具，需要很多组建，这些组建也可能是插件，启动时候扫描固定的目录，加载插件</li>
+<li>程序运行中<br>程序运行过程中，接收到用户指定或者请求，启动相应的插件</li>
+</ul>
+<p>如果插件过多，会导致程序启动很慢，如果用户需要再加载，如果插件太大，或者依赖很多，插件也会启动很慢。<br>所以先加载必须的、常用的插件；其他插件就程序运行中再动态的载入</p>
+<h3 id="插件和接口的区别"><a href="#插件和接口的区别" class="headerlink" title="插件和接口的区别"></a>插件和接口的区别</h3><p>接口往往是暴露出来的功能，例如模块提供的函数或者方法，加载模块后调用这些函数去完成功能。接口也是一种规范，它约定了必须实现的功能（必须提供某名称的函数），但是不管先怎么实现这个功能。<br>插件是把模块加载到系统中，运行它，增强当前系统功能，或者提供系统不具备的功能，往往插件技术应用在框架<br>设计中。系统本身设计简单化、轻量级，实现基本功能后，其他功能通过插件加入进来，方便扩展。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/10/07/插件式开发/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-模块化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1513,125 +1601,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/09/02/文件操作/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-生成器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/01/生成器/">生成器</a>
-    </h1>
-  
-
-        
-        <a href="/2018/09/01/生成器/" class="archive-article-date">
-  	<time datetime="2018-09-01T13:08:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="一-生成器定义"><a href="#一-生成器定义" class="headerlink" title="一.生成器定义"></a>一.生成器定义</h1><ul>
-<li>生成器指的是生成器对象，可以由生成器表达式得到，也可以使用yield 关键字得到一个生成器函数，调用这个函数就会得到一个生成器对象</li>
-<li>生成器函数<br>函数体中包含yield语句的函数，返回一个生成器对象<br>生成器对象，是一个可迭代对象，是一个迭代器<br>生成器对象，是延时计算，惰性求值的</li>
-</ul>
-<p>###生成器函数定义<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">def inc():</div><div class="line">    for i in range(5):</div><div class="line">        yield i</div><div class="line">print(type(inc))</div><div class="line">print(type(inc()))</div><div class="line">x = inc()</div><div class="line">print(type(x))</div><div class="line">print(next(x))</div><div class="line">for m in  x:</div><div class="line">    print(m,&apos;*&apos;)</div><div class="line">for m in x:</div><div class="line">    print(m,&apos;**&apos;)</div></pre></td></tr></table></figure></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/4618795-2278dfacddfc7209.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<ul>
-<li>普通函数调用，函数会立即执行完毕，但是生成器函数可以使用next函数多次执行</li>
-<li>生成器函数等价于生成器表达式，但是生成器函数可以有更多的变化</li>
-</ul>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
-<li>包含yield语句的生成器函数生成生成器对象的时候，<strong>生成器函数的函数体不会被立即执行</strong></li>
-<li>next(generator) 会从函数的当前位置向后执行到之后碰到的第一个yield语句，会弹出值，并且暂停函数执行</li>
-<li>再次调用next函数，和上一条一样的处理过程</li>
-<li>没有多余的yield语句能够被执行，继续调用next函数，会抛出StopIteration异常</li>
-</ul>
-<h1 id="二-生成器应用"><a href="#二-生成器应用" class="headerlink" title="二.生成器应用"></a>二.生成器应用</h1><h3 id="1"><a href="#1" class="headerlink" title="1."></a>1.</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">def gen(): </div><div class="line">    print(&apos;line 1&apos;) </div><div class="line">    yield 1 </div><div class="line">    print(&apos;line 2&apos;) </div><div class="line">    yield 2 </div><div class="line">    print(&apos;line 3&apos;) </div><div class="line">    return 3   # 不能获取到return 的值，抛出异常StopIteration</div><div class="line">next(gen()) # line 1</div><div class="line">next(gen()) # line 1</div><div class="line">g = gen()</div><div class="line">print(next(g)) # line 1</div><div class="line">print(next(g)) # line 2</div><div class="line">print(next(g,&apos;End&apos;)) # StopIteration , 没有元素给个缺省值</div></pre></td></tr></table></figure>
-<ul>
-<li>在生成器函数中，使用多个yield 语句，执行一次后会暂停执行，把yield表达式的值返回</li>
-<li>再次执行会执行到下一个yield语句</li>
-<li>return 语句依然可以终止函数运行，但是return语句的返回值不能被获取到</li>
-<li>return 会导致无法继续获取下一个值，抛出StopIteration异常</li>
-<li>如果函数没有显式的return语句，如果生成器执行到结尾，一样会抛出StopIteration异常<h3 id="2-计数器"><a href="#2-计数器" class="headerlink" title="2.计数器"></a>2.计数器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">def inc():</div><div class="line">    def counter():</div><div class="line">        i = 0</div><div class="line">        while True:</div><div class="line">            i += 1</div><div class="line">            yield i</div><div class="line">    c = counter()</div><div class="line">    return lambda:next(c)</div><div class="line"></div><div class="line">foo = inc()</div><div class="line">print(foo()) # 1</div><div class="line">print(foo()) # 2</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="3-处理递归问题"><a href="#3-处理递归问题" class="headerlink" title="3.处理递归问题"></a>3.处理递归问题</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">def fib():</div><div class="line">    x = 0</div><div class="line">    y = 1</div><div class="line">    while True:</div><div class="line">        yield y</div><div class="line">        x,y = y,x+y</div><div class="line">foo = fib()</div><div class="line">for _ in range(5):</div><div class="line">    print(next(foo))</div></pre></td></tr></table></figure>
-<h3 id="4-协程-corountine"><a href="#4-协程-corountine" class="headerlink" title="4.协程 corountine"></a>4.协程 corountine</h3><ul>
-<li>生成器的高级用法</li>
-<li>比进程，线程轻量级</li>
-<li>是在用户空间调度函数的一种实现</li>
-<li>Python3 asyncio就是协程实现，已经加入到标准库</li>
-<li>Python3.5 使用async、await关键字直接原生支持协程</li>
-<li>协程是一种非抢占式调度</li>
-</ul>
-<h1 id="三-yield-from"><a href="#三-yield-from" class="headerlink" title="三.yield from"></a>三.yield from</h1><ul>
-<li>yield from是Python 3.3出现的新的语法</li>
-<li>yield from iterable 是 for item in iterable: yield item 形式的语法糖</li>
-<li>从可迭代对象中一个个拿元素<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">def counter(n):</div><div class="line">    for x in range(n):</div><div class="line">        yield x </div><div class="line">def inc(n):</div><div class="line">    yield from counter(n)</div><div class="line">foo = inc(10)</div><div class="line">print(next(foo))</div><div class="line">print(next(foo))</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h1 id="四-生成器交互"><a href="#四-生成器交互" class="headerlink" title="四.生成器交互"></a>四.生成器交互</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">def inc():</div><div class="line">    base = 1 </div><div class="line">    while True:</div><div class="line">        response = yield base</div><div class="line">        print(response,&apos;=&apos;*10)</div><div class="line">        if response :</div><div class="line">            base = response</div><div class="line">        base += 1</div><div class="line">        print(&apos;base=&#123;&#125;&apos;.format(base))</div><div class="line">g = inc()</div><div class="line">print(next(g))</div><div class="line">print(next(g))</div><div class="line">## 交互</div><div class="line">g.send(-1) # 相当于next同时传入-1 reponse=-1</div></pre></td></tr></table></figure>
-<ul>
-<li>生成器提供了一个send方法，该方法可以和生成器沟通</li>
-<li>调用send方法，就可以把send的实参传给yield语句做结果，这个结果可以在灯饰右边被赋值给其他变量</li>
-<li>send 和next 一样可以推动生成器启动并执行。</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/09/01/生成器/">展开全文 >></a>
         </p>
       
 
