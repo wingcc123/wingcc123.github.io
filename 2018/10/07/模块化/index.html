@@ -6,17 +6,27 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Winnie&#39;s cabin</title>
+  <title>模块化 | Winnie&#39;s cabin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="运维小记">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Winnie&#39;s cabin">
-<meta property="og:url" content="http://yoursite.com/archives/page/3/index.html">
+  <meta name="description" content="Python中只有一种模块对象类型，但是为了模块化组织模块的便利，提供了“包”的概念。模块module，指的是Python的源代码文件。包package，指的是模块组织在一起的和包名同名 的目录以及相关文件 一.import 语句 找到指定的模块，加载和初始化，生成模块对象，找不到，抛出ImportError异常； 在import所在的作用域的局部命名空间中，增加名称和上一步创建的对象关联 imp">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="模块化">
+<meta property="og:url" content="http://yoursite.com/2018/10/07/模块化/index.html">
 <meta property="og:site_name" content="Winnie&#39;s cabin">
-<meta property="og:description" content="运维小记">
+<meta property="og:description" content="Python中只有一种模块对象类型，但是为了模块化组织模块的便利，提供了“包”的概念。模块module，指的是Python的源代码文件。包package，指的是模块组织在一起的和包名同名 的目录以及相关文件 一.import 语句 找到指定的模块，加载和初始化，生成模块对象，找不到，抛出ImportError异常； 在import所在的作用域的局部命名空间中，增加名称和上一步创建的对象关联 imp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4618795-3c7ea121dcb0c9f6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4618795-f3a31bd6edbaa25e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4618795-a72e0e1de3bf0f13.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4618795-6e7beadb2bacff3c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4618795-71a3b78cde429170.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4618795-4f8418e8c77259e5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4618795-7f26ffdefd702cf9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-10-07T08:46:20.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Winnie&#39;s cabin">
-<meta name="twitter:description" content="运维小记">
+<meta name="twitter:title" content="模块化">
+<meta name="twitter:description" content="Python中只有一种模块对象类型，但是为了模块化组织模块的便利，提供了“包”的概念。模块module，指的是Python的源代码文件。包package，指的是模块组织在一起的和包名同名 的目录以及相关文件 一.import 语句 找到指定的模块，加载和初始化，生成模块对象，找不到，抛出ImportError异常； 在import所在的作用域的局部命名空间中，增加名称和上一步创建的对象关联 imp">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/4618795-3c7ea121dcb0c9f6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   
     <link rel="alternative" href="/atom.xml" title="Winnie&#39;s cabin" type="application/atom+xml">
   
@@ -142,425 +152,284 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-模块化" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      模块化
+    </h1>
+  
+
+        
+        <a href="/2018/10/07/模块化/" class="archive-article-date">
+  	<time datetime="2018-10-07T08:45:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-07</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Python中只有一种模块对象类型，但是为了模块化组织模块的便利，提供了“包”的概念。<br>模块module，指的是Python的源代码文件。<br>包package，指的是模块组织在一起的和包名同名 的目录以及相关文件</p>
+<h1 id="一-import-语句"><a href="#一-import-语句" class="headerlink" title="一.import 语句"></a>一.import 语句</h1><ol>
+<li>找到指定的模块，加载和初始化，生成模块对象，找不到，抛出ImportError异常；</li>
+<li>在import所在的作用域的局部命名空间中，增加名称和上一步创建的对象关联</li>
+<li>import 后面一定module</li>
+</ol>
+<ul>
+<li>导入顶级模块，其名称会加入到本地名称空间中，并绑定到其模块对象<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">import os</div><div class="line"></div><div class="line">try:</div><div class="line">    p1 = path.join(&apos;/etc/&apos;,&apos;hosts&apos;)</div><div class="line">except:</div><div class="line">    print(&apos;impossible&apos;)</div><div class="line">else:</div><div class="line">    print(p1)</div><div class="line">try:</div><div class="line">    p2 = os.path.join(&apos;/etc/&apos;,&apos;redhat-release&apos;)</div><div class="line">except:</div><div class="line">    print(&apos;impossible&apos;)</div><div class="line">else:</div><div class="line">    print(p2)</div><div class="line"></div><div class="line">print(dir())</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/4618795-3c7ea121dcb0c9f6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<ul>
+<li>导入非顶级模块，会将其顶级模块名称加入到本地名称空间中，导入的模块必须使用完全限定名称来访问<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">import os.path</div><div class="line"></div><div class="line">try:</div><div class="line">    p1 = path.join(&apos;/etc/&apos;,&apos;hosts&apos;)</div><div class="line">except:</div><div class="line">    print(&apos;impossible&apos;)</div><div class="line">else:</div><div class="line">    print(p1)</div><div class="line">try:</div><div class="line">    p2 = os.path.join(&apos;/etc/&apos;,&apos;redhat-release&apos;)</div><div class="line">except:</div><div class="line">    print(&apos;impossible&apos;)</div><div class="line">else:</div><div class="line">    print(p2)</div><div class="line"></div><div class="line">print(dir())</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/4618795-f3a31bd6edbaa25e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<blockquote>
+<p>所以import os 和 import os.path  是一样的效果</p>
+</blockquote>
+<ul>
+<li>如果使用来说as，as后面的名称直接绑定到导入的模块对象，并将该名称加入到本地名称空间中<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">import os.path as path</div><div class="line"></div><div class="line">try:</div><div class="line">    p1 = path.join(&apos;/etc/&apos;,&apos;hosts&apos;)</div><div class="line">except:</div><div class="line">    print(&apos;impossible&apos;)</div><div class="line">else:</div><div class="line">    print(p1)</div><div class="line">try:</div><div class="line">    p2 = os.path.join(&apos;/etc/&apos;,&apos;redhat-release&apos;)</div><div class="line">except:</div><div class="line">    print(&apos;impossible&apos;)</div><div class="line">else:</div><div class="line">    print(p2)</div><div class="line"></div><div class="line">print(dir())</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/4618795-a72e0e1de3bf0f13.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h1 id="二-from-import-语句"><a href="#二-from-import-语句" class="headerlink" title="二. from .. import 语句"></a>二. from .. import 语句</h1><ul>
+<li>找到from 子句中指定模块，加载并且初始化它</li>
+<li>对于import子句后的名称<br>1.先查from子句导入的模块是否有该名称的属性<br>2.如果不是，则尝试导入该名称的子模块<br>3.还没有找到，则抛出ImportError异常<br>4.这个名称保存到本地名称空间中，如果有as子句，则使用as子句后面的名称<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">from os.path import dirname</div><div class="line">try:</div><div class="line">    p1 = path.join(&apos;/etc/&apos;,&apos;hosts&apos;)</div><div class="line">except:</div><div class="line">    print(&apos;impossible&apos;)</div><div class="line">else:</div><div class="line">    print(p1)</div><div class="line">try:</div><div class="line">    p2 = os.path.join(&apos;/etc/&apos;,&apos;redhat-release&apos;)</div><div class="line">except:</div><div class="line">    print(&apos;impossible&apos;)</div><div class="line">else:</div><div class="line">    print(p2)</div><div class="line"></div><div class="line">print(dir())</div><div class="line">print(dirname(p1))</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/4618795-6e7beadb2bacff3c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br>from … import 可以加载函数，变量等</p>
+<h1 id="三-自定义模块"><a href="#三-自定义模块" class="headerlink" title="三.自定义模块"></a>三.自定义模块</h1><p>自定义模块：.py文件就是一个模块<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"># test1.py文件</div><div class="line">print(&apos;This is test1 module&apos;)</div><div class="line">class A:</div><div class="line">    def showmodule(self):</div><div class="line">        print(&quot;&#123;&#125;.a = &#123;&#125;&quot;.format(self.__module__, self))</div><div class="line">        print(self.__class__.__name__)</div><div class="line">a = A()</div><div class="line">a.showmodule()</div><div class="line"></div><div class="line"># test2.py文件 </div><div class="line">import test1</div><div class="line">a = test1.A()</div><div class="line">a.showmodule()</div><div class="line"></div><div class="line"># test3.py文件</div><div class="line">from test1 import A as cls</div><div class="line">a = cls()</div><div class="line">a.showmodule()</div></pre></td></tr></table></figure></p>
+<h4 id="自定义模块命名规范"><a href="#自定义模块命名规范" class="headerlink" title="自定义模块命名规范"></a>自定义模块命名规范</h4><ol>
+<li>模块名就是文件名</li>
+<li>模块名必须符合标识符的要求，是非数字开头的字母数字和下划线的组合。test-module.py 这样的文件名不能作为模块名</li>
+<li>尽量不要使用已经存在的系统模块名，避免冲突</li>
+<li>通常模块名为全小写，下划线来分割</li>
+</ol>
+<h1 id="四-模块搜索顺序"><a href="#四-模块搜索顺序" class="headerlink" title="四.模块搜索顺序"></a>四.模块搜索顺序</h1><p>使用sys.path 查看搜索顺序<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">import  sys</div><div class="line">for p in sys.path:</div><div class="line">    print(p)</div></pre></td></tr></table></figure></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/4618795-71a3b78cde429170.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br>显示结果为，python模块的路径搜索顺序<br>1.当加载一个模块的时候，需要从这些搜索路径中从前到后依次查找，并<strong>不搜索这些目录的子目录</strong>。<br>2.搜索到就加载，否则抛异常</p>
+<p>路径也可以为字典，zip文件，egg文件<br>.egg 文件是有setuptools库创建的包，第三方库常用的格式。添加了元数据(版本号，依赖等)信息的zip文件</p>
+<p><strong>路径顺序</strong><br>程序主目录，程序运行的主程序脚本所在的目录<br>PYTHONPATH目录，环境变量pythonpath 设置的目录也是搜索模块的路径。<br>标准库目录，Python自带的库模块所在的目录<br>sys.path 可以被修改，增加新的目录</p>
+<h1 id="五-模块导入"><a href="#五-模块导入" class="headerlink" title="五.模块导入"></a>五.模块导入</h1><p>模块是不会重复导入的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"># test1.py文件</div><div class="line">print(&apos;This is test1 module&apos;)</div><div class="line">class A:</div><div class="line">    def showmodule(self):</div><div class="line">        print(&quot;&#123;&#125;.a = &#123;&#125;&quot;.format(self.__module__, self))</div><div class="line">        print(self.__class__.__name__)</div><div class="line">a = A()</div><div class="line">a.showmodule()</div><div class="line"></div><div class="line"># test2.py文件</div><div class="line">import test1 </div><div class="line">print(&apos;local module&apos;) </div><div class="line">import test1</div><div class="line">import test1</div></pre></td></tr></table></figure></p>
+<p>所有加载的模块都会记录在sys.modules 中，sys.modules是存储已经加载过的所有模块的字典。<br>打印sys.modules可以看到os、os.path都已经加载了。</p>
+<h3 id="1-绝对导入"><a href="#1-绝对导入" class="headerlink" title="1.绝对导入"></a>1.绝对导入</h3><p>在import 语句或者from导入模块，模块名称最前面不是以.开头的<br>绝对导入总是去模块搜索路径中查找。</p>
+<h3 id="2-相对导入"><a href="#2-相对导入" class="headerlink" title="2.相对导入"></a>2.相对导入</h3><p>只能在包中使用，且只能用在from语句中<br>使用“.”,表示当前目录内<br>“..”表示上一级目录<br>不要在顶层模块中使用相对导入<br>一旦一个模块中使用相对导入，就不可以作为主模块运行了</p>
+<h1 id="六-模块运行"><a href="#六-模块运行" class="headerlink" title="六.模块运行"></a>六.模块运行</h1><p>&#95;&#95;name&#95;&#95;,每一个模块都会定义一个&#95;&#95;name&#95;&#95;特殊变量来存储当前模块的名称，如果不指定，默认为源代码文件名，如果是包则有限定名。</p>
+<p>解释器初始化的时候，会初始化sys.modules字典(保存已经加载的模块)，加载的builtins（全局函数，常量）模块、&#95;&#95;main&#95;&#95;模块，sys模块，已经初始化模块搜索路径sys.path.<br>Python 是脚本语言，任何一个脚本都可以直接执行，也可以作为模块被导入。</p>
+<blockquote>
+<p>当从标准输入，脚本或者交互式读取的时候，会将模块的&#95;&#95;name&#95;&#95;设置为&#95;&#95;main&#95;&#95;，模块的顶层代码就在&#95;&#95;main&#95;&#95;这个作用域中执行。<br>(顶层代码：模块中缩紧最外层的代码)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"># test1.py文件 </div><div class="line">import test2</div><div class="line"># test2.py文件</div><div class="line"># 判断模块是否以程序的方式运行 $python test.py </div><div class="line"></div><div class="line">if __name__ == &apos;__main__&apos;:</div><div class="line">    print(&apos;in __main__&apos;) # 程序的方式运行的代码 </div><div class="line">else:</div><div class="line">    print(&apos;in import module&apos;) # 模块导入的方式运行的代码</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p><code>if __name__ == &#39;__main__&#39;:</code>用途：</p>
+<ol>
+<li>本模块的功能测试<br>对于非主模块，测试本模块内的函数，类</li>
+<li>避免主模块变更的副作用<br>顶层模块，没有封装，主模块使用时没有问题。但是，一旦有了新的主模块，老的主模块成了被导入模块，由于原来代码没有封装，一并执行了。</li>
+</ol>
+<h1 id="七-模块的属性"><a href="#七-模块的属性" class="headerlink" title="七.模块的属性"></a>七.模块的属性</h1><table>
+<thead>
+<tr>
+<th style="text-align:center">属性</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">&#95;&#95;file&#95;&#95;</td>
+<td style="text-align:center">字符串，文件路径</td>
+</tr>
+<tr>
+<td style="text-align:center">&#95;&#95;cached&#95;&#95;</td>
+<td style="text-align:center">字符串，编译后的字节码文件路径</td>
+</tr>
+<tr>
+<td style="text-align:center">&#95;&#95;spec&#95;&#95;</td>
+<td style="text-align:center">显示模块的规范</td>
+</tr>
+<tr>
+<td style="text-align:center">&#95;&#95;name&#95;&#95;</td>
+<td style="text-align:center">模块名</td>
+</tr>
+<tr>
+<td style="text-align:center">&#95;&#95;package&#95;&#95;</td>
+<td style="text-align:center">当模块是包，同&#95;&#95;name&#95;&#95;；否则，可以设置为顶级模块的空字符串</td>
+</tr>
+</tbody>
+</table>
+<h1 id="八-包"><a href="#八-包" class="headerlink" title="八.包"></a>八.包</h1><p><img src="https://upload-images.jianshu.io/upload_images/4618795-4f8418e8c77259e5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>Pycharm中，创建Directory和创建Python Package不同，前者创建普通目录，后者创建的是一个带有&#95;&#95;init&#95;&#95;.py文件的目录即包。<br>Python 中，目录可以作为模块，这就是包，不过目录中必须包含&#95;&#95;init&#95;&#95;.py文件</p>
+<p>1.包可以更好地组织模块，尤其是大的模块<br>2.包目录中的&#95;&#95;init&#95;&#95;.py是在包第一次导入的时候会执行，内容可以为空，也可以用于该包初始化工作的代码。<br>3.导入子模块一定要加载父模块，导入父模块不会导入子模块<br>4.包目录之间只能使用句号.作为间隔符，表示模块以及子模块的层级关系</p>
+<p>模块就是命名空间，它内部的顶层标识符，都是它的属性，可以通过&#95;&#95;dict&#95;&#95;或者dir(module)查看。<br>包也是模块，但是模块不一定是包，包是特殊的模块，是一种组织方式，它包含&#95;&#95;path&#95;&#95;属性</p>
+<h1 id="九-访问控制"><a href="#九-访问控制" class="headerlink" title="九.访问控制"></a>九.访问控制</h1><p>如果使用from … import * 导入</p>
+<ol>
+<li>如果模块没有&#95;&#95;all&#95;&#95;，from … import * 只导入非下划线开头的模块的变量。如果是包，子模块也不会导入，除非在&#95;&#95;all&#95;&#95;中设置，或者在&#95;&#95;init&#95;&#95;.py 中导入它们</li>
+<li>如果模块有&#95;&#95;all&#95;&#95;，from … import <em> 只导入&#95;&#95;all&#95;&#95;列表中指定名称，哪怕这个名次是下划线开头的，或者是子模块<br>3.from … import </em> 导入，使用简单，但是会导入大量不需要使用的变量，甚至有可能造成名称冲突，而&#95;&#95;all&#95;&#95;可以控制被导入模块在这种导入方式下能够提供的变量名称，就可以有效地防止导入过多模块变量，从而避免冲突，所以，在编写模块的时候应该加入&#95;&#95;all&#95;&#95;</li>
+</ol>
+<h1 id="十-模块变量的修改"><a href="#十-模块变量的修改" class="headerlink" title="十.模块变量的修改"></a>十.模块变量的修改</h1><p>模块对象是同一个，因此模块的变量也是同一个，对模块变量的修改，会影响所有使用者。<br>也可以通过打补丁的方式，修改模块的变量</p>
+<h1 id="十一-包管理"><a href="#十一-包管理" class="headerlink" title="十一.包管理"></a>十一.包管理</h1><p>python 的模块或者源文件直接可以复制到目标项目目录中，就可以导入使用了。<br>但是为了更多项目调用使用，需要打包。</p>
+<h3 id="主要工具："><a href="#主要工具：" class="headerlink" title="主要工具："></a>主要工具：</h3><ul>
+<li><p>distutils<br>官方库distutils，使用安装脚本setup.py 来构建，安装包。2000 年停止开发</p>
+</li>
+<li><p>setuptools<br>代替distutils的增强版工具，包含easy_intstall  工具，使用ez_setup.py 文件，支持egg格式的构建和安装。提供查询，下载，安装，构建，发布，管理等包管理功能。<br>setuptools 是包管理的核心模块。</p>
+</li>
+<li><p>pip<br>pip目前包管理的实施标准<br>构建在setutools 之上，替代easy_install 。<br>通向提供丰富的包管理功能，从python3.4开始直接包含在安装文件中</p>
+</li>
+<li><p>wheel<br>wheel 格式定在PEP427中，wheel文件中不包含.pyc文件<br>提供bdist_wheel 作为setuptools的扩展命令，这个命令可以用来生成新打包格式wheel。<br>pip从1.4 版本开始提供了一个wheel子命令来安装wheel包（需要先安装wheel模块）。它可以让python库以二进制形式安装，不需要本地编译。</p>
+<h3 id="使用setup-py打包："><a href="#使用setup-py打包：" class="headerlink" title="使用setup.py打包："></a>使用setup.py打包：</h3><p>官网参照例子 ：<a href="https://docs.python.org/3.5/distutils/setupscript.html" target="_blank" rel="external">https://docs.python.org/3.5/distutils/setupscript.html</a><br>文件目录结构如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">code</div><div class="line">├── module1</div><div class="line">│   ├── __init__.py   # empty</div><div class="line">│   ├── m1.py    # empty</div><div class="line">│   └── module2</div><div class="line">│       ├── __init__.py   # empty</div><div class="line">│       └── m2.py     # empty</div><div class="line">└── setup.py</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>setup.py 内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/env python</div><div class="line">from distutils.core import setup</div><div class="line">setup(name=&apos;Distutils&apos;,</div><div class="line">      version=&apos;1.0&apos;,</div><div class="line">      description=&apos;Python Distribution Utilities&apos;,</div><div class="line">      author=&apos;Winnie&apos;,</div><div class="line">      author_email=&apos;wingcc123@163.com&apos;,</div><div class="line">     # url=&apos;https://www.python.org/sigs/distutils-sig/&apos;,</div><div class="line">      packages=[&apos;module1&apos;]</div><div class="line">     )</div></pre></td></tr></table></figure></p>
+<p>进入code 目录执行<code>python setup.py build</code><br>code目录结构改变如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">code</div><div class="line">├── build       #新创建的目录</div><div class="line">│   └── lib</div><div class="line">│       └── module1</div><div class="line">│           ├── __init__.py</div><div class="line">│           └── m1.py</div><div class="line">├── module1</div><div class="line">│   ├── __init__.py</div><div class="line">│   ├── m1.py</div><div class="line">│   └── module2</div><div class="line">│       ├── __init__.py</div><div class="line">│       └── m2.py</div><div class="line">└── setup.py</div></pre></td></tr></table></figure></p>
+<p>在项目目录下多了build目录，有一个lib子目录，lib下就是模块module1的目录了。module1目录下的*.py文件被复制了，但是子目录没有被复制。<br>setup.py 更改<code>packages=[&#39;module1.module2&#39;]</code><br>生成文件如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">├── build</div><div class="line">│   └── lib</div><div class="line">│       └── module1</div><div class="line">│           └── module2</div><div class="line">│               ├── __init__.py</div><div class="line">│               └── m2.py</div><div class="line">├── module1</div><div class="line">│   ├── __init__.py</div><div class="line">│   ├── m1.py</div><div class="line">│   └── module2</div><div class="line">│       ├── __init__.py</div><div class="line">│       └── m2.py</div><div class="line">└── setup.py</div></pre></td></tr></table></figure></p>
+<p>逐级构建了同样的目录结构后，只有module2的下的文件被拷贝到build/lib目录下面.<br>setup.py 更改<code>packages=[&#39;module1&#39;,&#39;module1.module2&#39;]</code><br>就可以得到如下结果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">├── build</div><div class="line">│   └── lib</div><div class="line">│       └── module1</div><div class="line">│           ├── __init__.py</div><div class="line">│           ├── m1.py</div><div class="line">│           └── module2</div><div class="line">│               ├── __init__.py</div><div class="line">│               └── m2.py</div><div class="line">├── module1</div><div class="line">│   ├── __init__.py</div><div class="line">│   ├── m1.py</div><div class="line">│   └── module2</div><div class="line">│       ├── __init__.py</div><div class="line">│       └── m2.py</div><div class="line">└── setup.py</div></pre></td></tr></table></figure></p>
+<h3 id="install命令，安装"><a href="#install命令，安装" class="headerlink" title="install命令，安装"></a>install命令，安装</h3><p>build后就可以install，直接运行   <code>python setup.py install</code><br>如果没有build，会先build编译，然后安装。<br><img src="https://upload-images.jianshu.io/upload_images/4618795-7f26ffdefd702cf9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h3 id="sdist命令，分发"><a href="#sdist命令，分发" class="headerlink" title="sdist命令，分发"></a>sdist命令，分发</h3><p>执行<code>python setup.py sdist</code>产生一个dist目录，里面生成一个带版本号的压缩包。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">├── build</div><div class="line">│   └── lib</div><div class="line">│       └── module1</div><div class="line">│           ├── __init__.py</div><div class="line">│           ├── m1.py</div><div class="line">│           └── module2</div><div class="line">│               ├── __init__.py</div><div class="line">│               └── m2.py</div><div class="line">├── dist</div><div class="line">│   └── Distutils-1.0.tar.gz</div><div class="line">├── MANIFEST</div><div class="line">├── module1</div><div class="line">│   ├── __init__.py</div><div class="line">│   ├── m1.py</div><div class="line">│   └── module2</div><div class="line">│       ├── __init__.py</div><div class="line">│       └── m2.py</div><div class="line">└── setup.py</div></pre></td></tr></table></figure></p>
+<p>在其他地方解压缩这个文件，里面有setup.py，就可以使用 <code>python setup.py install</code>安装了， 也可以  <code>pip install xxx</code> 直接使用pip安装这个压缩包<br>其他包格式如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">python setup.py bdist_wininst # 制作windows下的分发包</div><div class="line">python setup.py bdist_rpm # 打包成rpm</div></pre></td></tr></table></figure></p>
+<p>可以把自己写好的模块发布到公共的Pypi上，也可以搭建Pypi私服，供企业内部使用。 Pypi里面的模块没有太好的审核机制，不保证安全，请慎重使用。</p>
+<h3 id="wheel包"><a href="#wheel包" class="headerlink" title="wheel包"></a>wheel包</h3><p><code>pip install wheel</code><br>setup.py 修改如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/env python</div><div class="line">from setuptools import setup</div><div class="line">#from distutils.core import setup</div><div class="line">setup(name=&apos;Distutils&apos;,</div><div class="line">      version=&apos;1.0&apos;,</div><div class="line">      description=&apos;Python Distribution Utilities&apos;,</div><div class="line">      author=&apos;Winnie&apos;,</div><div class="line">      author_email=&apos;wingcc123@163.com&apos;,</div><div class="line">     # url=&apos;https://www.python.org/sigs/distutils-sig/&apos;,</div><div class="line">      packages=[&apos;module1&apos;,&apos;module1.module2&apos;]</div><div class="line">     )</div></pre></td></tr></table></figure></p>
+<p>执行<code>python setup.py  bdist_egg</code><br>生成文件如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">├── build</div><div class="line">│   ├── bdist.linux-x86_64</div><div class="line">│   └── lib</div><div class="line">│       └── module1</div><div class="line">│           ├── __init__.py</div><div class="line">│           ├── m1.py</div><div class="line">│           └── module2</div><div class="line">│               ├── __init__.py</div><div class="line">│               └── m2.py</div><div class="line">├── dist</div><div class="line">│   └── Distutils-1.0-py3.6.egg</div><div class="line">├── Distutils.egg-info</div><div class="line">│   ├── dependency_links.txt</div><div class="line">│   ├── PKG-INFO</div><div class="line">│   ├── SOURCES.txt</div><div class="line">│   └── top_level.txt</div><div class="line">├── module1</div><div class="line">│   ├── __init__.py</div><div class="line">│   ├── m1.py</div><div class="line">│   └── module2</div><div class="line">│       ├── __init__.py</div><div class="line">│       └── m2.py</div><div class="line">└── setup.py</div></pre></td></tr></table></figure></p>
+<p>执行 <code>python setup.py  bdist_wheel</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">├── build</div><div class="line">│   ├── bdist.linux-x86_64</div><div class="line">│   └── lib</div><div class="line">│       └── module1</div><div class="line">│           ├── __init__.py</div><div class="line">│           ├── m1.py</div><div class="line">│           └── module2</div><div class="line">│               ├── __init__.py</div><div class="line">│               └── m2.py</div><div class="line">├── dist</div><div class="line">│   └── Distutils-1.0-py3-none-any.whl</div><div class="line">├── Distutils.egg-info</div><div class="line">│   ├── dependency_links.txt</div><div class="line">│   ├── PKG-INFO</div><div class="line">│   ├── SOURCES.txt</div><div class="line">│   └── top_level.txt</div><div class="line">├── module1</div><div class="line">│   ├── __init__.py</div><div class="line">│   ├── m1.py</div><div class="line">│   └── module2</div><div class="line">│       ├── __init__.py</div><div class="line">│       └── m2.py</div><div class="line">└── setup.py</div></pre></td></tr></table></figure></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/25/Linux以及开源协议简介/" class="archive-article-date">
-  	<time datetime="2018-07-25T03:25:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/25/Linux以及开源协议简介/">Linux以及开源协议简介</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
       
-        </div></section>
+
       
+
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/10/zabbix-监控zookeeper集群/" class="archive-article-date">
-  	<time datetime="2017-07-10T02:45:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/10/zabbix-监控zookeeper集群/">zabbix 监控zookeeper集群</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">zabbix</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
   </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/02/kube-dns-命令/" class="archive-article-date">
-  	<time datetime="2017-04-02T08:59:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/02/kube-dns-命令/">kube-dns 命令</a>
-    </h1>
-  
+</div>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">kubernetes</a>
-        		</li>
-      		
-		</ul>
-	</div>
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2018/10/07/模块化/" alt="微信分享二维码">
+    </div>
+</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/02/20/kubernetes中加入etcd集群/" class="archive-article-date">
-  	<time datetime="2017-02-20T03:43:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/02/20/kubernetes中加入etcd集群/">kubernetes中加入etcd集群</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">kubernetes</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/02/18/kubernetes网络方案calico/" class="archive-article-date">
-  	<time datetime="2017-02-18T09:58:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/02/18/kubernetes网络方案calico/">kubernetes网络方案calico</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">kubernetes</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/02/15/docker-harbor私有仓库/" class="archive-article-date">
-  	<time datetime="2017-02-15T03:02:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/02/15/docker-harbor私有仓库/">docker harbor私有仓库</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">kubernetes</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/02/03/docker-私有仓库/" class="archive-article-date">
-  	<time datetime="2017-02-03T10:08:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/02/03/docker-私有仓库/">docker 私有仓库</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">kubernetes</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
+<div class="mask js-mask"></div>
       
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/09/20/mysql-主从不同步解决/" class="archive-article-date">
-  	<time datetime="2016-09-20T12:12:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-09-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/09/20/mysql-主从不同步解决/">mysql 主从不同步解决</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/06/12/kubernetes中的volume/" class="archive-article-date">
-  	<time datetime="2016-06-12T11:53:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-06-12</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/10/06/异常处理/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">异常处理</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/06/12/kubernetes中的volume/">kubernetes中的volume</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">kubernetes</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/06/10/kubernetes-DNS配置/" class="archive-article-date">
-  	<time datetime="2016-06-10T03:57:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-06-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/06/10/kubernetes-DNS配置/">kubernetes DNS配置</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">kubernetes</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/page/2/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/page/4/">4</a><a class="extend next" rel="next" href="/archives/page/4/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -584,8 +453,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
