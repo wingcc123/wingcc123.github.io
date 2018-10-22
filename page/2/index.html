@@ -144,6 +144,233 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-文件操作" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/02/文件操作/">文件操作</a>
+    </h1>
+  
+
+        
+        <a href="/2018/09/02/文件操作/" class="archive-article-date">
+  	<time datetime="2018-09-02T13:39:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一-文件IO常用操作"><a href="#一-文件IO常用操作" class="headerlink" title="一.文件IO常用操作"></a>一.文件IO常用操作</h1><table>
+<thead>
+<tr>
+<th style="text-align:center">方法</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">open</td>
+<td style="text-align:center">打开</td>
+</tr>
+<tr>
+<td style="text-align:center">read</td>
+<td style="text-align:center">读取</td>
+</tr>
+<tr>
+<td style="text-align:center">write</td>
+<td style="text-align:center">写入</td>
+</tr>
+<tr>
+<td style="text-align:center">close</td>
+<td style="text-align:center">关闭</td>
+</tr>
+<tr>
+<td style="text-align:center">readline</td>
+<td style="text-align:center">单行读取</td>
+</tr>
+<tr>
+<td style="text-align:center">readlines</td>
+<td style="text-align:center">多行读取</td>
+</tr>
+<tr>
+<td style="text-align:center">seek</td>
+<td style="text-align:center">文件指针操作</td>
+</tr>
+<tr>
+<td style="text-align:center">tell</td>
+<td style="text-align:center">读取当前指针位置</td>
+</tr>
+</tbody>
+</table>
+<h1 id="二-open"><a href="#二-open" class="headerlink" title="二.open"></a>二.open</h1><p><code>open(file, mode=&#39;r&#39;, buffering=-1, encoding=None, errors=None, newline=None, closefd=True, opener=None)</code><br>创建并打开一个文件test，然后关闭<br>打开一个文件，返回一个文件对象（流对象）和文件描述符。<br>打开文件失败，则返回异常。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#touch test   #linux</div><div class="line">#New-Item &quot;new test.txt&quot; -type File   #powershell </div><div class="line">f = open(&quot;test&quot;) # file对象</div><div class="line"># windows &lt;_io.TextIOWrapper name=&apos;test&apos; mode=&apos;r&apos; encoding=&apos;cp936&apos;&gt; # linux &lt;_io.TextIOWrapper name=&apos;test&apos; mode=&apos;r&apos; encoding=&apos;UTF-8&apos;&gt; print(f.read()) # 读取文件</div><div class="line">f.close() # 关闭文件</div></pre></td></tr></table></figure></p>
+<h3 id="1-open参数详解"><a href="#1-open参数详解" class="headerlink" title="1.open参数详解"></a>1.open参数详解</h3><h5 id="①-file"><a href="#①-file" class="headerlink" title="① file"></a>① file</h5><p>打开或者要创建的文件名，如果不指定路径，默认是当前路径<br>或者是文件描述符（整型）</p>
+<h5 id="②-mode"><a href="#②-mode" class="headerlink" title="② mode"></a>② mode</h5><p>文件打开的模式。默认以<strong>文本只读</strong>   <code>mode=rt</code>的模式打开已经存在的文件</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">描述字符</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">r</td>
+<td style="text-align:center">缺省值，只读打开，如果文件不存在，则抛出错误FileNotFoundError异常</td>
+</tr>
+<tr>
+<td style="text-align:center">w</td>
+<td style="text-align:center">只写打开，没有文件则创建文件，如果文件存在，清空文件</td>
+</tr>
+<tr>
+<td style="text-align:center">x</td>
+<td style="text-align:center">创建文件，并只写方式打开，文件存在则报错</td>
+</tr>
+<tr>
+<td style="text-align:center">a</td>
+<td style="text-align:center">写入打开，如果文件存在，则追加文件内容，不存在则先创建再追加</td>
+</tr>
+<tr>
+<td style="text-align:center">b</td>
+<td style="text-align:center">二进制模式，文件按照字节理解，字节操作使用bytes类型</td>
+</tr>
+<tr>
+<td style="text-align:center">t</td>
+<td style="text-align:center">缺省值，文本模式，将文件按照某种字符标码理解，按照字符操作</td>
+</tr>
+<tr>
+<td style="text-align:center">+</td>
+<td style="text-align:center">不能单独使用，读写打开一个文件。给原来只读，只写当时打开提供缺失的读或者写功能</td>
+</tr>
+</tbody>
+</table>
+<p><strong>文件指针</strong><br>文件指针，指向当前<strong>字节位置</strong><br> f.seek(offset, whence=0, /) (f 是文件对象）<br>改变文件流的位置<br>offset 相对于whence偏移了多少个字节<br>whence 可以有三个选择的值</p>
+<ul>
+<li>0 – start of stream (the default); offset should be zero or positive  文件开头，默认</li>
+<li>1 – current stream position; offset may be negative  当前位置</li>
+<li>2 – end of stream; offset is usually negative  文件末尾</li>
+</ul>
+<p>文本模式模式下：支持从开头向后偏移的。whence=1 表示从当前位置开始偏移，但是offset 只能为0，相当于原地不动。whence=2 表示从文本末尾开始偏移，offset 只能为0，seek 是按照字节偏移的</p>
+<p>二进制模式下：默认whence=0，从文件开头开始，offset只能是正整数。whence=1，offset可正可负。whence=2，offset可正可负。二进制模式支持任意起点的偏移，向后seek可以超界，但是向前的seek不可以超界，否则抛出异常。</p>
+<blockquote>
+<p>调用seek 会自动flush </p>
+</blockquote>
+<h3 id="2-buffering-缓冲区"><a href="#2-buffering-缓冲区" class="headerlink" title="2.buffering : 缓冲区"></a>2.buffering : 缓冲区</h3><p>buffer缓冲区<br>缓冲区是一个内存空间，一般来说是一个FIFO队列，到缓冲区满了或者达到阈值的时候，数据才会flush 到磁盘中。<br>flush() 将缓冲区数据写入磁盘close()关闭前会调用flush()</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">buffering</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">buffering=-1</td>
+<td style="text-align:center">t,b都是默认使用<code>io.DEFAULT_BUFFER_SIZE</code>  的值，默认是4096或者8192。</td>
+</tr>
+<tr>
+<td style="text-align:center">buffering=0</td>
+<td style="text-align:center">b 关闭缓冲区 ，t 不支持</td>
+</tr>
+<tr>
+<td style="text-align:center">buffering=1</td>
+<td style="text-align:center">b 就1个字节，t 行缓冲，遇到换行符才flush</td>
+</tr>
+<tr>
+<td style="text-align:center">buffering&gt; 1</td>
+<td style="text-align:center">b模式表示缓冲的大小，t模式，还是使用默认的buffer_size</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3-encoding"><a href="#3-encoding" class="headerlink" title="3.encoding"></a>3.encoding</h3><p>None 表示使用缺省编码，依赖操作系统。<br>windows默认是GBK（cp936）。<br>linux默认是UTF-8。</p>
+<h3 id="4-其他参数"><a href="#4-其他参数" class="headerlink" title="4.其他参数"></a>4.其他参数</h3><p>errors 编码错误将被捕获，None和strict表示有编码错误将抛出ValueError错误，ignore表示忽略。<br>newline文本模式中，换行的转换。<br>以为None、’’ 空串、’\r’、’\n’、’\r\n’ 读时，None表示’\r’、’\n’、’\r\n’都被 转换为’\n’;’’表示不会自动转换通用换行符;其它合法字符表示换行符就是指定字符，就会按照指定字符分行 写 时，None表示’\n’都会被替换为系统缺省行分隔符os.linesep;’\n’或’’表示’\n’不替换;其它合法字符表示’\n’会被 替换为指定的字符。<br>closefd 关闭文件描述符，True表示关闭它。False会在文件关闭后保持这个描述符。fileobj.fileno()查看</p>
+<h1 id="三-read"><a href="#三-read" class="headerlink" title="三.read"></a>三.read</h1><p>fileobj.read(size=-1, /)<br>size表示读取的多少个字符或字节;负数或者None表示读取到EOF</p>
+<ul>
+<li>readline(size=-1)<br>一行行读取文件内容。size设置一次能读取行内几个字符或字节。</li>
+<li>readlines(hint=-1)<br>读取所有行的列表。指定hint则返回指定的行数</li>
+</ul>
+<h1 id="四-write"><a href="#四-write" class="headerlink" title="四.write"></a>四.write</h1><p>fileobj.write(s, /)<br>把字符串s写入到文件中并返回字符的个数。<br>writelines(lines)，将字符串列表写入文件。</p>
+<h1 id="五-close"><a href="#五-close" class="headerlink" title="五.close"></a>五.close</h1><p>flush 并关闭文件对象。<br>文件已经关闭，再次关闭没有任何 效果</p>
+<h1 id="六-上下文管理"><a href="#六-上下文管理" class="headerlink" title="六. 上下文管理"></a>六. 上下文管理</h1><p>交给python解释器去释放文件对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">with open(&quot;file&quot;) as f:</div><div class="line">    f.read()</div></pre></td></tr></table></figure></p>
+<p>或者以下这种写法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">f = open(&apos;test&apos;)</div><div class="line">with f:</div><div class="line">    f.read()</div></pre></td></tr></table></figure></p>
+<ul>
+<li>使用with .. as 关键字</li>
+<li>上下文管理的语句块并不会开启新的作用域</li>
+<li>with语句块执行完毕，会自动关闭文件对象<br>对于类似于文件对象的IO对象，一般来说都需要在不使用的时候关闭、注销，以释放资源。 IO被打开的时候，会获得一个文件描述符。计算机资源是有限的，所以操作系统都会做限制。就是为了保护计算机 的资源不要被完全耗尽，计算资源是共享的，不是独占的。 一般情况下，除非特别明确的知道资源情况，否则不要提高资源的限制值来解决问题。</li>
+</ul>
+<h1 id="七-shutil模块-高级文件操作"><a href="#七-shutil模块-高级文件操作" class="headerlink" title="七. shutil模块 (高级文件操作)"></a>七. shutil模块 (高级文件操作)</h1><h3 id="1-复制"><a href="#1-复制" class="headerlink" title="1.复制"></a>1.复制</h3><ul>
+<li><p>copyfileobj(fsrc, fdst[, length])<br>文件对象的复制, <strong>fsrc和fdst都是open打开的文件对象</strong>,复制内容，fdst要求可写，length 制定了表示buffer的大小</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">import shutil</div><div class="line">with open(&apos;/tmp/test&apos;,&apos;r+&apos;) as f1:</div><div class="line">    with open(&apos;/tmp/test2&apos;,&apos;w&apos;) as f2:</div><div class="line">        shutil.copyfileobj(f1,f2)</div></pre></td></tr></table></figure>
+</li>
+<li><p>copyfile(src, dst, <em>, follow_symlinks=True)<br>复制文件内容，不含元数据。<em>*src、dst为文件的路径字符串</em></em>,本质上调用的就是copyfileobj，所以不带元数据二进制内容复制。</p>
+</li>
+<li>copymode(src, dst, *, follow_symlinks=True)<br>仅仅复制权限</li>
+<li>copystat(src, dst, *, follow_symlinks=True)<br>复制元数据，stat包含权限</li>
+<li>copy(src, dst, *, follow_symlinks=True)<br>复制文件内容、权限和部分元数据，不包括创建时间和修改时间。<br>本质上调用的是copyfile 和copymode</li>
+<li>copy2(src, dst, *, follow_symlinks=True)<br>本质上调用copyfile 和copystat。<br>比copy多了复制全部元数据，但需要平台支持。</li>
+<li>copytree(src,dst,symlinks=False,ignore=None,copy_function=copy2,ignore_dangling_symlinks=False)<br>递归复制目录。默认使用copy2，也就是带更多的元数据复制。<br>src、dst必须是目录，src必须存在，dst必须<strong>不存在</strong><br>ignore = func ，提供一个callable(src, names) -&gt; ignored_names。提供一个函数，它会被调用。src是源目录， names是os.listdir(src)的结果，就是列出src中的文件名，返回值是要被过滤的文件名的set类型数据。</li>
+</ul>
+<h3 id="2-删除"><a href="#2-删除" class="headerlink" title="2.删除"></a>2.删除</h3><p>-rmtree(path, ignore_errors=False, onerror=None)<br>递归删除。如同rm -rf一样危险，慎用。<br>ignore_errors为true，忽略错误。当为False或者omitted时onerror生效。<br>onerror为callable，接受函数function、path和execinfo。</p>
+<h3 id="3-移动"><a href="#3-移动" class="headerlink" title="3.移动"></a>3.移动</h3><ul>
+<li>move(src, dst, copy_function=copy2)<br>递归移动文件、目录到目标，返回目标。<br>本身使用的是 os.rename方法<br>如果不支持rename，如果是目录则想copytree再删除源目录。<br>默认使用copy2方法</li>
+</ul>
+<h3 id="4-打包"><a href="#4-打包" class="headerlink" title="4. 打包"></a>4. 打包</h3><p>make_archive(base_name, format, root_dir=None, base_dir=None, verbose=0, dry_run=0, owner=None, group=None, logger=None)<br>format 支持的格式有: “zip”, “tar”, “gztar”,”bztar”, or “xztar”等.</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/09/02/文件操作/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-生成器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1819,98 +2046,6 @@
 
 
   
-    <article id="post-pyenv-virtualenv-jupyter" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/31/pyenv-virtualenv-jupyter/">pyenv+virtualenv+jupyter</a>
-    </h1>
-  
-
-        
-        <a href="/2018/07/31/pyenv-virtualenv-jupyter/" class="archive-article-date">
-  	<time datetime="2018-07-31T10:41:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-31</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="一-环境"><a href="#一-环境" class="headerlink" title="一.环境"></a>一.环境</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Centos 6</div><div class="line">python2.6.6</div></pre></td></tr></table></figure>
-<h1 id="二-pyenv-安装"><a href="#二-pyenv-安装" class="headerlink" title="二.pyenv 安装"></a>二.pyenv 安装</h1><h3 id="1-使用root用户安装依赖"><a href="#1-使用root用户安装依赖" class="headerlink" title="1.使用root用户安装依赖"></a>1.使用root用户安装依赖</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">yum install -y git</div><div class="line">yum -y install gcc make patch gdbm-devel openssl-devel sqlite-devel readline-devel zlib-devel bzip2-devel</div></pre></td></tr></table></figure>
-<h3 id="2-下载pyenv"><a href="#2-下载pyenv" class="headerlink" title="2.下载pyenv"></a>2.下载pyenv</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd /home/wing</div><div class="line">git clone  https://github.com/pyenv/pyenv .pyenv</div></pre></td></tr></table></figure>
-<h3 id="3-安装插件installer-和更新环境变量"><a href="#3-安装插件installer-和更新环境变量" class="headerlink" title="3.安装插件installer 和更新环境变量"></a>3.安装插件installer 和更新环境变量</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer |bash</div><div class="line">cat /home/wing/.bash_profile  |grep pyenv &gt;&gt; /dev/null</div><div class="line">flag=$?</div><div class="line">if [ $? -eq 0];then</div><div class="line">cat &gt;&gt; /root/.bash_profile &lt;&lt; EOF</div><div class="line">export PATH=&quot;/home/wing/.pyenv/bin:\$PATH&quot;</div><div class="line">eval &quot;\$(pyenv init -)&quot;</div><div class="line">eval &quot;\$(pyenv virtualenv-init -)&quot;</div><div class="line">EOF</div><div class="line">source /home/wing/.bash_profile</div></pre></td></tr></table></figure>
-<h3 id="4-使用pyenv-安装python3-6-6"><a href="#4-使用pyenv-安装python3-6-6" class="headerlink" title="4.使用pyenv 安装python3.6.6"></a>4.使用pyenv 安装python3.6.6</h3><p>可以使用cache模式将python3.6.6 的软件包先放置在.pyenv/cache (需要自己手动创建）下，以减少从网络上下载软件包的的时间。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">#查看pyenv 安装帮助</div><div class="line">pyenv help install</div><div class="line">#列出所有可用版本</div><div class="line">pyenv install --list</div><div class="line">#安装指定版本</div><div class="line">pyenv install 3.6.6 -v</div><div class="line">#刷新数据库	</div><div class="line">pyenv rehash</div><div class="line">#卸载某版本</div><div class="line">pyenv uninstall xxx</div></pre></td></tr></table></figure></p>
-<h3 id="5-pyenv-常用方法"><a href="#5-pyenv-常用方法" class="headerlink" title="5.pyenv 常用方法"></a>5.pyenv 常用方法</h3><h6 id="①查看-版本"><a href="#①查看-版本" class="headerlink" title="①查看 版本"></a>①查看 版本</h6><p>查看当前使用的python 版本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[wing@wing ~]$ pyenv version</div><div class="line">system (set by /home/wing/.pyenv/version)</div><div class="line">[wing@wing ~]$ python -V</div><div class="line">Python 2.6.6</div></pre></td></tr></table></figure></p>
-<p>查看pyenv 已经安装的python版本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[wing@wing ~]$ pyenv versions</div><div class="line">* system (set by /home/wing/.pyenv/version)</div><div class="line">  3.6.6</div><div class="line">  3.6.6/envs/py3.6</div><div class="line">  py3.6</div></pre></td></tr></table></figure></p>
-<h6 id="②版本控制"><a href="#②版本控制" class="headerlink" title="②版本控制"></a>②版本控制</h6><p>临时设置,只作用在当前的shell中,关闭则失效<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pyenv shell 3.6.6</div></pre></td></tr></table></figure></p>
-<p>本地设置,作用在执行该语句的目录下，该目录下的子目录都继承该设置。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#本地设置</div><div class="line">pyenv local 3.6.6 </div><div class="line">#取消本地设置</div><div class="line">pyenv local --unset</div></pre></td></tr></table></figure></p>
-<p>全局设置，影响用户的的环境变量<br>如果使用root用户执行该命令，会产生可怕的影响，禁止。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#全局设置</div><div class="line">pyenv global 3.6.6</div><div class="line">#还原全局设置</div><div class="line">pyenv global system</div></pre></td></tr></table></figure></p>
-<h1 id="三-Virualenv-虚拟环境设置"><a href="#三-Virualenv-虚拟环境设置" class="headerlink" title="三.Virualenv  虚拟环境设置"></a>三.Virualenv  虚拟环境设置</h1><p>为了隔离多用户操作多版本的python 环境使用virtualenv，以便每一个项目独立运行在自己的环境中。</p>
-<h3 id="1-创建虚拟环境"><a href="#1-创建虚拟环境" class="headerlink" title="1.创建虚拟环境"></a>1.创建虚拟环境</h3><p><code>pyenv virtualenv 3.6.6 test</code><br>创建过程会安装对应的pip和setuptools<br><img src="https://upload-images.jianshu.io/upload_images/4618795-01dd898b160bc60f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<h3 id="2-设置本地虚拟环境"><a href="#2-设置本地虚拟环境" class="headerlink" title="2.设置本地虚拟环境"></a>2.设置本地虚拟环境</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">#设置</div><div class="line">[wing@wing ~]$ mkdir project</div><div class="line">[wing@wing ~]$ cd project/</div><div class="line">[wing@wing project]$ ls</div><div class="line">[wing@wing project]$ pyenv local test</div><div class="line">(test) [wing@wing project]$ python -V</div><div class="line">Python 3.6.6</div><div class="line">#退出</div><div class="line">(test) [wing@wing project]$ pyenv local --unset</div><div class="line">[wing@wing project]$ python -V</div><div class="line">Python 2.6.6</div></pre></td></tr></table></figure>
-<h3 id="3-临时虚拟环境"><a href="#3-临时虚拟环境" class="headerlink" title="3.临时虚拟环境"></a>3.临时虚拟环境</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[wing@wing app]$ pyenv activate test</div><div class="line">pyenv-virtualenv: prompt changing will be removed from future release. configure `export PYENV_VIRTUALENV_DISABLE_PROMPT=1&apos; to simulate the behavior.</div><div class="line">(test) [wing@wing app]$ python -V</div><div class="line">Python 3.6.6</div><div class="line">(test) [wing@wing app]$ pyenv deactivate  test</div><div class="line">[wing@wing app]$ python -V</div><div class="line">Python 2.6.6</div></pre></td></tr></table></figure>
-<h3 id="4-删除虚拟环境"><a href="#4-删除虚拟环境" class="headerlink" title="4.删除虚拟环境"></a>4.删除虚拟环境</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[wing@wing project]$ pyenv uninstall test</div><div class="line">pyenv-virtualenv: remove /home/wing/.pyenv/versions/3.6.6/envs/test? y</div><div class="line">[wing@wing project]$ pyenv versions</div><div class="line">* system (set by /home/wing/.pyenv/version)</div><div class="line">  3.6.6</div><div class="line">  3.6.6/envs/py3.6</div><div class="line">  py3.6</div></pre></td></tr></table></figure>
-<h1 id="四-安装jupyter"><a href="#四-安装jupyter" class="headerlink" title="四.安装jupyter"></a>四.安装jupyter</h1><h3 id="1-修改pip源"><a href="#1-修改pip源" class="headerlink" title="1.修改pip源"></a>1.修改pip源</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">mkdir ~/.pip</div><div class="line">cat &gt;&gt; ~/.pip/pip.conf &lt;&lt; EOF</div><div class="line">[global]</div><div class="line">index-url=https://mirrors.aliyun.com/pypi/simple/</div><div class="line">trusted-host=mirrors.aliyun.com</div><div class="line">EOF</div></pre></td></tr></table></figure>
-<h3 id="2-安装jupyter（可以在虚拟环境中安装）"><a href="#2-安装jupyter（可以在虚拟环境中安装）" class="headerlink" title="2.安装jupyter（可以在虚拟环境中安装）"></a>2.安装jupyter（可以在虚拟环境中安装）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">pip install jupyter</div><div class="line">#生成jupyter配置文件</div><div class="line">jupyter notebook --generate-config</div><div class="line">#根据提示输入密码</div><div class="line">jupyter notebook password</div><div class="line">#启动jupyter</div><div class="line">nohup jupyter notebook --no-browser --ip=0.0.0.0  --port=10000 &amp;&gt; jupyter.log &amp;</div><div class="line">#默认端口是8888 ，可以省略</div></pre></td></tr></table></figure>
-<h3 id="3-浏览器登陆"><a href="#3-浏览器登陆" class="headerlink" title="3.浏览器登陆"></a>3.浏览器登陆</h3><p><a href="http://192.168.220.135:10000" target="_blank" rel="external">http://192.168.220.135:10000</a><br><img src="https://upload-images.jianshu.io/upload_images/4618795-d8e2cbce6fec0c15.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<h3 id="4-脚本"><a href="#4-脚本" class="headerlink" title="4.脚本"></a>4.脚本</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">#./$0 [start|status|stop]</div><div class="line">cmd=$1</div><div class="line">start()&#123;</div><div class="line">   nohup jupyter notebook --no-browser --ip=192.168.220.135 &amp;&gt; jupyter.log &amp;</div><div class="line">   pid=$!</div><div class="line">   echo $pid &gt; jupyter.pid</div><div class="line">&#125;</div><div class="line">stop()&#123;</div><div class="line">   cat jupyter.pid|xargs kill -9</div><div class="line">&#125;</div><div class="line">status()&#123;</div><div class="line">   netstat -ntul |grep 8888 &gt;/dev/null</div><div class="line">   flag=$?</div><div class="line">   if [ $flag -eq 0 ];then</div><div class="line">      echo &quot;jupyter is running&quot;</div><div class="line">   else</div><div class="line">      echo &quot;jupyter  stopper&quot;</div><div class="line">   fi</div><div class="line">&#125;</div><div class="line">case $1 in</div><div class="line">    start)</div><div class="line">      start</div><div class="line">      ;;</div><div class="line">    stop)</div><div class="line">      stop</div><div class="line">      ;;</div><div class="line">    status)</div><div class="line">      status</div><div class="line">      ;;</div><div class="line">     *)</div><div class="line">      echo &quot;$0 [start|stop|status]&quot;</div><div class="line">      ;;</div><div class="line">esac</div></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/07/31/pyenv-virtualenv-jupyter/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -2008,11 +2143,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">cluster</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color3">cluster</a>
               </li>
              
               <li class="article-tag-list-item">

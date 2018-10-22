@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Winnie&#39;s cabin</title>
+  <title>线程 | Winnie&#39;s cabin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="运维小记">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Winnie&#39;s cabin">
-<meta property="og:url" content="http://yoursite.com/archives/page/4/index.html">
+  <meta name="description" content="并行是并发的一种解决方式并行 paraller 同时做某些事，可以互不干扰的同一个时刻做某些事情并发，一个时间段内有多少事情处理 并发的解决1.队列，缓冲区2.争抢3.预处理4.并行5.提速6.消息中间件 进程和线程在实现了线程的操作系统中， 线程是操作系统能够进行运算调度的最小单位。它被包含在进程之中，是进程中的实际运作单位，一个程序的执行实例就是进程。进程是计算机中的程序关于某数据集合上的一次">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="线程">
+<meta property="og:url" content="http://yoursite.com/2018/10/22/线程/index.html">
 <meta property="og:site_name" content="Winnie&#39;s cabin">
-<meta property="og:description" content="运维小记">
+<meta property="og:description" content="并行是并发的一种解决方式并行 paraller 同时做某些事，可以互不干扰的同一个时刻做某些事情并发，一个时间段内有多少事情处理 并发的解决1.队列，缓冲区2.争抢3.预处理4.并行5.提速6.消息中间件 进程和线程在实现了线程的操作系统中， 线程是操作系统能够进行运算调度的最小单位。它被包含在进程之中，是进程中的实际运作单位，一个程序的执行实例就是进程。进程是计算机中的程序关于某数据集合上的一次">
+<meta property="og:updated_time" content="2018-10-22T13:57:18.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Winnie&#39;s cabin">
-<meta name="twitter:description" content="运维小记">
+<meta name="twitter:title" content="线程">
+<meta name="twitter:description" content="并行是并发的一种解决方式并行 paraller 同时做某些事，可以互不干扰的同一个时刻做某些事情并发，一个时间段内有多少事情处理 并发的解决1.队列，缓冲区2.争抢3.预处理4.并行5.提速6.消息中间件 进程和线程在实现了线程的操作系统中， 线程是操作系统能够进行运算调度的最小单位。它被包含在进程之中，是进程中的实际运作单位，一个程序的执行实例就是进程。进程是计算机中的程序关于某数据集合上的一次">
   
     <link rel="alternative" href="/atom.xml" title="Winnie&#39;s cabin" type="application/atom+xml">
   
@@ -142,177 +144,272 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-线程" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      线程
+    </h1>
+  
+
+        
+        <a href="/2018/10/22/线程/" class="archive-article-date">
+  	<time datetime="2018-10-22T13:56:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-22</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>并行是并发的一种解决方式<br>并行 paraller 同时做某些事，可以互不干扰的同一个时刻做某些事情<br>并发，一个时间段内有多少事情处理</p>
+<p>并发的解决<br>1.队列，缓冲区<br>2.争抢<br>3.预处理<br>4.并行<br>5.提速<br>6.消息中间件</p>
+<h1 id="进程和线程"><a href="#进程和线程" class="headerlink" title="进程和线程"></a>进程和线程</h1><p>在实现了线程的操作系统中， 线程是操作系统能够进行运算调度的最小单位。它被包含在进程之中，是进程中的实际运作单位，一个程序的执行实例就是进程。<br>进程是计算机中的程序关于某数据集合上的一次运行活动。是系统进行资源分配和调度的基本单位，是操作系统结构的基础。</p>
+<p>进程和程序的关系<br>程序是源代码编译后的文件，而这些文件存放在磁盘上。当程序被操作系统加载到内存中，就是进程。金策韩国那种存放着指令和数据（资源），它是线程的容器<br>linux中进程有父进程，子进程。windows的进程是平等关系</p>
+<p>线程，有时候被称为轻量级进程，是程序指定流的最小单元，<br>一个标准的线程有线程id，当前指令指针（PC），寄存器集合和堆栈组成。<br>在许多系统中，创建一个线程比创建一个进程快10-100 倍</p>
+<p>现代操作系统提出进程的概念，每一个进程都认为自己独占所有的计算机硬件资源<br>进程就是独立的，进程间不可以随便地共享数据<br>同一个进程内的线程可以共享进程的资源，每一个线程拥有自己独立的堆栈。<br>线程有四个状态<br>就绪态：线程能够运行，但是等待被调度。可能线程刚刚创建启动，或者刚刚从阻塞态中恢复，或者被其他现层内抢占<br>运行态：线程正在运行<br>阻塞态：线程等待外部事情发生而无法运行，例如I／O操作<br>终止态：线程完成，或者退出，或被取消</p>
+<h2 id="python-线程开发"><a href="#python-线程开发" class="headerlink" title="python 线程开发"></a>python 线程开发</h2><p>进程会启动一个解释器进程，线程共享一个解释器进程<br>python的线程没有优先级，没有线程组的概念，也不能被销毁，停止，挂起，那么就没有恢复，中断了</p>
+<h3 id="Thread-类"><a href="#Thread-类" class="headerlink" title="Thread 类"></a>Thread 类</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">def __init__(self,group=None,target=None,name=None,</div><div class="line">            args=(),kwargs=None,*,daemon=None)</div></pre></td></tr></table></figure>
+<ul>
+<li>target :线程调用的对象，就是目标函数</li>
+<li>name ：为线程起个名字</li>
+<li>args ：为目标函数传递实参，元组</li>
+<li>kwargs：为目标函数关键字传参，字典</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">import threading</div><div class="line">def worker():</div><div class="line">    print(&apos;running&apos;)</div><div class="line">t = threading.Thread(target=worker,name=&apos;worker&apos;)</div><div class="line">t.start()</div></pre></td></tr></table></figure>
+<p>线程运行中可以分为主线程和工作线程</p>
+<h6 id="线程退出"><a href="#线程退出" class="headerlink" title="线程退出"></a>线程退出</h6><p>python中没有提供线程退出的方法，线程在下面情况的时候退出<br>1.线程函数内语句执行完毕<br>2.线程函数中抛未处理的异常</p>
+<h6 id="threading属性和方法"><a href="#threading属性和方法" class="headerlink" title="threading属性和方法"></a>threading属性和方法</h6><table>
+<thead>
+<tr>
+<th style="text-align:center">name</th>
+<th style="text-align:center">meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">current_thread()</td>
+<td style="text-align:center">返回当前线程对象</td>
+</tr>
+<tr>
+<td style="text-align:center">main_thread()</td>
+<td style="text-align:center">返回主线程对象</td>
+</tr>
+<tr>
+<td style="text-align:center">active_count</td>
+<td style="text-align:center">返回处于active的线程个数</td>
+</tr>
+<tr>
+<td style="text-align:center">enumerate()</td>
+<td style="text-align:center">返回所有活着的线程的列表，不包括已经终止和未开始的线程</td>
+</tr>
+<tr>
+<td style="text-align:center">get_ident()</td>
+<td style="text-align:center">返回当前的线程id</td>
+</tr>
+</tbody>
+</table>
+<p>active_count ,enumerate 方法返回的值还包括主线程</p>
+<p>Thread实例的属性和方法</p>
+<ul>
+<li>name :标识符，可以重复，getName()，setName()可以获取，设置该字段</li>
+<li>ident : 线程ID，非0整数，线程启动后才会有ID，否则为None，线程退出，此ID依旧可以访问，可以重复使用</li>
+<li>is_alive() ：返回线程是否或者<br><strong>线程的name这是一个名称，可以重复，但是id必须唯一</strong></li>
+<li>start(): 启动线程，每一个线程必须且只能执行一次，会自动调用run()方法</li>
+<li>run():运行线程函数</li>
+</ul>
+<h1 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h1><p>一个进程中有多个线程。<br>当使用start方法启动之后，进程内有多个活动的线程并行工作，就是多线程<br>一个线程中至少有一个线程，作为程序的入口，这个线程就是主线程，一个进程至少有一个主线程，其他线程为工作线程</p>
+<h3 id="线程安全"><a href="#线程安全" class="headerlink" title="线程安全"></a>线程安全</h3><p>1.print函数不是线程安全函数，不让print 打印换行<br>2.使用logging </p>
+<h3 id="daemon线程和non-daemon线程"><a href="#daemon线程和non-daemon线程" class="headerlink" title="daemon线程和non-daemon线程"></a>daemon线程和non-daemon线程</h3><p>进程依靠线程执行代码，至少有一个主线程，其他线程是工作线程<br>主线程就是第一个启动的线程</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">daemon属性</td>
+<td style="text-align:center">表示线程是否是daemon线程 ，这个值必须在start()之前设置，否则引发RuntimeError异常</td>
+</tr>
+<tr>
+<td style="text-align:center">isDaemon()</td>
+<td style="text-align:center">是否是daemon线程</td>
+</tr>
+<tr>
+<td style="text-align:center">setDaemon</td>
+<td style="text-align:center">设置为daemon线程，必须在start之前设置</td>
+</tr>
+</tbody>
+</table>
+<p>线程中daemon 如果没有设置，默认继承当前线程的damon的值。<br>主线程的默认是non-daemon线程，daemon=False<br>daemon线程，daemon=True。<br>non-daemon进程如果没有结束，主线程会一直等待non-daemon线程结束。<br>主线程结束的时候会逐一结束daemon进程</p>
+<h1 id="join方法"><a href="#join方法" class="headerlink" title="join方法"></a>join方法</h1><p>join(timeout=None)，是线程的标准方法之一。<br>一个线程中调用另一线程的join方法，调用者将被阻塞，直到被调用线程终止。<br>一个线程可以被join多次。<br>调用谁的join方法，就是join谁，就要等谁</p>
+<h1 id="threading-local类"><a href="#threading-local类" class="headerlink" title="threading.local类"></a>threading.local类</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">import  threading</div><div class="line">import time</div><div class="line"></div><div class="line">class A:</div><div class="line">    def __init__(self):</div><div class="line">        self.x = 0</div><div class="line">global_data = A()</div><div class="line"></div><div class="line">def worker():</div><div class="line">    global_data.x=0</div><div class="line">    for i in range(100):</div><div class="line">        time.sleep(0.0001)</div><div class="line">        global_data.x += 1</div><div class="line">    print(threading.current_thread(),global_data.x)</div><div class="line"></div><div class="line">for i in range(5):</div><div class="line">    threading.Thread(target=worker).start()</div></pre></td></tr></table></figure>
+<p>python 提供了threading.local类，将这个类实例化得到一个全局对象，但是不同的线程使用这个对象存储的数据。</p>
+<blockquote>
+<p>本质<br>运行时候，threading.local实例处于不同的线程中，就从大字典中到找当前线程相关键值对的字典，覆盖threading.lcoal实例的<strong>dict</strong></p>
+</blockquote>
+<h1 id="threading-Timer-类"><a href="#threading-Timer-类" class="headerlink" title="threading.Timer 类"></a>threading.Timer 类</h1><p>这个类用来定义延时多久后执行一个函数<br>threading.Timer(interval,function,args=None,kwargs=None)<br>start方法执行之后，Timer对象就会处于一种等待状态，等待interval秒之后，开始执行function函数</p>
+<p>Timer 是线程Thread的子类，就是线程类，具有线程的能力和特征<br>它的实例可以延时执行函数的线程，在真正执行目标函数之前，都可以cancel它。<br>cancel方法的本质是使用Event类实现，并不是说，线程提供了取消的方法</p>
+<h1 id="线程同步"><a href="#线程同步" class="headerlink" title="线程同步"></a>线程同步</h1><p>线程同步，线程间协同，通过某种技术，让一个线程访问某数据时，其他线程不能访问这些数据，直到该线程完成对数据的操作<br>不同操作系统实现技术有所不同，有临界区（Critical Section）、互斥量（Mutex）、信号量（Semaphore）、事件（Event）</p>
+<h1 id="Event事件"><a href="#Event事件" class="headerlink" title="Event事件"></a>Event事件</h1><p>就是线程间通信机制中最简单的实现，使用一个内部的标记flag，通过flag的True或者False的变化来进行操作。</p>
+<ul>
+<li>set() 标记设置为True</li>
+<li>clear() 标记设置为False</li>
+<li>is_set() 标记是否为True</li>
+<li>wait(timeout=None) 设置等待标记为True的时长，None为无线等待，等待返回True，未等到超时了返回False</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">from threading import Event,Thread</div><div class="line">import logging</div><div class="line">import time</div><div class="line"></div><div class="line">FORMAT = &apos;%(asctime)s %(threadName)s %(thread)d %(message)s&apos;</div><div class="line">logging.basicConfig(format=FORMAT,level=logging.INFO)</div><div class="line"></div><div class="line">def boss(event:Event):</div><div class="line">    logging.info(&apos;boss&apos;)</div><div class="line">    event.wait()</div><div class="line">    logging.info(&apos;well done&apos;)</div><div class="line">    </div><div class="line">def worker(event:Event,count=10):</div><div class="line">    logging.info(&apos;worker&apos;)</div><div class="line">    cups = []</div><div class="line">    while True:</div><div class="line">        logging.info(&apos;glass 1&apos;)</div><div class="line">        time.sleep(0.5)</div><div class="line">        cups.append(1)</div><div class="line">        if len(cups) &gt;= count:</div><div class="line">            event.set()</div><div class="line">            break</div><div class="line">    logging.info(&apos;finish&apos;)</div><div class="line">    </div><div class="line">event = Event()</div><div class="line">w = Thread(target=worker,args=(event,))</div><div class="line">b = Thread(target=boss,args=(event,))</div><div class="line"></div><div class="line">w.start()</div><div class="line">b.start()</div></pre></td></tr></table></figure>
+<p>使用同一个Event对象的标记flag<br>线程中Event对象wait，就是等到flag变为True，或者等到超时返回False，不限制等待的个数<br>Event的wait优于time.sleep，它会更快的切换到其它线程，提高并发效率。</p>
+<h1 id="Lock"><a href="#Lock" class="headerlink" title="Lock"></a>Lock</h1><p>锁，但是存在共享资源争抢的地方都可以使用锁，从而保证只有一个使用者可以完全使用这个资源</p>
+<ul>
+<li>acquire(blocking=True,timeout=-1)<br>默认阻塞，阻塞可以设置超时时间，非阻塞时，timeout禁止设置。成功获取锁，返回True，否则返回False。</li>
+<li>release()<br>释放锁，可以从任何线程调用释放<br>已上锁的锁，会被重置为unlocker 未上锁的锁上调用，爆出RuntimeError异常</li>
+</ul>
+<p>一般来说，加锁就需要解锁，但是加锁后解锁前，还需要执行一些代码，就可能抛异常，一旦出现异常，锁是无法释放的，但是当前线程可能已经被这个异常终止了，这就产生了死锁。<br>加锁，解锁常用语句：<br>1.try …finally<br>2.with 上下文管理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">import threading</div><div class="line">from threading import Thread,Lock</div><div class="line">import time</div><div class="line">class Counter():</div><div class="line">    def __init__(self):</div><div class="line">        self._val = 0</div><div class="line">        self.__lock = Lock()</div><div class="line">    @property</div><div class="line">    def value(self):</div><div class="line">        with self.__lock:</div><div class="line">            return self._val</div><div class="line">    def inc(self):</div><div class="line">        try:</div><div class="line">            self.__lock.acquire()</div><div class="line">            self._val += 1</div><div class="line">        finally:</div><div class="line">            self.__lock.release()</div><div class="line">            </div><div class="line">    def dec(self):</div><div class="line">        with self.__lock:</div><div class="line">            self._val -= 1</div><div class="line">def run(c:Counter,count=100):</div><div class="line">    for _ in range(count):</div><div class="line">        for i in range(-50,50):</div><div class="line">            if i &lt; 0:</div><div class="line">                c.dec()</div><div class="line">            else:</div><div class="line">                c.inc()</div><div class="line">c = Counter()</div><div class="line">c1 = 10 # 线程数</div><div class="line">c2 = 1000</div><div class="line"></div><div class="line">for i in range(c1):</div><div class="line">    Thread(target=run,args=(c,c2)).start()</div><div class="line">    </div><div class="line">while True:</div><div class="line">    time.sleep(1)</div><div class="line">    if threading.active_count() == 1:</div><div class="line">        print(threading.enumerate())</div><div class="line">        print(c.value)</div><div class="line">        break</div><div class="line">    else:</div><div class="line">        print(threading.enumerate())</div></pre></td></tr></table></figure>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/09/20/mysql-主从不同步解决/" class="archive-article-date">
-  	<time datetime="2016-09-20T12:12:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-09-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/09/20/mysql-主从不同步解决/">mysql 主从不同步解决</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2018/10/22/线程/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/06/12/kubernetes中的volume/" class="archive-article-date">
-  	<time datetime="2016-06-12T11:53:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-06-12</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/10/07/插件式开发/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">插件式开发</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/06/12/kubernetes中的volume/">kubernetes中的volume</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">kubernetes</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/06/10/kubernetes-DNS配置/" class="archive-article-date">
-  	<time datetime="2016-06-10T03:57:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-06-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/06/10/kubernetes-DNS配置/">kubernetes DNS配置</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">kubernetes</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/05/10/kubernetes1-4/" class="archive-article-date">
-  	<time datetime="2016-05-10T03:25:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/10/kubernetes1-4/">kubernetes1.4</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">kubernetes</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/page/3/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><span class="page-number current">4</span>
-    </nav>
   
 
 
@@ -336,8 +433,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
