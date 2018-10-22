@@ -6,19 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>高阶函数&amp;装饰器 | Winnie&#39;s cabin</title>
+  <title>Archives: 2017/10 | Winnie&#39;s cabin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一.高阶函数 高阶函数至少满足以下一个条件  接受一个或者多个函数作为参数 返回一个函数  1. 内建函数-高阶函数 sorted(iterable[, key][, reverse]) –&amp;gt; list  filter(function or None, iterable) –&amp;gt; filter object map(func, *iterables) –&amp;gt; map objec">
-<meta name="keywords" content="python">
-<meta property="og:type" content="article">
-<meta property="og:title" content="高阶函数&amp;装饰器">
-<meta property="og:url" content="http://yoursite.com/2018/08/31/高阶函数/index.html">
+  <meta name="description" content="运维小记">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Winnie&#39;s cabin">
+<meta property="og:url" content="http://yoursite.com/archives/2017/10/index.html">
 <meta property="og:site_name" content="Winnie&#39;s cabin">
-<meta property="og:description" content="一.高阶函数 高阶函数至少满足以下一个条件  接受一个或者多个函数作为参数 返回一个函数  1. 内建函数-高阶函数 sorted(iterable[, key][, reverse]) –&amp;gt; list  filter(function or None, iterable) –&amp;gt; filter object map(func, *iterables) –&amp;gt; map objec">
-<meta property="og:updated_time" content="2018-08-31T11:32:16.000Z">
+<meta property="og:description" content="运维小记">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="高阶函数&amp;装饰器">
-<meta name="twitter:description" content="一.高阶函数 高阶函数至少满足以下一个条件  接受一个或者多个函数作为参数 返回一个函数  1. 内建函数-高阶函数 sorted(iterable[, key][, reverse]) –&amp;gt; list  filter(function or None, iterable) –&amp;gt; filter object map(func, *iterables) –&amp;gt; map objec">
+<meta name="twitter:title" content="Winnie&#39;s cabin">
+<meta name="twitter:description" content="运维小记">
   
     <link rel="alternative" href="/atom.xml" title="Winnie&#39;s cabin" type="application/atom+xml">
   
@@ -144,210 +142,60 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-高阶函数" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      高阶函数&amp;装饰器
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2017" class="archive-year">2017</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2017/10/25/LVS介绍/" class="archive-article-date">
+  	<time datetime="2017-10-25T13:48:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-25</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2017/10/25/LVS介绍/">LVS介绍</a>
     </h1>
   
 
-        
-        <a href="/2018/08/31/高阶函数/" class="archive-article-date">
-  	<time datetime="2018-08-31T11:29:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-31</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="一-高阶函数"><a href="#一-高阶函数" class="headerlink" title="一.高阶函数"></a>一.高阶函数</h1><p> 高阶函数至少满足以下一个条件</p>
-<ol>
-<li>接受一个或者多个函数作为参数</li>
-<li>返回一个函数</li>
-</ol>
-<h3 id="1-内建函数-高阶函数"><a href="#1-内建函数-高阶函数" class="headerlink" title="1. 内建函数-高阶函数"></a>1. 内建函数-高阶函数</h3><ul>
-<li>sorted(iterable[, key][, reverse]) –&gt; list </li>
-<li>filter(function or None, iterable) –&gt; filter object</li>
-<li>map(func, *iterables) –&gt; map objec </li>
-</ul>
-<h3 id="2-柯里化-Currying"><a href="#2-柯里化-Currying" class="headerlink" title="2. 柯里化(Currying)"></a>2. 柯里化(Currying)</h3><ul>
-<li>指的是将原来接受两个参数的函数变成新的接受一个参数的过程，新的函数返回一个以原有第二个参数为参数的函数</li>
-<li>z=f(x,y) 转化成 z=f(x)(y) 的形式</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">def add(x,y):</div><div class="line">    return x + y</div><div class="line">#add(5,6)</div><div class="line"></div><div class="line"></div><div class="line">def add(x):</div><div class="line">    def _add(y):</div><div class="line">        return x + y</div><div class="line">    return _add</div><div class="line"></div><div class="line">#add(5)(6)</div></pre></td></tr></table></figure>
-<h1 id="二-装饰器"><a href="#二-装饰器" class="headerlink" title="二.装饰器"></a>二.装饰器</h1><p>自身是函数， 可以增强其他函数功能<br>一般接受一个函数对象作为参数，以对其进行增强</p>
-<h3 id="1-装饰器-无参"><a href="#1-装饰器-无参" class="headerlink" title="1.装饰器(无参)"></a>1.装饰器(无参)</h3><ul>
-<li>它是一个函数</li>
-<li>函数作为它的形参</li>
-<li>返回值是函数</li>
-<li>可以使用<code>@functionname</code>方式，简化调用</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">def add(x,y):</div><div class="line">    return x + y</div><div class="line">def logger(fn):</div><div class="line">    def warpper(*args,**kwargs):</div><div class="line">        print(&quot;args=&#123;&#125;,kwargs=&#123;&#125;&quot;.format(args,kwargs))</div><div class="line">        x = fn(*args,**kwargs)</div><div class="line">        return x </div><div class="line">    return warpper</div><div class="line"></div><div class="line">logger(add)(4,y=5)</div></pre></td></tr></table></figure>
-<p>以下add 的使用装饰器的代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">def logger(fn):</div><div class="line">    def warpper(*args,**kwargs):</div><div class="line">        print(&quot;args=&#123;&#125;,kwargs=&#123;&#125;&quot;.format(args,kwargs))</div><div class="line">        x = fn(*args,**kwargs)</div><div class="line">        return x </div><div class="line">    return warpper</div><div class="line"></div><div class="line">@logger  # add = logger(add)</div><div class="line">def add(x,y):</div><div class="line">    return x + y</div><div class="line"></div><div class="line">add(4,y=5)   # logger(add)(4,y=5) - &gt; warpper(4,y=5)</div></pre></td></tr></table></figure></p>
-<h3 id="2-装饰器-带参数"><a href="#2-装饰器-带参数" class="headerlink" title="2.装饰器(带参数)"></a>2.装饰器(带参数)</h3><ul>
-<li>它是一个函数</li>
-<li>函数作为它的形参</li>
-<li>返回值是一个不带参的装饰器函数</li>
-<li>可以使用<code>@functionname(参数列表)</code>方式调用</li>
-<li>可以看作在装饰器外层又加了一层函数</li>
-<li>多个装饰器执行顺序从下往上执行</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">def copy_properties(fn):</div><div class="line">    &quot;&quot;&quot;</div><div class="line">    将装饰器函数的属性 修改 成被装饰器装饰的函数的属性</div><div class="line">    &quot;&quot;&quot;</div><div class="line">    def _copy(decorator_fn):         </div><div class="line">        decorator_fn.__name__ = fn.__name__</div><div class="line">        decorator_fn.__doc__ = fn.__doc__</div><div class="line">        return decorator_fn</div><div class="line">    return _copy</div><div class="line"></div><div class="line">def logger(fn):</div><div class="line">    def wrapper(*args,**kwargs):</div><div class="line">        &quot;&quot;&quot;This is function warpper&quot;&quot;&quot;</div><div class="line">        x = fn(*args,**kwargs)</div><div class="line">        return x </div><div class="line">    copy_properties(fn)(wrapper)</div><div class="line">    return wrapper</div><div class="line"></div><div class="line">@logger</div><div class="line">def add(x,y):</div><div class="line">    &quot;&quot;&quot;Thie is function add&quot;&quot;&quot;</div><div class="line">    return x + y</div><div class="line"></div><div class="line">add.__doc__</div></pre></td></tr></table></figure>
-<p>可以修改成如下代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">def copy_properties(fn):</div><div class="line">    &quot;&quot;&quot;</div><div class="line">    将装饰器函数的属性 修改 成被装饰器装饰的函数的属性</div><div class="line">    &quot;&quot;&quot;</div><div class="line">    def _copy(decorator_fn):</div><div class="line">        decorator_fn.__name__ = fn.__name__</div><div class="line">        decorator_fn.__doc__ = fn.__doc__</div><div class="line">        return decorator_fn</div><div class="line">    return _copy</div><div class="line"></div><div class="line">def logger(fn):</div><div class="line">     #warpper = copy_properties(fn)(wrapper)</div><div class="line">    @copy_properties(fn)  </div><div class="line">    def wrapper(*args,**kwargs):</div><div class="line">        &quot;&quot;&quot;This is function warpper&quot;&quot;&quot;</div><div class="line">        x = fn(*args,**kwargs)</div><div class="line">        return x </div><div class="line">    return wrapper</div><div class="line"></div><div class="line">@logger</div><div class="line">def add(x,y):</div><div class="line">    &quot;&quot;&quot;Thie is function add&quot;&quot;&quot;</div><div class="line">    return x + y</div><div class="line"></div><div class="line">add.__doc__</div></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">import time</div><div class="line">import datetime</div><div class="line"># 获取函数的执行时长，对时长超过阀值的函数记录</div><div class="line">def logger(duration):</div><div class="line">    def _logger(fn):</div><div class="line">        @copy_properties(fn)  # wrapper=wrapper(fn)(warpper)</div><div class="line">        def wrapper(*args,**kwargs):</div><div class="line">            start = datetime.datetime.now()</div><div class="line">            ret = fn(*args,**kwargs)</div><div class="line">            delta = (datetime.datetime.now()-start).total_seconds()</div><div class="line">            print(&quot;so slow&quot;) if delta &gt; duration else print(&apos;so fase&apos;)</div><div class="line">            return ret</div><div class="line">        return wrapper</div><div class="line">    return _logger</div><div class="line"></div><div class="line">@logger(5)  # add= logger(5)</div><div class="line">def add(x,y):</div><div class="line">    time.sleep(5)</div><div class="line">    return x + y </div><div class="line"></div><div class="line">print(add(5,6))</div></pre></td></tr></table></figure>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">cluster</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2018/08/31/高阶函数/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2018/09/01/生成器/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          生成器
-        
-      </div>
-    </a>
   
   
-    <a href="/2018/08/23/函数基础/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">函数基础</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -370,8 +218,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
