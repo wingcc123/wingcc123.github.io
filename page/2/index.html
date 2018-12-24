@@ -144,186 +144,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-线程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/22/线程/">线程</a>
-    </h1>
-  
-
-        
-        <a href="/2016/10/22/线程/" class="archive-article-date">
-  	<time datetime="2016-10-22T13:56:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-10-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>并行是并发的一种解决方式<br>并行 paraller 同时做某些事，可以互不干扰的同一个时刻做某些事情<br>并发，一个时间段内有多少事情处理</p>
-<p>并发的解决<br>1.队列，缓冲区<br>2.争抢<br>3.预处理<br>4.并行<br>5.提速<br>6.消息中间件</p>
-<h1 id="进程和线程"><a href="#进程和线程" class="headerlink" title="进程和线程"></a>进程和线程</h1><p>在实现了线程的操作系统中， 线程是操作系统能够进行运算调度的最小单位。它被包含在进程之中，是进程中的实际运作单位，一个程序的执行实例就是进程。<br>进程是计算机中的程序关于某数据集合上的一次运行活动。是系统进行资源分配和调度的基本单位，是操作系统结构的基础。</p>
-<p>进程和程序的关系<br>程序是源代码编译后的文件，而这些文件存放在磁盘上。当程序被操作系统加载到内存中，就是进程。金策韩国那种存放着指令和数据（资源），它是线程的容器<br>linux中进程有父进程，子进程。windows的进程是平等关系</p>
-<p>线程，有时候被称为轻量级进程，是程序指定流的最小单元，<br>一个标准的线程有线程id，当前指令指针（PC），寄存器集合和堆栈组成。<br>在许多系统中，创建一个线程比创建一个进程快10-100 倍</p>
-<p>现代操作系统提出进程的概念，每一个进程都认为自己独占所有的计算机硬件资源<br>进程就是独立的，进程间不可以随便地共享数据<br>同一个进程内的线程可以共享进程的资源，每一个线程拥有自己独立的堆栈。<br>线程有四个状态<br>就绪态：线程能够运行，但是等待被调度。可能线程刚刚创建启动，或者刚刚从阻塞态中恢复，或者被其他现层内抢占<br>运行态：线程正在运行<br>阻塞态：线程等待外部事情发生而无法运行，例如I／O操作<br>终止态：线程完成，或者退出，或被取消</p>
-<h2 id="python-线程开发"><a href="#python-线程开发" class="headerlink" title="python 线程开发"></a>python 线程开发</h2><p>进程会启动一个解释器进程，线程共享一个解释器进程<br>python的线程没有优先级，没有线程组的概念，也不能被销毁，停止，挂起，那么就没有恢复，中断了</p>
-<h3 id="Thread-类"><a href="#Thread-类" class="headerlink" title="Thread 类"></a>Thread 类</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">def __init__(self,group=None,target=None,name=None,</div><div class="line">            args=(),kwargs=None,*,daemon=None)</div></pre></td></tr></table></figure>
-<ul>
-<li>target :线程调用的对象，就是目标函数</li>
-<li>name ：为线程起个名字</li>
-<li>args ：为目标函数传递实参，元组</li>
-<li>kwargs：为目标函数关键字传参，字典</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">import threading</div><div class="line">def worker():</div><div class="line">    print(&apos;running&apos;)</div><div class="line">t = threading.Thread(target=worker,name=&apos;worker&apos;)</div><div class="line">t.start()</div></pre></td></tr></table></figure>
-<p>线程运行中可以分为主线程和工作线程</p>
-<h6 id="线程退出"><a href="#线程退出" class="headerlink" title="线程退出"></a>线程退出</h6><p>python中没有提供线程退出的方法，线程在下面情况的时候退出<br>1.线程函数内语句执行完毕<br>2.线程函数中抛未处理的异常</p>
-<h6 id="threading属性和方法"><a href="#threading属性和方法" class="headerlink" title="threading属性和方法"></a>threading属性和方法</h6><table>
-<thead>
-<tr>
-<th style="text-align:center">name</th>
-<th style="text-align:center">meaning</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">current_thread()</td>
-<td style="text-align:center">返回当前线程对象</td>
-</tr>
-<tr>
-<td style="text-align:center">main_thread()</td>
-<td style="text-align:center">返回主线程对象</td>
-</tr>
-<tr>
-<td style="text-align:center">active_count</td>
-<td style="text-align:center">返回处于active的线程个数</td>
-</tr>
-<tr>
-<td style="text-align:center">enumerate()</td>
-<td style="text-align:center">返回所有活着的线程的列表，不包括已经终止和未开始的线程</td>
-</tr>
-<tr>
-<td style="text-align:center">get_ident()</td>
-<td style="text-align:center">返回当前的线程id</td>
-</tr>
-</tbody>
-</table>
-<p>active_count ,enumerate 方法返回的值还包括主线程</p>
-<p>Thread实例的属性和方法</p>
-<ul>
-<li>name :标识符，可以重复，getName()，setName()可以获取，设置该字段</li>
-<li>ident : 线程ID，非0整数，线程启动后才会有ID，否则为None，线程退出，此ID依旧可以访问，可以重复使用</li>
-<li>is_alive() ：返回线程是否或者<br><strong>线程的name这是一个名称，可以重复，但是id必须唯一</strong></li>
-<li>start(): 启动线程，每一个线程必须且只能执行一次，会自动调用run()方法</li>
-<li>run():运行线程函数</li>
-</ul>
-<h1 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h1><p>一个进程中有多个线程。<br>当使用start方法启动之后，进程内有多个活动的线程并行工作，就是多线程<br>一个线程中至少有一个线程，作为程序的入口，这个线程就是主线程，一个进程至少有一个主线程，其他线程为工作线程</p>
-<h3 id="线程安全"><a href="#线程安全" class="headerlink" title="线程安全"></a>线程安全</h3><p>1.print函数不是线程安全函数，不让print 打印换行<br>2.使用logging </p>
-<h3 id="daemon线程和non-daemon线程"><a href="#daemon线程和non-daemon线程" class="headerlink" title="daemon线程和non-daemon线程"></a>daemon线程和non-daemon线程</h3><p>进程依靠线程执行代码，至少有一个主线程，其他线程是工作线程<br>主线程就是第一个启动的线程</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">名称</th>
-<th style="text-align:center">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">daemon属性</td>
-<td style="text-align:center">表示线程是否是daemon线程 ，这个值必须在start()之前设置，否则引发RuntimeError异常</td>
-</tr>
-<tr>
-<td style="text-align:center">isDaemon()</td>
-<td style="text-align:center">是否是daemon线程</td>
-</tr>
-<tr>
-<td style="text-align:center">setDaemon</td>
-<td style="text-align:center">设置为daemon线程，必须在start之前设置</td>
-</tr>
-</tbody>
-</table>
-<p>线程中daemon 如果没有设置，默认继承当前线程的damon的值。<br>主线程的默认是non-daemon线程，daemon=False<br>daemon线程，daemon=True。<br>non-daemon进程如果没有结束，主线程会一直等待non-daemon线程结束。<br>主线程结束的时候会逐一结束daemon进程</p>
-<h1 id="join方法"><a href="#join方法" class="headerlink" title="join方法"></a>join方法</h1><p>join(timeout=None)，是线程的标准方法之一。<br>一个线程中调用另一线程的join方法，调用者将被阻塞，直到被调用线程终止。<br>一个线程可以被join多次。<br>调用谁的join方法，就是join谁，就要等谁</p>
-<h1 id="threading-local类"><a href="#threading-local类" class="headerlink" title="threading.local类"></a>threading.local类</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">import  threading</div><div class="line">import time</div><div class="line"></div><div class="line">class A:</div><div class="line">    def __init__(self):</div><div class="line">        self.x = 0</div><div class="line">global_data = A()</div><div class="line"></div><div class="line">def worker():</div><div class="line">    global_data.x=0</div><div class="line">    for i in range(100):</div><div class="line">        time.sleep(0.0001)</div><div class="line">        global_data.x += 1</div><div class="line">    print(threading.current_thread(),global_data.x)</div><div class="line"></div><div class="line">for i in range(5):</div><div class="line">    threading.Thread(target=worker).start()</div></pre></td></tr></table></figure>
-<p>python 提供了threading.local类，将这个类实例化得到一个全局对象，但是不同的线程使用这个对象存储的数据。</p>
-<blockquote>
-<p>本质<br>运行时候，threading.local实例处于不同的线程中，就从大字典中到找当前线程相关键值对的字典，覆盖threading.lcoal实例的<strong>dict</strong></p>
-</blockquote>
-<h1 id="threading-Timer-类"><a href="#threading-Timer-类" class="headerlink" title="threading.Timer 类"></a>threading.Timer 类</h1><p>这个类用来定义延时多久后执行一个函数<br>threading.Timer(interval,function,args=None,kwargs=None)<br>start方法执行之后，Timer对象就会处于一种等待状态，等待interval秒之后，开始执行function函数</p>
-<p>Timer 是线程Thread的子类，就是线程类，具有线程的能力和特征<br>它的实例可以延时执行函数的线程，在真正执行目标函数之前，都可以cancel它。<br>cancel方法的本质是使用Event类实现，并不是说，线程提供了取消的方法</p>
-<h1 id="线程同步"><a href="#线程同步" class="headerlink" title="线程同步"></a>线程同步</h1><p>线程同步，线程间协同，通过某种技术，让一个线程访问某数据时，其他线程不能访问这些数据，直到该线程完成对数据的操作<br>不同操作系统实现技术有所不同，有临界区（Critical Section）、互斥量（Mutex）、信号量（Semaphore）、事件（Event）</p>
-<h1 id="Event事件"><a href="#Event事件" class="headerlink" title="Event事件"></a>Event事件</h1><p>就是线程间通信机制中最简单的实现，使用一个内部的标记flag，通过flag的True或者False的变化来进行操作。</p>
-<ul>
-<li>set() 标记设置为True</li>
-<li>clear() 标记设置为False</li>
-<li>is_set() 标记是否为True</li>
-<li>wait(timeout=None) 设置等待标记为True的时长，None为无线等待，等待返回True，未等到超时了返回False</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">from threading import Event,Thread</div><div class="line">import logging</div><div class="line">import time</div><div class="line"></div><div class="line">FORMAT = &apos;%(asctime)s %(threadName)s %(thread)d %(message)s&apos;</div><div class="line">logging.basicConfig(format=FORMAT,level=logging.INFO)</div><div class="line"></div><div class="line">def boss(event:Event):</div><div class="line">    logging.info(&apos;boss&apos;)</div><div class="line">    event.wait()</div><div class="line">    logging.info(&apos;well done&apos;)</div><div class="line">    </div><div class="line">def worker(event:Event,count=10):</div><div class="line">    logging.info(&apos;worker&apos;)</div><div class="line">    cups = []</div><div class="line">    while True:</div><div class="line">        logging.info(&apos;glass 1&apos;)</div><div class="line">        time.sleep(0.5)</div><div class="line">        cups.append(1)</div><div class="line">        if len(cups) &gt;= count:</div><div class="line">            event.set()</div><div class="line">            break</div><div class="line">    logging.info(&apos;finish&apos;)</div><div class="line">    </div><div class="line">event = Event()</div><div class="line">w = Thread(target=worker,args=(event,))</div><div class="line">b = Thread(target=boss,args=(event,))</div><div class="line"></div><div class="line">w.start()</div><div class="line">b.start()</div></pre></td></tr></table></figure>
-<p>使用同一个Event对象的标记flag<br>线程中Event对象wait，就是等到flag变为True，或者等到超时返回False，不限制等待的个数<br>Event的wait优于time.sleep，它会更快的切换到其它线程，提高并发效率。</p>
-<h1 id="Lock"><a href="#Lock" class="headerlink" title="Lock"></a>Lock</h1><p>锁，但是存在共享资源争抢的地方都可以使用锁，从而保证只有一个使用者可以完全使用这个资源</p>
-<ul>
-<li>acquire(blocking=True,timeout=-1)<br>默认阻塞，阻塞可以设置超时时间，非阻塞时，timeout禁止设置。成功获取锁，返回True，否则返回False。</li>
-<li>release()<br>释放锁，可以从任何线程调用释放<br>已上锁的锁，会被重置为unlocker 未上锁的锁上调用，爆出RuntimeError异常</li>
-</ul>
-<p>一般来说，加锁就需要解锁，但是加锁后解锁前，还需要执行一些代码，就可能抛异常，一旦出现异常，锁是无法释放的，但是当前线程可能已经被这个异常终止了，这就产生了死锁。<br>加锁，解锁常用语句：<br>1.try …finally<br>2.with 上下文管理</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">import threading</div><div class="line">from threading import Thread,Lock</div><div class="line">import time</div><div class="line">class Counter():</div><div class="line">    def __init__(self):</div><div class="line">        self._val = 0</div><div class="line">        self.__lock = Lock()</div><div class="line">    @property</div><div class="line">    def value(self):</div><div class="line">        with self.__lock:</div><div class="line">            return self._val</div><div class="line">    def inc(self):</div><div class="line">        try:</div><div class="line">            self.__lock.acquire()</div><div class="line">            self._val += 1</div><div class="line">        finally:</div><div class="line">            self.__lock.release()</div><div class="line">            </div><div class="line">    def dec(self):</div><div class="line">        with self.__lock:</div><div class="line">            self._val -= 1</div><div class="line">def run(c:Counter,count=100):</div><div class="line">    for _ in range(count):</div><div class="line">        for i in range(-50,50):</div><div class="line">            if i &lt; 0:</div><div class="line">                c.dec()</div><div class="line">            else:</div><div class="line">                c.inc()</div><div class="line">c = Counter()</div><div class="line">c1 = 10 # 线程数</div><div class="line">c2 = 1000</div><div class="line"></div><div class="line">for i in range(c1):</div><div class="line">    Thread(target=run,args=(c,c2)).start()</div><div class="line">    </div><div class="line">while True:</div><div class="line">    time.sleep(1)</div><div class="line">    if threading.active_count() == 1:</div><div class="line">        print(threading.enumerate())</div><div class="line">        print(c.value)</div><div class="line">        break</div><div class="line">    else:</div><div class="line">        print(threading.enumerate())</div></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/10/22/线程/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-插件式开发" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1524,6 +1344,145 @@
 
 
   
+    <article id="post-路径操作" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/09/路径操作/">路径操作</a>
+    </h1>
+  
+
+        
+        <a href="/2016/09/09/路径操作/" class="archive-article-date">
+  	<time datetime="2016-09-09T10:30:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-09-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一-os-path"><a href="#一-os-path" class="headerlink" title="一.os.path"></a>一.os.path</h1><p>python3.4 版本之前使用os.path 模块进行路径的操作</p>
+<ul>
+<li>path.join(a, <em>p)<br>使用<em>*操作系统默认的文件分隔符</em></em>连接多个路径名,如果路径名中出现绝对路径，则该绝对路径名前所有路径名不能拼接。</li>
+<li>path.exists(path)<br>判断文件是否真实存在。<br>如果是软连接，如果软连接的指向文件已经丢失，也会返回False  </li>
+<li>path.split(p)<br>使用<strong>操作系统默认的文件分隔符</strong>分隔文件路径，返回一个元组(head, tail),tail 是最后一个分隔符之后的内容。</li>
+<li>path.abspath(path)<br>返回绝对路径</li>
+<li>path.basename(p)<br>返回基名</li>
+<li>path.dirname(p)<br>返回目录名</li>
+<li>path.splitdrive(p)<br>windows系统专用，分割驱动器和文件路径，在linux 驱动器总是为空的。<br><img src="https://upload-images.jianshu.io/upload_images/4618795-a7f5fb272c6969b5.gif?imageMogr2/auto-orient/strip" alt="os.path.gif"></li>
+</ul>
+<h1 id="二-pathlib-模块-3-4版本以后可用"><a href="#二-pathlib-模块-3-4版本以后可用" class="headerlink" title="二.pathlib 模块 (3.4版本以后可用)"></a>二.pathlib 模块 (3.4版本以后可用)</h1><p>提供Path对象操作路径</p>
+<ul>
+<li>Path(<em>args, *</em>kwargs)<br>生成一个PosixPath／ WindowsPathPath 的对象<h3 id="1-路径拼接"><a href="#1-路径拼接" class="headerlink" title="1.路径拼接"></a>1.路径拼接</h3></li>
+<li>通过“／” 拼接生成一个新的Path对象<br>1.Path对象／Path对象<br>2.Path对象／字符串<br>3.字符串／Path对象</li>
+<li>joinpath(*other) 连接多个字符串或者Path对象，生成一个新的Path对象</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/4618795-ab7a23b8e16cd010.gif?imageMogr2/auto-orient/strip" alt="pathlib.gif"></p>
+<h3 id="2-获取路径"><a href="#2-获取路径" class="headerlink" title="2. 获取路径"></a>2. 获取路径</h3><ul>
+<li>pathobj.parts 属性，返回路径中的每一部分</li>
+<li>str(pathobj) 获取路径字符串</li>
+<li>bytes(pathobj)  获取路径字符串的bytes</li>
+<li>pathobj.parent 获取路径的逻辑父目录</li>
+<li><p>pathobj.parents 获取一组路径的逻辑父目录的序列，可迭代 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">pathobj.parents[0] = pathobj.parent </div><div class="line">pathobj.parents[1] = pathobj.parent.parent </div><div class="line">...</div></pre></td></tr></table></figure>
+</li>
+<li><p>pathobj.name  获取路径的最后一部分（basename）</p>
+</li>
+<li>pathobj.suffix  获取路径的最后一部分的后缀</li>
+<li>pathobj.stem 获取路径的最后一部分，没有后缀</li>
+<li>pathobj.suffixs 返回多个后缀列表</li>
+<li>pathobj.with_suffix(suffix)  有后缀则替换，无则添加后缀，后缀必须以”.”开头，例如：<code>.txt</code> 。返回一个新的path对象</li>
+<li>with_name(name) 替换路径最后一个部分并返回一个新的路径<br><img src="https://upload-images.jianshu.io/upload_images/4618795-37c4a3eed7a6851c.gif?imageMogr2/auto-orient/strip" alt="pathlib2"><h3 id="3-常用方法"><a href="#3-常用方法" class="headerlink" title="3.  常用方法"></a>3.  常用方法</h3></li>
+<li>p.cwd() 获取当前工作目录</li>
+<li>p.home()   获取当前家目录</li>
+<li>p.is_dir() 是否是目录，目录存在返回True</li>
+<li>p.is_file() 是否是普通文件，文件存在返回True </li>
+<li>p.is_symlink() 是否是软链接</li>
+<li>p.is_socket() 是否是socket文件 </li>
+<li>p.is_block_device() 是否是块设备 </li>
+<li>p.is_char_device() 是否是字符设备 </li>
+<li>p.is_fifo() 是否是管道文件</li>
+<li>is_absolute() 是否是绝对路径</li>
+<li>p.resolve() 返回一个新的路径，这个新路径就是当前Path对象的绝对路径，如果是软链接则直接被解析</li>
+<li>p.absolute() 获取绝对路径</li>
+<li>p.exists() 目录或文件是否存在</li>
+<li>p.rmdir() 删除空目录。没有提供判断目录为空的方法 </li>
+<li>p.touch(mode=0o666, exist_ok=True)   创建一个文件.<br><code>exist_ok</code>参数，在3.5版本加入。False时，路径存在，抛出FileExistsError;<strong>True时，FileExistsError被忽略</strong></li>
+<li>p.mkdir(mode=0o777, parents=False, exist_ok=True)<br><code>parents=True</code>等同于<code>mkdir -p</code>;False时，父目录不存在，则抛出FileNotFoundError</li>
+<li>p.as_uri() 将路径返回成URI，例如’file:///etc/passwd’</li>
+<li>p.iterdir() 如果p 是目录，则可以迭代出在目录p下的文件，返回一个生成器</li>
+<li>p.glob(pattern)  如果p 是目录，则找出文件名符合指定pattern的文件，返回一个生成器。</li>
+<li>p.rglob(pattern)  如果p 是目录，则<strong>递归该目录下的文件</strong>，找出文件名符合指定pattern的文件，返回一个生成器。</li>
+<li>p.match(pattern)  文件名是否符合指定pattern，返回bool</li>
+<li>p.stat() 等同stat</li>
+<li>p.lstat 同stat()，但如果是符号链接,则现实符号链接本身的文件信息</li>
+</ul>
+<h3 id="4-文件操作"><a href="#4-文件操作" class="headerlink" title="4. 文件操作"></a>4. 文件操作</h3><ul>
+<li>p.open(mode=’r’, buffering=-1, encoding=None, errors=None, newline=None)<br>使用方法类似内建函数open。返回一个文件对象，文件对象需要close<blockquote>
+<p>3.5增加的新函数</p>
+</blockquote>
+</li>
+<li>p.read_bytes()<br>以’rb’读取路径对应文件，并返回二进制流。</li>
+<li>p.read_text(encoding=None, errors=None)<br>以’rt’方式读取路径对应文件，返回文本。</li>
+<li>p.write_bytes(data)<br>以’wb’方式写入数据到路径对应文件。</li>
+<li>p.write_text(data, encoding=None, errors=None)<br>以’wt’方式写入字符串到路径对应文件。</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/09/09/路径操作/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1621,11 +1580,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color1">kubernetes</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">kubernetes</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1637,11 +1596,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">

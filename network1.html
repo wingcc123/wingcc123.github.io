@@ -6,17 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2018/10 | Winnie&#39;s cabin</title>
+  <title>Winnie&#39;s cabin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="运维小记">
+  <meta name="description" content="OSI七层协议 PDU：Protocol Data Unit。协议数据单元是指对等层次之间传递的数据单元  物理层，数据位，bit 数据链路层，数据帧，frame 网络层，数据包，packet 传输层，数据段，segment= 其他更高层次，消息，message  通信的三种方式  单播 目标只有一个地址，但是其他PC可以收到 广播，目标是局域网内所有地址 组播，目标是一组主机  网卡改成非标准或">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Winnie&#39;s cabin">
-<meta property="og:url" content="http://yoursite.com/archives/2018/10/index.html">
+<meta property="og:url" content="http://yoursite.com/network1.html">
 <meta property="og:site_name" content="Winnie&#39;s cabin">
-<meta property="og:description" content="运维小记">
+<meta property="og:description" content="OSI七层协议 PDU：Protocol Data Unit。协议数据单元是指对等层次之间传递的数据单元  物理层，数据位，bit 数据链路层，数据帧，frame 网络层，数据包，packet 传输层，数据段，segment= 其他更高层次，消息，message  通信的三种方式  单播 目标只有一个地址，但是其他PC可以收到 广播，目标是局域网内所有地址 组播，目标是一组主机  网卡改成非标准或">
+<meta property="og:updated_time" content="2018-10-24T05:23:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Winnie&#39;s cabin">
-<meta name="twitter:description" content="运维小记">
+<meta name="twitter:description" content="OSI七层协议 PDU：Protocol Data Unit。协议数据单元是指对等层次之间传递的数据单元  物理层，数据位，bit 数据链路层，数据帧，frame 网络层，数据包，packet 传输层，数据段，segment= 其他更高层次，消息，message  通信的三种方式  单播 目标只有一个地址，但是其他PC可以收到 广播，目标是局域网内所有地址 组播，目标是一组主机  网卡改成非标准或">
   
     <link rel="alternative" href="/atom.xml" title="Winnie&#39;s cabin" type="application/atom+xml">
   
@@ -142,43 +143,148 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
       
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/10/24/network1/" class="archive-article-date">
-  	<time datetime="2018-10-24T05:23:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-24</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+        <p>OSI七层协议</p>
+<p>PDU：Protocol Data Unit。协议数据单元是指对等层次之间传递的数据单元</p>
+<ul>
+<li>物理层，数据位，bit</li>
+<li>数据链路层，数据帧，frame</li>
+<li>网络层，数据包，packet</li>
+<li>传输层，数据段，segment<br>= 其他更高层次，消息，message</li>
+</ul>
+<p>通信的三种方式</p>
+<ul>
+<li>单播 目标只有一个地址，但是其他PC可以收到</li>
+<li>广播，目标是局域网内所有地址</li>
+<li>组播，目标是一组主机</li>
+</ul>
+<p>网卡改成非标准或者复杂模式，可以获取到其他主机的消息</p>
+<p>TCP特性<br>工作在传输层<br>面向连接协议<br>全双工协议<br>半关闭<br>错误检查<br>将数据打包成段，排序<br>确认机制<br>数据恢复，重传<br>流量控制，滑动窗口<br>拥塞控制，慢启动和拥塞避免算法</p>
+<p>Windows tasklisk 列出进程 netstat -no</p>
+<p>跨网络通信<br>通过DNS先解析域名得到ip地址<br>判断ip地址是否和本地在同一个网段<br>如果不是，先找网关，arp找到网关，得到mac地址，然后将数据报文发给网关，然后通过路由器层层转发<br>ariping -I eth1 ip 查看本地网络用某个ip地址的MAC</p>
 
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/network1.html" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-  
-    </div></section>
+
   
 
-    
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
+  
+
+  
+
+  
+
+  
 
 
           </div>
@@ -202,7 +308,7 @@
 		mathjax: false,
 		isHome: false,
 		isPost: false,
-		isArchive: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
@@ -271,11 +377,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color1">kubernetes</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">kubernetes</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -287,11 +393,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
